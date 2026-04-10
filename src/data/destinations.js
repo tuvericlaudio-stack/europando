@@ -1,3 +1,5 @@
+const base = import.meta.env.BASE_URL;
+
 export const destinations = [
   {
     slug: "oslo",
@@ -50,7 +52,7 @@ export const destinations = [
     name: "Bucarest",
     text: "Una città di contrasti, grandi viali e centro storico, da organizzare bene per giornate.",
     tag: "Urban Mix",
-    image: "/bucarest-hero.jpg",
+    image: `${base}bucarest-hero.jpg`,
     heroTitle: "Bucarest, meglio a blocchi chiari che di corsa.",
     intro:
       "Una guida costruita per giorni, con itinerario ordinato e sezione separata dedicata a dove mangiare.",
@@ -132,9 +134,9 @@ export const destinations = [
       ],
     },
     gallery: [
-      "/bucarest-gallery-1.jpg",
-      "/bucarest-gallery-2.jpg",
-      "/bucarest-gallery-3.jpg",
+      `${base}bucarest-gallery-1.jpg`,
+      `${base}bucarest-gallery-2.jpg`,
+      `${base}bucarest-gallery-3.jpg`,
     ],
   },
 
