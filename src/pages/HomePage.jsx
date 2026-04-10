@@ -7,7 +7,7 @@ export default function HomePage({
   return (
     <div className="min-h-screen bg-[#f4f7fb] text-[#17202c]">
       <section className="max-w-7xl mx-auto px-6 pt-12 pb-20 md:pt-16 md:pb-24">
-        <div className="grid lg:grid-cols-[1fr_1.05fr] gap-12 items-center">
+        <div className="grid lg:grid-cols-[0.95fr_1.05fr] gap-12 items-center">
           <div>
             <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#7a8798]">
               Travel journal
@@ -39,7 +39,7 @@ export default function HomePage({
             </div>
           </div>
 
-          <div className="relative overflow-hidden rounded-[2.4rem] min-h-[540px] border border-[#dbe5ef] shadow-[0_24px_60px_rgba(20,50,90,0.10)]">
+          <div className="relative overflow-hidden rounded-[2.4rem] min-h-[560px] border border-[#dbe5ef] shadow-[0_24px_60px_rgba(20,50,90,0.10)]">
             <img
               src={heroSrc}
               alt="Hero Europando"

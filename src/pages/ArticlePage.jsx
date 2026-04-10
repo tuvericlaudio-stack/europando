@@ -13,7 +13,7 @@ export default function ArticlePage({ logoSrc, post, navigateTo }) {
       <section className="max-w-7xl mx-auto px-6 pt-8">
         <button
           onClick={() => navigateTo("/articoli")}
-          className="inline-flex items-center gap-2 rounded-2xl border border-[#c8d7ea] bg-white px-5 py-3 text-sm font-bold uppercase tracking-[0.14em] text-[#123e78] shadow-sm hover:bg-[#f8fbff] transition"
+          className="inline-flex items-center gap-2 rounded-[1.4rem] border border-[#c8d7ea] bg-white px-5 py-3 text-sm font-bold uppercase tracking-[0.14em] text-[#123e78] shadow-sm hover:bg-[#f8fbff] transition"
         >
           ← Tutti gli articoli
         </button>
@@ -21,8 +21,8 @@ export default function ArticlePage({ logoSrc, post, navigateTo }) {
 
       {post.freeHero ? (
         <section className="max-w-[1700px] mx-auto px-3 md:px-5 pt-8">
-          <div className="grid lg:grid-cols-[1.15fr_0.85fr] gap-8 items-end">
-            <div className="relative min-h-[560px] md:min-h-[680px] overflow-hidden">
+          <div className="grid lg:grid-cols-[1.15fr_0.85fr] gap-10 items-end">
+            <div className="relative min-h-[560px] md:min-h-[680px] overflow-hidden rounded-[2.4rem] border border-[#dbe5ef] shadow-[0_24px_60px_rgba(20,50,90,0.10)]">
               <img
                 src={post.image}
                 alt={post.title}
@@ -52,14 +52,14 @@ export default function ArticlePage({ logoSrc, post, navigateTo }) {
         </section>
       ) : (
         <section className="max-w-7xl mx-auto px-6 pt-8 pb-10 md:pt-10">
-          <div className="relative overflow-hidden rounded-[2.8rem] min-h-[620px] border border-[#d8e1ee] shadow-[0_24px_70px_rgba(20,50,90,0.10)]">
+          <div className="relative overflow-hidden rounded-[2.4rem] min-h-[620px] border border-[#dbe5ef] shadow-[0_24px_60px_rgba(20,50,90,0.10)]">
             <img
               src={post.image}
               alt={post.title}
               className="absolute inset-0 h-full w-full object-cover"
             />
             <div className="absolute inset-0 bg-[linear-gradient(108deg,rgba(8,25,48,0.88)_0%,rgba(8,25,48,0.60)_36%,rgba(8,25,48,0.18)_68%,rgba(8,25,48,0.08)_100%)]" />
-            <div className="absolute inset-[20px] rounded-[2.2rem] border border-white/18" />
+            <div className="absolute inset-[20px] rounded-[2rem] border border-white/18" />
 
             <div className="relative z-10 h-full flex flex-col justify-end p-8 md:p-12 text-white max-w-4xl">
               <div className="flex flex-wrap items-center gap-3">
@@ -84,7 +84,7 @@ export default function ArticlePage({ logoSrc, post, navigateTo }) {
       )}
 
       <section className="max-w-[1600px] mx-auto px-3 md:px-5 pb-20 pt-8">
-        <div className="rounded-[2.3rem] border border-[#d8e1ee] bg-white p-6 md:p-10 lg:p-12 shadow-[0_18px_50px_rgba(20,40,70,0.06)]">
+        <div className="rounded-[1.9rem] border border-[#dbe5ef] bg-white p-6 md:p-10 lg:p-12 shadow-[0_16px_40px_rgba(20,40,70,0.06)]">
           <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#7a8798]">
             Articolo
           </p>
@@ -97,7 +97,7 @@ export default function ArticlePage({ logoSrc, post, navigateTo }) {
               {post.daySections.map((dayBlock) => (
                 <div
                   key={dayBlock.day}
-                  className="rounded-[1.8rem] border border-[#edf2f7] bg-[#fbfdff] p-6 md:p-8"
+                  className="rounded-[1.6rem] border border-[#edf2f7] bg-[#fbfdff] p-6 md:p-8"
                 >
                   <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-[#7a8798]">
                     {dayBlock.day}
@@ -110,7 +110,7 @@ export default function ArticlePage({ logoSrc, post, navigateTo }) {
                   </p>
 
                   {dayBlock.image && (
-                    <div className="relative overflow-hidden rounded-[1.6rem] min-h-[320px] mt-6 border border-[#e6edf5]">
+                    <div className="relative overflow-hidden rounded-[1.4rem] min-h-[340px] mt-6 border border-[#e6edf5] shadow-[0_10px_24px_rgba(20,40,70,0.04)]">
                       <img
                         src={dayBlock.image}
                         alt={dayBlock.title}
@@ -126,7 +126,7 @@ export default function ArticlePage({ logoSrc, post, navigateTo }) {
               {post.sections.map((section) => (
                 <div
                   key={section.title}
-                  className="rounded-[1.8rem] border border-[#edf2f7] bg-[#fbfdff] p-6 md:p-8"
+                  className="rounded-[1.6rem] border border-[#edf2f7] bg-[#fbfdff] p-6 md:p-8"
                 >
                   <h4 className="text-2xl md:text-3xl font-black tracking-[-0.02em] text-[#17202c]">
                     {section.title}

@@ -16,21 +16,21 @@ export default function DestinationPage({ logoSrc, destination, navigateTo }) {
       <section className="max-w-7xl mx-auto px-6 pt-8">
         <button
           onClick={() => navigateTo("/destinazioni")}
-          className="inline-flex items-center gap-2 rounded-2xl border border-[#c8d7ea] bg-white px-5 py-3 text-sm font-bold uppercase tracking-[0.14em] text-[#123e78] shadow-sm hover:bg-[#f8fbff] transition"
+          className="inline-flex items-center gap-2 rounded-[1.4rem] border border-[#c8d7ea] bg-white px-5 py-3 text-sm font-bold uppercase tracking-[0.14em] text-[#123e78] shadow-sm hover:bg-[#f8fbff] transition"
         >
           ← Tutte le destinazioni
         </button>
       </section>
 
       <section className="max-w-7xl mx-auto px-6 pt-8 pb-10 md:pt-10">
-        <div className="relative overflow-hidden rounded-[2.8rem] min-h-[620px] border border-[#d8e1ee] shadow-[0_24px_70px_rgba(20,50,90,0.10)]">
+        <div className="relative overflow-hidden rounded-[2.4rem] min-h-[620px] border border-[#dbe5ef] shadow-[0_24px_60px_rgba(20,50,90,0.10)]">
           <img
             src={destination.image}
             alt={destination.name}
             className="absolute inset-0 h-full w-full object-cover"
           />
           <div className="absolute inset-0 bg-[linear-gradient(108deg,rgba(8,25,48,0.86)_0%,rgba(8,25,48,0.58)_36%,rgba(8,25,48,0.18)_68%,rgba(8,25,48,0.08)_100%)]" />
-          <div className="absolute inset-[20px] rounded-[2.2rem] border border-white/18" />
+          <div className="absolute inset-[20px] rounded-[2rem] border border-white/18" />
 
           <div className="relative z-10 h-full flex flex-col justify-end p-8 md:p-12 text-white max-w-4xl">
             <div className="flex flex-wrap items-center gap-3">
@@ -55,7 +55,7 @@ export default function DestinationPage({ logoSrc, destination, navigateTo }) {
           {destination.stats.map((stat) => (
             <div
               key={stat.label}
-              className="rounded-[2rem] border border-[#d8e1ee] bg-white p-6 shadow-[0_12px_30px_rgba(20,40,70,0.04)]"
+              className="rounded-[1.9rem] border border-[#dbe5ef] bg-white p-6 shadow-[0_12px_28px_rgba(20,40,70,0.05)]"
             >
               <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#7a8798]">
                 {stat.label}
@@ -71,7 +71,7 @@ export default function DestinationPage({ logoSrc, destination, navigateTo }) {
       <section className="max-w-7xl mx-auto px-6 py-8 md:py-10">
         {hasItinerary ? (
           <div className="grid xl:grid-cols-[0.9fr_1.1fr_0.95fr] gap-8 items-start">
-            <div className="rounded-[2.3rem] border border-[#d8e1ee] bg-white p-8 shadow-[0_18px_50px_rgba(20,40,70,0.06)]">
+            <div className="rounded-[1.9rem] border border-[#dbe5ef] bg-white p-8 shadow-[0_16px_40px_rgba(20,40,70,0.06)]">
               <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#7a8798]">
                 Guida rapida
               </p>
@@ -79,11 +79,11 @@ export default function DestinationPage({ logoSrc, destination, navigateTo }) {
                 Orientarsi subito
               </h3>
 
-              <div className="mt-6 space-y-4">
+              <div className="mt-8 space-y-4">
                 {destination.quickGuide.map((item) => (
                   <div
                     key={item.label}
-                    className="rounded-2xl border border-[#e4ebf4] bg-[#f8fbff] p-5"
+                    className="rounded-[1.4rem] border border-[#e4ebf4] bg-[#f8fbff] p-5"
                   >
                     <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#7a8798]">
                       {item.label}
@@ -96,7 +96,7 @@ export default function DestinationPage({ logoSrc, destination, navigateTo }) {
               </div>
             </div>
 
-            <div className="rounded-[2.3rem] border border-[#d8e1ee] bg-white p-8 shadow-[0_18px_50px_rgba(20,40,70,0.06)]">
+            <div className="rounded-[1.9rem] border border-[#dbe5ef] bg-white p-8 shadow-[0_16px_40px_rgba(20,40,70,0.06)]">
               <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#7a8798]">
                 Guida
               </p>
@@ -104,7 +104,7 @@ export default function DestinationPage({ logoSrc, destination, navigateTo }) {
                 Itinerario
               </h3>
 
-              <div className="mt-6 space-y-6">
+              <div className="mt-8 space-y-6">
                 {destination.itineraryDays.map((day, index) => {
                   const dayStyles = [
                     { badge: "🟡", card: "bg-[#fff8d9] border-[#f0df86]" },
@@ -118,13 +118,13 @@ export default function DestinationPage({ logoSrc, destination, navigateTo }) {
                   return (
                     <div
                       key={day.label}
-                      className={`rounded-[2rem] border p-6 shadow-[0_12px_30px_rgba(20,40,70,0.04)] ${style.card}`}
+                      className={`rounded-[1.6rem] border p-6 shadow-[0_10px_24px_rgba(20,40,70,0.04)] ${style.card}`}
                     >
                       <h4 className="text-2xl font-black tracking-[-0.02em] text-[#17202c]">
                         {style.badge} {day.label}
                       </h4>
 
-                      <div className="mt-5 rounded-2xl bg-white/70 p-5">
+                      <div className="mt-5 rounded-[1.2rem] bg-white/70 p-5">
                         <p className="text-sm font-black uppercase tracking-[0.14em] text-[#123e78]">
                           📍 Itinerario
                         </p>
@@ -143,7 +143,7 @@ export default function DestinationPage({ logoSrc, destination, navigateTo }) {
             </div>
 
             {hasFoodGuide ? (
-              <div className="rounded-[2.3rem] border border-[#d8e1ee] bg-white p-8 shadow-[0_18px_50px_rgba(20,40,70,0.06)]">
+              <div className="rounded-[1.9rem] border border-[#dbe5ef] bg-white p-8 shadow-[0_16px_40px_rgba(20,40,70,0.06)]">
                 <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#7a8798]">
                   Mangiare
                 </p>
@@ -151,8 +151,8 @@ export default function DestinationPage({ logoSrc, destination, navigateTo }) {
                   Mangiare bene senza deviazioni
                 </h3>
 
-                <div className="mt-6 space-y-5">
-                  <div className="rounded-2xl border border-[#e4ebf4] bg-[#f8fbff] p-5">
+                <div className="mt-8 space-y-5">
+                  <div className="rounded-[1.4rem] border border-[#e4ebf4] bg-[#f8fbff] p-5">
                     <p className="text-sm font-black uppercase tracking-[0.14em] text-[#123e78]">
                       🌅 Colazione
                     </p>
@@ -163,7 +163,7 @@ export default function DestinationPage({ logoSrc, destination, navigateTo }) {
                     </div>
                   </div>
 
-                  <div className="rounded-2xl border border-[#e4ebf4] bg-[#f8fbff] p-5">
+                  <div className="rounded-[1.4rem] border border-[#e4ebf4] bg-[#f8fbff] p-5">
                     <p className="text-sm font-black uppercase tracking-[0.14em] text-[#123e78]">
                       ⚡ Street food
                     </p>
@@ -174,7 +174,7 @@ export default function DestinationPage({ logoSrc, destination, navigateTo }) {
                     </div>
                   </div>
 
-                  <div className="rounded-2xl border border-[#e4ebf4] bg-[#f8fbff] p-5">
+                  <div className="rounded-[1.4rem] border border-[#e4ebf4] bg-[#f8fbff] p-5">
                     <p className="text-sm font-black uppercase tracking-[0.14em] text-[#123e78]">
                       🍽 Ristoranti
                     </p>
@@ -185,7 +185,7 @@ export default function DestinationPage({ logoSrc, destination, navigateTo }) {
                     </div>
                   </div>
 
-                  <div className="rounded-2xl border border-[#e4ebf4] bg-[#f8fbff] p-5">
+                  <div className="rounded-[1.4rem] border border-[#e4ebf4] bg-[#f8fbff] p-5">
                     <p className="text-sm font-black uppercase tracking-[0.14em] text-[#123e78]">
                       🌙 Sera
                     </p>
@@ -196,7 +196,7 @@ export default function DestinationPage({ logoSrc, destination, navigateTo }) {
                     </div>
                   </div>
 
-                  <div className="rounded-2xl border border-[#e4ebf4] bg-[#f8fbff] p-5">
+                  <div className="rounded-[1.4rem] border border-[#e4ebf4] bg-[#f8fbff] p-5">
                     <p className="text-sm font-black uppercase tracking-[0.14em] text-[#123e78]">
                       ⚙️ Strategia
                     </p>
@@ -209,7 +209,7 @@ export default function DestinationPage({ logoSrc, destination, navigateTo }) {
                 </div>
               </div>
             ) : (
-              <div className="rounded-[2.3rem] border border-[#d8e1ee] bg-white p-8 shadow-[0_18px_50px_rgba(20,40,70,0.06)]">
+              <div className="rounded-[1.9rem] border border-[#dbe5ef] bg-white p-8 shadow-[0_16px_40px_rgba(20,40,70,0.06)]">
                 <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#7a8798]">
                   Note
                 </p>
@@ -224,7 +224,7 @@ export default function DestinationPage({ logoSrc, destination, navigateTo }) {
           </div>
         ) : (
           <div className="grid lg:grid-cols-[0.9fr_1.1fr] gap-8 items-start">
-            <div className="rounded-[2.3rem] border border-[#d8e1ee] bg-white p-8 shadow-[0_18px_50px_rgba(20,40,70,0.06)]">
+            <div className="rounded-[1.9rem] border border-[#dbe5ef] bg-white p-8 shadow-[0_16px_40px_rgba(20,40,70,0.06)]">
               <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#7a8798]">
                 Guida rapida
               </p>
@@ -232,11 +232,11 @@ export default function DestinationPage({ logoSrc, destination, navigateTo }) {
                 Orientarsi subito
               </h3>
 
-              <div className="mt-6 space-y-4">
+              <div className="mt-8 space-y-4">
                 {destination.quickGuide.map((item) => (
                   <div
                     key={item.label}
-                    className="rounded-2xl border border-[#e4ebf4] bg-[#f8fbff] p-5"
+                    className="rounded-[1.4rem] border border-[#e4ebf4] bg-[#f8fbff] p-5"
                   >
                     <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#7a8798]">
                       {item.label}
@@ -249,7 +249,7 @@ export default function DestinationPage({ logoSrc, destination, navigateTo }) {
               </div>
             </div>
 
-            <div className="rounded-[2.3rem] border border-[#d8e1ee] bg-white p-8 shadow-[0_18px_50px_rgba(20,40,70,0.06)]">
+            <div className="rounded-[1.9rem] border border-[#dbe5ef] bg-white p-8 shadow-[0_16px_40px_rgba(20,40,70,0.06)]">
               <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#7a8798]">
                 Guida
               </p>
@@ -257,7 +257,7 @@ export default function DestinationPage({ logoSrc, destination, navigateTo }) {
                 Come leggere la città
               </h3>
 
-              <div className="mt-6 space-y-6 text-[#5d6470]">
+              <div className="mt-8 space-y-6 text-[#5d6470]">
                 {destination.sections.map((section) => (
                   <div
                     key={section.title}
@@ -294,7 +294,7 @@ export default function DestinationPage({ logoSrc, destination, navigateTo }) {
           {destination.gallery.map((image, index) => (
             <div
               key={image}
-              className="relative overflow-hidden rounded-[2.2rem] min-h-[320px] border border-[#d8e1ee] shadow-[0_14px_35px_rgba(20,40,70,0.05)] bg-white"
+              className="relative overflow-hidden rounded-[1.9rem] min-h-[320px] border border-[#dbe5ef] shadow-[0_12px_28px_rgba(20,40,70,0.05)] bg-white"
             >
               <img
                 src={image}
