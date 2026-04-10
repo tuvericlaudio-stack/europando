@@ -1,4 +1,4 @@
-const base = import.meta.env.BASE_URL;
+import { asset } from "../utils/assets";
 
 export const destinations = [
   {
@@ -52,7 +52,7 @@ export const destinations = [
     name: "Bucarest",
     text: "Una città di contrasti, grandi viali e centro storico, da organizzare bene per giornate.",
     tag: "Urban Mix",
-    image: `${base}bucarest-hero.jpg`,
+    image: asset("bucarest-hero.jpg"),
     heroTitle: "Bucarest, meglio a blocchi chiari che di corsa.",
     intro:
       "Una guida costruita per giorni, con itinerario ordinato e sezione separata dedicata a dove mangiare.",
@@ -134,9 +134,9 @@ export const destinations = [
       ],
     },
     gallery: [
-      `${base}bucarest-gallery-1.jpg`,
-      `${base}bucarest-gallery-2.jpg`,
-      `${base}bucarest-gallery-3.jpg`,
+      asset("bucarest-gallery-1.jpg"),
+      asset("bucarest-gallery-2.jpg"),
+      asset("bucarest-gallery-3.jpg"),
     ],
   },
 
