@@ -1,34 +1,37 @@
+import { asset } from "../utils/assets";
+
 export const featuredPosts = [
   {
     slug: "due-settimane-palma",
     title: "Due settimane a Palma",
-    category: "Itinerari",
+    category: "Travel Journal",
     excerpt:
-      "Due settimane tra mare, centro storico, escursioni e ritmi lenti per vivere Palma con più equilibrio.",
+      "Due settimane per vivere Palma con un ritmo più pieno, alternando centro, mare, pause e giornate costruite con più respiro.",
     meta: "10 min lettura",
     image:
-      "https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=1200&q=80",
-    heroTitle: "Due settimane a Palma, senza fare tutto di corsa.",
+      "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80",
+    heroTitle: "Due settimane a Palma, con un ritmo più ampio e più naturale.",
     intro:
-      "Una guida per organizzare un soggiorno lungo tra spiagge, centro, tappe panoramiche e giornate più lente.",
+      "Una guida pensata per distribuire bene giornate, pause e zone della città senza comprimere tutto troppo in fretta.",
     sections: [
       {
-        title: "Prima fase del viaggio",
+        title: "Perché funziona bene su due settimane",
         text:
-          "Nei primi giorni conviene concentrarsi su Palma città: centro storico, lungomare, mercati e zone facili da raggiungere. Questo aiuta a prendere subito il ritmo del posto.",
+          "Palma rende molto meglio quando non la tratti come una semplice tappa veloce. Due settimane permettono di alternare centro, mare, pause vere e giornate più leggere senza perdere qualità.",
       },
       {
-        title: "Come distribuire due settimane",
+        title: "Come organizzare il tempo",
         text:
-          "La durata lunga permette di alternare giornate piene e giornate leggere. È la scelta giusta per non trasformare il viaggio in una lista di tappe forzate.",
+          "La cosa migliore è non riempire ogni giorno. Palma ha un ritmo che funziona bene con blocchi semplici: una zona principale, una pausa, una seconda parte più libera e una chiusura serale coerente.",
       },
       {
-        title: "Cosa rende bene davvero",
+        title: "Che tipo di viaggio viene fuori",
         text:
-          "Palma funziona molto quando unisci mare, passeggiate serali, piccoli spostamenti e pause ben gestite. È un viaggio che rende di più con equilibrio che con velocità.",
+          "Ne esce un soggiorno più fluido, ordinato e piacevole, dove la città non si esaurisce in pochi luoghi ma costruisce un’esperienza molto più completa.",
       },
     ],
   },
+
   {
     slug: "una-settimana-irlanda",
     title: "Una settimana in Irlanda",
@@ -37,7 +40,7 @@ export const featuredPosts = [
     excerpt:
       "Sette giorni tra città, paesaggi aperti, soste panoramiche e tappe distribuite con una logica semplice.",
     meta: "9 min lettura",
-    image: "/irlanda-hero.jpg",
+    image: asset("irlanda-hero.jpg"),
     heroTitle: "Una settimana in Irlanda, senza caricare troppo il viaggio.",
     intro:
       "Una guida organizzata per giorni, pensata per distribuire bene tappe, spostamenti e pause lungo una settimana.",
@@ -47,86 +50,81 @@ export const featuredPosts = [
         title: "Arrivo e primo approccio",
         text:
           "Qui inserirai il testo del primo giorno: arrivo, sistemazione, prima zona visitata, ritmo della giornata e prime impressioni.",
-
+        image: asset("irlanda-day-1.jpg"),
       },
       {
         day: "Giorno 2",
         title: "Prima giornata piena",
         text:
           "Qui inserirai il testo della prima giornata completa: itinerario, luoghi principali, spostamenti e cosa ha senso fare senza correre.",
-        
+        image: asset("irlanda-day-2.jpg"),
       },
       {
         day: "Giorno 3",
         title: "Paesaggi e spostamenti",
         text:
           "Qui inserirai il testo del terzo giorno: tratte panoramiche, tappe naturali, eventuali soste utili e ritmo generale.",
-       
+        image: asset("irlanda-day-3.jpg"),
       },
       {
         day: "Giorno 4",
         title: "Tappa centrale del viaggio",
         text:
           "Qui inserirai il testo del quarto giorno: cuore dell’itinerario, luoghi più forti, atmosfera e organizzazione della giornata.",
-        
+        image: asset("irlanda-day-4.jpg"),
       },
       {
         day: "Giorno 5",
         title: "Giornata di equilibrio",
         text:
           "Qui inserirai il testo del quinto giorno: alternanza tra visita, spostamenti, pause e gestione più rilassata del viaggio.",
-        
+        image: asset("irlanda-day-5.jpg"),
       },
       {
         day: "Giorno 6",
         title: "Ultime tappe forti",
         text:
           "Qui inserirai il testo del sesto giorno: ultime visite davvero importanti, eventuali deviazioni utili e chiusura del percorso.",
-        
+        image: asset("irlanda-day-6.jpg"),
       },
       {
         day: "Giorno 7",
         title: "Chiusura del viaggio",
         text:
           "Qui inserirai il testo dell’ultimo giorno: conclusione, ultime ore utili, rientro e bilancio finale della settimana.",
-        
+        image: asset("irlanda-day-7.jpg"),
       },
     ],
   },
+
   {
     slug: "una-settimana-puglia",
     title: "Una settimana in Puglia",
-    category: "Guide",
+    category: "Travel Guide",
     excerpt:
-      "Una settimana tra mare, borghi, città bianche e tappe gastronomiche distribuite con una logica semplice.",
+      "Una settimana per costruire un viaggio chiaro tra borghi, mare, spostamenti lineari e tappe ben distribuite.",
     meta: "8 min lettura",
     image:
-      "https://images.unsplash.com/photo-1468413253725-0d5181091126?auto=format&fit=crop&w=1200&q=80",
-    heroTitle: "Una settimana in Puglia, tra mare e borghi.",
+      "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80",
+    heroTitle: "Una settimana in Puglia, con un itinerario semplice e leggibile.",
     intro:
-      "Una guida essenziale per organizzare una settimana in Puglia con tappe scorrevoli e un buon equilibrio tra costa e centri storici.",
+      "Una guida pensata per alternare bene borghi, mare, pause e giornate più forti senza rendere il viaggio dispersivo.",
     sections: [
       {
-        title: "Da dove partire",
+        title: "Come impostare la settimana",
         text:
-          "La cosa più utile è scegliere una zona base e allargarsi in modo ordinato. La Puglia offre molto, ma rende meglio se non la frammenti troppo.",
+          "In Puglia conviene evitare itinerari troppo spezzati. Una settimana funziona bene se scegli un asse chiaro e distribuisci le tappe senza continui cambi di base.",
       },
       {
-        title: "Come distribuire la settimana",
+        title: "Alternare luoghi e ritmo",
         text:
-          "Alternare giornate di mare, visite ai borghi e spostamenti contenuti aiuta a mantenere il viaggio piacevole e non dispersivo.",
+          "Il viaggio rende meglio quando alterni giornate più visive, borghi, tratti di costa e momenti più leggeri. Il valore sta proprio nell’equilibrio.",
       },
       {
-        title: "L’identità del viaggio",
+        title: "Che tipo di esperienza costruisce",
         text:
-          "In Puglia funzionano molto la luce, i ritmi lenti, la cucina e i piccoli centri. Il valore del viaggio sta anche nelle pause, non solo nelle tappe principali.",
+          "Ne esce una settimana ordinata e molto leggibile, in cui il paesaggio, la luce e i centri storici lavorano insieme senza creare confusione.",
       },
     ],
   },
-];
-
-export const quickStats = [
-  { value: "4", label: "Destinazioni" },
-  { value: "3", label: "Articoli" },
-  { value: "1", label: "Journal" },
 ];
