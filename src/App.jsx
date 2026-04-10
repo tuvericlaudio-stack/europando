@@ -20,24 +20,30 @@ export default function App() {
   };
 
   const getRouteFromPath = (pathname) => {
-    const path = normalizePath(pathname);
-    if (path === "/") return { type: "home" };
-    if (path === "/articoli") return { type: "articles" };
-    if (path === "/destinazioni") return { type: "destinations" };
+  const basePath = "/europando";
+  const normalizedPathname = normalizePath(pathname);
 
-    const postPrefix = "/articoli/";
-    const destinationPrefix = "/destinazioni/";
+  const path = normalizedPathname.startsWith(basePath)
+    ? normalizePath(normalizedPathname.slice(basePath.length) || "/")
+    : normalizedPathname;
 
-    if (path.startsWith(postPrefix)) {
-      return { type: "post", slug: path.slice(postPrefix.length) };
-    }
+  if (path === "/") return { type: "home" };
+  if (path === "/articoli") return { type: "articles" };
+  if (path === "/destinazioni") return { type: "destinations" };
 
-    if (path.startsWith(destinationPrefix)) {
-      return { type: "destination", slug: path.slice(destinationPrefix.length) };
-    }
+  const postPrefix = "/articoli/";
+  const destinationPrefix = "/destinazioni/";
 
-    return { type: "not_found" };
-  };
+  if (path.startsWith(postPrefix)) {
+    return { type: "post", slug: path.slice(postPrefix.length) };
+  }
+
+  if (path.startsWith(destinationPrefix)) {
+    return { type: "destination", slug: path.slice(destinationPrefix.length) };
+  }
+
+  return { type: "not_found" };
+};
 
   const [route, setRoute] = useState(() => getRouteFromPath(window.location.pathname));
   console.log("pathname:", window.location.pathname);
@@ -50,13 +56,17 @@ export default function App() {
   }, []);
 
   const navigateTo = (path) => {
-    const normalized = normalizePath(path);
-    if (normalized !== normalizePath(window.location.pathname)) {
-      window.history.pushState({}, "", normalized);
-    }
-    window.scrollTo({ top: 0, behavior: "smooth" });
-    setRoute(getRouteFromPath(normalized));
-  };
+  const basePath = "/europando";
+  const normalized = normalizePath(path);
+  const fullPath = `${basePath}${normalized === "/" ? "" : normalized}`;
+
+  if (fullPath !== normalizePath(window.location.pathname)) {
+    window.history.pushState({}, "", fullPath);
+  }
+
+  window.scrollTo({ top: 0, behavior: "smooth" });
+  setRoute(getRouteFromPath(fullPath));
+};
 
   const selectedPost = useMemo(
     () => (route.type === "post" ? featuredPosts.find((post) => post.slug === route.slug) ?? null : null),
