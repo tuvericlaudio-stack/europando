@@ -9,9 +9,17 @@ import { featuredPosts } from "./data/posts";
 import { destinations } from "./data/destinations";
 
 export default function App() {
-  const logoSrc = "/europando/logo-europando.png";
-  const heroSrc = "/europando/hero-europando.png";
-  const basePath = "/europando";
+  const rawBase = import.meta.env.BASE_URL || "/";
+  const basePath = rawBase.endsWith("/") && rawBase !== "/" ? rawBase.slice(0, -1) : rawBase;
+
+  const withBase = (path) => {
+    if (!path.startsWith("/")) return path;
+    if (basePath === "/") return path;
+    return `${basePath}${path}`;
+  };
+
+  const logoSrc = withBase("/logo-europando.png");
+  const heroSrc = withBase("/hero-europando.png");
 
   const normalizePath = (path) => {
     if (!path) return "/";
@@ -22,11 +30,11 @@ export default function App() {
   const stripBasePath = (pathname) => {
     const normalizedPathname = normalizePath(pathname);
 
-    if (normalizedPathname === basePath) {
+    if (basePath !== "/" && normalizedPathname === basePath) {
       return "/";
     }
 
-    if (normalizedPathname.startsWith(`${basePath}/`)) {
+    if (basePath !== "/" && normalizedPathname.startsWith(`${basePath}/`)) {
       return normalizePath(normalizedPathname.slice(basePath.length));
     }
 
@@ -69,7 +77,10 @@ export default function App() {
 
   const navigateTo = (path) => {
     const normalized = normalizePath(path);
-    const fullPath = normalized === "/" ? basePath : `${basePath}${normalized}`;
+    const fullPath =
+      normalized === "/"
+        ? (basePath === "/" ? "/" : basePath)
+        : (basePath === "/" ? normalized : `${basePath}${normalized}`);
 
     if (fullPath !== normalizePath(window.location.pathname)) {
       window.history.pushState({}, "", fullPath);
