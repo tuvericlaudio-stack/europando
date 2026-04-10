@@ -60,11 +60,11 @@ export const destinations = [
       { label: "Mood", value: "Vivo" },
     ],
     quickGuide: [
-      { label: "Base consigliata", value: "Centro / Centrul Vechi" },
-      { label: "Ritmo", value: "Lineare" },
-      { label: "Mattina", value: "Zone culturali e viali" },
-      { label: "Sera", value: "Centro storico e cena" },
-      { label: "Da evitare", value: "Deviazioni inutili" },
+      { label: "Base consigliata", value: "Centrul Vechi / centro" },
+      { label: "Ritmo", value: "A blocchi chiari" },
+      { label: "Mattina", value: "Cultura, boulevard, tappe simboliche" },
+      { label: "Sera", value: "Passeggiata, cena, centro storico" },
+      { label: "Da evitare", value: "Cambiare zona troppe volte" },
     ],
     itineraryDays: [
       {
