@@ -16,13 +16,6 @@ export const destinations = [
       { label: "Zona migliore", value: "Centro" },
       { label: "Mood", value: "Nordico" },
     ],
-    quickGuide: [
-      { label: "Base consigliata", value: "Centro" },
-      { label: "Ritmo", value: "Lineare" },
-      { label: "Mattina", value: "Waterfront e musei" },
-      { label: "Sera", value: "Passeggiate sul mare" },
-      { label: "Da evitare", value: "Programmi troppo pieni" },
-    ],
     sections: [
       {
         title: "Dove iniziare",
@@ -55,18 +48,11 @@ export const destinations = [
     image: asset("bucarest-hero.jpg"),
     heroTitle: "Bucarest, meglio a blocchi chiari che di corsa.",
     intro:
-      "Una guida costruita per giorni, con itinerario ordinato e sezione separata dedicata a dove mangiare.",
+      "Una guida costruita per giorni, con itinerario ordinato e una colonna pratica dedicata ad arrivo, alloggio e luoghi dove mangiare.",
     stats: [
       { label: "Giorni ideali", value: "3-4" },
       { label: "Zona migliore", value: "Centro" },
       { label: "Mood", value: "Vivo" },
-    ],
-    quickGuide: [
-      { label: "Base consigliata", value: "Centrul Vechi / centro" },
-      { label: "Ritmo", value: "A blocchi chiari" },
-      { label: "Mattina", value: "Cultura, boulevard, tappe simboliche" },
-      { label: "Sera", value: "Passeggiata, cena, centro storico" },
-      { label: "Da evitare", value: "Cambiare zona troppe volte" },
     ],
     itineraryDays: [
       {
@@ -109,6 +95,22 @@ export const destinations = [
         ],
       },
     ],
+    practicalInfo: {
+      airportToCenter: [
+        "Taxi o ride app sono la soluzione più semplice se arrivi tardi o con bagagli.",
+        "Il treno per Gara de Nord è utile se vuoi entrare in città in modo diretto.",
+        "Bus e transfer sono validi se vuoi spendere meno e non hai fretta.",
+      ],
+      whereToStay: [
+        "Centrul Vechi è la base più comoda se vuoi muoverti a piedi e avere tutto vicino.",
+        "Piata Universitatii e dintorni funzionano bene per posizione e collegamenti.",
+        "Piata Romana è una buona zona se vuoi un punto centrale ma meno turistico.",
+      ],
+      notes: [
+        "Evita zone troppo periferiche se resti pochi giorni.",
+        "Per un primo viaggio conviene restare in area centrale.",
+      ],
+    },
     foodGuide: {
       breakfast: ["5 to go", "Ted’s Coffee", "Café Van Gogh"],
       streetFood: [
@@ -154,13 +156,6 @@ export const destinations = [
       { label: "Zona migliore", value: "Norrmalm" },
       { label: "Mood", value: "Raffinato" },
     ],
-    quickGuide: [
-      { label: "Base consigliata", value: "Norrmalm" },
-      { label: "Ritmo", value: "Ordinato" },
-      { label: "Mattina", value: "Gamla Stan e centro" },
-      { label: "Sera", value: "Acqua e scorci" },
-      { label: "Da evitare", value: "Troppe zone in un giorno" },
-    ],
     sections: [
       {
         title: "Dove iniziare",
@@ -198,13 +193,6 @@ export const destinations = [
       { label: "Giorni ideali", value: "3" },
       { label: "Zona migliore", value: "Ciutat Vella" },
       { label: "Mood", value: "Solare" },
-    ],
-    quickGuide: [
-      { label: "Base consigliata", value: "Ciutat Vella" },
-      { label: "Ritmo", value: "Rilassato" },
-      { label: "Mattina", value: "Centro e piazze" },
-      { label: "Sera", value: "Lungomare e cena" },
-      { label: "Da evitare", value: "Spezzare troppo le giornate" },
     ],
     sections: [
       {
