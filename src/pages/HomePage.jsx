@@ -6,8 +6,8 @@ export default function HomePage({
 }) {
   return (
     <div className="min-h-screen bg-[#f4f7fb] text-[#17202c]">
-      <section className="max-w-7xl mx-auto px-6 pt-12 pb-20 md:pt-16 md:pb-24">
-        <div className="grid lg:grid-cols-[0.95fr_1.05fr] gap-12 items-center">
+      <section className="max-w-7xl mx-auto px-6 pt-14 pb-24 md:pt-18 md:pb-28">
+        <div className="grid lg:grid-cols-[0.92fr_1.08fr] gap-12 items-center">
           <div>
             <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#7a8798]">
               Travel journal
@@ -18,28 +18,28 @@ export default function HomePage({
             </h1>
 
             <p className="mt-6 max-w-2xl text-lg md:text-xl leading-8 text-[#5f6875]">
-              Guide di viaggio ordinate, destinazioni chiare e itinerari leggibili
-              per avere subito un quadro completo.
+              Guide di viaggio ordinate, destinazioni chiare e articoli leggibili
+              per avere subito una visione completa.
             </p>
 
             <div className="mt-9 flex flex-wrap gap-4">
               <button
                 onClick={() => navigateTo("/destinazioni")}
-                className="rounded-[1.4rem] bg-[#123e78] px-6 py-3.5 text-sm font-bold uppercase tracking-[0.14em] text-white shadow-[0_14px_28px_rgba(18,62,120,0.22)]"
+                className="rounded-[1.3rem] bg-[#123e78] px-6 py-3.5 text-sm font-bold uppercase tracking-[0.14em] text-white shadow-[0_14px_28px_rgba(18,62,120,0.22)]"
               >
                 Vai alle destinazioni
               </button>
 
               <button
                 onClick={() => navigateTo("/articoli")}
-                className="rounded-[1.4rem] border border-[#cfdae8] bg-white px-6 py-3.5 text-sm font-bold uppercase tracking-[0.14em] text-[#123e78] shadow-sm hover:bg-[#f8fbff] transition"
+                className="rounded-[1.3rem] border border-[#cfdae8] bg-white px-6 py-3.5 text-sm font-bold uppercase tracking-[0.14em] text-[#123e78] shadow-sm hover:bg-[#f8fbff] transition"
               >
                 Leggi gli articoli
               </button>
             </div>
           </div>
 
-          <div className="relative overflow-hidden rounded-[2.4rem] min-h-[560px] border border-[#dbe5ef] shadow-[0_24px_60px_rgba(20,50,90,0.10)]">
+          <div className="relative overflow-hidden rounded-[2.2rem] min-h-[580px] border border-[#dbe5ef] shadow-[0_24px_60px_rgba(20,50,90,0.10)]">
             <img
               src={heroSrc}
               alt="Hero Europando"
@@ -49,27 +49,7 @@ export default function HomePage({
         </div>
       </section>
 
-     <div className="mt-10 grid md:grid-cols-2 gap-6">
-  <div className="rounded-[1.4rem] border border-[#e5ecf5] bg-[#f8fbff] p-6">
-    <h3 className="text-xl font-black tracking-[-0.02em] text-[#17202c]">
-      Destinazioni
-    </h3>
-    <p className="mt-3 leading-8 text-[#5f6875]">
-      Pagine città con guida sintetica, struttura chiara e lettura immediata.
-    </p>
-  </div>
-
-  <div className="rounded-[1.4rem] border border-[#e5ecf5] bg-[#f8fbff] p-6">
-    <h3 className="text-xl font-black tracking-[-0.02em] text-[#17202c]">
-      Articoli
-    </h3>
-    <p className="mt-3 leading-8 text-[#5f6875]">
-      Guide e racconti organizzati in modo chiaro, da leggere con facilità.
-    </p>
-  </div>
-</div>
-
-      <section className="max-w-7xl mx-auto px-6 pb-14 md:pb-18">
+      <section className="max-w-7xl mx-auto px-6 pb-16 md:pb-20">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
           <div>
             <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#7a8798]">
@@ -93,7 +73,7 @@ export default function HomePage({
             <button
               key={destination.slug}
               onClick={() => navigateTo(`/destinazioni/${destination.slug}`)}
-              className="text-left overflow-hidden rounded-[1.9rem] border border-[#dbe5ef] bg-white shadow-[0_12px_28px_rgba(20,40,70,0.05)] hover:-translate-y-1 hover:shadow-[0_18px_36px_rgba(20,40,70,0.08)] transition"
+              className="text-left overflow-hidden rounded-[1.8rem] border border-[#dbe5ef] bg-white shadow-[0_12px_28px_rgba(20,40,70,0.05)] hover:-translate-y-1 hover:shadow-[0_18px_36px_rgba(20,40,70,0.08)] transition"
             >
               <div className="relative h-72 overflow-hidden">
                 <img
@@ -141,7 +121,7 @@ export default function HomePage({
           {featuredPosts.map((post) => (
             <article
               key={post.slug}
-              className="group overflow-hidden rounded-[1.9rem] border border-[#dbe5ef] bg-white shadow-[0_12px_28px_rgba(20,40,70,0.05)] hover:-translate-y-1 hover:shadow-[0_18px_36px_rgba(20,40,70,0.10)] transition"
+              className="group overflow-hidden rounded-[1.8rem] border border-[#dbe5ef] bg-white shadow-[0_12px_28px_rgba(20,40,70,0.05)] hover:-translate-y-1 hover:shadow-[0_18px_36px_rgba(20,40,70,0.10)] transition"
             >
               <div className="relative h-64 overflow-hidden">
                 <img
@@ -177,14 +157,18 @@ export default function HomePage({
       </section>
 
       <section className="max-w-7xl mx-auto px-6 pb-22">
-        <div className="rounded-[2.4rem] border border-[#dbe5ef] bg-white p-10 md:p-14 text-center shadow-[0_18px_45px_rgba(20,40,70,0.07)]">
+        <div className="rounded-[2.2rem] border border-[#dbe5ef] bg-white p-10 md:p-14 text-center shadow-[0_18px_45px_rgba(20,40,70,0.07)]">
           <h2 className="text-3xl md:text-5xl font-black tracking-[-0.03em] text-[#123e78]">
             Viaggi costruiti con ordine, senza confusione.
           </h2>
+          <p className="mt-5 max-w-2xl mx-auto leading-8 text-[#5f6875]">
+            Una base semplice da consultare, destinazioni chiare e articoli pronti
+            da leggere senza dispersione.
+          </p>
           <div className="mt-8 flex justify-center">
             <button
               onClick={() => navigateTo("/destinazioni")}
-              className="rounded-[1.4rem] bg-[#123e78] px-6 py-3.5 text-sm font-bold uppercase tracking-[0.14em] text-white shadow-[0_14px_28px_rgba(18,62,120,0.22)]"
+              className="rounded-[1.3rem] bg-[#123e78] px-6 py-3.5 text-sm font-bold uppercase tracking-[0.14em] text-white shadow-[0_14px_28px_rgba(18,62,120,0.22)]"
             >
               Esplora le destinazioni
             </button>

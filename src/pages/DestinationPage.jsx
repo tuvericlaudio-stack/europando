@@ -78,41 +78,38 @@ export default function DestinationPage({ logoSrc, destination, navigateTo }) {
                 Itinerario
               </h2>
 
-              <div className="mt-8 space-y-6">
-                {destination.itineraryDays.map((day, index) => {
-                  const dayStyles = [
-                    { badge: "🟡", card: "bg-[#fff8d9] border-[#f0df86]" },
-                    { badge: "🔴", card: "bg-[#ffe3e3] border-[#f0b2b2]" },
-                    { badge: "🟢", card: "bg-[#e8f7e8] border-[#a9d6a9]" },
-                    { badge: "⚫", card: "bg-[#f1f1f1] border-[#d4d4d4]" },
-                  ];
+              <div className="mt-10 relative">
+                <div className="absolute left-[22px] top-0 bottom-0 w-px bg-[#d9e3ef]" />
 
-                  const style = dayStyles[index % dayStyles.length];
+                <div className="space-y-10">
+                  {destination.itineraryDays.map((day, index) => (
+                    <div key={day.label} className="relative pl-16">
+                      <div className="absolute left-0 top-0 flex h-11 w-11 items-center justify-center rounded-full border border-[#d5e0ec] bg-white text-sm font-black text-[#123e78] shadow-sm">
+                        {index + 1}
+                      </div>
 
-                  return (
-                    <div
-                      key={day.label}
-                      className={`rounded-[1.5rem] border p-6 shadow-[0_8px_20px_rgba(20,40,70,0.04)] ${style.card}`}
-                    >
-                      <h3 className="text-2xl font-black tracking-[-0.02em] text-[#17202c]">
-                        {style.badge} {day.label}
-                      </h3>
-
-                      <div className="mt-5 rounded-[1.1rem] bg-white/75 p-5">
-                        <p className="text-sm font-black uppercase tracking-[0.14em] text-[#123e78]">
-                          📍 Itinerario
+                      <div className="rounded-[1.4rem] border border-[#e5ecf5] bg-[#fbfdff] p-6 shadow-[0_8px_18px_rgba(20,40,70,0.03)]">
+                        <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#7a8798]">
+                          Giorno
                         </p>
-                        <div className="mt-3 space-y-2 text-[#36404d]">
+                        <h3 className="mt-2 text-2xl font-black tracking-[-0.02em] text-[#17202c]">
+                          {day.label}
+                        </h3>
+
+                        <div className="mt-5 space-y-3 text-[#4f5865]">
                           {day.places.map((place) => (
-                            <p key={place} className="leading-7">
-                              • {place}
-                            </p>
+                            <div
+                              key={place}
+                              className="rounded-[1rem] border border-[#edf2f7] bg-white px-4 py-3"
+                            >
+                              {place}
+                            </div>
                           ))}
                         </div>
                       </div>
                     </div>
-                  );
-                })}
+                  ))}
+                </div>
               </div>
             </div>
 
@@ -139,8 +136,7 @@ export default function DestinationPage({ logoSrc, destination, navigateTo }) {
                       </div>
                     ) : (
                       <p className="mt-3 leading-7 text-[#5d6470]">
-                        Qui inserirai i consigli pratici su come arrivare dall’aeroporto al centro:
-                        taxi, bus, treno, transfer o soluzioni più comode.
+                        Qui inserirai i consigli pratici su come arrivare dall’aeroporto al centro.
                       </p>
                     )}
                   </div>
