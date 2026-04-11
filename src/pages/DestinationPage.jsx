@@ -221,17 +221,60 @@ export default function DestinationPage({ logoSrc, destination, navigateTo }) {
                     </p>
                   </div>
 
-                  {destination.foodGuide && (
-                    <div className="rounded-[1.4rem] border border-[#e4ebf4] bg-[#f8fbff] p-5">
-                      <p className="text-sm font-black uppercase tracking-[0.14em] text-[#123e78]">
-                        🍽 Dove mangiare
-                      </p>
-                      <p className="mt-3 leading-7 text-[#5d6470]">
-                        In questa sezione puoi raccogliere i consigli rapidi su
-                        colazione, street food, ristoranti e zone migliori per cena.
-                      </p>
-                    </div>
-                  )}
+                    {destination.foodGuide && (
+  <div className="rounded-[1.4rem] border border-[#e4ebf4] bg-[#f8fbff] p-5">
+    <p className="text-sm font-black uppercase tracking-[0.14em] text-[#123e78]">
+      🍽 Dove mangiare
+    </p>
+
+    <div className="mt-4 space-y-5">
+      <div>
+        <p className="font-bold text-[#17202c]">Colazione</p>
+        <div className="mt-2 space-y-1 text-[#5d6470]">
+          {destination.foodGuide.breakfast.map((item) => (
+            <p key={item}>• {item}</p>
+          ))}
+        </div>
+      </div>
+
+      <div>
+        <p className="font-bold text-[#17202c]">Street food</p>
+        <div className="mt-2 space-y-1 text-[#5d6470]">
+          {destination.foodGuide.streetFood.map((item) => (
+            <p key={item}>• {item}</p>
+          ))}
+        </div>
+      </div>
+
+      <div>
+        <p className="font-bold text-[#17202c]">Ristoranti</p>
+        <div className="mt-2 space-y-1 text-[#5d6470]">
+          {destination.foodGuide.restaurants.map((item) => (
+            <p key={item}>• {item}</p>
+          ))}
+        </div>
+      </div>
+
+      <div>
+        <p className="font-bold text-[#17202c]">Sera</p>
+        <div className="mt-2 space-y-1 text-[#5d6470]">
+          {destination.foodGuide.evening.map((item) => (
+            <p key={item}>• {item}</p>
+          ))}
+        </div>
+      </div>
+
+      <div>
+        <p className="font-bold text-[#17202c]">Strategia</p>
+        <div className="mt-2 space-y-1 text-[#5d6470]">
+          {destination.foodGuide.strategy.map((item) => (
+            <p key={item}>• {item}</p>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+)}
                 </div>
               )}
             </div>
