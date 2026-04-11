@@ -49,45 +49,25 @@ export default function HomePage({
         </div>
       </section>
 
-      <section className="max-w-7xl mx-auto px-6 pb-14 md:pb-18">
-        <div className="rounded-[1.9rem] border border-[#dbe5ef] bg-white p-8 md:p-10 shadow-[0_16px_40px_rgba(20,40,70,0.06)]">
-          <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#7a8798]">
-            Come orientarsi
-          </p>
-          <h2 className="mt-3 text-3xl md:text-5xl font-black tracking-[-0.03em] text-[#123e78]">
-            Una struttura semplice da leggere
-          </h2>
+     <div className="mt-10 grid md:grid-cols-2 gap-6">
+  <div className="rounded-[1.4rem] border border-[#e5ecf5] bg-[#f8fbff] p-6">
+    <h3 className="text-xl font-black tracking-[-0.02em] text-[#17202c]">
+      Destinazioni
+    </h3>
+    <p className="mt-3 leading-8 text-[#5f6875]">
+      Pagine città con guida sintetica, struttura chiara e lettura immediata.
+    </p>
+  </div>
 
-          <div className="mt-10 grid md:grid-cols-3 gap-6">
-            <div className="rounded-[1.4rem] border border-[#e5ecf5] bg-[#f8fbff] p-6">
-              <h3 className="text-xl font-black tracking-[-0.02em] text-[#17202c]">
-                Destinazioni
-              </h3>
-              <p className="mt-3 leading-8 text-[#5f6875]">
-                Pagine città con guida rapida, itinerario o lettura sintetica.
-              </p>
-            </div>
-
-            <div className="rounded-[1.4rem] border border-[#e5ecf5] bg-[#f8fbff] p-6">
-              <h3 className="text-xl font-black tracking-[-0.02em] text-[#17202c]">
-                Itinerari
-              </h3>
-              <p className="mt-3 leading-8 text-[#5f6875]">
-                Percorsi distribuiti bene, pensati per giorni e senza confusione.
-              </p>
-            </div>
-
-            <div className="rounded-[1.4rem] border border-[#e5ecf5] bg-[#f8fbff] p-6">
-              <h3 className="text-xl font-black tracking-[-0.02em] text-[#17202c]">
-                Articoli
-              </h3>
-              <p className="mt-3 leading-8 text-[#5f6875]">
-                Guide e racconti organizzati in modo chiaro, da leggere con facilità.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+  <div className="rounded-[1.4rem] border border-[#e5ecf5] bg-[#f8fbff] p-6">
+    <h3 className="text-xl font-black tracking-[-0.02em] text-[#17202c]">
+      Articoli
+    </h3>
+    <p className="mt-3 leading-8 text-[#5f6875]">
+      Guide e racconti organizzati in modo chiaro, da leggere con facilità.
+    </p>
+  </div>
+</div>
 
       <section className="max-w-7xl mx-auto px-6 pb-14 md:pb-18">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
