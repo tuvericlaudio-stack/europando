@@ -224,15 +224,6 @@ export default function DestinationPage({ logoSrc, destination, navigateTo }) {
                         ))}
                       </div>
                     </div>
-
-                    <div className="rounded-[1.4rem] border border-[#e4ebf4] bg-[#f8fbff] p-5">
-                      <p className="font-bold text-[#17202c]">Strategia</p>
-                      <div className="mt-3 space-y-2 text-[#5d6470]">
-                        {destination.foodGuide.strategy.map((item) => (
-                          <p key={item}>• {item}</p>
-                        ))}
-                      </div>
-                    </div>
                   </div>
                 </div>
               )}
@@ -335,15 +326,6 @@ export default function DestinationPage({ logoSrc, destination, navigateTo }) {
                       <p className="font-bold text-[#17202c]">Sera</p>
                       <div className="mt-3 space-y-2 text-[#5d6470]">
                         {destination.foodGuide.evening.map((item) => (
-                          <p key={item}>• {item}</p>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div className="rounded-[1.4rem] border border-[#e4ebf4] bg-[#f8fbff] p-5">
-                      <p className="font-bold text-[#17202c]">Strategia</p>
-                      <div className="mt-3 space-y-2 text-[#5d6470]">
-                        {destination.foodGuide.strategy.map((item) => (
                           <p key={item}>• {item}</p>
                         ))}
                       </div>

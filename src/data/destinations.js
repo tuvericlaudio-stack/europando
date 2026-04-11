@@ -128,12 +128,6 @@ export const destinations = [
         "Simbio",
       ],
       evening: ["Beer O’Clock", "Control Club", "Linea Closer to the Moon"],
-      strategy: [
-        "Pranzo veloce",
-        "Cena tranquilla",
-        "Mangia dove sei",
-        "Evita deviazioni",
-      ],
     },
     gallery: [
       asset("bucarest-gallery-1.jpg"),
