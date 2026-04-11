@@ -22,6 +22,71 @@ export default function DestinationPage({ logoSrc, destination, navigateTo }) {
         </button>
       </section>
 
+      <section className="max-w-7xl mx-auto px-6 py-8 md:py-10">
+  <div className="grid md:grid-cols-3 gap-8">
+    <div className="md:col-span-2">
+      <div className="rounded-[1.9rem] border border-[#dbe5ef] bg-white p-8 shadow-[0_18px_50px_rgba(20,40,70,0.06)]">
+        <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#7a8798]">
+          Guida rapida
+        </p>
+        <h3 className="mt-3 text-3xl font-black tracking-[-0.03em] text-[#123e78]">
+          Orientarsi subito
+        </h3>
+
+        <div className="mt-8 space-y-4">
+          {destination.quickGuide.map((item) => (
+            <div
+              key={item.label}
+              className="rounded-[1.4rem] border border-[#e4ebf4] bg-[#f8fbff] p-5"
+            >
+              <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#7a8798]">
+                {item.label}
+              </p>
+              <p className="mt-2 text-lg font-bold text-[#17202c]">{item.value}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="mt-8 rounded-[1.9rem] border border-[#dbe5ef] bg-white p-8 shadow-[0_18px_50px_rgba(20,40,70,0.06)]">
+        <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#7a8798]">
+          Come arrivare dall'aeroporto
+        </p>
+        <h3 className="mt-3 text-3xl font-black tracking-[-0.03em] text-[#123e78]">
+          Come arrivare dall'aeroporto al centro
+        </h3>
+
+        <div className="mt-8 text-lg text-[#5d6470]">
+          <ul className="list-disc pl-5">
+            <li><strong>Taxi:</strong> Il costo medio per un taxi dal aeroporto al centro è di circa 50 RON.</li>
+            <li><strong>Treno:</strong> La stazione ferroviaria più vicina è la <strong>Gara de Nord</strong>, a soli 30 minuti di treno.</li>
+            <li><strong>Autobus:</strong> Gli autobus 780 e 783 vanno direttamente dall'aeroporto al centro.</li>
+            <li><strong>Navetta privata:</strong> Molti hotel offrono il servizio navetta a pagamento.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div className="md:col-span-1">
+      <div className="rounded-[1.9rem] border border-[#dbe5ef] bg-white p-8 shadow-[0_18px_50px_rgba(20,40,70,0.06)]">
+        <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#7a8798]">
+          Dove alloggiare
+        </p>
+        <h3 className="mt-3 text-3xl font-black tracking-[-0.03em] text-[#123e78]">
+          Dove alloggiare a Bucarest
+        </h3>
+
+        <div className="mt-8 text-lg text-[#5d6470]">
+          <p><strong>Centro Storico (Centrul Vechi):</strong> Quartiere storico, con una vasta scelta di hotel e ristoranti.</p>
+          <p><strong>Zona Piata Victoriei:</strong> Area centrale, elegante, con hotel di alta qualità.</p>
+          <p><strong>Zona Unirii:</strong> Quartiere dinamico, ben collegato con i mezzi pubblici e pieno di opportunità.</p>
+          <p><strong>Consigli:</strong> Evita le zone troppo lontane dal centro, specialmente la periferia est e sud, se non hai una buona conoscenza della città.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
       <section className="max-w-7xl mx-auto px-6 pt-8 pb-10 md:pt-10">
         <div className="relative overflow-hidden rounded-[2.4rem] min-h-[620px] border border-[#dbe5ef] shadow-[0_24px_60px_rgba(20,50,90,0.10)]">
           <img
