@@ -79,38 +79,38 @@ export default function DestinationPage({ logoSrc, destination, navigateTo }) {
               </h2>
 
               <div className="mt-10 relative">
-                <div className="absolute left-[22px] top-0 bottom-0 w-px bg-[#d9e3ef]" />
+  <div className="absolute left-[22px] top-0 bottom-0 w-px bg-[#d9e3ef]" />
 
-                <div className="space-y-10">
-                  {destination.itineraryDays.map((day, index) => (
-                    <div key={day.label} className="relative pl-16">
-                      <div className="absolute left-0 top-0 flex h-11 w-11 items-center justify-center rounded-full border border-[#d5e0ec] bg-white text-sm font-black text-[#123e78] shadow-sm">
-                        {index + 1}
-                      </div>
+  <div className="space-y-10">
+    {destination.itineraryDays.map((day, index) => (
+      <div key={day.label} className="relative pl-16">
+        <div className="absolute left-0 top-0 flex h-11 w-11 items-center justify-center rounded-full border border-[#d5e0ec] bg-white text-sm font-black text-[#123e78] shadow-sm">
+          {index + 1}
+        </div>
 
-                      <div className="rounded-[1.4rem] border border-[#e5ecf5] bg-[#fbfdff] p-6 shadow-[0_8px_18px_rgba(20,40,70,0.03)]">
-                        <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#7a8798]">
-                          Giorno
-                        </p>
-                        <h3 className="mt-2 text-2xl font-black tracking-[-0.02em] text-[#17202c]">
-                          {day.label}
-                        </h3>
+        <div className="rounded-[1.4rem] border border-[#e5ecf5] bg-[#fbfdff] p-6 shadow-[0_8px_18px_rgba(20,40,70,0.03)]">
+          <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#7a8798]">
+            Giorno
+          </p>
+          <h3 className="mt-2 text-2xl font-black tracking-[-0.02em] text-[#17202c]">
+            {day.label}
+          </h3>
 
-                        <div className="mt-5 space-y-3 text-[#4f5865]">
-                          {day.places.map((place) => (
-                            <div
-                              key={place}
-                              className="rounded-[1rem] border border-[#edf2f7] bg-white px-4 py-3"
-                            >
-                              {place}
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
+          <div className="mt-5 space-y-3 text-[#4f5865]">
+            {day.places.map((place) => (
+              <div
+                key={place}
+                className="rounded-[1rem] border border-[#edf2f7] bg-white px-4 py-3"
+              >
+                {place}
               </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
             </div>
 
             <div className="space-y-6">
