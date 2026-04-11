@@ -79,38 +79,69 @@ export default function DestinationPage({ logoSrc, destination, navigateTo }) {
               </h2>
 
               <div className="mt-10 relative">
-  <div className="absolute left-[22px] top-0 bottom-0 w-px bg-[#d9e3ef]" />
+                <div className="absolute left-[22px] top-0 bottom-0 w-px bg-[#d9e3ef]" />
 
-  <div className="space-y-10">
-    {destination.itineraryDays.map((day, index) => (
-      <div key={day.label} className="relative pl-16">
-        <div className="absolute left-0 top-0 flex h-11 w-11 items-center justify-center rounded-full border border-[#d5e0ec] bg-white text-sm font-black text-[#123e78] shadow-sm">
-          {index + 1}
-        </div>
+                <div className="space-y-10">
+                  {destination.itineraryDays.map((day, index) => {
+                    const tones = [
+                      {
+                        wrapper: "border-[#efe2a8] bg-[#fffdf3]",
+                        point: "border-[#eadb96] bg-[#fff8d9]",
+                        item: "border-[#f4ecd0] bg-white",
+                      },
+                      {
+                        wrapper: "border-[#ead4d4] bg-[#fff8f8]",
+                        point: "border-[#e4c1c1] bg-[#ffecec]",
+                        item: "border-[#f1dede] bg-white",
+                      },
+                      {
+                        wrapper: "border-[#d8e8d8] bg-[#f7fcf7]",
+                        point: "border-[#bfd8bf] bg-[#edf8ed]",
+                        item: "border-[#deedde] bg-white",
+                      },
+                      {
+                        wrapper: "border-[#dfdfdf] bg-[#fcfcfc]",
+                        point: "border-[#d0d0d0] bg-[#f3f3f3]",
+                        item: "border-[#e6e6e6] bg-white",
+                      },
+                    ];
 
-        <div className="rounded-[1.4rem] border border-[#e5ecf5] bg-[#fbfdff] p-6 shadow-[0_8px_18px_rgba(20,40,70,0.03)]">
-          <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#7a8798]">
-            Giorno
-          </p>
-          <h3 className="mt-2 text-2xl font-black tracking-[-0.02em] text-[#17202c]">
-            {day.label}
-          </h3>
+                    const tone = tones[index % tones.length];
 
-          <div className="mt-5 space-y-3 text-[#4f5865]">
-            {day.places.map((place) => (
-              <div
-                key={place}
-                className="rounded-[1rem] border border-[#edf2f7] bg-white px-4 py-3"
-              >
-                {place}
+                    return (
+                      <div key={day.label} className="relative pl-16">
+                        <div
+                          className={`absolute left-0 top-0 flex h-11 w-11 items-center justify-center rounded-full border text-sm font-black text-[#123e78] shadow-sm ${tone.point}`}
+                        >
+                          {index + 1}
+                        </div>
+
+                        <div
+                          className={`rounded-[1.4rem] border p-6 shadow-[0_8px_18px_rgba(20,40,70,0.03)] ${tone.wrapper}`}
+                        >
+                          <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#7a8798]">
+                            Giorno
+                          </p>
+                          <h3 className="mt-2 text-2xl font-black tracking-[-0.02em] text-[#17202c]">
+                            {day.label}
+                          </h3>
+
+                          <div className="mt-5 space-y-3 text-[#4f5865]">
+                            {day.places.map((place) => (
+                              <div
+                                key={place}
+                                className={`rounded-[1rem] border px-4 py-3 ${tone.item}`}
+                              >
+                                {place}
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    ))}
-  </div>
-</div>
             </div>
 
             <div className="space-y-6">
