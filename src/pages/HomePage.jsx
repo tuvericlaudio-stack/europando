@@ -4,10 +4,14 @@ export default function HomePage({
   destinations,
   navigateTo,
 }) {
+  const visibleDestinations = destinations.filter(
+    (destination) => destination.slug === "bucarest"
+  );
+
   return (
     <div className="min-h-screen bg-[#f4f7fb] text-[#17202c]">
-      <section className="max-w-7xl mx-auto px-6 pt-14 pb-24 md:pt-18 md:pb-28">
-        <div className="grid lg:grid-cols-[0.92fr_1.08fr] gap-12 items-center">
+      <section className="max-w-7xl mx-auto px-6 pt-14 pb-24 md:pt-20 md:pb-28">
+        <div className="grid lg:grid-cols-[0.9fr_1.1fr] gap-12 items-center">
           <div>
             <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#7a8798]">
               Travel journal
@@ -27,7 +31,7 @@ export default function HomePage({
                 onClick={() => navigateTo("/destinazioni")}
                 className="rounded-[1.3rem] bg-[#123e78] px-6 py-3.5 text-sm font-bold uppercase tracking-[0.14em] text-white shadow-[0_14px_28px_rgba(18,62,120,0.22)]"
               >
-                Vai alle destinazioni
+                Vai alla destinazione
               </button>
 
               <button
@@ -53,10 +57,10 @@ export default function HomePage({
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
           <div>
             <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#7a8798]">
-              Destinazioni
+              Destinazione in evidenza
             </p>
             <h2 className="mt-3 text-3xl md:text-5xl font-black tracking-[-0.03em] text-[#123e78]">
-              Le città principali
+              Bucarest
             </h2>
           </div>
 
@@ -64,34 +68,62 @@ export default function HomePage({
             onClick={() => navigateTo("/destinazioni")}
             className="text-sm font-bold uppercase tracking-[0.14em] text-[#123e78]"
           >
-            Vedi tutto →
+            Apri la pagina →
           </button>
         </div>
 
-        <div className="mt-10 grid sm:grid-cols-2 xl:grid-cols-4 gap-6">
-          {destinations.map((destination) => (
+        <div className="mt-10 grid gap-6">
+          {visibleDestinations.map((destination) => (
             <button
               key={destination.slug}
               onClick={() => navigateTo(`/destinazioni/${destination.slug}`)}
-              className="text-left overflow-hidden rounded-[1.8rem] border border-[#dbe5ef] bg-white shadow-[0_12px_28px_rgba(20,40,70,0.05)] hover:-translate-y-1 hover:shadow-[0_18px_36px_rgba(20,40,70,0.08)] transition"
+              className="group text-left overflow-hidden rounded-[1.8rem] border border-[#dbe5ef] bg-white shadow-[0_12px_28px_rgba(20,40,70,0.05)] hover:-translate-y-1 hover:shadow-[0_18px_36px_rgba(20,40,70,0.08)] transition"
             >
-              <div className="relative h-72 overflow-hidden">
-                <img
-                  src={destination.image}
-                  alt={destination.name}
-                  className="h-full w-full object-cover transition duration-700 hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#123e78]/82 via-[#123e78]/24 to-transparent" />
-                <div className="absolute top-4 right-4 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.16em] text-white backdrop-blur-sm">
-                  {destination.tag}
+              <div className="grid lg:grid-cols-[1.05fr_0.95fr] min-h-[420px]">
+                <div className="relative overflow-hidden">
+                  <img
+                    src={destination.image}
+                    alt={destination.name}
+                    className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#123e78]/82 via-[#123e78]/24 to-transparent" />
+                  <div className="absolute top-5 left-5 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.16em] text-white backdrop-blur-sm">
+                    {destination.tag}
+                  </div>
+                  <h3 className="absolute left-6 bottom-6 text-4xl md:text-5xl font-black tracking-[-0.03em] text-white">
+                    {destination.name}
+                  </h3>
                 </div>
-                <h3 className="absolute left-6 bottom-5 text-3xl font-black tracking-[-0.03em] text-white">
-                  {destination.name}
-                </h3>
-              </div>
 
-              <div className="p-6">
-                <p className="text-[#5f6875] leading-7">{destination.text}</p>
+                <div className="p-8 md:p-10 flex flex-col justify-center">
+                  <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#7a8798]">
+                    Perché partire da qui
+                  </p>
+
+                  <p className="mt-4 text-lg leading-8 text-[#5f6875]">
+                    {destination.text}
+                  </p>
+
+                  <div className="mt-8 grid sm:grid-cols-3 gap-4">
+                    {destination.stats.map((stat) => (
+                      <div
+                        key={stat.label}
+                        className="rounded-[1.2rem] border border-[#e5ecf5] bg-[#f8fbff] p-4"
+                      >
+                        <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#7a8798]">
+                          {stat.label}
+                        </p>
+                        <p className="mt-2 text-xl font-black text-[#123e78]">
+                          {stat.value}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="mt-8 inline-flex items-center gap-2 text-sm font-bold uppercase tracking-[0.12em] text-[#123e78]">
+                    Scopri la guida <span>→</span>
+                  </div>
+                </div>
               </div>
             </button>
           ))}
@@ -159,18 +191,18 @@ export default function HomePage({
       <section className="max-w-7xl mx-auto px-6 pb-22">
         <div className="rounded-[2.2rem] border border-[#dbe5ef] bg-white p-10 md:p-14 text-center shadow-[0_18px_45px_rgba(20,40,70,0.07)]">
           <h2 className="text-3xl md:text-5xl font-black tracking-[-0.03em] text-[#123e78]">
-            Viaggi costruiti con ordine, senza confusione.
+            Una base pulita da far crescere bene.
           </h2>
           <p className="mt-5 max-w-2xl mx-auto leading-8 text-[#5f6875]">
-            Una base semplice da consultare, destinazioni chiare e articoli pronti
-            da leggere senza dispersione.
+            Per ora il sito parte da Bucarest. Le prossime destinazioni si
+            aggiungeranno con la stessa struttura, in modo ordinato e coerente.
           </p>
           <div className="mt-8 flex justify-center">
             <button
-              onClick={() => navigateTo("/destinazioni")}
+              onClick={() => navigateTo("/destinazioni/bucarest")}
               className="rounded-[1.3rem] bg-[#123e78] px-6 py-3.5 text-sm font-bold uppercase tracking-[0.14em] text-white shadow-[0_14px_28px_rgba(18,62,120,0.22)]"
             >
-              Esplora le destinazioni
+              Vai a Bucarest
             </button>
           </div>
         </div>
