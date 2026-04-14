@@ -24,48 +24,52 @@ export default function DestinationPage({ logoSrc, destination, navigateTo }) {
       </section>
 
       <section className="max-w-7xl mx-auto px-6 pt-8 pb-10 md:pt-10">
-        <div className="relative overflow-hidden rounded-[2.2rem] min-h-[620px] border border-[#dbe5ef] shadow-[0_22px_55px_rgba(20,50,90,0.10)]">
-          <img
-            src={destination.image}
-            alt={destination.name}
-            className="absolute inset-0 h-full w-full object-cover"
-          />
-          <div className="absolute inset-0 bg-[linear-gradient(108deg,rgba(8,25,48,0.86)_0%,rgba(8,25,48,0.58)_36%,rgba(8,25,48,0.18)_68%,rgba(8,25,48,0.08)_100%)]" />
-          <div className="absolute inset-[18px] rounded-[1.8rem] border border-white/18" />
+  <div className="relative overflow-hidden rounded-[2.4rem] min-h-[680px] border border-[#dbe5ef] shadow-[0_26px_65px_rgba(20,50,90,0.12)]">
+    <img
+      src={destination.image}
+      alt={destination.name}
+      className="absolute inset-0 h-full w-full object-cover"
+    />
 
-          <div className="relative z-10 h-full flex flex-col justify-end p-8 md:p-12 text-white max-w-4xl">
-            <span className="inline-flex w-fit rounded-full border border-white/20 bg-white/10 px-4 py-2 text-[10px] font-bold uppercase tracking-[0.24em] backdrop-blur-md">
-              {destination.tag}
-            </span>
+    <div className="absolute inset-0 bg-[linear-gradient(112deg,rgba(7,21,42,0.88)_0%,rgba(7,21,42,0.66)_34%,rgba(7,21,42,0.24)_66%,rgba(7,21,42,0.10)_100%)]" />
+    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.14),transparent_34%)]" />
+    <div className="absolute inset-[20px] rounded-[2rem] border border-white/18" />
 
-            <h1 className="mt-8 text-5xl md:text-7xl leading-[0.9] font-black tracking-[-0.05em] drop-shadow-[0_3px_10px_rgba(0,0,0,0.22)]">
-              {destination.heroTitle}
-            </h1>
+    <div className="relative z-10 flex min-h-[680px] flex-col justify-between p-8 md:p-12">
+      <div>
+        <span className="inline-flex w-fit rounded-full border border-white/20 bg-white/10 px-4 py-2 text-[10px] font-bold uppercase tracking-[0.24em] text-white backdrop-blur-md">
+          {destination.tag}
+        </span>
+      </div>
 
-            <p className="mt-8 max-w-2xl text-lg md:text-xl leading-8 text-white/92">
-              {destination.intro}
-            </p>
-          </div>
-        </div>
-      </section>
+      <div className="max-w-4xl text-white">
+        <h1 className="text-5xl md:text-7xl xl:text-8xl leading-[0.88] font-black tracking-[-0.06em] drop-shadow-[0_4px_14px_rgba(0,0,0,0.24)]">
+          {destination.heroTitle}
+        </h1>
 
-      <section className="max-w-7xl mx-auto px-6 py-6 md:py-10">
-        <div className="grid md:grid-cols-3 gap-6">
+        <p className="mt-8 max-w-2xl text-lg md:text-xl leading-8 text-white/90">
+          {destination.intro}
+        </p>
+
+        <div className="mt-10 grid gap-4 sm:grid-cols-3 max-w-3xl">
           {destination.stats.map((stat) => (
             <div
               key={stat.label}
-              className="rounded-[1.7rem] border border-[#dbe5ef] bg-white p-6 shadow-[0_10px_24px_rgba(20,40,70,0.05)]"
+              className="rounded-[1.2rem] border border-white/16 bg-white/10 px-4 py-4 backdrop-blur-md"
             >
-              <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#7a8798]">
+              <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-white/75">
                 {stat.label}
               </p>
-              <p className="mt-3 text-3xl font-black tracking-[-0.04em] text-[#123e78]">
+              <p className="mt-2 text-2xl font-black text-white">
                 {stat.value}
               </p>
             </div>
           ))}
         </div>
-      </section>
+      </div>
+    </div>
+  </div>
+</section>
 
       <section className="max-w-7xl mx-auto px-6 py-8 md:py-10">
         {hasItinerary ? (
