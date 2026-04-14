@@ -41,102 +41,99 @@ export const destinations = [
   },
 
   {
-    slug: "bucarest",
-    name: "Bucarest",
-    text: "Una città di contrasti, grandi viali e centro storico, da organizzare bene per giornate.",
-    tag: "Urban Mix",
-    image: asset("bucarest-hero.jpg"),
-    heroTitle: "Bucarest, meglio a blocchi chiari che di corsa.",
-    intro:
-      "Una guida costruita per giorni, con itinerario ordinato e una colonna pratica dedicata ad arrivo, alloggio e luoghi dove mangiare.",
-    stats: [
-      { label: "Giorni ideali", value: "3-4" },
-      { label: "Zona migliore", value: "Centro" },
-      { label: "Mood", value: "Vivo" },
-    ],
-    itineraryDays: [
-      {
-        label: "Giorno 1 — Arrivo",
-        places: [
-          "Centrul Vechi",
-          "Stavropoleos",
-          "Macca-Vilacrosse",
-          "Passeggiata libera nel centro storico",
-        ],
-      },
-      {
-        label: "Giorno 2 — Principale",
-        places: [
-          "Carturesti Carusel",
-          "Piata Revolutiei",
-          "Ateneul Roman",
-          "Calea Victoriei",
-          "Parlamento",
-          "Centro storico",
-          "Golden hour tra Calea Victoriei e Piata Revolutiei",
-        ],
-      },
-      {
-        label: "Giorno 3 — Relax",
-        places: [
-          "Parco Herastrau",
-          "Primaverii",
-          "Arco di Trionfo",
-          "Passeggiata rilassata",
-          "Golden hour tra lago Herastrau e Arco",
-        ],
-      },
-      {
-        label: "Giorno 4 — Partenza",
-        places: [
-          "Colazione in zona",
-          "Giro leggero finale",
-          "Partenza per aeroporto",
-        ],
-      },
-    ],
-    practicalInfo: {
-      airportToCenter: [
-        "Taxi o ride app sono la soluzione più semplice se arrivi tardi o con bagagli.",
-        "Il treno per Gara de Nord è utile se vuoi entrare in città in modo diretto.",
-        "Bus e transfer sono validi se vuoi spendere meno e non hai fretta.",
-      ],
-      whereToStay: [
-        "Centrul Vechi è la base più comoda se vuoi muoverti a piedi e avere tutto vicino.",
-        "Piata Universitatii e dintorni funzionano bene per posizione e collegamenti.",
-        "Piata Romana è una buona zona se vuoi un punto centrale ma meno turistico.",
-      ],
-      notes: [
-        "Evita zone troppo periferiche se resti pochi giorni.",
-        "Per un primo viaggio conviene restare in area centrale.",
+  slug: "bucarest",
+  name: "Bucarest",
+  text: "Una città di contrasti, grandi viali, centro storico e tappe da distribuire bene senza correre.",
+  tag: "Urban Mix",
+  image: asset("bucarest-hero.jpg"),
+  heroTitle: "Bucarest, meglio a blocchi chiari che di corsa.",
+  intro:
+    "Una città che rende meglio quando la leggi per zone, alternando centro storico, grandi viali, architettura simbolica e momenti più rilassati.",
+  stats: [
+    { label: "Giorni ideali", value: "3-4" },
+    { label: "Zona migliore", value: "Centro" },
+    { label: "Mood", value: "Vivo" },
+  ],
+  itineraryDays: [
+    {
+      label: "Giorno 1 — Arrivo e primo orientamento",
+      places: [
+        "Centrul Vechi",
+        "Stavropoleos",
+        "Macca-Vilacrosse",
+        "Passeggiata libera nel centro storico",
       ],
     },
-    foodGuide: {
-  breakfast: ["5 to go", "Ted’s Coffee", "Café Van Gogh"],
-  streetFood: [
-    "Luca",
-    "Gyros Thessalonikis",
-    "Dristor Kebap",
-    "La Placinte",
-    "Springtime",
+    {
+      label: "Giorno 2 — Parte più rappresentativa",
+      places: [
+        "Carturesti Carusel",
+        "Piata Revolutiei",
+        "Ateneul Roman",
+        "Calea Victoriei",
+        "Parlamento",
+        "Rientro verso il centro",
+      ],
+    },
+    {
+      label: "Giorno 3 — Zona più aperta e rilassata",
+      places: [
+        "Parco Herastrau",
+        "Primaverii",
+        "Arco di Trionfo",
+        "Passeggiata più lenta",
+        "Chiusura tranquilla di giornata",
+      ],
+    },
+    {
+      label: "Giorno 4 — Ultime ore utili e partenza",
+      places: [
+        "Colazione in zona",
+        "Ultimo giro leggero",
+        "Partenza per aeroporto",
+      ],
+    },
   ],
-  restaurants: [
-    "La Mama",
-    "Lacrimi si Sfinti",
-    "Hanu lui Manuc",
-    "Energiea",
-    "Simbio",
-  ],
-  evening: ["Beer O’Clock", "Control Club", "Linea Closer to the Moon"],
-},
-    gallery: [
-      asset("bucarest-gallery-1.jpg"),
-      asset("bucarest-gallery-2.jpg"),
-      asset("bucarest-gallery-3.jpg"),
+  practicalInfo: {
+    airportToCenter: [
+      "Taxi o ride app sono la soluzione più semplice se arrivi tardi o con bagagli.",
+      "Il collegamento ferroviario verso Gara de Nord è utile se vuoi entrare in città in modo lineare.",
+      "Bus e transfer hanno senso se vuoi spendere meno e non hai necessità di arrivare subito in centro.",
+    ],
+    whereToStay: [
+      "Centrul Vechi è la base più comoda se vuoi muoverti a piedi e avere il cuore della città subito vicino.",
+      "Piata Universitatii funziona bene se vuoi restare centrale ma con spostamenti facili.",
+      "Piata Romana è una buona alternativa se cerchi una zona viva ma meno turistica del centro storico stretto.",
+    ],
+    notes: [
+      "Per un primo viaggio conviene restare in area centrale.",
+      "Se hai pochi giorni, evita alloggi troppo periferici.",
     ],
   },
-
-  {
+  foodGuide: {
+    breakfast: ["5 to go", "Ted’s Coffee", "Café Van Gogh"],
+    streetFood: [
+      "Luca",
+      "Gyros Thessalonikis",
+      "Dristor Kebap",
+      "La Placinte",
+      "Springtime",
+    ],
+    restaurants: [
+      "La Mama",
+      "Lacrimi si Sfinti",
+      "Hanu lui Manuc",
+      "Energiea",
+      "Simbio",
+    ],
+    evening: ["Beer O’Clock", "Control Club", "Linea Closer to the Moon"],
+  },
+  gallery: [
+    asset("bucarest-gallery-1.jpg"),
+    asset("bucarest-gallery-2.jpg"),
+    asset("bucarest-gallery-3.jpg"),
+  ],
+},
     slug: "stoccolma",
     name: "Stoccolma",
     text: "Acqua, isole, eleganza nordica e una città molto leggibile anche al primo viaggio.",

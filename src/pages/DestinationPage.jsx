@@ -150,7 +150,7 @@ export default function DestinationPage({ logoSrc, destination, navigateTo }) {
                   Suggerimenti pratici
                 </p>
                 <h2 className="mt-3 text-3xl md:text-4xl font-black tracking-[-0.03em] text-[#123e78]">
-                  Arrivare e alloggiare
+                  Muoversi e alloggiare
                 </h2>
 
                 <div className="mt-8 space-y-5">
@@ -212,7 +212,7 @@ export default function DestinationPage({ logoSrc, destination, navigateTo }) {
                     Dove mangiare
                   </p>
                   <h2 className="mt-3 text-3xl md:text-4xl font-black tracking-[-0.03em] text-[#123e78]">
-                    Luoghi utili
+                    Dove mangiare bene
                   </h2>
 
                   <div className="mt-8 space-y-5">
@@ -287,7 +287,7 @@ export default function DestinationPage({ logoSrc, destination, navigateTo }) {
                   Suggerimenti pratici
                 </p>
                 <h2 className="mt-3 text-3xl md:text-4xl font-black tracking-[-0.03em] text-[#123e78]">
-                  Arrivare e alloggiare
+                  Muoversi e dormire
                 </h2>
 
                 <div className="mt-8 space-y-5">
@@ -318,7 +318,7 @@ export default function DestinationPage({ logoSrc, destination, navigateTo }) {
                     Dove mangiare
                   </p>
                   <h2 className="mt-3 text-3xl md:text-4xl font-black tracking-[-0.03em] text-[#123e78]">
-                    Luoghi utili
+                    DOve mangiare bene
                   </h2>
 
                   <div className="mt-8 space-y-5">
@@ -372,11 +372,11 @@ export default function DestinationPage({ logoSrc, destination, navigateTo }) {
               Gallery
             </p>
             <h2 className="mt-3 text-3xl md:text-5xl font-black tracking-[-0.03em] text-[#123e78]">
-              Atmosfera della destinazione
+              Bucarest in immagini
             </h2>
           </div>
           <p className="max-w-2xl text-[#59606c] leading-8">
-            Una pagina interna semplice e coerente con il resto del sito.
+             Una chiusura visiva pensata per restituire il ritmo, i contrasti e l'atmosfera della città.
           </p>
         </div>
 
