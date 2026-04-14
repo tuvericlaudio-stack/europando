@@ -95,21 +95,21 @@ export const destinations = [
     },
   ],
   practicalInfo: {
-    airportToCenter: [
-      "Taxi o ride app sono la soluzione più semplice se arrivi tardi o con bagagli.",
-      "Il collegamento ferroviario verso Gara de Nord è utile se vuoi entrare in città in modo lineare.",
-      "Bus e transfer hanno senso se vuoi spendere meno e non hai necessità di arrivare subito in centro.",
-    ],
-    whereToStay: [
-      "Centrul Vechi è la base più comoda se vuoi muoverti a piedi e avere il cuore della città subito vicino.",
-      "Piata Universitatii funziona bene se vuoi restare centrale ma con spostamenti facili.",
-      "Piata Romana è una buona alternativa se cerchi una zona viva ma meno turistica del centro storico stretto.",
-    ],
-    notes: [
-      "Per un primo viaggio conviene restare in area centrale.",
-      "Se hai pochi giorni, evita alloggi troppo periferici.",
-    ],
-  },
+  airportToCenter: [
+    "Il bus 100 Express è la soluzione più economica: collega direttamente l’aeroporto al centro, è attivo 24 ore su 24 e ferma anche in punti utili come Piata Victoriei, Piata Romana e Piata Unirii.",
+    "Il treno per Gara de Nord è più rapido del bus, ma richiede una navetta per raggiungere la stazione aeroportuale e arriva in una zona meno centrale rispetto alle fermate principali del bus.",
+    "Taxi, Uber e Bolt sono la scelta più comoda se arrivi tardi, hai bagagli o vuoi un trasferimento diretto; conviene controllare il prezzo in app e scegliere la soluzione più conveniente.",
+  ],
+  whereToStay: [
+    "Centrul Vechi è la base più immediata se vuoi avere vicino ristoranti, locali e il cuore più vivo della città, ma può essere più rumorosa soprattutto la sera.",
+    "Piata Universitatii è probabilmente la zona più equilibrata: centrale, ben collegata e molto comoda per muoversi verso diverse aree di Bucarest.",
+    "Piata Romana è un’ottima alternativa se vuoi restare in una zona centrale, viva e pratica, ma con un’atmosfera un po’ meno turistica rispetto al centro storico stretto.",
+  ],
+  notes: [
+    "Se resti solo 3 o 4 giorni conviene scegliere una base centrale.",
+    "Per un primo viaggio è meglio evitare zone troppo periferiche, così ti muovi in modo più semplice e lineare.",
+  ],
+},
   foodGuide: {
     breakfast: ["5 to go", "Ted’s Coffee", "Café Van Gogh"],
     streetFood: [
