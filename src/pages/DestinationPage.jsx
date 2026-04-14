@@ -447,36 +447,49 @@ export default function DestinationPage({ logoSrc, destination, navigateTo }) {
         )}
       </section>
 
-      <section className="max-w-7xl mx-auto px-6 py-8 md:py-10">
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
-          <div>
-            <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#7a8798]">
-              Gallery
-            </p>
-            <h2 className="mt-3 text-3xl md:text-5xl font-black tracking-[-0.03em] text-[#123e78]">
-              Bucarest in immagini
-            </h2>
-          </div>
-          <p className="max-w-2xl text-[#59606c] leading-8">
-            Una chiusura visiva pensata per restituire il ritmo, i contrasti e l’atmosfera della città.
-          </p>
-        </div>
+      <section className="max-w-7xl mx-auto px-6 py-10 md:py-14">
+  <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+    <div>
+      <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#7a8798]">
+        Gallery
+      </p>
+      <h2 className="mt-3 text-3xl md:text-5xl font-black tracking-[-0.03em] text-[#123e78]">
+        Bucarest in immagini
+      </h2>
+    </div>
+    <p className="max-w-2xl text-[#59606c] leading-8">
+      Una chiusura visiva pensata per restituire il ritmo, i contrasti e l’atmosfera della città.
+    </p>
+  </div>
 
-        <div className="mt-10 grid md:grid-cols-3 gap-6">
-          {destination.gallery.map((image, index) => (
-            <div
-              key={image}
-              className="relative overflow-hidden rounded-[1.8rem] min-h-[320px] border border-[#dbe5ef] shadow-[0_12px_28px_rgba(20,40,70,0.05)] bg-white"
-            >
-              <img
-                src={image}
-                alt={`${destination.name} ${index + 1}`}
-                className="absolute inset-0 h-full w-full object-cover"
-              />
-            </div>
-          ))}
-        </div>
-      </section>
+  <div className="mt-10 grid lg:grid-cols-[1.2fr_0.8fr] gap-6">
+    <div className="relative overflow-hidden rounded-[2rem] min-h-[620px] border border-[#dbe5ef] shadow-[0_16px_34px_rgba(20,40,70,0.06)] bg-white">
+      <img
+        src={destination.gallery[0]}
+        alt={`${destination.name} 1`}
+        className="absolute inset-0 h-full w-full object-cover"
+      />
+    </div>
+
+    <div className="grid gap-6">
+      <div className="relative overflow-hidden rounded-[2rem] min-h-[300px] border border-[#dbe5ef] shadow-[0_16px_34px_rgba(20,40,70,0.06)] bg-white">
+        <img
+          src={destination.gallery[1]}
+          alt={`${destination.name} 2`}
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+      </div>
+
+      <div className="relative overflow-hidden rounded-[2rem] min-h-[300px] border border-[#dbe5ef] shadow-[0_16px_34px_rgba(20,40,70,0.06)] bg-white">
+        <img
+          src={destination.gallery[2]}
+          alt={`${destination.name} 3`}
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+      </div>
+    </div>
+  </div>
+</section>
     </div>
   );
 }
