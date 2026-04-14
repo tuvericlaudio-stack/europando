@@ -145,24 +145,33 @@ export default function DestinationPage({ logoSrc, destination, navigateTo }) {
             </div>
 
             <div className="space-y-6">
-              <div className="rounded-[1.8rem] border border-[#dbe5ef] bg-white p-8 shadow-[0_16px_36px_rgba(20,40,70,0.06)]">
+              <div className="rounded-[1.9rem] border border-[#dbe5ef] bg-white p-8 shadow-[0_16px_36px_rgba(20,40,70,0.06)]">
                 <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#7a8798]">
                   Suggerimenti pratici
                 </p>
                 <h2 className="mt-3 text-3xl md:text-4xl font-black tracking-[-0.03em] text-[#123e78]">
-                  Muoversi e alloggiare
+                  Muoversi e dormire
                 </h2>
+                <p className="mt-4 leading-7 text-[#5f6875]">
+                  Le informazioni essenziali per entrare in città bene e scegliere
+                  una base comoda da cui partire.
+                </p>
 
                 <div className="mt-8 space-y-5">
-                  <div className="rounded-[1.4rem] border border-[#e4ebf4] bg-[#f8fbff] p-5">
-                    <p className="text-sm font-black uppercase tracking-[0.14em] text-[#123e78]">
-                      ✈️ Aeroporto → centro
+                  <div className="rounded-[1.4rem] border border-[#e4ebf4] bg-[#fbfdff] p-5">
+                    <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#7a8798]">
+                      Aeroporto → centro
                     </p>
 
                     {hasPracticalInfo ? (
-                      <div className="mt-3 space-y-2 text-[#5d6470]">
+                      <div className="mt-3 space-y-3 text-[#5d6470]">
                         {destination.practicalInfo.airportToCenter.map((item) => (
-                          <p key={item}>• {item}</p>
+                          <div
+                            key={item}
+                            className="rounded-[1rem] border border-[#edf2f7] bg-white px-4 py-3"
+                          >
+                            {item}
+                          </div>
                         ))}
                       </div>
                     ) : (
@@ -172,15 +181,20 @@ export default function DestinationPage({ logoSrc, destination, navigateTo }) {
                     )}
                   </div>
 
-                  <div className="rounded-[1.4rem] border border-[#e4ebf4] bg-[#f8fbff] p-5">
-                    <p className="text-sm font-black uppercase tracking-[0.14em] text-[#123e78]">
-                      🏨 Dove alloggiare
+                  <div className="rounded-[1.4rem] border border-[#e4ebf4] bg-[#fbfdff] p-5">
+                    <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#7a8798]">
+                      Dove alloggiare
                     </p>
 
                     {hasPracticalInfo ? (
-                      <div className="mt-3 space-y-2 text-[#5d6470]">
+                      <div className="mt-3 space-y-3 text-[#5d6470]">
                         {destination.practicalInfo.whereToStay.map((item) => (
-                          <p key={item}>• {item}</p>
+                          <div
+                            key={item}
+                            className="rounded-[1rem] border border-[#edf2f7] bg-white px-4 py-3"
+                          >
+                            {item}
+                          </div>
                         ))}
                       </div>
                     ) : (
@@ -192,13 +206,18 @@ export default function DestinationPage({ logoSrc, destination, navigateTo }) {
                   </div>
 
                   {hasPracticalInfo && destination.practicalInfo.notes?.length > 0 && (
-                    <div className="rounded-[1.4rem] border border-[#e4ebf4] bg-[#f8fbff] p-5">
-                      <p className="text-sm font-black uppercase tracking-[0.14em] text-[#123e78]">
-                        ℹ️ Note
+                    <div className="rounded-[1.4rem] border border-[#e4ebf4] bg-[#fbfdff] p-5">
+                      <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#7a8798]">
+                        Note utili
                       </p>
-                      <div className="mt-3 space-y-2 text-[#5d6470]">
+                      <div className="mt-3 space-y-3 text-[#5d6470]">
                         {destination.practicalInfo.notes.map((item) => (
-                          <p key={item}>• {item}</p>
+                          <div
+                            key={item}
+                            className="rounded-[1rem] border border-[#edf2f7] bg-white px-4 py-3"
+                          >
+                            {item}
+                          </div>
                         ))}
                       </div>
                     </div>
@@ -207,47 +226,78 @@ export default function DestinationPage({ logoSrc, destination, navigateTo }) {
               </div>
 
               {hasFoodGuide && (
-                <div className="rounded-[1.8rem] border border-[#dbe5ef] bg-white p-8 shadow-[0_16px_36px_rgba(20,40,70,0.06)]">
+                <div className="rounded-[1.9rem] border border-[#dbe5ef] bg-white p-8 shadow-[0_16px_36px_rgba(20,40,70,0.06)]">
                   <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#7a8798]">
                     Dove mangiare
                   </p>
                   <h2 className="mt-3 text-3xl md:text-4xl font-black tracking-[-0.03em] text-[#123e78]">
                     Dove mangiare bene
                   </h2>
+                  <p className="mt-4 leading-7 text-[#5f6875]">
+                    Una selezione semplice, utile da consultare senza spezzare troppo le giornate.
+                  </p>
 
                   <div className="mt-8 space-y-5">
-                    <div className="rounded-[1.4rem] border border-[#e4ebf4] bg-[#f8fbff] p-5">
-                      <p className="font-bold text-[#17202c]">Colazione</p>
+                    <div className="rounded-[1.4rem] border border-[#e4ebf4] bg-[#fbfdff] p-5">
+                      <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#7a8798]">
+                        Colazione
+                      </p>
                       <div className="mt-3 space-y-2 text-[#5d6470]">
                         {destination.foodGuide.breakfast.map((item) => (
-                          <p key={item}>• {item}</p>
+                          <div
+                            key={item}
+                            className="rounded-[1rem] border border-[#edf2f7] bg-white px-4 py-3"
+                          >
+                            {item}
+                          </div>
                         ))}
                       </div>
                     </div>
 
-                    <div className="rounded-[1.4rem] border border-[#e4ebf4] bg-[#f8fbff] p-5">
-                      <p className="font-bold text-[#17202c]">Street food</p>
+                    <div className="rounded-[1.4rem] border border-[#e4ebf4] bg-[#fbfdff] p-5">
+                      <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#7a8798]">
+                        Street food
+                      </p>
                       <div className="mt-3 space-y-2 text-[#5d6470]">
                         {destination.foodGuide.streetFood.map((item) => (
-                          <p key={item}>• {item}</p>
+                          <div
+                            key={item}
+                            className="rounded-[1rem] border border-[#edf2f7] bg-white px-4 py-3"
+                          >
+                            {item}
+                          </div>
                         ))}
                       </div>
                     </div>
 
-                    <div className="rounded-[1.4rem] border border-[#e4ebf4] bg-[#f8fbff] p-5">
-                      <p className="font-bold text-[#17202c]">Ristoranti</p>
+                    <div className="rounded-[1.4rem] border border-[#e4ebf4] bg-[#fbfdff] p-5">
+                      <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#7a8798]">
+                        Ristoranti
+                      </p>
                       <div className="mt-3 space-y-2 text-[#5d6470]">
                         {destination.foodGuide.restaurants.map((item) => (
-                          <p key={item}>• {item}</p>
+                          <div
+                            key={item}
+                            className="rounded-[1rem] border border-[#edf2f7] bg-white px-4 py-3"
+                          >
+                            {item}
+                          </div>
                         ))}
                       </div>
                     </div>
 
-                    <div className="rounded-[1.4rem] border border-[#e4ebf4] bg-[#f8fbff] p-5">
-                      <p className="font-bold text-[#17202c]">Sera</p>
+                    <div className="rounded-[1.4rem] border border-[#e4ebf4] bg-[#fbfdff] p-5">
+                      <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#7a8798]">
+                        Sera
+                      </p>
                       <div className="mt-3 space-y-2 text-[#5d6470]">
                         {destination.foodGuide.evening.map((item) => (
-                          <p key={item}>• {item}</p>
+                          <div
+                            key={item}
+                            className="rounded-[1rem] border border-[#edf2f7] bg-white px-4 py-3"
+                          >
+                            {item}
+                          </div>
                         ))}
                       </div>
                     </div>
@@ -282,7 +332,7 @@ export default function DestinationPage({ logoSrc, destination, navigateTo }) {
             </div>
 
             <div className="space-y-6">
-              <div className="rounded-[1.8rem] border border-[#dbe5ef] bg-white p-8 shadow-[0_16px_36px_rgba(20,40,70,0.06)]">
+              <div className="rounded-[1.9rem] border border-[#dbe5ef] bg-white p-8 shadow-[0_16px_36px_rgba(20,40,70,0.06)]">
                 <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#7a8798]">
                   Suggerimenti pratici
                 </p>
@@ -291,18 +341,18 @@ export default function DestinationPage({ logoSrc, destination, navigateTo }) {
                 </h2>
 
                 <div className="mt-8 space-y-5">
-                  <div className="rounded-[1.4rem] border border-[#e4ebf4] bg-[#f8fbff] p-5">
-                    <p className="text-sm font-black uppercase tracking-[0.14em] text-[#123e78]">
-                      ✈️ Aeroporto → centro
+                  <div className="rounded-[1.4rem] border border-[#e4ebf4] bg-[#fbfdff] p-5">
+                    <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#7a8798]">
+                      Aeroporto → centro
                     </p>
                     <p className="mt-3 leading-7 text-[#5d6470]">
                       Qui inserirai i consigli pratici su come arrivare dall’aeroporto al centro.
                     </p>
                   </div>
 
-                  <div className="rounded-[1.4rem] border border-[#e4ebf4] bg-[#f8fbff] p-5">
-                    <p className="text-sm font-black uppercase tracking-[0.14em] text-[#123e78]">
-                      🏨 Dove alloggiare
+                  <div className="rounded-[1.4rem] border border-[#e4ebf4] bg-[#fbfdff] p-5">
+                    <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#7a8798]">
+                      Dove alloggiare
                     </p>
                     <p className="mt-3 leading-7 text-[#5d6470]">
                       Qui inserirai le zone consigliate per dormire e le note più utili sulla
@@ -313,47 +363,75 @@ export default function DestinationPage({ logoSrc, destination, navigateTo }) {
               </div>
 
               {hasFoodGuide && (
-                <div className="rounded-[1.8rem] border border-[#dbe5ef] bg-white p-8 shadow-[0_16px_36px_rgba(20,40,70,0.06)]">
+                <div className="rounded-[1.9rem] border border-[#dbe5ef] bg-white p-8 shadow-[0_16px_36px_rgba(20,40,70,0.06)]">
                   <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#7a8798]">
                     Dove mangiare
                   </p>
                   <h2 className="mt-3 text-3xl md:text-4xl font-black tracking-[-0.03em] text-[#123e78]">
-                    DOve mangiare bene
+                    Dove mangiare bene
                   </h2>
 
                   <div className="mt-8 space-y-5">
-                    <div className="rounded-[1.4rem] border border-[#e4ebf4] bg-[#f8fbff] p-5">
-                      <p className="font-bold text-[#17202c]">Colazione</p>
+                    <div className="rounded-[1.4rem] border border-[#e4ebf4] bg-[#fbfdff] p-5">
+                      <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#7a8798]">
+                        Colazione
+                      </p>
                       <div className="mt-3 space-y-2 text-[#5d6470]">
                         {destination.foodGuide.breakfast.map((item) => (
-                          <p key={item}>• {item}</p>
+                          <div
+                            key={item}
+                            className="rounded-[1rem] border border-[#edf2f7] bg-white px-4 py-3"
+                          >
+                            {item}
+                          </div>
                         ))}
                       </div>
                     </div>
 
-                    <div className="rounded-[1.4rem] border border-[#e4ebf4] bg-[#f8fbff] p-5">
-                      <p className="font-bold text-[#17202c]">Street food</p>
+                    <div className="rounded-[1.4rem] border border-[#e4ebf4] bg-[#fbfdff] p-5">
+                      <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#7a8798]">
+                        Street food
+                      </p>
                       <div className="mt-3 space-y-2 text-[#5d6470]">
                         {destination.foodGuide.streetFood.map((item) => (
-                          <p key={item}>• {item}</p>
+                          <div
+                            key={item}
+                            className="rounded-[1rem] border border-[#edf2f7] bg-white px-4 py-3"
+                          >
+                            {item}
+                          </div>
                         ))}
                       </div>
                     </div>
 
-                    <div className="rounded-[1.4rem] border border-[#e4ebf4] bg-[#f8fbff] p-5">
-                      <p className="font-bold text-[#17202c]">Ristoranti</p>
+                    <div className="rounded-[1.4rem] border border-[#e4ebf4] bg-[#fbfdff] p-5">
+                      <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#7a8798]">
+                        Ristoranti
+                      </p>
                       <div className="mt-3 space-y-2 text-[#5d6470]">
                         {destination.foodGuide.restaurants.map((item) => (
-                          <p key={item}>• {item}</p>
+                          <div
+                            key={item}
+                            className="rounded-[1rem] border border-[#edf2f7] bg-white px-4 py-3"
+                          >
+                            {item}
+                          </div>
                         ))}
                       </div>
                     </div>
 
-                    <div className="rounded-[1.4rem] border border-[#e4ebf4] bg-[#f8fbff] p-5">
-                      <p className="font-bold text-[#17202c]">Sera</p>
+                    <div className="rounded-[1.4rem] border border-[#e4ebf4] bg-[#fbfdff] p-5">
+                      <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#7a8798]">
+                        Sera
+                      </p>
                       <div className="mt-3 space-y-2 text-[#5d6470]">
                         {destination.foodGuide.evening.map((item) => (
-                          <p key={item}>• {item}</p>
+                          <div
+                            key={item}
+                            className="rounded-[1rem] border border-[#edf2f7] bg-white px-4 py-3"
+                          >
+                            {item}
+                          </div>
                         ))}
                       </div>
                     </div>
@@ -376,7 +454,7 @@ export default function DestinationPage({ logoSrc, destination, navigateTo }) {
             </h2>
           </div>
           <p className="max-w-2xl text-[#59606c] leading-8">
-             Una chiusura visiva pensata per restituire il ritmo, i contrasti e l'atmosfera della città.
+            Una chiusura visiva pensata per restituire il ritmo, i contrasti e l’atmosfera della città.
           </p>
         </div>
 
