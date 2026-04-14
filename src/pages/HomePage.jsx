@@ -11,7 +11,7 @@ export default function HomePage({
   return (
     <div className="min-h-screen bg-[#f4f7fb] text-[#17202c]">
       <section className="max-w-7xl mx-auto px-6 pt-14 pb-24 md:pt-20 md:pb-28">
-        <div className="grid lg:grid-cols-[0.88fr_1.12fr] gap-12 items-center">
+        <div className="grid lg:grid-cols-[0.84fr_1.16fr] gap-12 items-center">
           <div>
             <p className="text-[11px] font-bold uppercase tracking-[0.26em] text-[#7a8798]">
               Travel journal
@@ -43,13 +43,29 @@ export default function HomePage({
             </div>
           </div>
 
-          <div className="relative overflow-hidden rounded-[2.3rem] min-h-[600px] border border-[#dbe5ef] shadow-[0_26px_65px_rgba(20,50,90,0.10)]">
+          <div className="relative overflow-hidden rounded-[2.4rem] min-h-[620px] border border-[#dbe5ef] shadow-[0_28px_70px_rgba(20,50,90,0.12)]">
             <img
               src={heroSrc}
               alt="Hero Europando"
               className="absolute inset-0 h-full w-full object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#123e78]/18 via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-[linear-gradient(130deg,rgba(18,62,120,0.14)_0%,rgba(18,62,120,0.04)_35%,rgba(18,62,120,0.00)_58%,rgba(18,62,120,0.24)_100%)]" />
+            <div className="absolute inset-[18px] rounded-[2rem] border border-white/20" />
+
+            <div className="absolute left-6 right-6 bottom-6 md:left-8 md:right-auto md:bottom-8 md:max-w-md">
+              <div className="rounded-[1.5rem] border border-white/20 bg-white/12 p-5 backdrop-blur-md shadow-[0_14px_30px_rgba(0,0,0,0.10)]">
+                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/80">
+                  In evidenza
+                </p>
+                <h2 className="mt-2 text-2xl md:text-3xl font-black tracking-[-0.03em] text-white">
+                  Bucarest
+                </h2>
+                <p className="mt-3 text-sm md:text-base leading-7 text-white/88">
+                  La prima guida completa del sito, costruita per giorni, con una
+                  struttura chiara e facile da ampliare.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
