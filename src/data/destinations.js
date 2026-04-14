@@ -134,6 +134,7 @@ export const destinations = [
     asset("bucarest-gallery-3.jpg"),
   ],
 },
+ {
     slug: "stoccolma",
     name: "Stoccolma",
     text: "Acqua, isole, eleganza nordica e una città molto leggibile anche al primo viaggio.",
