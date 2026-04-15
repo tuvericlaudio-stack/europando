@@ -161,145 +161,126 @@ export default function DestinationPage({ logoSrc, destination, navigateTo }) {
                   una base comoda da cui partire.
                 </p>
 
-                <div className="mt-8 space-y-5">
-                  <div className="rounded-[1.4rem] border border-[#e4ebf4] bg-[#fbfdff] p-5">
-                    <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#7a8798]">
-                      Aeroporto → centro
+               <div className="mt-8 space-y-5">
+                <div className="rounded-[1.4rem] border border-[#e4ebf4] bg-[#fbfdff] p-5">
+                  <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#7a8798]">
+                    Aeroporto → centro
+                  </p>
+
+                  {hasPracticalInfo ? (
+                    <div className="mt-3 space-y-3 text-[#5d6470]">
+                      {destination.practicalInfo.airportToCenter.map((item) => (
+                        <div
+                          key={item}
+                          className="rounded-[1rem] border border-[#edf2f7] bg-white px-4 py-3"
+                        >
+                          {item}
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <p className="mt-3 leading-7 text-[#5d6470]">
+                      Qui inserirai i consigli pratici su come arrivare dall’aeroporto al centro.
                     </p>
-
-                    {hasPracticalInfo ? (
-                      <div className="mt-3 space-y-3 text-[#5d6470]">
-                        {destination.practicalInfo.airportToCenter.map((item) => (
-                          <div
-                            key={item}
-                            className="rounded-[1rem] border border-[#edf2f7] bg-white px-4 py-3"
-                          >
-                            {item}
-                          </div>
-                        ))}
-                      </div>
-                    ) : (
-                      <p className="mt-3 leading-7 text-[#5d6470]">
-                        Qui inserirai i consigli pratici su come arrivare dall’aeroporto al centro.
-                      </p>
-                    )}
-                  </div>
-
-                  {hasPracticalInfo && destination.practicalInfo.prices?.length > 0 && (
-                    <div className="rounded-[1.4rem] border border-[#e4ebf4] bg-[#fbfdff] p-5">
-                      <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#7a8798]">
-                        Prezzi utili
-                      </p>
-                      <div className="mt-3 space-y-3 text-[#5d6470]">
-                        {destination.practicalInfo.prices.map((item) => (
-                          <div
-                            key={item}
-                            className="rounded-[1rem] border border-[#edf2f7] bg-white px-4 py-3"
-                          >
-                            {item}
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-
-                  <div className="rounded-[1.4rem] border border-[#e4ebf4] bg-[#fbfdff] p-5">
-                    <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#7a8798]">
-                      Dove alloggiare
-                    </p>
-
-                    {hasPracticalInfo ? (
-                      <div className="mt-3 space-y-3 text-[#5d6470]">
-                        {destination.practicalInfo.whereToStay.map((item) => (
-                          <div
-                            key={item}
-                            className="rounded-[1rem] border border-[#edf2f7] bg-white px-4 py-3"
-                          >
-                            {item}
-                          </div>
-                        ))}
-                      </div>
-                    ) : (
-                      <p className="mt-3 leading-7 text-[#5d6470]">
-                        Qui inserirai le zone consigliate per dormire, con indicazioni semplici su
-                        quartieri, comodità e posizione.
-                      </p>
-                    )}
-                  </div>
-
-                  {hasPracticalInfo && destination.practicalInfo.whenToGo?.length > 0 && (
-                    <div className="rounded-[1.4rem] border border-[#e4ebf4] bg-[#fbfdff] p-5">
-                      <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#7a8798]">
-                        Quando andare
-                      </p>
-                      <div className="mt-3 space-y-3 text-[#5d6470]">
-                        {destination.practicalInfo.whenToGo.map((item) => (
-                          <div
-                            key={item}
-                            className="rounded-[1rem] border border-[#edf2f7] bg-white px-4 py-3"
-                          >
-                            {item}
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-
-                  {hasPracticalInfo && destination.practicalInfo.gettingAround?.length > 0 && (
-                    <div className="rounded-[1.4rem] border border-[#e4ebf4] bg-[#fbfdff] p-5">
-                      <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#7a8798]">
-                        Come muoversi
-                      </p>
-                      <div className="mt-3 space-y-3 text-[#5d6470]">
-                        {destination.practicalInfo.gettingAround.map((item) => (
-                          <div
-                            key={item}
-                            className="rounded-[1rem] border border-[#edf2f7] bg-white px-4 py-3"
-                          >
-                            {item}
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-
-  {hasPracticalInfo && destination.practicalInfo.notes?.length > 0 && (
-    <div className="rounded-[1.4rem] border border-[#e4ebf4] bg-[#fbfdff] p-5">
-      <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#7a8798]">
-        Note utili
-      </p>
-      <div className="mt-3 space-y-3 text-[#5d6470]">
-        {destination.practicalInfo.notes.map((item) => (
-          <div
-            key={item}
-            className="rounded-[1rem] border border-[#edf2f7] bg-white px-4 py-3"
-          >
-            {item}
-          </div>
-        ))}
-      </div>
-    </div>
-  )}
-</div>    
-
-                  {hasPracticalInfo && destination.practicalInfo.notes?.length > 0 && (
-                    <div className="rounded-[1.4rem] border border-[#e4ebf4] bg-[#fbfdff] p-5">
-                      <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#7a8798]">
-                        Note utili
-                      </p>
-                      <div className="mt-3 space-y-3 text-[#5d6470]">
-                        {destination.practicalInfo.notes.map((item) => (
-                          <div
-                            key={item}
-                            className="rounded-[1rem] border border-[#edf2f7] bg-white px-4 py-3"
-                          >
-                            {item}
-                          </div>
-                        ))}
-                      </div>
-                    </div>
                   )}
                 </div>
+
+                {hasPracticalInfo && destination.practicalInfo.prices?.length > 0 && (
+                  <div className="rounded-[1.4rem] border border-[#e4ebf4] bg-[#fbfdff] p-5">
+                    <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#7a8798]">
+                      Prezzi utili
+                    </p>
+                    <div className="mt-3 space-y-3 text-[#5d6470]">
+                      {destination.practicalInfo.prices.map((item) => (
+                        <div
+                          key={item}
+                          className="rounded-[1rem] border border-[#edf2f7] bg-white px-4 py-3"
+                        >
+                          {item}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                <div className="rounded-[1.4rem] border border-[#e4ebf4] bg-[#fbfdff] p-5">
+                  <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#7a8798]">
+                    Dove alloggiare
+                  </p>
+
+                  {hasPracticalInfo ? (
+                    <div className="mt-3 space-y-3 text-[#5d6470]">
+                      {destination.practicalInfo.whereToStay.map((item) => (
+                        <div
+                          key={item}
+                          className="rounded-[1rem] border border-[#edf2f7] bg-white px-4 py-3"
+                        >
+                          {item}
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <p className="mt-3 leading-7 text-[#5d6470]">
+                      Qui inserirai le zone consigliate per dormire, con indicazioni semplici su
+                      quartieri, comodità e posizione.
+                    </p>
+                  )}
+                </div>
+
+                {hasPracticalInfo && destination.practicalInfo.whenToGo?.length > 0 && (
+                  <div className="rounded-[1.4rem] border border-[#e4ebf4] bg-[#fbfdff] p-5">
+                    <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#7a8798]">
+                      Quando andare
+                    </p>
+                    <div className="mt-3 space-y-3 text-[#5d6470]">
+                      {destination.practicalInfo.whenToGo.map((item) => (
+                        <div
+                          key={item}
+                          className="rounded-[1rem] border border-[#edf2f7] bg-white px-4 py-3"
+                        >
+                          {item}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {hasPracticalInfo && destination.practicalInfo.gettingAround?.length > 0 && (
+                  <div className="rounded-[1.4rem] border border-[#e4ebf4] bg-[#fbfdff] p-5">
+                    <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#7a8798]">
+                      Come muoversi
+                    </p>
+                    <div className="mt-3 space-y-3 text-[#5d6470]">
+                      {destination.practicalInfo.gettingAround.map((item) => (
+                        <div
+                          key={item}
+                          className="rounded-[1rem] border border-[#edf2f7] bg-white px-4 py-3"
+                        >
+                          {item}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {hasPracticalInfo && destination.practicalInfo.notes?.length > 0 && (
+                  <div className="rounded-[1.4rem] border border-[#e4ebf4] bg-[#fbfdff] p-5">
+                    <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#7a8798]">
+                      Note utili
+                    </p>
+                    <div className="mt-3 space-y-3 text-[#5d6470]">
+                      {destination.practicalInfo.notes.map((item) => (
+                        <div
+                          key={item}
+                          className="rounded-[1rem] border border-[#edf2f7] bg-white px-4 py-3"
+                        >
+                          {item}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div> 
               </div>
 
               {hasFoodGuide && (
