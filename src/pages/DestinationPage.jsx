@@ -185,6 +185,24 @@ export default function DestinationPage({ logoSrc, destination, navigateTo }) {
                     )}
                   </div>
 
+                  {hasPracticalInfo && destination.practicalInfo.prices?.length > 0 && (
+                    <div className="rounded-[1.4rem] border border-[#e4ebf4] bg-[#fbfdff] p-5">
+                      <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#7a8798]">
+                        Prezzi utili
+                      </p>
+                      <div className="mt-3 space-y-3 text-[#5d6470]">
+                        {destination.practicalInfo.prices.map((item) => (
+                          <div
+                            key={item}
+                            className="rounded-[1rem] border border-[#edf2f7] bg-white px-4 py-3"
+                          >
+                            {item}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
                   <div className="rounded-[1.4rem] border border-[#e4ebf4] bg-[#fbfdff] p-5">
                     <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#7a8798]">
                       Dove alloggiare
@@ -208,6 +226,61 @@ export default function DestinationPage({ logoSrc, destination, navigateTo }) {
                       </p>
                     )}
                   </div>
+
+                  {hasPracticalInfo && destination.practicalInfo.whenToGo?.length > 0 && (
+                    <div className="rounded-[1.4rem] border border-[#e4ebf4] bg-[#fbfdff] p-5">
+                      <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#7a8798]">
+                        Quando andare
+                      </p>
+                      <div className="mt-3 space-y-3 text-[#5d6470]">
+                        {destination.practicalInfo.whenToGo.map((item) => (
+                          <div
+                            key={item}
+                            className="rounded-[1rem] border border-[#edf2f7] bg-white px-4 py-3"
+                          >
+                            {item}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {hasPracticalInfo && destination.practicalInfo.gettingAround?.length > 0 && (
+                    <div className="rounded-[1.4rem] border border-[#e4ebf4] bg-[#fbfdff] p-5">
+                      <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#7a8798]">
+                        Come muoversi
+                      </p>
+                      <div className="mt-3 space-y-3 text-[#5d6470]">
+                        {destination.practicalInfo.gettingAround.map((item) => (
+                          <div
+                            key={item}
+                            className="rounded-[1rem] border border-[#edf2f7] bg-white px-4 py-3"
+                          >
+                            {item}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+  {hasPracticalInfo && destination.practicalInfo.notes?.length > 0 && (
+    <div className="rounded-[1.4rem] border border-[#e4ebf4] bg-[#fbfdff] p-5">
+      <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#7a8798]">
+        Note utili
+      </p>
+      <div className="mt-3 space-y-3 text-[#5d6470]">
+        {destination.practicalInfo.notes.map((item) => (
+          <div
+            key={item}
+            className="rounded-[1rem] border border-[#edf2f7] bg-white px-4 py-3"
+          >
+            {item}
+          </div>
+        ))}
+      </div>
+    </div>
+  )}
+</div>    
 
                   {hasPracticalInfo && destination.practicalInfo.notes?.length > 0 && (
                     <div className="rounded-[1.4rem] border border-[#e4ebf4] bg-[#fbfdff] p-5">
