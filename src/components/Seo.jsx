@@ -32,6 +32,27 @@ const ensureLink = (selector, attributes) => {
   return element;
 };
 
+const ensureStructuredData = (data) => {
+  const selector = 'script[data-seo="structured-data"]';
+  let element = document.head.querySelector(selector);
+
+  if (!data) {
+    if (element) {
+      element.remove();
+    }
+    return;
+  }
+
+  if (!element) {
+    element = document.createElement("script");
+    element.setAttribute("type", "application/ld+json");
+    element.setAttribute("data-seo", "structured-data");
+    document.head.appendChild(element);
+  }
+
+  element.textContent = JSON.stringify(data);
+};
+
 const getBaseUrl = () => {
   if (typeof window === "undefined") {
     return siteConfig.defaultSiteUrl;
@@ -59,6 +80,7 @@ export default function Seo({
   image,
   type = "website",
   robots = "index,follow",
+  structuredData,
 }) {
   useEffect(() => {
     document.title = title;
@@ -130,7 +152,9 @@ export default function Seo({
       rel: "canonical",
       href: canonicalUrl,
     });
-  }, [description, image, path, robots, title, type]);
+
+    ensureStructuredData(structuredData);
+  }, [description, image, path, robots, structuredData, title, type]);
 
   return null;
 }
