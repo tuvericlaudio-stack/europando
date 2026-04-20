@@ -2,7 +2,7 @@ export default function Header({ logoSrc, onHome, onArticles, onDestinations }) 
   return (
     <header className="sticky top-0 z-50 border-b border-[#dde6f0] bg-white/88 backdrop-blur-xl">
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between gap-6">
-        <button onClick={onHome} className="flex items-center gap-4 min-w-0 text-left">
+        <button type="button" onClick={onHome} className="flex items-center gap-4 min-w-0 text-left">
           <img
             src={logoSrc}
             alt="Logo Europando"
@@ -19,13 +19,13 @@ export default function Header({ logoSrc, onHome, onArticles, onDestinations }) 
         </button>
 
         <nav className="hidden md:flex items-center gap-8 text-[12px] font-bold uppercase tracking-[0.16em] text-[#5e6a79]">
-          <button onClick={onHome} className="hover:text-[#123e78] transition">
+          <button type="button" onClick={onHome} className="hover:text-[#123e78] transition">
             Home
           </button>
-          <button onClick={onArticles} className="hover:text-[#123e78] transition">
+          <button type="button" onClick={onArticles} className="hover:text-[#123e78] transition">
             Articoli
           </button>
-          <button onClick={onDestinations} className="hover:text-[#123e78] transition">
+          <button type="button" onClick={onDestinations} className="hover:text-[#123e78] transition">
             Destinazioni
           </button>
         </nav>

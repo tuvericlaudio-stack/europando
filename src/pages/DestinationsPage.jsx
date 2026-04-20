@@ -1,9 +1,8 @@
 import Header from "../components/Header";
 
 export default function DestinationsPage({ logoSrc, destinations, navigateTo }) {
-  const visibleDestinations = destinations.filter(
-    (destination) => destination.slug === "bucarest"
-  );
+  const sectionLabel =
+    destinations.length === 1 ? "Destinazione disponibile" : "Destinazioni pubblicate";
 
   return (
     <div className="min-h-screen bg-[#f4f7fb] text-[#17202c]">
@@ -22,15 +21,16 @@ export default function DestinationsPage({ logoSrc, destinations, navigateTo }) 
           Una base chiara, una città alla volta.
         </h1>
         <p className="mt-6 max-w-3xl text-lg leading-8 text-[#5f6875]">
-          Per ora Europando parte da Bucarest. Le prossime destinazioni verranno
-          aggiunte con la stessa struttura, mantenendo ordine e coerenza.
+          Europando mostra solo le guide già pronte, così il progetto cresce con una
+          struttura coerente e senza pagine lasciate a metà.
         </p>
       </section>
 
       <section className="max-w-7xl mx-auto px-6 pb-20">
         <div className="grid gap-6">
-          {visibleDestinations.map((destination) => (
+          {destinations.map((destination) => (
             <button
+              type="button"
               key={destination.slug}
               onClick={() => navigateTo(`/destinazioni/${destination.slug}`)}
               className="group text-left overflow-hidden rounded-[1.9rem] border border-[#dbe5ef] bg-white shadow-[0_12px_28px_rgba(20,40,70,0.05)] hover:-translate-y-1 hover:shadow-[0_18px_36px_rgba(20,40,70,0.08)] transition"
@@ -53,7 +53,7 @@ export default function DestinationsPage({ logoSrc, destinations, navigateTo }) 
 
                 <div className="p-8 md:p-10 flex flex-col justify-center">
                   <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#7a8798]">
-                    Destinazione disponibile
+                    {sectionLabel}
                   </p>
 
                   <p className="mt-4 text-lg leading-8 text-[#5f6875]">

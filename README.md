@@ -1,73 +1,64 @@
-# React + TypeScript + Vite
+# Europando
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Europando è un sito di guide di viaggio costruito con React, Vite e Tailwind CSS v4.
 
-Currently, two official plugins are available:
+## Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- React 19
+- Vite 8
+- Tailwind CSS 4
+- ESLint 9
 
-## React Compiler
+## Avvio locale
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Script utili
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run dev
+npm run build
+npm run lint
+npm run check
+npm run preview
 ```
+
+## Configurazione del base path
+
+Di default il progetto pubblica su `/europando/`.
+
+Per cambiare base path in build o in deploy:
+
+```bash
+VITE_SITE_BASE_PATH=/ npm run build
+```
+
+## Struttura del progetto
+
+```text
+src/
+  components/   componenti riutilizzabili
+  config/       configurazione sito
+  data/         contenuti di articoli e destinazioni
+  pages/        pagine principali
+  utils/        helper per asset, routing e visibilità contenuti
+public/         immagini statiche
+```
+
+## Regola contenuti
+
+Le pagine non pronte devono restare in stato `draft` nei file dati.
+Solo i contenuti `published` entrano nella navigazione pubblica.
+
+## Sistemazione tecnica fatta
+
+- rimosso il template generico di Vite dal branding del progetto
+- introdotta gestione `draft/published` per evitare pagine incomplete online
+- centralizzati helper per asset e routing
+- aggiunto titolo pagina dinamico
+- sistemato `index.html` con lingua, favicon e meta description corrette
+- reso configurabile il `base path` di Vite tramite variabile ambiente
+- pulita la configurazione ESLint per un progetto JavaScript/JSX puro

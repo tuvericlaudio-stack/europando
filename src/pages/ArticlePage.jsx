@@ -12,6 +12,7 @@ export default function ArticlePage({ logoSrc, post, navigateTo }) {
 
       <section className="max-w-7xl mx-auto px-6 pt-8">
         <button
+          type="button"
           onClick={() => navigateTo("/articoli")}
           className="inline-flex items-center gap-2 rounded-[1.4rem] border border-[#c8d7ea] bg-white px-5 py-3 text-sm font-bold uppercase tracking-[0.14em] text-[#123e78] shadow-sm hover:bg-[#f8fbff] transition"
         >

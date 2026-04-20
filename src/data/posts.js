@@ -1,8 +1,10 @@
+import { CONTENT_STATUS } from "../utils/content";
 import { asset } from "../utils/assets";
 
 export const featuredPosts = [
   {
     slug: "due-settimane-palma",
+    status: CONTENT_STATUS.PUBLISHED,
     title: "Due settimane a Palma",
     category: "Travel Journal",
     excerpt:
@@ -31,9 +33,9 @@ export const featuredPosts = [
       },
     ],
   },
-
   {
     slug: "una-settimana-irlanda",
+    status: CONTENT_STATUS.DRAFT,
     title: "Una settimana in Irlanda",
     category: "Travel Plan",
     freeHero: true,
@@ -96,9 +98,9 @@ export const featuredPosts = [
       },
     ],
   },
-
   {
     slug: "una-settimana-puglia",
+    status: CONTENT_STATUS.PUBLISHED,
     title: "Una settimana in Puglia",
     category: "Travel Guide",
     excerpt:

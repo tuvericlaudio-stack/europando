@@ -1,8 +1,10 @@
+import { CONTENT_STATUS } from "../utils/content";
 import { asset } from "../utils/assets";
 
 export const destinations = [
   {
     slug: "oslo",
+    status: CONTENT_STATUS.DRAFT,
     name: "Oslo",
     text: "Una capitale nordica ordinata, elegante e molto facile da leggere anche in pochi giorni.",
     tag: "Nordic City",
@@ -39,118 +41,119 @@ export const destinations = [
       "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1200&q=80",
     ],
   },
-
   {
-  slug: "bucarest",
-  name: "Bucarest",
-  text: "Una città di contrasti, grandi viali, centro storico e tappe da distribuire bene senza correre.",
-  tag: "Urban Mix",
-  image: asset("bucarest-hero.jpg"),
-  heroTitle: "Bucarest, meglio a blocchi chiari che di corsa.",
-  intro:
-    "Una città che rende meglio quando la leggi per zone, alternando centro storico, grandi viali, architettura simbolica e momenti più rilassati.",
-  stats: [
-    { label: "Giorni ideali", value: "3-4" },
-    { label: "Zona migliore", value: "Centro" },
-    { label: "Mood", value: "Vivo" },
-  ],
-  itineraryDays: [
-    {
-      label: "Giorno 1 — Arrivo e primo orientamento",
-      places: [
-        "Centrul Vechi",
-        "Stavropoleos",
-        "Macca-Vilacrosse",
-        "Passeggiata libera nel centro storico",
-      ],
-    },
-    {
-      label: "Giorno 2 — Parte più rappresentativa",
-      places: [
-        "Carturesti Carusel",
-        "Piata Revolutiei",
-        "Ateneul Roman",
-        "Calea Victoriei",
-        "Parlamento",
-        "Rientro verso il centro",
-      ],
-    },
-    {
-      label: "Giorno 3 — Zona più aperta e rilassata",
-      places: [
-        "Parco Herastrau",
-        "Primaverii",
-        "Arco di Trionfo",
-        "Passeggiata più lenta",
-        "Chiusura tranquilla di giornata",
-      ],
-    },
-    {
-      label: "Giorno 4 — Ultime ore utili e partenza",
-      places: [
-        "Colazione in zona",
-        "Ultimo giro leggero",
-        "Partenza per aeroporto",
-      ],
-    },
-  ],
-  practicalInfo: {
-  airportToCenter: [
-    "Il bus 100 Express è la soluzione più economica: collega direttamente l’aeroporto al centro, è attivo 24 ore su 24 e ferma anche in punti utili come Piata Victoriei, Piata Romana e Piata Unirii.",
-    "Il treno per Gara de Nord è più rapido del bus, ma richiede una navetta per raggiungere la stazione aeroportuale e arriva in una zona meno centrale rispetto alle fermate principali del bus.",
-    "Taxi, Uber e Bolt sono la scelta più comoda se arrivi tardi, hai bagagli o vuoi un trasferimento diretto; conviene controllare il prezzo in app e scegliere la soluzione più conveniente.",
-  ],
-  prices: [
-    "Bus 100 Express: circa 0,60 €, con pagamento contactless direttamente a bordo.",
-    "Treno per Gara de Nord: circa 6 lei, cioè intorno a 1,21 €.",
-    "Taxi, Uber e Bolt: il prezzo varia in base all’orario e al traffico, quindi conviene confrontare sempre al momento.",
-  ],
-  whereToStay: [
-    "Centrul Vechi è la base più immediata se vuoi avere vicino ristoranti, locali e il cuore più vivo della città, ma può essere più rumorosa soprattutto la sera.",
-    "Piata Universitatii è probabilmente la zona più equilibrata: centrale, ben collegata e molto comoda per muoversi verso diverse aree di Bucarest.",
-    "Piata Romana è un’ottima alternativa se vuoi restare in una zona centrale, viva e pratica, ma con un’atmosfera un po’ meno turistica rispetto al centro storico stretto.",
-  ],
-  whenToGo: [
-    "La primavera e l’inizio autunno sono i periodi migliori: temperature più piacevoli e città più facile da vivere a piedi.",
-    "L’estate può funzionare bene per giornate lunghe e vita serale, ma alcune ore possono essere molto calde.",
-    "L’inverno può essere interessante per un’atmosfera diversa, ma con ritmi più lenti e temperature più rigide.",
-  ],
-  gettingAround: [
-    "Per il centro e le zone principali conviene muoversi a piedi, soprattutto se scegli un alloggio centrale.",
-    "Metro e mezzi pubblici sono utili per coprire tratte più lunghe o collegare quartieri diversi.",
-    "Uber e Bolt restano una soluzione pratica quando vuoi spostarti rapidamente senza complicarti troppo il percorso.",
-  ],
-  notes: [
-    "Se resti solo 3 o 4 giorni conviene scegliere una base centrale.",
-    "Per un primo viaggio è meglio evitare zone troppo periferiche, così ti muovi in modo più semplice e lineare.",
-  ],
-},
-  foodGuide: {
-    breakfast: ["5 to go", "Ted’s Coffee", "Café Van Gogh"],
-    streetFood: [
-      "Luca",
-      "Gyros Thessalonikis",
-      "Dristor Kebap",
-      "La Placinte",
-      "Springtime",
+    slug: "bucarest",
+    status: CONTENT_STATUS.PUBLISHED,
+    name: "Bucarest",
+    text: "Una città di contrasti, grandi viali, centro storico e tappe da distribuire bene senza correre.",
+    tag: "Urban Mix",
+    image: asset("bucarest-hero.jpg"),
+    heroTitle: "Bucarest, meglio a blocchi chiari che di corsa.",
+    intro:
+      "Una città che rende meglio quando la leggi per zone, alternando centro storico, grandi viali, architettura simbolica e momenti più rilassati.",
+    stats: [
+      { label: "Giorni ideali", value: "3-4" },
+      { label: "Zona migliore", value: "Centro" },
+      { label: "Mood", value: "Vivo" },
     ],
-    restaurants: [
-      "La Mama",
-      "Lacrimi si Sfinti",
-      "Hanu lui Manuc",
-      "Energiea",
-      "Simbio",
+    itineraryDays: [
+      {
+        label: "Giorno 1 — Arrivo e primo orientamento",
+        places: [
+          "Centrul Vechi",
+          "Stavropoleos",
+          "Macca-Vilacrosse",
+          "Passeggiata libera nel centro storico",
+        ],
+      },
+      {
+        label: "Giorno 2 — Parte più rappresentativa",
+        places: [
+          "Carturesti Carusel",
+          "Piata Revolutiei",
+          "Ateneul Roman",
+          "Calea Victoriei",
+          "Parlamento",
+          "Rientro verso il centro",
+        ],
+      },
+      {
+        label: "Giorno 3 — Zona più aperta e rilassata",
+        places: [
+          "Parco Herastrau",
+          "Primaverii",
+          "Arco di Trionfo",
+          "Passeggiata più lenta",
+          "Chiusura tranquilla di giornata",
+        ],
+      },
+      {
+        label: "Giorno 4 — Ultime ore utili e partenza",
+        places: [
+          "Colazione in zona",
+          "Ultimo giro leggero",
+          "Partenza per aeroporto",
+        ],
+      },
     ],
-    evening: ["Beer O’Clock", "Control Club", "Linea Closer to the Moon"],
+    practicalInfo: {
+      airportToCenter: [
+        "Il bus 100 Express è la soluzione più economica: collega direttamente l’aeroporto al centro, è attivo 24 ore su 24 e ferma anche in punti utili come Piata Victoriei, Piata Romana e Piata Unirii.",
+        "Il treno per Gara de Nord è più rapido del bus, ma richiede una navetta per raggiungere la stazione aeroportuale e arriva in una zona meno centrale rispetto alle fermate principali del bus.",
+        "Taxi, Uber e Bolt sono la scelta più comoda se arrivi tardi, hai bagagli o vuoi un trasferimento diretto; conviene controllare il prezzo in app e scegliere la soluzione più conveniente.",
+      ],
+      prices: [
+        "Bus 100 Express: circa 0,60 €, con pagamento contactless direttamente a bordo.",
+        "Treno per Gara de Nord: circa 6 lei, cioè intorno a 1,21 €.",
+        "Taxi, Uber e Bolt: il prezzo varia in base all’orario e al traffico, quindi conviene confrontare sempre al momento.",
+      ],
+      whereToStay: [
+        "Centrul Vechi è la base più immediata se vuoi avere vicino ristoranti, locali e il cuore più vivo della città, ma può essere più rumorosa soprattutto la sera.",
+        "Piata Universitatii è probabilmente la zona più equilibrata: centrale, ben collegata e molto comoda per muoversi verso diverse aree di Bucarest.",
+        "Piata Romana è un’ottima alternativa se vuoi restare in una zona centrale, viva e pratica, ma con un’atmosfera un po’ meno turistica rispetto al centro storico stretto.",
+      ],
+      whenToGo: [
+        "La primavera e l’inizio autunno sono i periodi migliori: temperature più piacevoli e città più facile da vivere a piedi.",
+        "L’estate può funzionare bene per giornate lunghe e vita serale, ma alcune ore possono essere molto calde.",
+        "L’inverno può essere interessante per un’atmosfera diversa, ma con ritmi più lenti e temperature più rigide.",
+      ],
+      gettingAround: [
+        "Per il centro e le zone principali conviene muoversi a piedi, soprattutto se scegli un alloggio centrale.",
+        "Metro e mezzi pubblici sono utili per coprire tratte più lunghe o collegare quartieri diversi.",
+        "Uber e Bolt restano una soluzione pratica quando vuoi spostarti rapidamente senza complicarti troppo il percorso.",
+      ],
+      notes: [
+        "Se resti solo 3 o 4 giorni conviene scegliere una base centrale.",
+        "Per un primo viaggio è meglio evitare zone troppo periferiche, così ti muovi in modo più semplice e lineare.",
+      ],
+    },
+    foodGuide: {
+      breakfast: ["5 to go", "Ted’s Coffee", "Café Van Gogh"],
+      streetFood: [
+        "Luca",
+        "Gyros Thessalonikis",
+        "Dristor Kebap",
+        "La Placinte",
+        "Springtime",
+      ],
+      restaurants: [
+        "La Mama",
+        "Lacrimi si Sfinti",
+        "Hanu lui Manuc",
+        "Energiea",
+        "Simbio",
+      ],
+      evening: ["Beer O’Clock", "Control Club", "Linea Closer to the Moon"],
+    },
+    gallery: [
+      asset("bucarest-gallery-1.jpg"),
+      asset("bucarest-gallery-2.jpg"),
+      asset("bucarest-gallery-3.jpg"),
+    ],
   },
-  gallery: [
-    asset("bucarest-gallery-1.jpg"),
-    asset("bucarest-gallery-2.jpg"),
-    asset("bucarest-gallery-3.jpg"),
-  ],
-},
- {
+  {
     slug: "stoccolma",
+    status: CONTENT_STATUS.DRAFT,
     name: "Stoccolma",
     text: "Acqua, isole, eleganza nordica e una città molto leggibile anche al primo viaggio.",
     tag: "Scandinavian",
@@ -186,9 +189,9 @@ export const destinations = [
       "https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1200&q=80",
     ],
   },
-
   {
     slug: "valencia",
+    status: CONTENT_STATUS.DRAFT,
     name: "Valencia",
     text: "Sole, mare, centro storico e spazi moderni con un ritmo molto più rilassato.",
     tag: "Sunny City",

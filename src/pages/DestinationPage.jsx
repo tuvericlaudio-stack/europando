@@ -16,6 +16,7 @@ export default function DestinationPage({ logoSrc, destination, navigateTo }) {
 
       <section className="max-w-7xl mx-auto px-6 pt-8">
         <button
+          type="button"
           onClick={() => navigateTo("/destinazioni")}
           className="inline-flex items-center gap-2 rounded-[1.3rem] border border-[#cfdbea] bg-white px-5 py-3 text-sm font-bold uppercase tracking-[0.14em] text-[#123e78] shadow-sm hover:bg-[#f8fbff] transition"
         >
