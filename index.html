@@ -8,6 +8,37 @@
       name="description"
       content="Guide di viaggio ordinate, destinazioni chiare e articoli leggibili per costruire Europando una tappa alla volta."
     />
+    <meta name="robots" content="index,follow" />
+    <meta property="og:site_name" content="Europando" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Europando | Guide di viaggio" />
+    <meta
+      property="og:description"
+      content="Guide di viaggio ordinate, destinazioni chiare e articoli leggibili per costruire Europando una tappa alla volta."
+    />
+    <meta property="og:image" content="./hero-europando.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Europando | Guide di viaggio" />
+    <meta
+      name="twitter:description"
+      content="Guide di viaggio ordinate, destinazioni chiare e articoli leggibili per costruire Europando una tappa alla volta."
+    />
+    <meta name="twitter:image" content="./hero-europando.png" />
+    <meta name="theme-color" content="#123e78" />
+    <link rel="canonical" href="https://claudiodelucia.github.io/europando/" />
+    <script>
+      (() => {
+        const redirect = sessionStorage.getItem("europando.redirect");
+        if (!redirect) return;
+        sessionStorage.removeItem("europando.redirect");
+        const redirectUrl = new URL(redirect);
+        const targetPath = `${redirectUrl.pathname}${redirectUrl.search}${redirectUrl.hash}`;
+        const currentPath = `${window.location.pathname}${window.location.search}${window.location.hash}`;
+        if (targetPath !== currentPath) {
+          window.history.replaceState(null, "", targetPath);
+        }
+      })();
+    </script>
     <title>Europando | Guide di viaggio</title>
   </head>
   <body>

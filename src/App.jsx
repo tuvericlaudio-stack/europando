@@ -1,6 +1,8 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo } from "react";
+import { Route, Routes, useLocation, useNavigate, useParams } from "react-router-dom";
 import Header from "./components/Header";
 import NotFoundPage from "./components/NotFoundPage";
+import Seo from "./components/Seo";
 import HomePage from "./pages/HomePage";
 import ArticlePage from "./pages/ArticlePage";
 import DestinationPage from "./pages/DestinationPage";
@@ -16,15 +18,177 @@ import {
   getPublishedDestinations,
   getPublishedPosts,
 } from "./utils/content";
-import {
-  buildNavigationPath,
-  getBasePath,
-  getRouteFromPath,
-  normalizePath,
-} from "./utils/router";
+
+function useSiteNavigation() {
+  const navigate = useNavigate();
+
+  return (path) => {
+    navigate(path);
+  };
+}
+
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "auto" });
+  }, [pathname]);
+
+  return null;
+}
+
+function HomeRoute({ heroSrc, logoSrc, featuredDestination, publishedDestinations, publishedPosts }) {
+  const navigateTo = useSiteNavigation();
+
+  return (
+    <>
+      <Seo
+        title={siteConfig.defaultTitle}
+        description={siteConfig.description}
+        path="/"
+        image={heroSrc}
+      />
+      <Header
+        logoSrc={logoSrc}
+        onHome={() => navigateTo("/")}
+        onArticles={() => navigateTo("/articoli")}
+        onDestinations={() => navigateTo("/destinazioni")}
+      />
+      <HomePage
+        heroSrc={heroSrc}
+        featuredPosts={publishedPosts}
+        destinations={publishedDestinations}
+        featuredDestination={featuredDestination}
+        navigateTo={navigateTo}
+      />
+    </>
+  );
+}
+
+function ArticlesRoute({ logoSrc, publishedPosts }) {
+  const navigateTo = useSiteNavigation();
+
+  return (
+    <>
+      <Seo
+        title={`Articoli | ${siteConfig.name}`}
+        description="Tutti gli articoli pubblicati di Europando: guide ordinate, leggibili e facili da ampliare nel tempo."
+        path="/articoli"
+        image={publishedPosts[0]?.image}
+      />
+      <ArticlesPage logoSrc={logoSrc} posts={publishedPosts} navigateTo={navigateTo} />
+    </>
+  );
+}
+
+function ArticleRoute({ logoSrc }) {
+  const { slug } = useParams();
+  const navigateTo = useSiteNavigation();
+  const post = useMemo(() => findPublishedBySlug(featuredPosts, slug), [slug]);
+
+  if (!post) {
+    return (
+      <>
+        <Seo
+          title={`404 | ${siteConfig.name}`}
+          description="La pagina richiesta non è disponibile oppure non è ancora stata pubblicata."
+          path={`/articoli/${slug}`}
+          robots="noindex,nofollow"
+        />
+        <NotFoundPage logoSrc={logoSrc} navigateTo={navigateTo} />
+      </>
+    );
+  }
+
+  return (
+    <>
+      <Seo
+        title={`${post.title} | ${siteConfig.name}`}
+        description={post.excerpt ?? post.intro}
+        path={`/articoli/${post.slug}`}
+        image={post.image}
+        type="article"
+      />
+      <ArticlePage logoSrc={logoSrc} post={post} navigateTo={navigateTo} />
+    </>
+  );
+}
+
+function DestinationsRoute({ logoSrc, publishedDestinations }) {
+  const navigateTo = useSiteNavigation();
+
+  return (
+    <>
+      <Seo
+        title={`Destinazioni | ${siteConfig.name}`}
+        description="Le destinazioni pubblicate di Europando: guide città già pronte, ordinate e consultabili senza pagine lasciate a metà."
+        path="/destinazioni"
+        image={publishedDestinations[0]?.image}
+      />
+      <DestinationsPage
+        logoSrc={logoSrc}
+        destinations={publishedDestinations}
+        navigateTo={navigateTo}
+      />
+    </>
+  );
+}
+
+function DestinationRoute({ logoSrc }) {
+  const { slug } = useParams();
+  const navigateTo = useSiteNavigation();
+  const destination = useMemo(() => findPublishedBySlug(destinations, slug), [slug]);
+
+  if (!destination) {
+    return (
+      <>
+        <Seo
+          title={`404 | ${siteConfig.name}`}
+          description="La destinazione richiesta non è disponibile oppure non è ancora stata pubblicata."
+          path={`/destinazioni/${slug}`}
+          robots="noindex,nofollow"
+        />
+        <NotFoundPage logoSrc={logoSrc} navigateTo={navigateTo} />
+      </>
+    );
+  }
+
+  return (
+    <>
+      <Seo
+        title={`${destination.name} | ${siteConfig.name}`}
+        description={destination.intro ?? destination.text}
+        path={`/destinazioni/${destination.slug}`}
+        image={destination.image}
+        type="article"
+      />
+      <DestinationPage
+        logoSrc={logoSrc}
+        destination={destination}
+        navigateTo={navigateTo}
+      />
+    </>
+  );
+}
+
+function NotFoundRoute({ logoSrc }) {
+  const navigateTo = useSiteNavigation();
+  const location = useLocation();
+
+  return (
+    <>
+      <Seo
+        title={`404 | ${siteConfig.name}`}
+        description="La pagina richiesta non esiste nel sito pubblico di Europando."
+        path={location.pathname}
+        robots="noindex,nofollow"
+      />
+      <NotFoundPage logoSrc={logoSrc} navigateTo={navigateTo} />
+    </>
+  );
+}
 
 export default function App() {
-  const basePath = getBasePath();
   const logoSrc = asset("logo-europando.png");
   const heroSrc = asset("hero-europando.png");
 
@@ -38,139 +202,42 @@ export default function App() {
     []
   );
 
-  const [route, setRoute] = useState(() =>
-    getRouteFromPath(window.location.pathname, basePath)
-  );
-
-  useEffect(() => {
-    const onPopState = () => {
-      setRoute(getRouteFromPath(window.location.pathname, basePath));
-    };
-
-    window.addEventListener("popstate", onPopState);
-    return () => window.removeEventListener("popstate", onPopState);
-  }, [basePath]);
-
-  const navigateTo = (path) => {
-    const fullPath = buildNavigationPath(path, basePath);
-
-    if (fullPath !== normalizePath(window.location.pathname)) {
-      window.history.pushState({}, "", fullPath);
-    }
-
-    window.scrollTo({ top: 0, behavior: "smooth" });
-    setRoute(getRouteFromPath(fullPath, basePath));
-  };
-
-  const selectedPost = useMemo(
-    () =>
-      route.type === "post"
-        ? findPublishedBySlug(featuredPosts, route.slug)
-        : null,
-    [route]
-  );
-
-  const selectedDestination = useMemo(
-    () =>
-      route.type === "destination"
-        ? findPublishedBySlug(destinations, route.slug)
-        : null,
-    [route]
-  );
-
-  useEffect(() => {
-    if (route.type === "post" && selectedPost) {
-      document.title = `${selectedPost.title} | ${siteConfig.name}`;
-      return;
-    }
-
-    if (route.type === "destination" && selectedDestination) {
-      document.title = `${selectedDestination.name} | ${siteConfig.name}`;
-      return;
-    }
-
-    if (route.type === "articles") {
-      document.title = `Articoli | ${siteConfig.name}`;
-      return;
-    }
-
-    if (route.type === "destinations") {
-      document.title = `Destinazioni | ${siteConfig.name}`;
-      return;
-    }
-
-    if (route.type === "not_found") {
-      document.title = `404 | ${siteConfig.name}`;
-      return;
-    }
-
-    document.title = siteConfig.defaultTitle;
-  }, [route.type, selectedDestination, selectedPost]);
-
-  const isMissingContentRoute =
-    (route.type === "post" && !selectedPost) ||
-    (route.type === "destination" && !selectedDestination);
-
-  if (route.type === "articles") {
-    return (
-      <ArticlesPage
-        logoSrc={logoSrc}
-        posts={publishedPosts}
-        navigateTo={navigateTo}
-      />
-    );
-  }
-
-  if (route.type === "destinations") {
-    return (
-      <DestinationsPage
-        logoSrc={logoSrc}
-        destinations={publishedDestinations}
-        navigateTo={navigateTo}
-      />
-    );
-  }
-
-  if (route.type === "post" && selectedPost) {
-    return (
-      <ArticlePage
-        logoSrc={logoSrc}
-        post={selectedPost}
-        navigateTo={navigateTo}
-      />
-    );
-  }
-
-  if (route.type === "destination" && selectedDestination) {
-    return (
-      <DestinationPage
-        logoSrc={logoSrc}
-        destination={selectedDestination}
-        navigateTo={navigateTo}
-      />
-    );
-  }
-
-  if (route.type === "not_found" || isMissingContentRoute) {
-    return <NotFoundPage logoSrc={logoSrc} navigateTo={navigateTo} />;
-  }
-
   return (
     <>
-      <Header
-        logoSrc={logoSrc}
-        onHome={() => navigateTo("/")}
-        onArticles={() => navigateTo("/articoli")}
-        onDestinations={() => navigateTo("/destinazioni")}
-      />
-
-      <HomePage
-        heroSrc={heroSrc}
-        featuredPosts={publishedPosts}
-        destinations={publishedDestinations}
-        featuredDestination={featuredDestination}
-        navigateTo={navigateTo}
-      />
+      <ScrollToTop />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <HomeRoute
+              heroSrc={heroSrc}
+              logoSrc={logoSrc}
+              featuredDestination={featuredDestination}
+              publishedDestinations={publishedDestinations}
+              publishedPosts={publishedPosts}
+            />
+          }
+        />
+        <Route
+          path="/articoli"
+          element={<ArticlesRoute logoSrc={logoSrc} publishedPosts={publishedPosts} />}
+        />
+        <Route path="/articoli/:slug" element={<ArticleRoute logoSrc={logoSrc} />} />
+        <Route
+          path="/destinazioni"
+          element={
+            <DestinationsRoute
+              logoSrc={logoSrc}
+              publishedDestinations={publishedDestinations}
+            />
+          }
+        />
+        <Route
+          path="/destinazioni/:slug"
+          element={<DestinationRoute logoSrc={logoSrc} />}
+        />
+        <Route path="*" element={<NotFoundRoute logoSrc={logoSrc} />} />
+      </Routes>
     </>
   );
 }
