@@ -27,6 +27,15 @@ const buildWebSiteStructuredData = () => ({
   description: siteConfig.description,
 });
 
+const buildArticlesCollectionStructuredData = () => ({
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: "Articoli di viaggio in Europa",
+  url: `${siteConfig.defaultSiteUrl}articoli`,
+  description:
+    "Guide di viaggio, itinerari e articoli pubblicati su Europando per organizzare meglio city break e viaggi più lunghi.",
+});
+
 const buildArticleStructuredData = (post) => ({
   "@context": "https://schema.org",
   "@type": "Article",
@@ -42,6 +51,15 @@ const buildArticleStructuredData = (post) => ({
     "@type": "Organization",
     name: siteConfig.name,
   },
+});
+
+const buildDestinationsCollectionStructuredData = () => ({
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: "Destinazioni e guide città",
+  url: `${siteConfig.defaultSiteUrl}destinazioni`,
+  description:
+    "Destinazioni pubblicate, guide città e consigli pratici per organizzare itinerari leggibili e facili da consultare.",
 });
 
 const buildDestinationStructuredData = (destination) => ({
@@ -71,13 +89,19 @@ function ScrollToTop() {
   return null;
 }
 
-function HomeRoute({ heroSrc, logoSrc, featuredDestination, publishedDestinations, publishedPosts }) {
-  const structuredData = useMemo(() => buildWebSiteStructuredData(), []);
+function HomeRoute({
+  heroSrc,
+  logoSrc,
+  featuredDestination,
+  publishedDestinations,
+  publishedPosts,
+}) {
   const navigateTo = useSiteNavigation();
+  const structuredData = useMemo(() => buildWebSiteStructuredData(), []);
 
   return (
     <>
-      <Seo      
+      <Seo
         title={siteConfig.defaultTitle}
         description={siteConfig.description}
         path="/"
@@ -103,14 +127,16 @@ function HomeRoute({ heroSrc, logoSrc, featuredDestination, publishedDestination
 
 function ArticlesRoute({ logoSrc, publishedPosts }) {
   const navigateTo = useSiteNavigation();
+  const structuredData = useMemo(() => buildArticlesCollectionStructuredData(), []);
 
   return (
     <>
       <Seo
-       title={`Articoli di viaggio in Europa | ${siteConfig.name}`}
-      description="Guide di viaggio, itinerari e articoli pubblicati su Europando per organizzare meglio city break e viaggi più lunghi."
+        title={`Articoli di viaggio in Europa | ${siteConfig.name}`}
+        description="Guide di viaggio, itinerari e articoli pubblicati su Europando per organizzare meglio city break e viaggi più lunghi."
         path="/articoli"
         image={publishedPosts[0]?.image}
+        structuredData={structuredData}
       />
       <ArticlesPage logoSrc={logoSrc} posts={publishedPosts} navigateTo={navigateTo} />
     </>
@@ -122,9 +148,9 @@ function ArticleRoute({ logoSrc }) {
   const navigateTo = useSiteNavigation();
   const post = useMemo(() => findPublishedBySlug(featuredPosts, slug), [slug]);
   const structuredData = useMemo(
-  () => (post ? buildArticleStructuredData(post) : null),
-  [post]
-);
+    () => (post ? buildArticleStructuredData(post) : null),
+    [post]
+  );
 
   if (!post) {
     return (
@@ -134,7 +160,6 @@ function ArticleRoute({ logoSrc }) {
           description="La pagina richiesta non è disponibile oppure non è ancora stata pubblicata."
           path={`/articoli/${slug}`}
           robots="noindex,nofollow"
-          structuredData={structuredData}
         />
         <NotFoundPage logoSrc={logoSrc} navigateTo={navigateTo} />
       </>
@@ -148,6 +173,8 @@ function ArticleRoute({ logoSrc }) {
         description={post.excerpt ?? post.intro}
         path={`/articoli/${post.slug}`}
         image={post.image}
+        type="article"
+        structuredData={structuredData}
       />
       <ArticlePage logoSrc={logoSrc} post={post} navigateTo={navigateTo} />
     </>
@@ -156,6 +183,7 @@ function ArticleRoute({ logoSrc }) {
 
 function DestinationsRoute({ logoSrc, publishedDestinations }) {
   const navigateTo = useSiteNavigation();
+  const structuredData = useMemo(() => buildDestinationsCollectionStructuredData(), []);
 
   return (
     <>
@@ -164,6 +192,7 @@ function DestinationsRoute({ logoSrc, publishedDestinations }) {
         description="Destinazioni pubblicate, guide città e consigli pratici per organizzare itinerari leggibili e facili da consultare."
         path="/destinazioni"
         image={publishedDestinations[0]?.image}
+        structuredData={structuredData}
       />
       <DestinationsPage
         logoSrc={logoSrc}
@@ -179,9 +208,10 @@ function DestinationRoute({ logoSrc }) {
   const navigateTo = useSiteNavigation();
   const destination = useMemo(() => findPublishedBySlug(destinations, slug), [slug]);
   const structuredData = useMemo(
-  () => (destination ? buildDestinationStructuredData(destination) : null),
-  [destination]
-);
+    () => (destination ? buildDestinationStructuredData(destination) : null),
+    [destination]
+  );
+
   if (!destination) {
     return (
       <>
@@ -190,7 +220,6 @@ function DestinationRoute({ logoSrc }) {
           description="La destinazione richiesta non è disponibile oppure non è ancora stata pubblicata."
           path={`/destinazioni/${slug}`}
           robots="noindex,nofollow"
-          structuredData={structuredData}
         />
         <NotFoundPage logoSrc={logoSrc} navigateTo={navigateTo} />
       </>
@@ -204,6 +233,7 @@ function DestinationRoute({ logoSrc }) {
         description={destination.intro ?? destination.text}
         path={`/destinazioni/${destination.slug}`}
         image={destination.image}
+        structuredData={structuredData}
       />
       <DestinationPage
         logoSrc={logoSrc}
