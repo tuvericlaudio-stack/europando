@@ -19,6 +19,40 @@ import {
   getPublishedPosts,
 } from "./utils/content";
 
+const buildWebSiteStructuredData = () => ({
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: siteConfig.name,
+  url: siteConfig.defaultSiteUrl,
+  description: siteConfig.description,
+});
+
+const buildArticleStructuredData = (post) => ({
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: post.title,
+  description: post.excerpt ?? post.intro,
+  image: post.image,
+  mainEntityOfPage: `${siteConfig.defaultSiteUrl}articoli/${post.slug}`,
+  author: {
+    "@type": "Organization",
+    name: siteConfig.name,
+  },
+  publisher: {
+    "@type": "Organization",
+    name: siteConfig.name,
+  },
+});
+
+const buildDestinationStructuredData = (destination) => ({
+  "@context": "https://schema.org",
+  "@type": "TouristDestination",
+  name: destination.name,
+  description: destination.intro ?? destination.text,
+  image: destination.image,
+  url: `${siteConfig.defaultSiteUrl}destinazioni/${destination.slug}`,
+});
+
 function useSiteNavigation() {
   const navigate = useNavigate();
 
@@ -38,15 +72,17 @@ function ScrollToTop() {
 }
 
 function HomeRoute({ heroSrc, logoSrc, featuredDestination, publishedDestinations, publishedPosts }) {
+  const structuredData = useMemo(() => buildWebSiteStructuredData(), []);
   const navigateTo = useSiteNavigation();
 
   return (
     <>
-      <Seo
+      <Seo      
         title={siteConfig.defaultTitle}
         description={siteConfig.description}
         path="/"
         image={heroSrc}
+        structuredData={structuredData}
       />
       <Header
         logoSrc={logoSrc}
@@ -85,6 +121,10 @@ function ArticleRoute({ logoSrc }) {
   const { slug } = useParams();
   const navigateTo = useSiteNavigation();
   const post = useMemo(() => findPublishedBySlug(featuredPosts, slug), [slug]);
+  const structuredData = useMemo(
+  () => (post ? buildArticleStructuredData(post) : null),
+  [post]
+);
 
   if (!post) {
     return (
@@ -94,6 +134,7 @@ function ArticleRoute({ logoSrc }) {
           description="La pagina richiesta non è disponibile oppure non è ancora stata pubblicata."
           path={`/articoli/${slug}`}
           robots="noindex,nofollow"
+          structuredData={structuredData}
         />
         <NotFoundPage logoSrc={logoSrc} navigateTo={navigateTo} />
       </>
@@ -137,7 +178,10 @@ function DestinationRoute({ logoSrc }) {
   const { slug } = useParams();
   const navigateTo = useSiteNavigation();
   const destination = useMemo(() => findPublishedBySlug(destinations, slug), [slug]);
-
+  const structuredData = useMemo(
+  () => (destination ? buildDestinationStructuredData(destination) : null),
+  [destination]
+);
   if (!destination) {
     return (
       <>
@@ -146,6 +190,7 @@ function DestinationRoute({ logoSrc }) {
           description="La destinazione richiesta non è disponibile oppure non è ancora stata pubblicata."
           path={`/destinazioni/${slug}`}
           robots="noindex,nofollow"
+          structuredData={structuredData}
         />
         <NotFoundPage logoSrc={logoSrc} navigateTo={navigateTo} />
       </>
