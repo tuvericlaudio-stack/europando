@@ -71,8 +71,8 @@ function ArticlesRoute({ logoSrc, publishedPosts }) {
   return (
     <>
       <Seo
-        title={`Articoli | ${siteConfig.name}`}
-        description="Tutti gli articoli pubblicati di Europando: guide ordinate, leggibili e facili da ampliare nel tempo."
+       title={`Articoli di viaggio in Europa | ${siteConfig.name}`}
+      description="Guide di viaggio, itinerari e articoli pubblicati su Europando per organizzare meglio city break e viaggi più lunghi."
         path="/articoli"
         image={publishedPosts[0]?.image}
       />
@@ -107,7 +107,6 @@ function ArticleRoute({ logoSrc }) {
         description={post.excerpt ?? post.intro}
         path={`/articoli/${post.slug}`}
         image={post.image}
-        type="article"
       />
       <ArticlePage logoSrc={logoSrc} post={post} navigateTo={navigateTo} />
     </>
@@ -120,8 +119,8 @@ function DestinationsRoute({ logoSrc, publishedDestinations }) {
   return (
     <>
       <Seo
-        title={`Destinazioni | ${siteConfig.name}`}
-        description="Le destinazioni pubblicate di Europando: guide città già pronte, ordinate e consultabili senza pagine lasciate a metà."
+        title={`Destinazioni e guide città | ${siteConfig.name}`}
+        description="Destinazioni pubblicate, guide città e consigli pratici per organizzare itinerari leggibili e facili da consultare."
         path="/destinazioni"
         image={publishedDestinations[0]?.image}
       />
@@ -160,7 +159,6 @@ function DestinationRoute({ logoSrc }) {
         description={destination.intro ?? destination.text}
         path={`/destinazioni/${destination.slug}`}
         image={destination.image}
-        type="article"
       />
       <DestinationPage
         logoSrc={logoSrc}
