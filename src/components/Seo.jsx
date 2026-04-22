@@ -157,11 +157,6 @@ export default function Seo({
 
     ensureStructuredData(structuredData);
 
-    console.log("SEO structuredData:", structuredData);
-    console.log(
-     "SEO script element:",
-    document.head.querySelector('script[data-seo="structured-data"]')
-);
   }, [description, image, path, robots, structuredData, title, type]);
 
   return null;
