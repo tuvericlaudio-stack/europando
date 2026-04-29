@@ -229,8 +229,8 @@ function DestinationRoute({ logoSrc }) {
   return (
     <>
       <Seo
-        title={`${destination.name} | ${siteConfig.name}`}
-        description={destination.intro ?? destination.text}
+        title={destination.seoTitle ?? `${destination.name} | ${siteConfig.name}`}
+        description={destination.seoDescription ?? destination.intro ?? destination.text}
         path={`/destinazioni/${destination.slug}`}
         image={destination.image}
         structuredData={structuredData}

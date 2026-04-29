@@ -6,6 +6,9 @@ export const destinations = [
     slug: "oslo",
     status: CONTENT_STATUS.DRAFT,
     name: "Oslo",
+    seoTitle: "Oslo in 3 giorni: cosa vedere e come organizzare il viaggio",
+    seoDescription:
+      "Guida essenziale a Oslo tra waterfront, musei, architettura contemporanea e itinerario semplice da seguire in 3 giorni.",
     text: "Una capitale nordica ordinata, elegante e molto facile da leggere anche in pochi giorni.",
     tag: "Nordic City",
     image:
@@ -45,6 +48,9 @@ export const destinations = [
     slug: "bucarest",
     status: CONTENT_STATUS.PUBLISHED,
     name: "Bucarest",
+    seoTitle: "Bucarest in 3 giorni: cosa vedere, itinerario e consigli pratici",
+    seoDescription:
+      "Guida a Bucarest con itinerario di 3-4 giorni, zone dove dormire, come muoversi, prezzi utili e consigli pratici per organizzare il viaggio.",
     text: "Una città di contrasti, grandi viali, centro storico e tappe da distribuire bene senza correre.",
     tag: "Urban Mix",
     image: asset("bucarest-hero.jpg"),
@@ -155,6 +161,9 @@ export const destinations = [
     slug: "stoccolma",
     status: CONTENT_STATUS.DRAFT,
     name: "Stoccolma",
+    seoTitle: "Stoccolma in 3 giorni: cosa vedere tra centro storico e isole",
+    seoDescription:
+      "Guida a Stoccolma con consigli per un primo viaggio tra Gamla Stan, isole, acqua, passeggiate e tappe ben distribuite.",
     text: "Acqua, isole, eleganza nordica e una città molto leggibile anche al primo viaggio.",
     tag: "Scandinavian",
     image:
@@ -193,6 +202,9 @@ export const destinations = [
     slug: "valencia",
     status: CONTENT_STATUS.DRAFT,
     name: "Valencia",
+    seoTitle: "Valencia in 3 giorni: cosa vedere tra centro, mare e città moderna",
+    seoDescription:
+      "Guida a Valencia con itinerario semplice tra centro storico, mare, zone moderne e consigli per vivere la città con ritmo rilassato.",
     text: "Sole, mare, centro storico e spazi moderni con un ritmo molto più rilassato.",
     tag: "Sunny City",
     image:
