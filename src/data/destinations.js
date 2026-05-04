@@ -109,10 +109,7 @@ export const destinations = [
     practicalInfo: {
       airportToCenter: [
         "Il bus 100 Express è la soluzione più economica: collega direttamente l’aeroporto al centro, è attivo 24 ore su 24 e ferma anche in punti utili come Piata Victoriei, Piata Romana e Piata Unirii.",
-        "Dall’aeroporto di Bucarest OTP segui i cartelli Train / Tren / Gara CFR.",
-        "La stazione si raggiunge a piedi in pochi minuti, senza navetta.",
-        "Il treno collega Aeroport Henri Coandă con București Nord / Gara de Nord in circa 20–25 minuti.",
-        "Da Gara de Nord puoi proseguire verso il centro con metro, bus o taxi.",
+        "Dall’aeroporto di Bucarest OTP segui i cartelli Train / Tren / Gara CFR. La stazione si raggiunge a piedi in pochi minuti, senza navetta. Il treno collega Aeroport Henri Coandă con București Nord / Gara de Nord in circa 20–25 minuti. Da Gara de Nord puoi proseguire verso il centro con metro, bus o taxi.",
         "Taxi, Uber e Bolt sono la scelta più comoda se arrivi tardi, hai bagagli o vuoi un trasferimento diretto; conviene controllare il prezzo in app e scegliere la soluzione più conveniente.",
       ],
       prices: [
