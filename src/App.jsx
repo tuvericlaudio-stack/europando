@@ -132,8 +132,8 @@ function ArticlesRoute({ logoSrc, publishedPosts }) {
   return (
     <>
       <Seo
-        title={`Articoli di viaggio in Europa | ${siteConfig.name}`}
-        description="Guide di viaggio, itinerari e articoli pubblicati su Europando per organizzare meglio city break e viaggi più lunghi."
+        title={`Itinerari e articoli di viaggio | ${siteConfig.name}`}
+        description="Itinerari e articoli di viaggio per organizzare city break, weekend e viaggi più lunghi."
         path="/articoli"
         image={publishedPosts[0]?.image}
         structuredData={structuredData}

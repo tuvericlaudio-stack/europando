@@ -214,22 +214,6 @@ export default function DestinationPage({ logoSrc, destination, navigateTo }) {
                         ))}
                       </div>
                     </div>
-
-                    <div className="rounded-[1.4rem] border border-[#e4ebf4] bg-[#fcfcfc] p-5">
-                      <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#7a8798]">
-                        Sera
-                      </p>
-                      <div className="mt-3 space-y-2 text-[#5d6470]">
-                        {destination.foodGuide.evening.map((item) => (
-                          <div
-                            key={item}
-                            className="rounded-[1rem] border border-[#e6e6e6] bg-white px-4 py-3"
-                          >
-                            {item}
-                          </div>
-                        ))}
-                      </div>
-                    </div>
                   </div>
                 </div>
               )}

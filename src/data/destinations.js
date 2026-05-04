@@ -51,12 +51,17 @@ export const destinations = [
     seoTitle: "Bucarest in 3 giorni: cosa vedere, itinerario e consigli pratici",
     seoDescription:
       "Guida a Bucarest con itinerario di 3-4 giorni, zone dove dormire, come muoversi, prezzi utili e consigli pratici per organizzare il viaggio.",
+
+    seoTitle: "Bucarest in 3 giorni: itinerario semplice e consigli pratici",
+    seoDescription:
+      "Guida a Bucarest con itinerario di 3-4 giorni, zone dove dormire, come muoversi dall’aeroporto e consigli pratici per organizzare bene il viaggio.",
     text: "Una città di contrasti, grandi viali, centro storico e tappe da distribuire bene senza correre.",
     tag: "Urban Mix",
     image: asset("bucarest-hero.jpg"),
-    heroTitle: "Bucarest, meglio a blocchi chiari che di corsa.",
+    heroTitle: "Bucarest, una guida semplice da leggere.",
     intro:
       "Una città che rende meglio quando la leggi per zone, alternando centro storico, grandi viali, architettura simbolica e momenti più rilassati.",
+
     stats: [
       { label: "Giorni ideali", value: "3-4" },
       { label: "Zona migliore", value: "Centro" },
@@ -68,7 +73,6 @@ export const destinations = [
         places: [
           "Centrul Vechi",
           "Stavropoleos",
-          "Macca-Vilacrosse",
           "Passeggiata libera nel centro storico",
         ],
       },
@@ -87,10 +91,10 @@ export const destinations = [
         label: "Giorno 3 — Zona più aperta e rilassata",
         places: [
           "Parco Herastrau",
-          "Primaverii",
           "Arco di Trionfo",
           "Passeggiata più lenta",
           "Chiusura tranquilla di giornata",
+          "Alternativa: Terme",
         ],
       },
       {
@@ -105,7 +109,10 @@ export const destinations = [
     practicalInfo: {
       airportToCenter: [
         "Il bus 100 Express è la soluzione più economica: collega direttamente l’aeroporto al centro, è attivo 24 ore su 24 e ferma anche in punti utili come Piata Victoriei, Piata Romana e Piata Unirii.",
-        "Il treno per Gara de Nord è più rapido del bus, ma richiede una navetta per raggiungere la stazione aeroportuale e arriva in una zona meno centrale rispetto alle fermate principali del bus.",
+        "Dall’aeroporto di Bucarest OTP segui i cartelli Train / Tren / Gara CFR.",
+        "La stazione si raggiunge a piedi in pochi minuti, senza navetta.",
+        "Il treno collega Aeroport Henri Coandă con București Nord / Gara de Nord in circa 20–25 minuti.",
+        "Da Gara de Nord puoi proseguire verso il centro con metro, bus o taxi.",
         "Taxi, Uber e Bolt sono la scelta più comoda se arrivi tardi, hai bagagli o vuoi un trasferimento diretto; conviene controllare il prezzo in app e scegliere la soluzione più conveniente.",
       ],
       prices: [
@@ -134,22 +141,25 @@ export const destinations = [
       ],
     },
     foodGuide: {
-      breakfast: ["5 to go", "Ted’s Coffee", "Café Van Gogh"],
+      breakfast: [
+        "Luca",
+        "5 to go",
+        "Ted’s Coffee",
+        "Café Van Gogh",
+        "Coftale",
+        "Gram Bistro",
+      ],
       streetFood: [
         "Luca",
         "Gyros Thessalonikis",
-        "Dristor Kebap",
-        "La Placinte",
-        "Springtime",
+        "In House Pastrami",
       ],
       restaurants: [
-        "La Mama",
-        "Lacrimi si Sfinti",
         "Hanu lui Manuc",
-        "Energiea",
+        "Caru cu Bere",
         "Simbio",
+        "Beraria H Herastrau",
       ],
-      evening: ["Beer O’Clock", "Control Club", "Linea Closer to the Moon"],
     },
     gallery: [
       asset("bucarest-gallery-1.jpg"),
