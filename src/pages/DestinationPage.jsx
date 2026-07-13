@@ -1,12 +1,103 @@
 import Header from "../components/Header";
 
-export default function DestinationPage({ logoSrc, destination, navigateTo }) {
-  const hasItinerary = Boolean(destination.itineraryDays);
-  const hasPracticalInfo = Boolean(destination.practicalInfo);
-  const hasFoodGuide = Boolean(destination.foodGuide);
+function GuideLink({ href, label }) {
+  return (
+    <a
+      href={href}
+      className="whitespace-nowrap rounded-full border border-[#d9d1c5] bg-white px-4 py-2.5 text-xs font-bold uppercase tracking-[0.12em] text-[#123e78] transition hover:border-[#123e78] hover:bg-[#f7f4ee]"
+    >
+      {label}
+    </a>
+  );
+}
+
+function InformationGroup({ number, title, items }) {
+  if (!Array.isArray(items) || items.length === 0) {
+    return null;
+  }
 
   return (
-    <div className="min-h-screen bg-[#f4f7fb] text-[#17202c]">
+    <div className="grid gap-5 border-b border-[#e7dfd4] py-8 last:border-b-0 md:grid-cols-[72px_220px_1fr] md:gap-8 md:py-10">
+      <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[#123e78] text-sm font-black text-white">
+        {number}
+      </div>
+
+      <h3 className="text-xl font-black tracking-[-0.03em] text-[#14263d]">
+        {title}
+      </h3>
+
+      <div className="space-y-4">
+        {items.map((item, index) => (
+          <p
+            key={`${title}-${index}`}
+            className="leading-7 text-[#5f6875]"
+          >
+            {item}
+          </p>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function FoodCategory({ label, items, number }) {
+  if (!Array.isArray(items) || items.length === 0) {
+    return null;
+  }
+
+  return (
+    <article className="rounded-[1.7rem] border border-[#e2d9cd] bg-white p-6 md:p-7">
+      <div className="flex items-center justify-between gap-4">
+        <p className="text-xs font-black uppercase tracking-[0.18em] text-[#c86b4a]">
+          {label}
+        </p>
+
+        <span className="text-sm font-black text-[#b4a899]">
+          {number}
+        </span>
+      </div>
+
+      <div className="mt-6 divide-y divide-[#eee7de]">
+        {items.map((item) => (
+          <div
+            key={item}
+            className="flex items-center gap-3 py-3.5 first:pt-0 last:pb-0"
+          >
+            <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#123e78]" />
+
+            <span className="font-semibold text-[#27384d]">
+              {item}
+            </span>
+          </div>
+        ))}
+      </div>
+    </article>
+  );
+}
+
+export default function DestinationPage({
+  logoSrc,
+  destination,
+  navigateTo,
+}) {
+  const hasItinerary =
+    Array.isArray(destination.itineraryDays) &&
+    destination.itineraryDays.length > 0;
+
+  const hasPracticalInfo = Boolean(destination.practicalInfo);
+
+  const hasFoodGuide = Boolean(destination.foodGuide);
+
+  const hasGallery =
+    Array.isArray(destination.gallery) &&
+    destination.gallery.length > 0;
+
+  const hasSections =
+    Array.isArray(destination.sections) &&
+    destination.sections.length > 0;
+
+  return (
+    <div className="min-h-screen bg-[#f7f4ee] text-[#14263d]">
       <Header
         logoSrc={logoSrc}
         onHome={() => navigateTo("/")}
@@ -14,425 +105,437 @@ export default function DestinationPage({ logoSrc, destination, navigateTo }) {
         onDestinations={() => navigateTo("/destinazioni")}
       />
 
-      <section className="max-w-7xl mx-auto px-6 pt-8">
-        <button
-          type="button"
-          onClick={() => navigateTo("/destinazioni")}
-          className="inline-flex items-center gap-2 rounded-[1.3rem] border border-[#cfdbea] bg-white px-5 py-3 text-sm font-bold uppercase tracking-[0.14em] text-[#123e78] shadow-sm hover:bg-[#f8fbff] transition"
-        >
-          ← Tutte le destinazioni
-        </button>
-      </section>
+      <main>
+        {/* HERO */}
+        <section className="relative overflow-hidden">
+          <div className="relative min-h-[620px] md:min-h-[700px]">
+            <img
+              src={destination.image}
+              alt={`Veduta di ${destination.name}`}
+              className="absolute inset-0 h-full w-full object-cover"
+              fetchPriority="high"
+            />
 
-      <section className="max-w-7xl mx-auto px-6 pt-8 pb-10 md:pt-10">
-        <div className="relative overflow-hidden rounded-[2.4rem] min-h-[680px] border border-[#dbe5ef] shadow-[0_26px_65px_rgba(20,50,90,0.12)]">
-          <img
-            src={destination.image}
-            alt={destination.name}
-            className="absolute inset-0 h-full w-full object-cover"
-          />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#08192d]/95 via-[#102842]/72 to-[#102842]/20" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#071525]/85 via-transparent to-[#071525]/25" />
 
-          <div className="absolute inset-0 bg-[linear-gradient(112deg,rgba(7,21,42,0.88)_0%,rgba(7,21,42,0.66)_34%,rgba(7,21,42,0.24)_66%,rgba(7,21,42,0.10)_100%)]" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.14),transparent_34%)]" />
-          <div className="absolute inset-[20px] rounded-[2rem] border border-white/18" />
+            <div className="relative mx-auto flex min-h-[620px] max-w-7xl flex-col px-5 pb-16 pt-8 md:min-h-[700px] md:px-8 md:pb-20 md:pt-12">
+              <div>
+                <button
+                  type="button"
+                  onClick={() => navigateTo("/destinazioni")}
+                  className="inline-flex min-h-11 items-center gap-2 rounded-full border border-white/35 bg-white/10 px-5 py-3 text-xs font-bold uppercase tracking-[0.14em] text-white backdrop-blur-md transition hover:bg-white hover:text-[#123e78]"
+                >
+                  <span aria-hidden="true">←</span>
+                  Tutte le destinazioni
+                </button>
+              </div>
 
-          <div className="relative z-10 flex min-h-[680px] flex-col justify-between p-8 md:p-12">
-            <div>
-              <span className="inline-flex w-fit rounded-full border border-white/20 bg-white/10 px-4 py-2 text-[10px] font-bold uppercase tracking-[0.24em] text-white backdrop-blur-md">
-                {destination.tag}
-              </span>
-            </div>
+              <div className="mt-auto max-w-4xl">
+                <p className="text-xs font-black uppercase tracking-[0.28em] text-[#f0c8a9]">
+                  {destination.tag}
+                </p>
 
-            <div className="max-w-4xl text-white">
-              <h1 className="text-5xl md:text-7xl xl:text-8xl leading-[0.88] font-black tracking-[-0.06em] drop-shadow-[0_4px_14px_rgba(0,0,0,0.24)]">
-                {destination.heroTitle}
-              </h1>
+                <h1 className="mt-5 max-w-4xl text-5xl font-black leading-[0.98] tracking-[-0.055em] text-white sm:text-6xl md:text-7xl lg:text-[5.4rem]">
+                  {destination.heroTitle}
+                </h1>
 
-              <p className="mt-8 max-w-2xl text-lg md:text-xl leading-8 text-white/90">
-                {destination.intro}
-              </p>
+                <p className="mt-7 max-w-2xl text-lg leading-8 text-white/85 md:text-xl">
+                  {destination.intro}
+                </p>
 
-              <div className="mt-10 grid gap-4 sm:grid-cols-3 max-w-3xl">
-                {destination.stats.map((stat) => (
-                  <div
-                    key={stat.label}
-                    className="rounded-[1.2rem] border border-white/16 bg-white/10 px-4 py-4 backdrop-blur-md"
-                  >
-                    <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-white/75">
-                      {stat.label}
-                    </p>
-                    <p className="mt-2 text-2xl font-black text-white">
-                      {stat.value}
-                    </p>
-                  </div>
-                ))}
+                {Array.isArray(destination.stats) &&
+                  destination.stats.length > 0 && (
+                    <div className="mt-10 grid max-w-3xl grid-cols-1 gap-3 sm:grid-cols-3">
+                      {destination.stats.map((stat) => (
+                        <div
+                          key={stat.label}
+                          className="rounded-[1.4rem] border border-white/20 bg-white/10 px-5 py-4 backdrop-blur-md"
+                        >
+                          <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-white/65">
+                            {stat.label}
+                          </p>
+
+                          <p className="mt-2 text-lg font-black text-white">
+                            {stat.value}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  )}
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section className="max-w-7xl mx-auto px-6 py-8 md:py-10">
-        {hasItinerary ? (
-          <div className="grid xl:grid-cols-[1.12fr_0.88fr] gap-8 items-start">
-            <div className="space-y-8">
-              <div className="rounded-[1.8rem] border border-[#dbe5ef] bg-white p-8 shadow-[0_16px_36px_rgba(20,40,70,0.06)]">
-                <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#7a8798]">
-                  Guida
+        {/* INDICE RAPIDO */}
+        <section className="relative z-10 mx-auto -mt-7 max-w-7xl px-5 md:px-8">
+          <div className="rounded-[1.6rem] border border-[#e0d7cb] bg-white p-4 shadow-[0_18px_40px_rgba(31,45,61,0.09)]">
+            <div className="flex items-center gap-3 overflow-x-auto">
+              <span className="shrink-0 px-2 text-xs font-black uppercase tracking-[0.17em] text-[#8b7f70]">
+                Vai a
+              </span>
+
+              {hasItinerary && (
+                <GuideLink href="#itinerario" label="Itinerario" />
+              )}
+
+              {hasPracticalInfo && (
+                <GuideLink href="#informazioni" label="Informazioni" />
+              )}
+
+              {hasFoodGuide && (
+                <GuideLink href="#mangiare" label="Dove mangiare" />
+              )}
+
+              {hasGallery && (
+                <GuideLink href="#galleria" label="Fotografie" />
+              )}
+            </div>
+          </div>
+        </section>
+
+        <div className="mx-auto grid max-w-7xl gap-12 px-5 py-16 md:px-8 md:py-20 lg:grid-cols-[230px_minmax(0,1fr)] lg:gap-16">
+          {/* INDICE DESKTOP */}
+          <aside className="hidden lg:block">
+            <div className="sticky top-8">
+              <p className="text-xs font-black uppercase tracking-[0.2em] text-[#c86b4a]">
+                In questa guida
+              </p>
+
+              <nav className="mt-6 border-l border-[#d8cdbf]">
+                <a
+                  href="#panoramica"
+                  className="block border-l-2 border-transparent px-5 py-3 font-bold text-[#617083] transition hover:border-[#123e78] hover:text-[#123e78]"
+                >
+                  Panoramica
+                </a>
+
+                {hasItinerary && (
+                  <a
+                    href="#itinerario"
+                    className="block border-l-2 border-transparent px-5 py-3 font-bold text-[#617083] transition hover:border-[#123e78] hover:text-[#123e78]"
+                  >
+                    Itinerario
+                  </a>
+                )}
+
+                {hasPracticalInfo && (
+                  <a
+                    href="#informazioni"
+                    className="block border-l-2 border-transparent px-5 py-3 font-bold text-[#617083] transition hover:border-[#123e78] hover:text-[#123e78]"
+                  >
+                    Informazioni
+                  </a>
+                )}
+
+                {hasFoodGuide && (
+                  <a
+                    href="#mangiare"
+                    className="block border-l-2 border-transparent px-5 py-3 font-bold text-[#617083] transition hover:border-[#123e78] hover:text-[#123e78]"
+                  >
+                    Dove mangiare
+                  </a>
+                )}
+
+                {hasGallery && (
+                  <a
+                    href="#galleria"
+                    className="block border-l-2 border-transparent px-5 py-3 font-bold text-[#617083] transition hover:border-[#123e78] hover:text-[#123e78]"
+                  >
+                    Fotografie
+                  </a>
+                )}
+              </nav>
+            </div>
+          </aside>
+
+          {/* CONTENUTO */}
+          <div className="min-w-0">
+            {/* PANORAMICA */}
+            <section
+              id="panoramica"
+              className="scroll-mt-10"
+            >
+              <p className="text-xs font-black uppercase tracking-[0.2em] text-[#c86b4a]">
+                Panoramica
+              </p>
+
+              <h2 className="mt-4 max-w-3xl text-4xl font-black tracking-[-0.045em] text-[#123e78] md:text-5xl">
+                Un primo sguardo a {destination.name}
+              </h2>
+
+              <p className="mt-7 max-w-3xl text-lg leading-8 text-[#5f6875]">
+                {destination.text}
+              </p>
+            </section>
+
+            {/* ITINERARIO */}
+            {hasItinerary && (
+              <section
+                id="itinerario"
+                className="scroll-mt-10 pt-20"
+              >
+                <p className="text-xs font-black uppercase tracking-[0.2em] text-[#c86b4a]">
+                  Giorno per giorno
                 </p>
-                <h2 className="mt-3 text-3xl md:text-4xl font-black tracking-[-0.03em] text-[#123e78]">
+
+                <h2 className="mt-4 text-4xl font-black tracking-[-0.045em] text-[#123e78] md:text-5xl">
                   Itinerario
                 </h2>
 
-                <div className="mt-10 relative">
-                  <div className="absolute left-[22px] top-0 bottom-0 w-px bg-[#d9e3ef]" />
+                <p className="mt-6 max-w-3xl leading-8 text-[#5f6875]">
+                  Le tappe sono organizzate in modo progressivo, così puoi
+                  scoprire la città senza riempire troppo ogni giornata.
+                </p>
 
-                  <div className="space-y-10">
-                    {destination.itineraryDays.map((day, index) => {
-                      const tones = [
-                        {
-                          wrapper: "border-[#efe2a8] bg-[#fffdf3]",
-                          point: "border-[#eadb96] bg-[#fff8d9]",
-                          item: "border-[#f4ecd0] bg-white",
-                        },
-                        {
-                          wrapper: "border-[#ead4d4] bg-[#fff8f8]",
-                          point: "border-[#e4c1c1] bg-[#ffecec]",
-                          item: "border-[#f1dede] bg-white",
-                        },
-                        {
-                          wrapper: "border-[#d8e8d8] bg-[#f7fcf7]",
-                          point: "border-[#bfd8bf] bg-[#edf8ed]",
-                          item: "border-[#deedde] bg-white",
-                        },
-                        {
-                          wrapper: "border-[#dfdfdf] bg-[#fcfcfc]",
-                          point: "border-[#d0d0d0] bg-[#f3f3f3]",
-                          item: "border-[#e6e6e6] bg-white",
-                        },
-                      ];
+                <div className="relative mt-12 ml-5 border-l border-[#d5c8b8] pl-10 md:ml-6 md:pl-14">
+                  {destination.itineraryDays.map((day, index) => {
+                    const titleParts = day.label.split("—");
 
-                      const tone = tones[index % tones.length];
+                    const dayTitle =
+                      titleParts.length > 1
+                        ? titleParts.slice(1).join("—").trim()
+                        : day.label;
 
-                      return (
-                        <div key={day.label} className="relative pl-16">
-                          <div
-                            className={`absolute left-0 top-0 flex h-11 w-11 items-center justify-center rounded-full border text-sm font-black text-[#123e78] shadow-sm ${tone.point}`}
-                          >
-                            {index + 1}
-                          </div>
-
-                          <div
-                            className={`rounded-[1.4rem] border p-6 shadow-[0_8px_18px_rgba(20,40,70,0.03)] ${tone.wrapper}`}
-                          >
-                            <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#7a8798]">
-                              Giorno
-                            </p>
-                            <h3 className="mt-2 text-2xl font-black tracking-[-0.02em] text-[#17202c]">
-                              {day.label}
-                            </h3>
-
-                            <div className="mt-5 space-y-3 text-[#4f5865]">
-                              {day.places.map((place) => (
-                                <div
-                                  key={place}
-                                  className={`rounded-[1rem] border px-4 py-3 ${tone.item}`}
-                                >
-                                  {place}
-                                </div>
-                              ))}
-                            </div>
-                          </div>
+                    return (
+                      <article
+                        key={day.label}
+                        className="relative pb-14 last:pb-0"
+                      >
+                        <div className="absolute -left-[61px] top-0 flex h-12 w-12 items-center justify-center rounded-full border-4 border-[#f7f4ee] bg-[#123e78] text-sm font-black text-white md:-left-[73px]">
+                          {String(index + 1).padStart(2, "0")}
                         </div>
-                      );
-                    })}
-                  </div>
+
+                        <p className="text-xs font-black uppercase tracking-[0.18em] text-[#c86b4a]">
+                          Giorno {index + 1}
+                        </p>
+
+                        <h3 className="mt-3 text-2xl font-black tracking-[-0.03em] text-[#14263d] md:text-3xl">
+                          {dayTitle}
+                        </h3>
+
+                        <div className="mt-6 rounded-[1.7rem] border border-[#e3d9cd] bg-white px-6 py-3 md:px-8">
+                          {day.places.map((place) => (
+                            <div
+                              key={place}
+                              className="flex items-center gap-4 border-b border-[#eee7de] py-4 last:border-b-0"
+                            >
+                              <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#edf2f8] text-xs font-black text-[#123e78]">
+                                ✓
+                              </span>
+
+                              <span className="font-semibold leading-6 text-[#344458]">
+                                {place}
+                              </span>
+                            </div>
+                          ))}
+                        </div>
+                      </article>
+                    );
+                  })}
                 </div>
-              </div>
+              </section>
+            )}
 
-              {hasFoodGuide && (
-                <div className="rounded-[1.9rem] border border-[#dbe5ef] bg-white p-8 shadow-[0_16px_36px_rgba(20,40,70,0.06)]">
-                  <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
-                    <div>
-                      <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#7a8798]">
-                        Dove mangiare
-                      </p>
-                      <h2 className="mt-3 text-3xl md:text-4xl font-black tracking-[-0.03em] text-[#123e78]">
-                        Dove mangiare bene
-                      </h2>
-                    </div>
-                    <p className="max-w-xl text-[#5f6875] leading-7">
-                      Una selezione semplice e pratica da consultare senza spezzare troppo le giornate.
-                    </p>
-                  </div>
-
-                  <div className="mt-8 grid md:grid-cols-2 gap-5">
-                    <div className="rounded-[1.4rem] border border-[#e4ebf4] bg-[#fffdf3] p-5">
-                      <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#7a8798]">
-                        Colazione
-                      </p>
-                      <div className="mt-3 space-y-2 text-[#5d6470]">
-                        {destination.foodGuide.breakfast.map((item) => (
-                          <div
-                            key={item}
-                            className="rounded-[1rem] border border-[#f4ecd0] bg-white px-4 py-3"
-                          >
-                            {item}
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div className="rounded-[1.4rem] border border-[#e4ebf4] bg-[#fff8f8] p-5">
-                      <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#7a8798]">
-                        Street food
-                      </p>
-                      <div className="mt-3 space-y-2 text-[#5d6470]">
-                        {destination.foodGuide.streetFood.map((item) => (
-                          <div
-                            key={item}
-                            className="rounded-[1rem] border border-[#f1dede] bg-white px-4 py-3"
-                          >
-                            {item}
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div className="rounded-[1.4rem] border border-[#e4ebf4] bg-[#f7fcf7] p-5">
-                      <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#7a8798]">
-                        Ristoranti
-                      </p>
-                      <div className="mt-3 space-y-2 text-[#5d6470]">
-                        {destination.foodGuide.restaurants.map((item) => (
-                          <div
-                            key={item}
-                            className="rounded-[1rem] border border-[#deedde] bg-white px-4 py-3"
-                          >
-                            {item}
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              )}
-            </div>
-
-            <div className="space-y-5">
-              <div className="rounded-[1.9rem] border border-[#dbe5ef] bg-white p-8 shadow-[0_16px_36px_rgba(20,40,70,0.06)]">
-                <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#7a8798]">
-                  Suggerimenti pratici
+            {/* SEZIONI GENERICHE */}
+            {!hasItinerary && hasSections && (
+              <section className="pt-20">
+                <p className="text-xs font-black uppercase tracking-[0.2em] text-[#c86b4a]">
+                  Guida
                 </p>
-                <h2 className="mt-3 text-3xl md:text-4xl font-black tracking-[-0.03em] text-[#123e78]">
-                  Muoversi e dormire
+
+                <h2 className="mt-4 text-4xl font-black tracking-[-0.045em] text-[#123e78] md:text-5xl">
+                  Come leggere la città
                 </h2>
-                <p className="mt-4 leading-7 text-[#5f6875]">
-                  Le informazioni essenziali per entrare in città bene, scegliere una base comoda e capire subito come organizzare il soggiorno.
+
+                <div className="mt-10 divide-y divide-[#ded5ca]">
+                  {destination.sections.map((section) => (
+                    <article
+                      key={section.title}
+                      className="grid gap-4 py-8 first:pt-0 md:grid-cols-[220px_1fr]"
+                    >
+                      <h3 className="text-xl font-black text-[#14263d]">
+                        {section.title}
+                      </h3>
+
+                      <p className="leading-8 text-[#5f6875]">
+                        {section.text}
+                      </p>
+                    </article>
+                  ))}
+                </div>
+              </section>
+            )}
+
+            {/* INFORMAZIONI PRATICHE */}
+            {hasPracticalInfo && (
+              <section
+                id="informazioni"
+                className="scroll-mt-10 pt-20"
+              >
+                <p className="text-xs font-black uppercase tracking-[0.2em] text-[#c86b4a]">
+                  Organizzare il viaggio
                 </p>
 
-                <div className="mt-8 space-y-5">
-                  <div className="rounded-[1.4rem] border border-[#efe2a8] bg-[#fffdf3] p-5">
-                    <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#7a8798]">
-                      Aeroporto → centro
-                    </p>
+                <h2 className="mt-4 text-4xl font-black tracking-[-0.045em] text-[#123e78] md:text-5xl">
+                  Informazioni pratiche
+                </h2>
 
-                    {hasPracticalInfo ? (
-                      <div className="mt-3 space-y-3 text-[#5d6470]">
-                        {destination.practicalInfo.airportToCenter.map((item) => (
-                          <div
-                            key={item}
-                            className="rounded-[1rem] border border-[#f4ecd0] bg-white px-4 py-3"
-                          >
-                            {item}
-                          </div>
-                        ))}
-                      </div>
-                    ) : (
-                      <p className="mt-3 leading-7 text-[#5d6470]">
-                        Qui inserirai i consigli pratici su come arrivare dall’aeroporto al centro.
-                      </p>
-                    )}
-                  </div>
+                <p className="mt-6 max-w-3xl leading-8 text-[#5f6875]">
+                  Come arrivare, dove dormire e come muoversi con indicazioni
+                  semplici da consultare prima della partenza.
+                </p>
 
-                  {hasPracticalInfo && destination.practicalInfo.prices?.length > 0 && (
-                    <div className="rounded-[1.4rem] border border-[#ead4d4] bg-[#fff8f8] p-5">
-                      <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#7a8798]">
-                        Prezzi utili
-                      </p>
-                      <div className="mt-3 space-y-3 text-[#5d6470]">
-                        {destination.practicalInfo.prices.map((item) => (
-                          <div
-                            key={item}
-                            className="rounded-[1rem] border border-[#f1dede] bg-white px-4 py-3"
-                          >
-                            {item}
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  )}
+                <div className="mt-10 rounded-[2rem] border border-[#e0d6ca] bg-white px-6 md:px-9">
+                  <InformationGroup
+                    number="01"
+                    title="Aeroporto e centro"
+                    items={destination.practicalInfo.airportToCenter}
+                  />
 
-                  <div className="rounded-[1.4rem] border border-[#d8e8d8] bg-[#f7fcf7] p-5">
-                    <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#7a8798]">
-                      Dove alloggiare
-                    </p>
+                  <InformationGroup
+                    number="02"
+                    title="Prezzi utili"
+                    items={destination.practicalInfo.prices}
+                  />
 
-                    {hasPracticalInfo ? (
-                      <div className="mt-3 space-y-3 text-[#5d6470]">
-                        {destination.practicalInfo.whereToStay.map((item) => (
-                          <div
-                            key={item}
-                            className="rounded-[1rem] border border-[#deedde] bg-white px-4 py-3"
-                          >
-                            {item}
-                          </div>
-                        ))}
-                      </div>
-                    ) : (
-                      <p className="mt-3 leading-7 text-[#5d6470]">
-                        Qui inserirai le zone consigliate per dormire, con indicazioni semplici su quartieri, comodità e posizione.
-                      </p>
-                    )}
-                  </div>
+                  <InformationGroup
+                    number="03"
+                    title="Dove alloggiare"
+                    items={destination.practicalInfo.whereToStay}
+                  />
 
-                  {hasPracticalInfo && destination.practicalInfo.whenToGo?.length > 0 && (
-                    <div className="rounded-[1.4rem] border border-[#dfdfdf] bg-[#fcfcfc] p-5">
-                      <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#7a8798]">
-                        Quando andare
-                      </p>
-                      <div className="mt-3 space-y-3 text-[#5d6470]">
-                        {destination.practicalInfo.whenToGo.map((item) => (
-                          <div
-                            key={item}
-                            className="rounded-[1rem] border border-[#e6e6e6] bg-white px-4 py-3"
-                          >
-                            {item}
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  )}
+                  <InformationGroup
+                    number="04"
+                    title="Quando andare"
+                    items={destination.practicalInfo.whenToGo}
+                  />
 
-                  {hasPracticalInfo && destination.practicalInfo.gettingAround?.length > 0 && (
-                    <div className="rounded-[1.4rem] border border-[#d8e4ef] bg-[#f8fbff] p-5">
-                      <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#7a8798]">
-                        Come muoversi
-                      </p>
-                      <div className="mt-3 space-y-3 text-[#5d6470]">
-                        {destination.practicalInfo.gettingAround.map((item) => (
-                          <div
-                            key={item}
-                            className="rounded-[1rem] border border-[#e3edf6] bg-white px-4 py-3"
-                          >
-                            {item}
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  )}
+                  <InformationGroup
+                    number="05"
+                    title="Come muoversi"
+                    items={destination.practicalInfo.gettingAround}
+                  />
 
-                  {hasPracticalInfo && destination.practicalInfo.notes?.length > 0 && (
-                    <div className="rounded-[1.4rem] border border-[#e6dfd2] bg-[#fdfaf5] p-5">
-                      <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#7a8798]">
-                        Note utili
-                      </p>
-                      <div className="mt-3 space-y-3 text-[#5d6470]">
-                        {destination.practicalInfo.notes.map((item) => (
-                          <div
-                            key={item}
-                            className="rounded-[1rem] border border-[#efe7da] bg-white px-4 py-3"
-                          >
-                            {item}
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  )}
+                  <InformationGroup
+                    number="06"
+                    title="Note utili"
+                    items={destination.practicalInfo.notes}
+                  />
                 </div>
+              </section>
+            )}
+
+            {/* DOVE MANGIARE */}
+            {hasFoodGuide && (
+              <section
+                id="mangiare"
+                className="scroll-mt-10 pt-20"
+              >
+                <p className="text-xs font-black uppercase tracking-[0.2em] text-[#c86b4a]">
+                  Sapori e locali
+                </p>
+
+                <h2 className="mt-4 text-4xl font-black tracking-[-0.045em] text-[#123e78] md:text-5xl">
+                  Dove mangiare
+                </h2>
+
+                <p className="mt-6 max-w-3xl leading-8 text-[#5f6875]">
+                  Una selezione divisa per momento della giornata, facile da
+                  salvare e consultare durante il viaggio.
+                </p>
+
+                <div className="mt-10 grid gap-5 md:grid-cols-3">
+                  <FoodCategory
+                    number="01"
+                    label="Colazione"
+                    items={destination.foodGuide.breakfast}
+                  />
+
+                  <FoodCategory
+                    number="02"
+                    label="Street food"
+                    items={destination.foodGuide.streetFood}
+                  />
+
+                  <FoodCategory
+                    number="03"
+                    label="Ristoranti"
+                    items={destination.foodGuide.restaurants}
+                  />
+                </div>
+              </section>
+            )}
+
+            {/* GALLERIA */}
+            {hasGallery && (
+              <section
+                id="galleria"
+                className="scroll-mt-10 pt-20"
+              >
+                <p className="text-xs font-black uppercase tracking-[0.2em] text-[#c86b4a]">
+                  Fotografie
+                </p>
+
+                <h2 className="mt-4 text-4xl font-black tracking-[-0.045em] text-[#123e78] md:text-5xl">
+                  {destination.name} in immagini
+                </h2>
+
+                <p className="mt-6 max-w-3xl leading-8 text-[#5f6875]">
+                  Luoghi, dettagli e atmosfere che raccontano il carattere della
+                  città.
+                </p>
+
+                <div className="mt-10 grid gap-4 md:grid-cols-2 md:grid-rows-2">
+                  {destination.gallery.slice(0, 3).map((image, index) => (
+                    <figure
+                      key={image}
+                      className={
+                        index === 0
+                          ? "overflow-hidden rounded-[1.8rem] md:row-span-2"
+                          : "overflow-hidden rounded-[1.8rem]"
+                      }
+                    >
+                      <img
+                        src={image}
+                        alt={`${destination.name}, fotografia ${index + 1}`}
+                        loading="lazy"
+                        className={
+                          index === 0
+                            ? "h-[360px] w-full object-cover transition duration-500 hover:scale-[1.02] md:h-full md:min-h-[560px]"
+                            : "h-[270px] w-full object-cover transition duration-500 hover:scale-[1.02]"
+                        }
+                      />
+                    </figure>
+                  ))}
+                </div>
+              </section>
+            )}
+
+            {/* CHIUSURA */}
+            <section className="pt-20">
+              <div className="rounded-[2rem] bg-[#123e78] px-7 py-10 text-white md:px-11 md:py-12">
+                <p className="text-xs font-black uppercase tracking-[0.2em] text-[#efc4a4]">
+                  Continua a esplorare
+                </p>
+
+                <h2 className="mt-4 text-3xl font-black tracking-[-0.04em] md:text-4xl">
+                  Scopri le altre destinazioni di Europando.
+                </h2>
+
+                <button
+                  type="button"
+                  onClick={() => navigateTo("/destinazioni")}
+                  className="mt-8 min-h-11 rounded-full bg-white px-6 py-3 text-sm font-black uppercase tracking-[0.13em] text-[#123e78] transition hover:bg-[#f2ede6]"
+                >
+                  Tutte le destinazioni
+                </button>
               </div>
-            </div>
-          </div>
-        ) : (
-          <div className="grid lg:grid-cols-[1.12fr_0.88fr] gap-8 items-start">
-            <div className="rounded-[1.8rem] border border-[#dbe5ef] bg-white p-8 shadow-[0_16px_36px_rgba(20,40,70,0.06)]">
-              <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#7a8798]">
-                Guida
-              </p>
-              <h2 className="mt-3 text-3xl md:text-4xl font-black tracking-[-0.03em] text-[#123e78]">
-                Come leggere la città
-              </h2>
-
-              <div className="mt-8 space-y-6 text-[#5d6470]">
-                {destination.sections.map((section) => (
-                  <div
-                    key={section.title}
-                    className="border-b border-[#edf2f7] pb-6 last:border-b-0 last:pb-0"
-                  >
-                    <h3 className="text-xl font-black tracking-[-0.02em] text-[#17202c]">
-                      {section.title}
-                    </h3>
-                    <p className="mt-3 leading-8">{section.text}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="rounded-[1.9rem] border border-[#dbe5ef] bg-white p-8 shadow-[0_16px_36px_rgba(20,40,70,0.06)]">
-              <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#7a8798]">
-                Suggerimenti pratici
-              </p>
-              <h2 className="mt-3 text-3xl md:text-4xl font-black tracking-[-0.03em] text-[#123e78]">
-                Muoversi e dormire
-              </h2>
-            </div>
-          </div>
-        )}
-      </section>
-
-      <section className="max-w-7xl mx-auto px-6 py-10 md:py-14">
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
-          <div>
-            <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#7a8798]">
-              Gallery
-            </p>
-            <h2 className="mt-3 text-3xl md:text-5xl font-black tracking-[-0.03em] text-[#123e78]">
-              Bucarest in immagini
-            </h2>
-          </div>
-          <p className="max-w-2xl text-[#59606c] leading-8">
-            Una chiusura visiva pensata per restituire il ritmo, i contrasti e l’atmosfera della città.
-          </p>
-        </div>
-
-        <div className="mt-10 grid lg:grid-cols-[1.2fr_0.8fr] gap-6">
-          <div className="relative overflow-hidden rounded-[2rem] min-h-[620px] border border-[#dbe5ef] shadow-[0_16px_34px_rgba(20,40,70,0.06)] bg-white">
-            <img
-              src={destination.gallery[0]}
-              alt={`${destination.name} 1`}
-              className="absolute inset-0 h-full w-full object-cover"
-            />
-          </div>
-
-          <div className="grid gap-6">
-            <div className="relative overflow-hidden rounded-[2rem] min-h-[300px] border border-[#dbe5ef] shadow-[0_16px_34px_rgba(20,40,70,0.06)] bg-white">
-              <img
-                src={destination.gallery[1]}
-                alt={`${destination.name} 2`}
-                className="absolute inset-0 h-full w-full object-cover"
-              />
-            </div>
-
-            <div className="relative overflow-hidden rounded-[2rem] min-h-[300px] border border-[#dbe5ef] shadow-[0_16px_34px_rgba(20,40,70,0.06)] bg-white">
-              <img
-                src={destination.gallery[2]}
-                alt={`${destination.name} 3`}
-                className="absolute inset-0 h-full w-full object-cover"
-              />
-            </div>
+            </section>
           </div>
         </div>
-      </section>
+      </main>
     </div>
   );
 }
