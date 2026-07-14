@@ -1,4 +1,5 @@
 import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 export default function DestinationsPage({
   logoSrc,
@@ -164,6 +165,10 @@ export default function DestinationsPage({
           </div>
         </section>
       </main>
+      <Footer
+        onHome={() => navigateTo("/")}
+        onDestinations={() => navigateTo("/destinazioni")}
+      />
     </div>
   );
 }

@@ -1,3 +1,4 @@
+import Footer from "../components/Footer";
 export default function HomePage({
   heroSrc,
   destinations,
@@ -18,6 +19,8 @@ export default function HomePage({
     : "/destinazioni";
 
   return (
+      <>
+    <main className="bg-[#f7f4ee] text-[#14263d]"></main>
     <main className="bg-[#f7f4ee] text-[#14263d]">
       {/* HERO */}
       <section className="relative min-h-[680px] overflow-hidden md:min-h-[760px]">
@@ -315,5 +318,10 @@ export default function HomePage({
         </div>
       </section>
     </main>
-  );
+        <Footer
+      onHome={() => navigateTo("/")}
+      onDestinations={() => navigateTo("/destinazioni")}
+    />
+  </>
+);
 }

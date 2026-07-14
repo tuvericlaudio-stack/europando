@@ -1,4 +1,5 @@
 import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 function GuideLink({ href, label }) {
   return (
@@ -536,6 +537,10 @@ export default function DestinationPage({
           </div>
         </div>
       </main>
+      <Footer
+        onHome={() => navigateTo("/")}
+        onDestinations={() => navigateTo("/destinazioni")}
+      />
     </div>
   );
 }
