@@ -109,7 +109,7 @@ export default function DestinationPage({
       <main>
         {/* HERO */}
         <section className="relative overflow-hidden">
-          <div className="relative min-h-[620px] md:min-h-[700px]">
+          <div className="relative min-h-[560px] sm:min-h-[620px] md:min-h-[700px]">
             <img
               src={destination.image}
               alt={`Veduta di ${destination.name}`}
@@ -120,48 +120,44 @@ export default function DestinationPage({
             <div className="absolute inset-0 bg-gradient-to-r from-[#08192d]/95 via-[#102842]/72 to-[#102842]/20" />
             <div className="absolute inset-0 bg-gradient-to-t from-[#071525]/85 via-transparent to-[#071525]/25" />
 
-            <div className="relative mx-auto flex min-h-[620px] max-w-7xl flex-col px-5 pb-16 pt-8 md:min-h-[700px] md:px-8 md:pb-20 md:pt-12">
-              <div>
-                <button
-                  type="button"
-                  onClick={() => navigateTo("/destinazioni")}
-                  className="inline-flex min-h-11 items-center gap-2 rounded-full border border-white/35 bg-white/10 px-5 py-3 text-xs font-bold uppercase tracking-[0.14em] text-white backdrop-blur-md transition hover:bg-white hover:text-[#123e78]"
-                >
-                  <span aria-hidden="true">←</span>
-                  Tutte le destinazioni
-                </button>
-              </div>
+            <div className="relative mx-auto flex min-h-[560px] max-w-7xl flex-col px-5 pb-10 pt-6 sm:min-h-[620px] sm:pb-14 md:min-h-[700px] md:px-8 md:pb-20 md:pt-12">              <div>
+              <button
+                type="button"
+                onClick={() => navigateTo("/destinazioni")}
+                className="inline-flex min-h-11 items-center gap-2 rounded-full border border-white/35 bg-white/10 px-5 py-3 text-xs font-bold uppercase tracking-[0.14em] text-white backdrop-blur-md transition hover:bg-white hover:text-[#123e78]"
+              >
+                <span aria-hidden="true">←</span>
+                Tutte le destinazioni
+              </button>
+            </div>
 
               <div className="mt-auto max-w-4xl">
                 <p className="text-xs font-black uppercase tracking-[0.28em] text-[#f0c8a9]">
                   {destination.tag}
                 </p>
 
-                <h1 className="mt-5 max-w-4xl text-5xl font-black leading-[0.98] tracking-[-0.055em] text-white sm:text-6xl md:text-7xl lg:text-[5.4rem]">
-                  {destination.heroTitle}
+                <h1 className="mt-5 max-w-4xl break-words text-[2.75rem] font-black leading-[0.98] tracking-[-0.055em] text-white sm:text-6xl md:text-7xl lg:text-[5.4rem]">                  {destination.heroTitle}
                 </h1>
 
-                <p className="mt-7 max-w-2xl text-lg leading-8 text-white/85 md:text-xl">
-                  {destination.intro}
+                <p className="mt-6 max-w-2xl text-base leading-7 text-white/85 sm:text-lg sm:leading-8 md:text-xl">                  {destination.intro}
                 </p>
 
                 {Array.isArray(destination.stats) &&
                   destination.stats.length > 0 && (
-                    <div className="mt-10 grid max-w-3xl grid-cols-1 gap-3 sm:grid-cols-3">
-                      {destination.stats.map((stat) => (
-                        <div
-                          key={stat.label}
-                          className="rounded-[1.4rem] border border-white/20 bg-white/10 px-5 py-4 backdrop-blur-md"
-                        >
-                          <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-white/65">
-                            {stat.label}
-                          </p>
+                    <div className="mt-8 flex max-w-3xl gap-3 overflow-x-auto pb-2 sm:mt-10 sm:grid sm:grid-cols-3 sm:overflow-visible sm:pb-0">                      {destination.stats.map((stat) => (
+                      <div
+                        key={stat.label}
+                        className="min-w-[185px] rounded-[1.4rem] border border-white/20 bg-white/10 px-5 py-4 backdrop-blur-md sm:min-w-0"
+                      >
+                        <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-white/65">
+                          {stat.label}
+                        </p>
 
-                          <p className="mt-2 text-lg font-black text-white">
-                            {stat.value}
-                          </p>
-                        </div>
-                      ))}
+                        <p className="mt-2 text-lg font-black text-white">
+                          {stat.value}
+                        </p>
+                      </div>
+                    ))}
                     </div>
                   )}
               </div>
@@ -170,8 +166,8 @@ export default function DestinationPage({
         </section>
 
         {/* INDICE RAPIDO */}
-        <section className="relative z-10 mx-auto -mt-7 max-w-7xl px-5 md:px-8">
-          <div className="rounded-[1.6rem] border border-[#e0d7cb] bg-white p-4 shadow-[0_18px_40px_rgba(31,45,61,0.09)]">
+        <section className="sticky top-[78px] z-40 mx-auto -mt-7 max-w-7xl px-5 md:top-[88px] md:px-8">
+          <div className="rounded-[1.4rem] border border-[#e0d7cb] bg-white/95 p-3 shadow-[0_14px_32px_rgba(31,45,61,0.10)] backdrop-blur-xl sm:p-4">
             <div className="flex items-center gap-3 overflow-x-auto">
               <span className="shrink-0 px-2 text-xs font-black uppercase tracking-[0.17em] text-[#8b7f70]">
                 Vai a
@@ -196,61 +192,7 @@ export default function DestinationPage({
           </div>
         </section>
 
-        <div className="mx-auto grid max-w-7xl gap-12 px-5 py-16 md:px-8 md:py-20 lg:grid-cols-[230px_minmax(0,1fr)] lg:gap-16">
-          {/* INDICE DESKTOP */}
-          <aside className="hidden lg:block">
-            <div className="sticky top-8">
-              <p className="text-xs font-black uppercase tracking-[0.2em] text-[#c86b4a]">
-                In questa guida
-              </p>
-
-              <nav className="mt-6 border-l border-[#d8cdbf]">
-                <a
-                  href="#panoramica"
-                  className="block border-l-2 border-transparent px-5 py-3 font-bold text-[#617083] transition hover:border-[#123e78] hover:text-[#123e78]"
-                >
-                  Panoramica
-                </a>
-
-                {hasItinerary && (
-                  <a
-                    href="#itinerario"
-                    className="block border-l-2 border-transparent px-5 py-3 font-bold text-[#617083] transition hover:border-[#123e78] hover:text-[#123e78]"
-                  >
-                    Itinerario
-                  </a>
-                )}
-
-                {hasPracticalInfo && (
-                  <a
-                    href="#informazioni"
-                    className="block border-l-2 border-transparent px-5 py-3 font-bold text-[#617083] transition hover:border-[#123e78] hover:text-[#123e78]"
-                  >
-                    Informazioni
-                  </a>
-                )}
-
-                {hasFoodGuide && (
-                  <a
-                    href="#mangiare"
-                    className="block border-l-2 border-transparent px-5 py-3 font-bold text-[#617083] transition hover:border-[#123e78] hover:text-[#123e78]"
-                  >
-                    Dove mangiare
-                  </a>
-                )}
-
-                {hasGallery && (
-                  <a
-                    href="#galleria"
-                    className="block border-l-2 border-transparent px-5 py-3 font-bold text-[#617083] transition hover:border-[#123e78] hover:text-[#123e78]"
-                  >
-                    Fotografie
-                  </a>
-                )}
-              </nav>
-            </div>
-          </aside>
-
+        <div className="mx-auto max-w-6xl px-5 py-16 md:px-8 md:py-20">
           {/* CONTENUTO */}
           <div className="min-w-0">
             {/* PANORAMICA */}
@@ -290,7 +232,7 @@ export default function DestinationPage({
                   scoprire la città senza riempire troppo ogni giornata.
                 </p>
 
-                <div className="relative mt-12 ml-5 border-l border-[#d5c8b8] pl-10 md:ml-6 md:pl-14">
+                <div className="relative mt-10 ml-4 border-l border-[#d5c8b8] pl-8 sm:ml-5 sm:pl-10 md:mt-12 md:ml-6 md:pl-14">
                   {destination.itineraryDays.map((day, index) => {
                     const titleParts = day.label.split("—");
 
@@ -304,7 +246,7 @@ export default function DestinationPage({
                         key={day.label}
                         className="relative pb-14 last:pb-0"
                       >
-                        <div className="absolute -left-[61px] top-0 flex h-12 w-12 items-center justify-center rounded-full border-4 border-[#f7f4ee] bg-[#123e78] text-sm font-black text-white md:-left-[73px]">
+                        <div className="absolute -left-[49px] top-0 flex h-10 w-10 items-center justify-center rounded-full border-4 border-[#f7f4ee] bg-[#123e78] text-xs font-black text-white sm:-left-[61px] sm:h-12 sm:w-12 sm:text-sm md:-left-[73px]">
                           {String(index + 1).padStart(2, "0")}
                         </div>
 
