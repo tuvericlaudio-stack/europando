@@ -5,8 +5,7 @@ function GuideLink({ href, label }) {
   return (
     <a
       href={href}
-      className="whitespace-nowrap rounded-full border border-[#d9d1c5] bg-white px-4 py-2.5 text-xs font-bold uppercase tracking-[0.12em] text-[#123e78] transition hover:border-[#123e78] hover:bg-[#f7f4ee]"
-    >
+      className="whitespace-nowrap rounded-full border border-[#d9d1c5] bg-white px-3.5 py-2 text-[11px] font-bold uppercase tracking-[0.1em] text-[#123e78] transition hover:border-[#123e78] hover:bg-[#f7f4ee] sm:px-4 sm:py-2.5 sm:text-xs sm:tracking-[0.12em]"    >
       {label}
     </a>
   );
@@ -168,8 +167,8 @@ export default function DestinationPage({
         {/* INDICE RAPIDO */}
         <section className="sticky top-[78px] z-40 mx-auto -mt-7 max-w-7xl px-5 md:top-[88px] md:px-8">
           <div className="rounded-[1.4rem] border border-[#e0d7cb] bg-white/95 p-3 shadow-[0_14px_32px_rgba(31,45,61,0.10)] backdrop-blur-xl sm:p-4">
-            <div className="flex items-center gap-3 overflow-x-auto">
-              <span className="shrink-0 px-2 text-xs font-black uppercase tracking-[0.17em] text-[#8b7f70]">
+          <div className="flex items-center gap-2 overflow-x-auto sm:gap-3">
+              <span className="hidden shrink-0 px-2 text-xs font-black uppercase tracking-[0.17em] text-[#8b7f70] sm:block">
                 Vai a
               </span>
 
