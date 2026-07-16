@@ -167,7 +167,7 @@ export default function DestinationPage({
         {/* INDICE RAPIDO */}
         <section className="sticky top-[78px] z-40 mx-auto -mt-7 max-w-7xl px-5 md:top-[88px] md:px-8">
           <div className="rounded-[1.4rem] border border-[#e0d7cb] bg-white/95 p-3 shadow-[0_14px_32px_rgba(31,45,61,0.10)] backdrop-blur-xl sm:p-4">
-          <div className="flex items-center gap-2 overflow-x-auto sm:gap-3">
+            <div className="flex items-center gap-2 overflow-x-auto sm:gap-3">
               <span className="hidden shrink-0 px-2 text-xs font-black uppercase tracking-[0.17em] text-[#8b7f70] sm:block">
                 Vai a
               </span>
@@ -428,26 +428,17 @@ export default function DestinationPage({
                   Luoghi, dettagli e atmosfere che raccontano il carattere della
                   città.
                 </p>
-
-                <div className="mt-10 grid gap-4 md:grid-cols-2 md:grid-rows-2">
+                <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
                   {destination.gallery.slice(0, 3).map((image, index) => (
                     <figure
                       key={image}
-                      className={
-                        index === 0
-                          ? "overflow-hidden rounded-[1.8rem] md:row-span-2"
-                          : "overflow-hidden rounded-[1.8rem]"
-                      }
+                      className="aspect-[3/4] overflow-hidden rounded-[1.8rem] bg-[#e7dfd4]"
                     >
                       <img
                         src={image}
                         alt={`${destination.name}, fotografia ${index + 1}`}
                         loading="lazy"
-                        className={
-                          index === 0
-                            ? "h-[360px] w-full object-cover transition duration-500 hover:scale-[1.02] md:h-full md:min-h-[560px]"
-                            : "h-[270px] w-full object-cover transition duration-500 hover:scale-[1.02]"
-                        }
+                        className="h-full w-full object-cover transition duration-500 hover:scale-[1.02]"
                       />
                     </figure>
                   ))}
