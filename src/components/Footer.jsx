@@ -67,12 +67,14 @@ export default function Footer({ onHome, onDestinations }) {
               </p>
 
               <div className="mt-5">
-                <span
-                  aria-disabled="true"
-                  className="inline-flex min-h-11 cursor-default items-center rounded-full border border-white/15 bg-white/5 px-5 py-3 text-sm font-bold text-white/60"
+                <a
+                  href="https://www.instagram.com/_europando_/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex min-h-11 items-center rounded-full border border-white/20 bg-white/5 px-5 py-3 text-sm font-bold text-white/75 transition hover:border-white/40 hover:bg-white/10 hover:text-white"
                 >
-                  Instagram in arrivo
-                </span>
+                  Instagram
+                </a>
               </div>
             </div>
           </div>
