@@ -75,6 +75,22 @@ Da sapere:
 - gli indirizzi non generati (bozze, slug inesistenti) continuano a passare da
   `404.html` e mostrano la pagina 404 del sito
 
+## Sitemap
+
+La build scrive anche `dist/sitemap.xml`, dalle stesse rotte che vengono
+generate: non può elencare pagine inesistenti né dimenticare quelle nuove, e i
+suoi indirizzi coincidono con le `canonical` scritte nelle pagine.
+
+Non contiene `lastmod`, perché i contenuti non portano una data di modifica
+affidabile e usare quella della build dichiarerebbe l'intero sito come
+aggiornato a ogni pubblicazione.
+
+Il sito è pubblicato in una sottocartella (`/europando/`), quindi la sitemap
+risponde su `https://tuvericlaudio-stack.github.io/europando/sitemap.xml`. Un
+`robots.txt` non servirebbe a segnalarla: i crawler lo leggono soltanto nella
+radice del dominio, che non appartiene a questo repository. Va indicata in
+Google Search Console.
+
 ## Regola contenuti
 
 Le pagine non pronte devono restare in stato `draft` nei file dati.
@@ -112,3 +128,4 @@ file dati e compare automaticamente in lista e nella rotta di dettaglio.
 - resa la navigazione fatta di link reali, seguibili dai motori di ricerca
 - aggiunto il prerender delle pagine pubblicate, per anteprime social corrette
   e indirizzi profondi che rispondono senza passare dal redirect
+- generata `sitemap.xml` dalle stesse rotte del prerender

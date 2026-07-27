@@ -63,7 +63,7 @@ async function main() {
   });
 
   try {
-    const { routes, renderRoute } = await vite.ssrLoadModule(
+    const { routes, renderRoute, buildSitemap } = await vite.ssrLoadModule(
       "/src/entry-prerender.jsx"
     );
 
@@ -78,7 +78,9 @@ async function main() {
       console.log(`prerender ${seo.path} → ${outputPath.slice(distDir.length + 1)}`);
     }
 
-    console.log(`\n${routes.length} pagine generate.`);
+    await writeFile(join(distDir, "sitemap.xml"), buildSitemap(routes), "utf8");
+
+    console.log(`\n${routes.length} pagine generate, sitemap.xml compresa.`);
   } finally {
     await vite.close();
   }

@@ -103,3 +103,20 @@ export function renderRoute(seo) {
 
   return { html, head: renderHead(seo) };
 }
+
+// Sitemap costruita dalle stesse rotte che vengono generate, così non può
+// elencare pagine inesistenti né dimenticare quelle nuove. Nessun `lastmod`:
+// i contenuti non portano una data di modifica affidabile, e metterci quella
+// della build direbbe che tutto è cambiato a ogni pubblicazione.
+export function buildSitemap(seoRoutes = routes) {
+  const urls = seoRoutes
+    .filter((seo) => !(seo.robots ?? "").includes("noindex"))
+    .map((seo) => `  <url>\n    <loc>${escapeHtml(toCanonicalUrl(seo.path))}</loc>\n  </url>`)
+    .join("\n");
+
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${urls}
+</urlset>
+`;
+}
