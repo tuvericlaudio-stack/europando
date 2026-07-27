@@ -72,6 +72,14 @@ const buildAbsoluteUrl = (path = "/") => {
   ).toString();
 };
 
+// Le pagine statiche generate in build sono cartelle con index.html, quindi
+// l'indirizzo definitivo ha lo slash finale: la canonical scritta durante la
+// navigazione deve dire la stessa cosa di quella nell'HTML iniziale.
+const buildCanonicalUrl = (path = "/") => {
+  const url = buildAbsoluteUrl(path);
+  return url.endsWith("/") ? url : `${url}/`;
+};
+
 const buildImageUrl = (image) => {
   if (!image) return siteConfig.defaultSocialImage;
   if (image.startsWith("http://") || image.startsWith("https://")) return image;
@@ -90,7 +98,7 @@ export default function Seo({
   useEffect(() => {
     document.title = title;
 
-    const canonicalUrl = buildAbsoluteUrl(path);
+    const canonicalUrl = buildCanonicalUrl(path);
     const imageUrl = buildImageUrl(image);
 
     ensureMeta('meta[name="description"]', {

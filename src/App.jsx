@@ -11,71 +11,21 @@ import DestinationsPage from "./pages/DestinationsPage";
 import { featuredPosts } from "./data/posts";
 import { articles } from "./data/articles";
 import { destinations } from "./data/destinations";
-import { siteConfig } from "./config/site";
-import { asset, resolveAsset } from "./utils/assets";
+import { asset } from "./utils/assets";
 import {
   findPublishedBySlug,
   getFeaturedDestination,
   getPublishedArticleCards,
   getPublishedDestinations,
 } from "./utils/content";
-
-const buildWebSiteStructuredData = () => ({
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  name: siteConfig.name,
-  url: siteConfig.defaultSiteUrl,
-  description: siteConfig.description,
-});
-
-const buildArticlesCollectionStructuredData = () => ({
-  "@context": "https://schema.org",
-  "@type": "CollectionPage",
-  name: "Articoli di viaggio in Europa",
-  url: `${siteConfig.defaultSiteUrl}articoli`,
-  description:
-    "Guide di viaggio, itinerari e articoli pubblicati su Europando per organizzare meglio city break e viaggi più lunghi.",
-});
-
-const getArticleDescription = (post) =>
-  post.seo?.description ?? post.excerpt ?? post.subtitle ?? post.intro;
-
-const getArticleImage = (post) => resolveAsset(post.heroImage ?? post.image ?? "");
-
-const buildArticleStructuredData = (post) => ({
-  "@context": "https://schema.org",
-  "@type": "Article",
-  headline: post.title,
-  description: getArticleDescription(post),
-  image: getArticleImage(post),
-  mainEntityOfPage: `${siteConfig.defaultSiteUrl}articoli/${post.slug}`,
-  author: {
-    "@type": "Organization",
-    name: siteConfig.name,
-  },
-  publisher: {
-    "@type": "Organization",
-    name: siteConfig.name,
-  },
-});
-
-const buildDestinationsCollectionStructuredData = () => ({
-  "@context": "https://schema.org",
-  "@type": "CollectionPage",
-  name: "Destinazioni e guide città",
-  url: `${siteConfig.defaultSiteUrl}destinazioni`,
-  description:
-    "Destinazioni pubblicate, guide città e consigli pratici per organizzare itinerari leggibili e facili da consultare.",
-});
-
-const buildDestinationStructuredData = (destination) => ({
-  "@context": "https://schema.org",
-  "@type": "TouristDestination",
-  name: destination.name,
-  description: destination.intro ?? destination.text,
-  image: destination.image,
-  url: `${siteConfig.defaultSiteUrl}destinazioni/${destination.slug}`,
-});
+import {
+  buildArticleSeo,
+  buildArticlesSeo,
+  buildDestinationSeo,
+  buildDestinationsSeo,
+  buildHomeSeo,
+  buildNotFoundSeo,
+} from "./utils/seo";
 
 // Su un sito renderizzato lato client il browser cerca l'ancora prima che il
 // contenuto esista, quindi un link condiviso come #giorno-2 resterebbe in cima:
@@ -105,17 +55,11 @@ function HomeRoute({
   featuredDestination,
   publishedDestinations,
 }) {
-  const structuredData = useMemo(() => buildWebSiteStructuredData(), []);
+  const seo = useMemo(() => buildHomeSeo(heroSrc), [heroSrc]);
 
   return (
     <>
-      <Seo
-        title={siteConfig.defaultTitle}
-        description={siteConfig.description}
-        path="/"
-        image={heroSrc}
-        structuredData={structuredData}
-      />
+      <Seo {...seo} />
       <Header logoSrc={logoSrc} />
       <HomePage
         heroSrc={heroSrc}
@@ -127,17 +71,11 @@ function HomeRoute({
 }
 
 function ArticlesRoute({ logoSrc, publishedPosts }) {
-  const structuredData = useMemo(() => buildArticlesCollectionStructuredData(), []);
+  const seo = useMemo(() => buildArticlesSeo(publishedPosts), [publishedPosts]);
 
   return (
     <>
-      <Seo
-        title={`Itinerari e articoli di viaggio | ${siteConfig.name}`}
-        description="Itinerari e articoli di viaggio per organizzare city break, weekend e viaggi più lunghi."
-        path="/articoli"
-        image={publishedPosts[0]?.image}
-        structuredData={structuredData}
-      />
+      <Seo {...seo} />
       <ArticlesPage logoSrc={logoSrc} posts={publishedPosts} />
     </>
   );
@@ -149,20 +87,21 @@ function ArticleRoute({ logoSrc }) {
     () => findPublishedBySlug([...articles, ...featuredPosts], slug),
     [slug]
   );
-  const structuredData = useMemo(
-    () => (post ? buildArticleStructuredData(post) : null),
-    [post]
+  const seo = useMemo(
+    () =>
+      post
+        ? buildArticleSeo(post)
+        : buildNotFoundSeo(
+            `/articoli/${slug}`,
+            "La pagina richiesta non è disponibile oppure non è ancora stata pubblicata."
+          ),
+    [post, slug]
   );
 
   if (!post) {
     return (
       <>
-        <Seo
-          title={`404 | ${siteConfig.name}`}
-          description="La pagina richiesta non è disponibile oppure non è ancora stata pubblicata."
-          path={`/articoli/${slug}`}
-          robots="noindex,nofollow"
-        />
+        <Seo {...seo} />
         <NotFoundPage logoSrc={logoSrc} />
       </>
     );
@@ -170,31 +109,21 @@ function ArticleRoute({ logoSrc }) {
 
   return (
     <>
-      <Seo
-        title={post.seo?.title ?? `${post.title} | ${siteConfig.name}`}
-        description={getArticleDescription(post)}
-        path={`/articoli/${post.slug}`}
-        image={getArticleImage(post)}
-        type="article"
-        structuredData={structuredData}
-      />
+      <Seo {...seo} />
       <ArticlePage logoSrc={logoSrc} post={post} />
     </>
   );
 }
 
 function DestinationsRoute({ logoSrc, publishedDestinations }) {
-  const structuredData = useMemo(() => buildDestinationsCollectionStructuredData(), []);
+  const seo = useMemo(
+    () => buildDestinationsSeo(publishedDestinations),
+    [publishedDestinations]
+  );
 
   return (
     <>
-      <Seo
-        title={`Destinazioni e guide città | ${siteConfig.name}`}
-        description="Destinazioni pubblicate, guide città e consigli pratici per organizzare itinerari leggibili e facili da consultare."
-        path="/destinazioni"
-        image={publishedDestinations[0]?.image}
-        structuredData={structuredData}
-      />
+      <Seo {...seo} />
       <DestinationsPage logoSrc={logoSrc} destinations={publishedDestinations} />
     </>
   );
@@ -203,20 +132,21 @@ function DestinationsRoute({ logoSrc, publishedDestinations }) {
 function DestinationRoute({ logoSrc }) {
   const { slug } = useParams();
   const destination = useMemo(() => findPublishedBySlug(destinations, slug), [slug]);
-  const structuredData = useMemo(
-    () => (destination ? buildDestinationStructuredData(destination) : null),
-    [destination]
+  const seo = useMemo(
+    () =>
+      destination
+        ? buildDestinationSeo(destination)
+        : buildNotFoundSeo(
+            `/destinazioni/${slug}`,
+            "La destinazione richiesta non è disponibile oppure non è ancora stata pubblicata."
+          ),
+    [destination, slug]
   );
 
   if (!destination) {
     return (
       <>
-        <Seo
-          title={`404 | ${siteConfig.name}`}
-          description="La destinazione richiesta non è disponibile oppure non è ancora stata pubblicata."
-          path={`/destinazioni/${slug}`}
-          robots="noindex,nofollow"
-        />
+        <Seo {...seo} />
         <NotFoundPage logoSrc={logoSrc} />
       </>
     );
@@ -224,13 +154,7 @@ function DestinationRoute({ logoSrc }) {
 
   return (
     <>
-      <Seo
-        title={destination.seoTitle ?? `${destination.name} | ${siteConfig.name}`}
-        description={destination.seoDescription ?? destination.intro ?? destination.text}
-        path={`/destinazioni/${destination.slug}`}
-        image={destination.image}
-        structuredData={structuredData}
-      />
+      <Seo {...seo} />
       <DestinationPage logoSrc={logoSrc} destination={destination} />
     </>
   );
@@ -242,10 +166,10 @@ function NotFoundRoute({ logoSrc }) {
   return (
     <>
       <Seo
-        title={`404 | ${siteConfig.name}`}
-        description="La pagina richiesta non esiste nel sito pubblico di Europando."
-        path={location.pathname}
-        robots="noindex,nofollow"
+        {...buildNotFoundSeo(
+          location.pathname,
+          "La pagina richiesta non esiste nel sito pubblico di Europando."
+        )}
       />
       <NotFoundPage logoSrc={logoSrc} />
     </>
