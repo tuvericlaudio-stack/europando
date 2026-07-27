@@ -22,7 +22,7 @@ export default function ArticlesPage({ logoSrc, posts }) {
 
       <section className="max-w-7xl mx-auto px-6 pb-24">
         <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
-          {posts.map((post) => (
+          {posts.map((post, index) => (
             <article
               key={post.slug}
               className="group overflow-hidden rounded-[1.7rem] border border-[#dbe5ef] bg-white shadow-[0_10px_22px_rgba(20,40,70,0.05)] hover:-translate-y-1 hover:shadow-[0_16px_30px_rgba(20,40,70,0.08)] transition"
@@ -31,6 +31,8 @@ export default function ArticlesPage({ logoSrc, posts }) {
                 <img
                   src={post.image}
                   alt={post.imageAlt ?? post.title}
+                  loading={index === 0 ? "eager" : "lazy"}
+                  decoding="async"
                   className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/42 to-transparent" />

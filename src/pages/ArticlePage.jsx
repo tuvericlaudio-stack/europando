@@ -277,7 +277,9 @@ function RouteDivider() {
   );
 }
 
-function BlogImage({ src, alt, caption }) {
+// width e height dichiarati fanno riservare al browser lo spazio esatto prima
+// che l'immagine arrivi: senza, il testo veniva spinto in basso al caricamento.
+function BlogImage({ src, alt, caption, width, height }) {
   if (!src) {
     return null;
   }
@@ -288,7 +290,10 @@ function BlogImage({ src, alt, caption }) {
         <img
           src={resolveAsset(src)}
           alt={alt}
+          width={width}
+          height={height}
           loading="lazy"
+          decoding="async"
           className="max-h-[760px] w-full object-cover transition duration-700 hover:scale-[1.015]"
         />
       </div>
@@ -386,6 +391,8 @@ function ArticleSection({ section }) {
         src={section.image}
         alt={section.imageAlt || section.title}
         caption={section.caption}
+        width={section.imageWidth}
+        height={section.imageHeight}
       />
 
       <PersonalNote>{section.quote}</PersonalNote>
@@ -571,6 +578,9 @@ export default function ArticlePage({ article, post, logoSrc }) {
                 <img
                   src={resolveAsset(content.heroImage)}
                   alt={content.heroAlt}
+                  width={content.heroWidth}
+                  height={content.heroHeight}
+                  fetchPriority="high"
                   className="max-h-[760px] min-h-[360px] w-full object-cover"
                 />
               </div>
