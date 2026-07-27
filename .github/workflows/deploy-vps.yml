@@ -1,0 +1,112 @@
+name: Deploy Europando sul VPS
+
+# Pubblica il sito sul server proprio. Finché la variabile DEPLOY_HOST non è
+# configurata il job non parte: così questo workflow può stare su main senza
+# farlo diventare rosso prima che il server sia pronto.
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-vps
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    if: vars.DEPLOY_HOST != ''
+    runs-on: ubuntu-latest
+
+    env:
+      DEPLOY_HOST: ${{ vars.DEPLOY_HOST }}
+      DEPLOY_USER: ${{ vars.DEPLOY_USER }}
+      DEPLOY_PATH: ${{ vars.DEPLOY_PATH }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Setup Node
+        uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --include=dev
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Build e prerender per il dominio
+        env:
+          VITE_SITE_URL: ${{ vars.SITE_URL }}
+          VITE_SITE_BASE_PATH: /
+        run: npm run build
+
+      # Il sito è servito dalla radice del dominio: se restasse il base path di
+      # GitHub Pages, ogni indirizzo sarebbe sbagliato. Meglio accorgersene qui
+      # che dopo la pubblicazione.
+      - name: Verifica che la build punti al dominio
+        run: |
+          set -euo pipefail
+          expected="${{ vars.SITE_URL }}"
+          grep -q "rel=\"canonical\" href=\"${expected%/}/\"" dist/index.html \
+            || { echo "La home non dichiara $expected come indirizzo canonico"; exit 1; }
+          grep -q 'src="/assets/' dist/index.html \
+            || { echo "Gli asset non sono serviti dalla radice del dominio"; exit 1; }
+          test -f dist/404.html
+          test -f dist/sitemap.xml
+
+      - name: Prepara la chiave SSH
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+          echo "${{ secrets.DEPLOY_SSH_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          # L'impronta del server è fissata a mano: senza, il primo collegamento
+          # accetterebbe qualunque host si presenti con quel nome.
+          echo "${{ secrets.DEPLOY_KNOWN_HOSTS }}" > ~/.ssh/known_hosts
+          chmod 600 ~/.ssh/known_hosts
+
+      - name: Copia la nuova versione
+        run: |
+          set -euo pipefail
+          rsync -az --delete \
+            -e "ssh -i ~/.ssh/deploy_key" \
+            dist/ \
+            "$DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH/releases/$GITHUB_SHA/"
+
+      # mv -T su un symlink è atomico: non esiste un istante in cui 'current'
+      # non punta a una versione completa del sito. Le ultime cinque versioni
+      # restano sul server, per poter tornare indietro subito.
+      - name: Attiva la nuova versione
+        run: |
+          set -euo pipefail
+          ssh -i ~/.ssh/deploy_key "$DEPLOY_USER@$DEPLOY_HOST" \
+            "set -eu; \
+             ln -sfn '$DEPLOY_PATH/releases/$GITHUB_SHA' '$DEPLOY_PATH/current.tmp'; \
+             mv -T '$DEPLOY_PATH/current.tmp' '$DEPLOY_PATH/current'; \
+             cd '$DEPLOY_PATH/releases'; \
+             ls -1dt */ | tail -n +6 | xargs -r rm -rf"
+
+      - name: Controlla che il sito risponda
+        run: |
+          set -euo pipefail
+          site="${{ vars.SITE_URL }}"
+          code=$(curl -sS -o /dev/null -w '%{http_code}' "${site%/}/")
+          echo "home: $code"
+          test "$code" = "200"
+          # Un indirizzo inesistente deve rispondere 404, non 200.
+          code=$(curl -sS -o /dev/null -w '%{http_code}' "${site%/}/indirizzo-che-non-esiste")
+          echo "indirizzo inesistente: $code"
+          test "$code" = "404"
+
+      - name: Rimuovi la chiave
+        if: always()
+        run: rm -f ~/.ssh/deploy_key

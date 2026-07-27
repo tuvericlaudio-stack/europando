@@ -50,10 +50,14 @@ dominio dichiarerebbe a Google di essere una copia di quello su GitHub Pages.
 
 ## Pubblicare su un server proprio
 
+La procedura completa è in [`deploy/README.md`](deploy/README.md): DNS,
+preparazione del server, certificato HTTPS, variabili su GitHub e primo deploy.
+
 `dist/` è composta da soli file statici: non serve Node in esecuzione. Ogni
 pagina pubblicata è una cartella con `index.html`, quindi al server basta
 servire i file e restituire `404.html` quando l'indirizzo non corrisponde a
-nulla. Con nginx:
+nulla. Estratto della configurazione, quella completa è in
+[`deploy/nginx/europando.it.conf`](deploy/nginx/europando.it.conf):
 
 ```nginx
 root /var/www/europando/current;
@@ -77,6 +81,9 @@ lungo; l'HTML no, perché cambia a ogni pubblicazione.
 ## Struttura del progetto
 
 ```text
+deploy/
+  README.md           procedura di pubblicazione sul server
+  nginx/              configurazione del virtual host
 src/
   components/         componenti riutilizzabili
   config/             configurazione sito
