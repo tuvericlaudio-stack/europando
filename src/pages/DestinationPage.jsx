@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
@@ -75,11 +76,7 @@ function FoodCategory({ label, items, number }) {
   );
 }
 
-export default function DestinationPage({
-  logoSrc,
-  destination,
-  navigateTo,
-}) {
+export default function DestinationPage({ logoSrc, destination }) {
   const hasItinerary =
     Array.isArray(destination.itineraryDays) &&
     destination.itineraryDays.length > 0;
@@ -98,12 +95,7 @@ export default function DestinationPage({
 
   return (
     <div className="min-h-screen bg-[#f7f4ee] text-[#14263d]">
-      <Header
-        logoSrc={logoSrc}
-        onHome={() => navigateTo("/")}
-        onArticles={() => navigateTo("/articoli")}
-        onDestinations={() => navigateTo("/destinazioni")}
-      />
+      <Header logoSrc={logoSrc} />
 
       <main>
         {/* HERO */}
@@ -120,14 +112,13 @@ export default function DestinationPage({
             <div className="absolute inset-0 bg-gradient-to-t from-[#071525]/85 via-transparent to-[#071525]/25" />
 
             <div className="relative mx-auto flex min-h-[560px] max-w-7xl flex-col px-5 pb-10 pt-6 sm:min-h-[620px] sm:pb-14 md:min-h-[700px] md:px-8 md:pb-20 md:pt-12">              <div>
-              <button
-                type="button"
-                onClick={() => navigateTo("/destinazioni")}
+              <Link
+                to="/destinazioni"
                 className="inline-flex min-h-11 items-center gap-2 rounded-full border border-white/35 bg-white/10 px-5 py-3 text-xs font-bold uppercase tracking-[0.14em] text-white backdrop-blur-md transition hover:bg-white hover:text-[#123e78]"
               >
                 <span aria-hidden="true">←</span>
                 Tutte le destinazioni
-              </button>
+              </Link>
             </div>
 
               <div className="mt-auto max-w-4xl">
@@ -457,23 +448,18 @@ export default function DestinationPage({
                   Scopri le altre destinazioni di Europando.
                 </h2>
 
-                <button
-                  type="button"
-                  onClick={() => navigateTo("/destinazioni")}
-                  className="mt-8 min-h-11 rounded-full bg-white px-6 py-3 text-sm font-black uppercase tracking-[0.13em] text-[#123e78] transition hover:bg-[#f2ede6]"
+                <Link
+                  to="/destinazioni"
+                  className="mt-8 inline-flex min-h-11 items-center rounded-full bg-white px-6 py-3 text-sm font-black uppercase tracking-[0.13em] text-[#123e78] transition hover:bg-[#f2ede6]"
                 >
                   Tutte le destinazioni
-                </button>
+                </Link>
               </div>
             </section>
           </div>
         </div>
       </main>
-      <Footer
-        onHome={() => navigateTo("/")}
-        onArticles={() => navigateTo("/articoli")}
-        onDestinations={() => navigateTo("/destinazioni")}
-      />
+      <Footer />
     </div>
   );
 }

@@ -1,5 +1,5 @@
 import { useEffect, useMemo } from "react";
-import { Route, Routes, useLocation, useNavigate, useParams } from "react-router-dom";
+import { Route, Routes, useLocation, useParams } from "react-router-dom";
 import Header from "./components/Header";
 import NotFoundPage from "./components/NotFoundPage";
 import Seo from "./components/Seo";
@@ -77,20 +77,24 @@ const buildDestinationStructuredData = (destination) => ({
   url: `${siteConfig.defaultSiteUrl}destinazioni/${destination.slug}`,
 });
 
-function useSiteNavigation() {
-  const navigate = useNavigate();
-
-  return (path) => {
-    navigate(path);
-  };
-}
-
-function ScrollToTop() {
-  const { pathname } = useLocation();
+// Su un sito renderizzato lato client il browser cerca l'ancora prima che il
+// contenuto esista, quindi un link condiviso come #giorno-2 resterebbe in cima:
+// lo spostamento va fatto a pagina disegnata.
+function ScrollManager() {
+  const { pathname, hash } = useLocation();
 
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "auto" });
-  }, [pathname]);
+    if (!hash) {
+      window.scrollTo({ top: 0, behavior: "auto" });
+      return;
+    }
+
+    const target = document.getElementById(decodeURIComponent(hash.slice(1)));
+
+    if (target) {
+      target.scrollIntoView({ behavior: "auto", block: "start" });
+    }
+  }, [pathname, hash]);
 
   return null;
 }
@@ -101,7 +105,6 @@ function HomeRoute({
   featuredDestination,
   publishedDestinations,
 }) {
-  const navigateTo = useSiteNavigation();
   const structuredData = useMemo(() => buildWebSiteStructuredData(), []);
 
   return (
@@ -113,24 +116,17 @@ function HomeRoute({
         image={heroSrc}
         structuredData={structuredData}
       />
-      <Header
-        logoSrc={logoSrc}
-        onHome={() => navigateTo("/")}
-        onArticles={() => navigateTo("/articoli")}
-        onDestinations={() => navigateTo("/destinazioni")}
-      />
+      <Header logoSrc={logoSrc} />
       <HomePage
         heroSrc={heroSrc}
         destinations={publishedDestinations}
         featuredDestination={featuredDestination}
-        navigateTo={navigateTo}
       />
     </>
   );
 }
 
 function ArticlesRoute({ logoSrc, publishedPosts }) {
-  const navigateTo = useSiteNavigation();
   const structuredData = useMemo(() => buildArticlesCollectionStructuredData(), []);
 
   return (
@@ -142,14 +138,13 @@ function ArticlesRoute({ logoSrc, publishedPosts }) {
         image={publishedPosts[0]?.image}
         structuredData={structuredData}
       />
-      <ArticlesPage logoSrc={logoSrc} posts={publishedPosts} navigateTo={navigateTo} />
+      <ArticlesPage logoSrc={logoSrc} posts={publishedPosts} />
     </>
   );
 }
 
 function ArticleRoute({ logoSrc }) {
   const { slug } = useParams();
-  const navigateTo = useSiteNavigation();
   const post = useMemo(
     () => findPublishedBySlug([...articles, ...featuredPosts], slug),
     [slug]
@@ -168,7 +163,7 @@ function ArticleRoute({ logoSrc }) {
           path={`/articoli/${slug}`}
           robots="noindex,nofollow"
         />
-        <NotFoundPage logoSrc={logoSrc} navigateTo={navigateTo} />
+        <NotFoundPage logoSrc={logoSrc} />
       </>
     );
   }
@@ -183,13 +178,12 @@ function ArticleRoute({ logoSrc }) {
         type="article"
         structuredData={structuredData}
       />
-      <ArticlePage logoSrc={logoSrc} post={post} navigateTo={navigateTo} />
+      <ArticlePage logoSrc={logoSrc} post={post} />
     </>
   );
 }
 
 function DestinationsRoute({ logoSrc, publishedDestinations }) {
-  const navigateTo = useSiteNavigation();
   const structuredData = useMemo(() => buildDestinationsCollectionStructuredData(), []);
 
   return (
@@ -201,18 +195,13 @@ function DestinationsRoute({ logoSrc, publishedDestinations }) {
         image={publishedDestinations[0]?.image}
         structuredData={structuredData}
       />
-      <DestinationsPage
-        logoSrc={logoSrc}
-        destinations={publishedDestinations}
-        navigateTo={navigateTo}
-      />
+      <DestinationsPage logoSrc={logoSrc} destinations={publishedDestinations} />
     </>
   );
 }
 
 function DestinationRoute({ logoSrc }) {
   const { slug } = useParams();
-  const navigateTo = useSiteNavigation();
   const destination = useMemo(() => findPublishedBySlug(destinations, slug), [slug]);
   const structuredData = useMemo(
     () => (destination ? buildDestinationStructuredData(destination) : null),
@@ -228,7 +217,7 @@ function DestinationRoute({ logoSrc }) {
           path={`/destinazioni/${slug}`}
           robots="noindex,nofollow"
         />
-        <NotFoundPage logoSrc={logoSrc} navigateTo={navigateTo} />
+        <NotFoundPage logoSrc={logoSrc} />
       </>
     );
   }
@@ -242,17 +231,12 @@ function DestinationRoute({ logoSrc }) {
         image={destination.image}
         structuredData={structuredData}
       />
-      <DestinationPage
-        logoSrc={logoSrc}
-        destination={destination}
-        navigateTo={navigateTo}
-      />
+      <DestinationPage logoSrc={logoSrc} destination={destination} />
     </>
   );
 }
 
 function NotFoundRoute({ logoSrc }) {
-  const navigateTo = useSiteNavigation();
   const location = useLocation();
 
   return (
@@ -263,7 +247,7 @@ function NotFoundRoute({ logoSrc }) {
         path={location.pathname}
         robots="noindex,nofollow"
       />
-      <NotFoundPage logoSrc={logoSrc} navigateTo={navigateTo} />
+      <NotFoundPage logoSrc={logoSrc} />
     </>
   );
 }
@@ -287,7 +271,7 @@ export default function App() {
 
   return (
     <>
-      <ScrollToTop />
+      <ScrollManager />
       <Routes>
         <Route
           path="/"

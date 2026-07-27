@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { resolveAsset } from "../utils/assets";
@@ -399,21 +400,6 @@ function DayNavigation({ days }) {
     return null;
   }
 
-  const scrollToDay = (number) => {
-    const target = document.getElementById(`giorno-${number}`);
-
-    if (target) {
-      const prefersReducedMotion = window.matchMedia(
-        "(prefers-reduced-motion: reduce)"
-      ).matches;
-
-      target.scrollIntoView({
-        behavior: prefersReducedMotion ? "auto" : "smooth",
-        block: "start",
-      });
-    }
-  };
-
   return (
     <nav
       className="mx-auto mt-8 max-w-5xl px-5 md:px-8"
@@ -422,10 +408,9 @@ function DayNavigation({ days }) {
       <div className="rounded-[1.4rem] border border-[#d8cec2] bg-[#efe8df] p-3 shadow-[0_12px_35px_rgba(39,54,71,0.05)]">
         <div className="grid gap-2 sm:grid-cols-3">
           {days.map((day) => (
-            <button
+            <a
               key={day.number}
-              type="button"
-              onClick={() => scrollToDay(day.number)}
+              href={`#giorno-${day.number}`}
               className="group flex items-center gap-4 rounded-[1rem] px-4 py-4 text-left transition hover:bg-white"
             >
               <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#123e78] text-sm font-black text-white transition group-hover:bg-[#c86b4a]">
@@ -441,7 +426,7 @@ function DayNavigation({ days }) {
                   {day.navigationTitle || day.title}
                 </span>
               </span>
-            </button>
+            </a>
           ))}
         </div>
       </div>
@@ -521,27 +506,8 @@ function AuthorBox() {
   );
 }
 
-export default function ArticlePage({
-  article,
-  post,
-  logoSrc,
-  navigateTo,
-  navigateHome,
-  navigateDestinations,
-  navigateToGuide,
-}) {
+export default function ArticlePage({ article, post, logoSrc }) {
   const content = normalizeArticle(article, post);
-
-  const goTo = (path) => {
-    if (navigateTo) {
-      navigateTo(path);
-    }
-  };
-
-  const handleHome = navigateHome ?? (() => goTo("/"));
-  const handleArticles = () => goTo("/articoli");
-  const handleDestinations =
-    navigateDestinations ?? (() => goTo("/destinazioni"));
 
   if (!content) {
     return null;
@@ -549,14 +515,9 @@ export default function ArticlePage({
 
   const relatedDestination = content.relatedDestination ?? null;
 
-  const handleGuide =
-    navigateToGuide ??
-    (() =>
-      goTo(
-        relatedDestination
-          ? `/destinazioni/${relatedDestination.slug}`
-          : "/destinazioni"
-      ));
+  const relatedDestinationPath = relatedDestination
+    ? `/destinazioni/${relatedDestination.slug}`
+    : "/destinazioni";
 
   const sectionImages = new Set(
     [
@@ -575,23 +536,17 @@ export default function ArticlePage({
     <div className="min-h-screen bg-[#f7f4ee]">
       <ReadingProgress />
 
-      <Header
-        logoSrc={logoSrc}
-        onHome={handleHome}
-        onArticles={handleArticles}
-        onDestinations={handleDestinations}
-      />
+      <Header logoSrc={logoSrc} />
 
       <main>
         <article>
           <header className="mx-auto max-w-5xl px-5 pb-10 pt-12 text-center md:px-8 md:pb-14 md:pt-20">
-            <button
-              type="button"
-              onClick={handleArticles}
+            <Link
+              to="/articoli"
               className="text-xs font-black uppercase tracking-[0.2em] text-[#c86b4a] transition hover:text-[#123e78]"
             >
               Racconti di viaggio
-            </button>
+            </Link>
 
             <h1 className="mx-auto mt-6 max-w-4xl text-4xl font-black leading-[1.02] tracking-[-0.05em] text-[#123e78] sm:text-5xl md:text-7xl">
               {content.title}
@@ -699,14 +654,13 @@ export default function ArticlePage({
                     `Nella nostra guida di ${relatedDestination.name} trovi l’itinerario, le informazioni sui trasporti e i luoghi che abbiamo raccolto durante il viaggio.`}
                 </p>
 
-                <button
-                  type="button"
-                  onClick={handleGuide}
+                <Link
+                  to={relatedDestinationPath}
                   className="mt-7 inline-flex items-center gap-2 border-b-2 border-[#c86b4a] pb-2 text-sm font-black uppercase tracking-[0.14em] text-[#123e78] transition hover:text-[#c86b4a]"
                 >
                   Leggi la guida di {relatedDestination.name}
                   <span aria-hidden="true">→</span>
-                </button>
+                </Link>
               </section>
             )}
 
@@ -715,12 +669,7 @@ export default function ArticlePage({
         </article>
       </main>
 
-      <Footer
-        logoSrc={logoSrc}
-        onHome={handleHome}
-        onArticles={handleArticles}
-        onDestinations={handleDestinations}
-      />
+      <Footer />
     </div>
   );
 }

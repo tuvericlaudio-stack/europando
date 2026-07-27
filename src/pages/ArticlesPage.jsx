@@ -1,14 +1,11 @@
+import { Link } from "react-router-dom";
 import Header from "../components/Header";
+import Footer from "../components/Footer";
 
-export default function ArticlesPage({ logoSrc, posts, navigateTo }) {
+export default function ArticlesPage({ logoSrc, posts }) {
   return (
     <div className="min-h-screen bg-[#f4f7fb] text-[#17202c]">
-      <Header
-        logoSrc={logoSrc}
-        onHome={() => navigateTo("/")}
-        onArticles={() => navigateTo("/articoli")}
-        onDestinations={() => navigateTo("/destinazioni")}
-      />
+      <Header logoSrc={logoSrc} />
 
       <section className="max-w-7xl mx-auto px-6 pt-14 pb-12 md:pt-18 md:pb-14">
         <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#7a8798]">
@@ -33,7 +30,7 @@ export default function ArticlesPage({ logoSrc, posts, navigateTo }) {
               <div className="relative h-64 overflow-hidden">
                 <img
                   src={post.image}
-                  alt={post.title}
+                  alt={post.imageAlt ?? post.title}
                   className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/42 to-transparent" />
@@ -47,25 +44,27 @@ export default function ArticlesPage({ logoSrc, posts, navigateTo }) {
                   {post.meta}
                 </div>
 
-                <h2 className="mt-3 text-2xl font-black tracking-[-0.02em] leading-tight group-hover:text-[#0d62ad] transition">
-                  {post.title}
+                <h2 className="mt-3 text-2xl font-black tracking-[-0.02em] leading-tight transition group-hover:text-[#0d62ad]">
+                  <Link to={`/articoli/${post.slug}`}>{post.title}</Link>
                 </h2>
 
                 <p className="mt-4 text-[#5f6875] leading-8">
                   {post.excerpt}
                 </p>
 
-                <button
-                  onClick={() => navigateTo(`/articoli/${post.slug}`)}
+                <Link
+                  to={`/articoli/${post.slug}`}
                   className="mt-6 inline-flex items-center gap-2 text-sm font-bold uppercase tracking-[0.12em] text-[#123e78]"
                 >
-                  Apri articolo <span>→</span>
-                </button>
+                  Apri articolo <span aria-hidden="true">→</span>
+                </Link>
               </div>
             </article>
           ))}
         </div>
       </section>
+
+      <Footer />
     </div>
   );
 }

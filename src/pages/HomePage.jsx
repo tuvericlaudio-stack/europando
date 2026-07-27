@@ -1,9 +1,10 @@
+import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
+
 export default function HomePage({
   heroSrc,
   destinations,
   featuredDestination,
-  navigateTo,
 }) {
   const primaryDestination =
     featuredDestination ?? destinations[0] ?? null;
@@ -55,15 +56,14 @@ export default function HomePage({
               </p>
 
               <div className="mt-9 flex flex-wrap items-center gap-4">
-                <button
-                  type="button"
-                  onClick={() => navigateTo(destinationPath)}
-                  className="min-h-12 rounded-full bg-white px-7 py-3.5 text-sm font-black uppercase tracking-[0.13em] text-[#123e78] shadow-[0_16px_35px_rgba(0,0,0,0.18)] transition hover:-translate-y-0.5 hover:bg-[#f3eee7]"
+                <Link
+                  to={destinationPath}
+                  className="inline-flex min-h-12 items-center rounded-full bg-white px-7 py-3.5 text-sm font-black uppercase tracking-[0.13em] text-[#123e78] shadow-[0_16px_35px_rgba(0,0,0,0.18)] transition hover:-translate-y-0.5 hover:bg-[#f3eee7]"
                 >
                   {primaryDestination
                     ? `Scopri ${primaryDestination.name}`
                     : "Scopri le destinazioni"}
-                </button>
+                </Link>
 
                 <a
                   href="#guida-in-evidenza"
@@ -160,13 +160,12 @@ export default function HomePage({
                 </h2>
               </div>
 
-              <button
-                type="button"
-                onClick={() => navigateTo("/destinazioni")}
+              <Link
+                to="/destinazioni"
                 className="self-start text-sm font-black uppercase tracking-[0.13em] text-[#123e78] transition hover:text-[#c86b4a] md:self-auto"
               >
                 Tutte le destinazioni →
-              </button>
+              </Link>
             </div>
 
             <article className="group grid overflow-hidden rounded-[2rem] border border-[#dfd4c7] bg-white lg:grid-cols-[1.3fr_1fr]">
@@ -215,17 +214,12 @@ export default function HomePage({
                 </p>
 
                 <div className="mt-9">
-                  <button
-                    type="button"
-                    onClick={() =>
-                      navigateTo(
-                        `/destinazioni/${primaryDestination.slug}`
-                      )
-                    }
-                    className="min-h-12 rounded-full bg-[#123e78] px-7 py-3.5 text-sm font-black uppercase tracking-[0.13em] text-white transition hover:-translate-y-0.5 hover:bg-[#0d315f]"
+                  <Link
+                    to={`/destinazioni/${primaryDestination.slug}`}
+                    className="inline-flex min-h-12 items-center rounded-full bg-[#123e78] px-7 py-3.5 text-sm font-black uppercase tracking-[0.13em] text-white transition hover:-translate-y-0.5 hover:bg-[#0d315f]"
                   >
                     Leggi la guida
-                  </button>
+                  </Link>
                 </div>
               </div>
             </article>
@@ -247,13 +241,10 @@ export default function HomePage({
 
             <div className="mt-10 grid gap-6 md:grid-cols-2">
               {otherDestinations.map((destination) => (
-                <button
+                <Link
                   key={destination.slug}
-                  type="button"
-                  onClick={() =>
-                    navigateTo(`/destinazioni/${destination.slug}`)
-                  }
-                  className="group relative min-h-[420px] overflow-hidden rounded-[1.8rem] text-left"
+                  to={`/destinazioni/${destination.slug}`}
+                  className="group relative block min-h-[420px] overflow-hidden rounded-[1.8rem] text-left"
                 >
                   <img
                     src={destination.image}
@@ -281,7 +272,7 @@ export default function HomePage({
                       Scopri la guida →
                     </p>
                   </div>
-                </button>
+                </Link>
               ))}
             </div>
           </section>
@@ -319,11 +310,7 @@ export default function HomePage({
           </div>
         </section>
       </main>
-      <Footer
-        onHome={() => navigateTo("/")}
-        onArticles={() => navigateTo("/articoli")}
-        onDestinations={() => navigateTo("/destinazioni")}
-      />
+      <Footer />
     </>
   );
 }
