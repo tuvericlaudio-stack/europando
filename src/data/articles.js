@@ -1,8 +1,14 @@
+import { CONTENT_STATUS } from "../utils/content";
+
 export const articles = [
   {
     slug: "bucarest-ci-ha-sorpresi",
 
+    status: CONTENT_STATUS.PUBLISHED,
+
     title: "Bucarest ci ha sorpresi",
+
+    category: "Travel Journal",
 
     subtitle:
       "Tre giorni tra edifici monumentali, cortili nascosti e una città capace di cambiare atmosfera continuamente.",
@@ -195,6 +201,15 @@ export const articles = [
 
     gallery: [],
 
+    galleryTitle: "Bucarest attraverso le nostre fotografie",
+
+    relatedDestination: {
+      slug: "bucarest",
+      name: "Bucarest",
+      text:
+        "Nella nostra guida trovi l’itinerario di tre giorni, le informazioni sui trasporti, i luoghi da vedere e gli indirizzi che abbiamo raccolto durante il viaggio.",
+    },
+
     seo: {
       title: "Bucarest ci ha sorpresi | Europando",
       description:
@@ -202,7 +217,3 @@ export const articles = [
     },
   },
 ];
-
-export function getArticleBySlug(slug) {
-  return articles.find((article) => article.slug === slug);
-}

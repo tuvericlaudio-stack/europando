@@ -1,27 +1,30 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
-export default function Header({
-  logoSrc,
-  onHome,
-  onDestinations,
-}) {
+const DESKTOP_LINK_CLASS =
+  "min-h-11 px-1 text-xs font-black uppercase tracking-[0.15em] text-[#5f6875] transition hover:text-[#123e78] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#123e78] inline-flex items-center";
+
+const MOBILE_LINK_CLASS =
+  "flex min-h-14 items-center justify-between border-b border-[#e1d8cc] py-4 text-left text-sm font-black uppercase tracking-[0.14em] text-[#14263d]";
+
+const NAVIGATION_ITEMS = [
+  { to: "/", label: "Home" },
+  { to: "/destinazioni", label: "Destinazioni" },
+  { to: "/articoli", label: "Articoli" },
+];
+
+export default function Header({ logoSrc }) {
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const navigateAndClose = (callback) => {
-    setMenuOpen(false);
-
-    if (typeof callback === "function") {
-      callback();
-    }
-  };
+  const closeMenu = () => setMenuOpen(false);
 
   return (
     <header className="sticky top-0 z-[100] border-b border-[#dfd6ca] bg-[#f7f4ee]/92 backdrop-blur-xl">
       <div className="mx-auto flex min-h-[78px] max-w-7xl items-center justify-between gap-5 px-5 md:min-h-[88px] md:px-8">
         {/* LOGO */}
-        <button
-          type="button"
-          onClick={() => navigateAndClose(onHome)}
+        <Link
+          to="/"
+          onClick={closeMenu}
           className="flex min-h-11 min-w-0 items-center gap-3 rounded-xl text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-[#123e78] focus-visible:ring-offset-2"
           aria-label="Vai alla homepage di Europando"
         >
@@ -40,7 +43,7 @@ export default function Header({
               Europando
             </p>
           </div>
-        </button>
+        </Link>
 
         {/* MENU DESKTOP */}
         <div className="hidden items-center gap-7 md:flex">
@@ -48,30 +51,25 @@ export default function Header({
             className="flex items-center gap-7"
             aria-label="Navigazione principale"
           >
-            <button
-              type="button"
-              onClick={() => navigateAndClose(onHome)}
-              className="min-h-11 px-1 text-xs font-black uppercase tracking-[0.15em] text-[#5f6875] transition hover:text-[#123e78] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#123e78]"
-            >
-              Home
-            </button>
-
-            <button
-              type="button"
-              onClick={() => navigateAndClose(onDestinations)}
-              className="min-h-11 px-1 text-xs font-black uppercase tracking-[0.15em] text-[#5f6875] transition hover:text-[#123e78] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#123e78]"
-            >
-              Destinazioni
-            </button>
+            {NAVIGATION_ITEMS.map((item) => (
+              <Link
+                key={item.to}
+                to={item.to}
+                onClick={closeMenu}
+                className={DESKTOP_LINK_CLASS}
+              >
+                {item.label}
+              </Link>
+            ))}
           </nav>
 
-          <button
-            type="button"
-            onClick={() => navigateAndClose(onDestinations)}
-            className="min-h-11 rounded-full bg-[#123e78] px-6 py-3 text-xs font-black uppercase tracking-[0.13em] text-white transition hover:-translate-y-0.5 hover:bg-[#0d315f] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#123e78] focus-visible:ring-offset-2"
+          <Link
+            to="/destinazioni"
+            onClick={closeMenu}
+            className="inline-flex min-h-11 items-center rounded-full bg-[#123e78] px-6 py-3 text-xs font-black uppercase tracking-[0.13em] text-white transition hover:-translate-y-0.5 hover:bg-[#0d315f] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#123e78] focus-visible:ring-offset-2"
           >
             Esplora le guide
-          </button>
+          </Link>
         </div>
 
         {/* PULSANTE MOBILE */}
@@ -124,37 +122,28 @@ export default function Header({
             className="mx-auto flex max-w-7xl flex-col"
             aria-label="Navigazione mobile"
           >
-            <button
-              type="button"
-              onClick={() => navigateAndClose(onHome)}
-              className="flex min-h-14 items-center justify-between border-b border-[#e1d8cc] py-4 text-left text-sm font-black uppercase tracking-[0.14em] text-[#14263d]"
-            >
-              Home
+            {NAVIGATION_ITEMS.map((item) => (
+              <Link
+                key={item.to}
+                to={item.to}
+                onClick={closeMenu}
+                className={MOBILE_LINK_CLASS}
+              >
+                {item.label}
 
-              <span aria-hidden="true" className="text-[#c86b4a]">
-                →
-              </span>
-            </button>
+                <span aria-hidden="true" className="text-[#c86b4a]">
+                  →
+                </span>
+              </Link>
+            ))}
 
-            <button
-              type="button"
-              onClick={() => navigateAndClose(onDestinations)}
-              className="flex min-h-14 items-center justify-between border-b border-[#e1d8cc] py-4 text-left text-sm font-black uppercase tracking-[0.14em] text-[#14263d]"
-            >
-              Destinazioni
-
-              <span aria-hidden="true" className="text-[#c86b4a]">
-                →
-              </span>
-            </button>
-
-            <button
-              type="button"
-              onClick={() => navigateAndClose(onDestinations)}
-              className="mt-5 min-h-12 rounded-full bg-[#123e78] px-6 py-3.5 text-sm font-black uppercase tracking-[0.13em] text-white"
+            <Link
+              to="/destinazioni"
+              onClick={closeMenu}
+              className="mt-5 inline-flex min-h-12 items-center justify-center rounded-full bg-[#123e78] px-6 py-3.5 text-sm font-black uppercase tracking-[0.13em] text-white"
             >
               Esplora le guide
-            </button>
+            </Link>
           </nav>
         </div>
       )}

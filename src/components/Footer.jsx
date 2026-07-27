@@ -1,11 +1,13 @@
-export default function Footer({ onHome, onDestinations }) {
-  const currentYear = new Date().getFullYear();
+import { Link } from "react-router-dom";
 
-  const handleNavigation = (callback) => {
-    if (typeof callback === "function") {
-      callback();
-    }
-  };
+const NAVIGATION_ITEMS = [
+  { to: "/", label: "Home" },
+  { to: "/destinazioni", label: "Destinazioni" },
+  { to: "/articoli", label: "Articoli" },
+];
+
+export default function Footer() {
+  const currentYear = new Date().getFullYear();
 
   return (
     <footer className="border-t border-white/10 bg-[#071729] text-white">
@@ -17,14 +19,13 @@ export default function Footer({ onHome, onDestinations }) {
               Travel journal
             </p>
 
-            <button
-              type="button"
-              onClick={() => handleNavigation(onHome)}
-              className="mt-4 text-left text-4xl font-black tracking-[-0.055em] text-white transition hover:text-[#efc4a4] md:text-5xl"
+            <Link
+              to="/"
+              className="mt-4 inline-block text-left text-4xl font-black tracking-[-0.055em] text-white transition hover:text-[#efc4a4] md:text-5xl"
               aria-label="Vai alla homepage di Europando"
             >
               Europando
-            </button>
+            </Link>
 
             <p className="mt-6 max-w-xl text-base leading-7 text-white/65 md:text-lg md:leading-8">
               Guide di viaggio in Europa con itinerari chiari, informazioni
@@ -43,21 +44,15 @@ export default function Footer({ onHome, onDestinations }) {
                 className="mt-5 flex flex-col items-start gap-2"
                 aria-label="Navigazione nel footer"
               >
-                <button
-                  type="button"
-                  onClick={() => handleNavigation(onHome)}
-                  className="min-h-11 text-left font-bold text-white/70 transition hover:text-white"
-                >
-                  Home
-                </button>
-
-                <button
-                  type="button"
-                  onClick={() => handleNavigation(onDestinations)}
-                  className="min-h-11 text-left font-bold text-white/70 transition hover:text-white"
-                >
-                  Destinazioni
-                </button>
+                {NAVIGATION_ITEMS.map((item) => (
+                  <Link
+                    key={item.to}
+                    to={item.to}
+                    className="inline-flex min-h-11 items-center text-left font-bold text-white/70 transition hover:text-white"
+                  >
+                    {item.label}
+                  </Link>
+                ))}
               </nav>
             </div>
 

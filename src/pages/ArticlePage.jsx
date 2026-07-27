@@ -1,7 +1,43 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import { asset } from "../utils/assets";
+import { resolveAsset } from "../utils/assets";
+
+// I contenuti scritti nei file dati usano due formati per il corpo del testo:
+// `paragraphs` (racconti lunghi) e `text` (schede più sintetiche).
+function normalizeSection(section = {}) {
+  const paragraphs = Array.isArray(section.paragraphs)
+    ? section.paragraphs
+    : [section.text].filter(Boolean);
+
+  return { ...section, paragraphs };
+}
+
+// Le guide giorno per giorno esistono sia come `days` sia come `daySections`.
+function normalizeDays(source) {
+  if (Array.isArray(source.days) && source.days.length > 0) {
+    return source.days.map((day, index) => ({
+      ...day,
+      number: day.number ?? index + 1,
+      sections: Array.isArray(day.sections)
+        ? day.sections.map(normalizeSection)
+        : [],
+    }));
+  }
+
+  if (Array.isArray(source.daySections) && source.daySections.length > 0) {
+    return source.daySections.map((day, index) => ({
+      number: index + 1,
+      navigationTitle: day.title,
+      title: day.title,
+      subtitle: day.day,
+      sections: [normalizeSection(day)],
+    }));
+  }
+
+  return [];
+}
 
 function normalizeArticle(article, post) {
   const source = article ?? post;
@@ -16,8 +52,10 @@ function normalizeArticle(article, post) {
     heroAlt: source.heroAlt ?? source.title ?? "Fotografia di viaggio",
     subtitle: source.subtitle ?? source.excerpt ?? "",
     intro: source.intro ?? "",
-    sections: Array.isArray(source.sections) ? source.sections : [],
-    days: Array.isArray(source.days) ? source.days : [],
+    sections: Array.isArray(source.sections)
+      ? source.sections.map(normalizeSection)
+      : [],
+    days: normalizeDays(source),
     gallery: Array.isArray(source.gallery) ? source.gallery : [],
     tripFacts: Array.isArray(source.tripFacts) ? source.tripFacts : [],
   };
@@ -248,7 +286,7 @@ function BlogImage({ src, alt, caption }) {
     <figure className="my-11 md:-mx-16 md:my-14">
       <div className="overflow-hidden rounded-[1.5rem] bg-[#e5ddd2] shadow-[0_16px_45px_rgba(39,54,71,0.09)]">
         <img
-          src={asset(src)}
+          src={resolveAsset(src)}
           alt={alt}
           loading="lazy"
           className="max-h-[760px] w-full object-cover transition duration-700 hover:scale-[1.015]"
@@ -362,17 +400,6 @@ function DayNavigation({ days }) {
     return null;
   }
 
-  const scrollToDay = (number) => {
-    const target = document.getElementById(`giorno-${number}`);
-
-    if (target) {
-      target.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    }
-  };
-
   return (
     <nav
       className="mx-auto mt-8 max-w-5xl px-5 md:px-8"
@@ -381,10 +408,9 @@ function DayNavigation({ days }) {
       <div className="rounded-[1.4rem] border border-[#d8cec2] bg-[#efe8df] p-3 shadow-[0_12px_35px_rgba(39,54,71,0.05)]">
         <div className="grid gap-2 sm:grid-cols-3">
           {days.map((day) => (
-            <button
+            <a
               key={day.number}
-              type="button"
-              onClick={() => scrollToDay(day.number)}
+              href={`#giorno-${day.number}`}
               className="group flex items-center gap-4 rounded-[1rem] px-4 py-4 text-left transition hover:bg-white"
             >
               <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#123e78] text-sm font-black text-white transition group-hover:bg-[#c86b4a]">
@@ -400,7 +426,7 @@ function DayNavigation({ days }) {
                   {day.navigationTitle || day.title}
                 </span>
               </span>
-            </button>
+            </a>
           ))}
         </div>
       </div>
@@ -480,36 +506,24 @@ function AuthorBox() {
   );
 }
 
-export default function ArticlePage({
-  article,
-  post,
-  logoSrc,
-  navigateTo,
-  navigateHome,
-  navigateDestinations,
-  navigateToGuide,
-}) {
+export default function ArticlePage({ article, post, logoSrc }) {
   const content = normalizeArticle(article, post);
-
-  const goTo = (path) => {
-    if (navigateTo) {
-      navigateTo(path);
-    }
-  };
-
-  const handleHome = navigateHome ?? (() => goTo("/"));
-  const handleArticles = () => goTo("/articoli");
-  const handleDestinations =
-    navigateDestinations ?? (() => goTo("/destinazioni"));
-  const handleGuide =
-    navigateToGuide ?? (() => goTo("/destinazioni/bucarest"));
 
   if (!content) {
     return null;
   }
 
+  const relatedDestination = content.relatedDestination ?? null;
+
+  const relatedDestinationPath = relatedDestination
+    ? `/destinazioni/${relatedDestination.slug}`
+    : "/destinazioni";
+
   const sectionImages = new Set(
-    content.sections
+    [
+      ...content.sections,
+      ...content.days.flatMap((day) => day.sections ?? []),
+    ]
       .map((section) => section.image)
       .filter(Boolean)
   );
@@ -522,23 +536,17 @@ export default function ArticlePage({
     <div className="min-h-screen bg-[#f7f4ee]">
       <ReadingProgress />
 
-      <Header
-        logoSrc={logoSrc}
-        onHome={handleHome}
-        onArticles={handleArticles}
-        onDestinations={handleDestinations}
-      />
+      <Header logoSrc={logoSrc} />
 
       <main>
         <article>
           <header className="mx-auto max-w-5xl px-5 pb-10 pt-12 text-center md:px-8 md:pb-14 md:pt-20">
-            <button
-              type="button"
-              onClick={handleArticles}
+            <Link
+              to="/articoli"
               className="text-xs font-black uppercase tracking-[0.2em] text-[#c86b4a] transition hover:text-[#123e78]"
             >
               Racconti di viaggio
-            </button>
+            </Link>
 
             <h1 className="mx-auto mt-6 max-w-4xl text-4xl font-black leading-[1.02] tracking-[-0.05em] text-[#123e78] sm:text-5xl md:text-7xl">
               {content.title}
@@ -561,7 +569,7 @@ export default function ArticlePage({
             <figure className="mx-auto max-w-7xl px-5 md:px-8">
               <div className="overflow-hidden rounded-[1.8rem] bg-[#e4dcd1] shadow-[0_24px_70px_rgba(37,55,74,0.12)]">
                 <img
-                  src={asset(content.heroImage)}
+                  src={resolveAsset(content.heroImage)}
                   alt={content.heroAlt}
                   className="max-h-[760px] min-h-[360px] w-full object-cover"
                 />
@@ -607,7 +615,7 @@ export default function ArticlePage({
                 </p>
 
                 <h2 className="mt-4 text-3xl font-black tracking-[-0.035em] text-[#123e78]">
-                  Bucarest attraverso le nostre fotografie
+                  {content.galleryTitle ?? "Le nostre fotografie del viaggio"}
                 </h2>
 
                 <div className="mt-8 grid gap-5 sm:grid-cols-2">
@@ -617,10 +625,10 @@ export default function ArticlePage({
                       className="overflow-hidden rounded-[1.4rem] bg-[#e4dcd1]"
                     >
                       <img
-                        src={asset(image.src)}
+                        src={resolveAsset(image.src)}
                         alt={
                           image.alt ||
-                          `Bucarest, fotografia ${index + 1}`
+                          `${content.title}, fotografia ${index + 1}`
                         }
                         loading="lazy"
                         className="aspect-[4/5] w-full object-cover transition duration-700 hover:scale-[1.02]"
@@ -631,42 +639,37 @@ export default function ArticlePage({
               </section>
             )}
 
-            <section className="mt-20 border-y border-[#d9cfc3] py-12">
-              <p className="text-xs font-black uppercase tracking-[0.18em] text-[#c86b4a]">
-                Organizza il viaggio
-              </p>
+            {relatedDestination && (
+              <section className="mt-20 border-y border-[#d9cfc3] py-12">
+                <p className="text-xs font-black uppercase tracking-[0.18em] text-[#c86b4a]">
+                  Organizza il viaggio
+                </p>
 
-              <h2 className="mt-4 text-3xl font-black leading-tight tracking-[-0.035em] text-[#123e78] sm:text-4xl">
-                Stai pensando di visitare Bucarest?
-              </h2>
+                <h2 className="mt-4 text-3xl font-black leading-tight tracking-[-0.035em] text-[#123e78] sm:text-4xl">
+                  Stai pensando di visitare {relatedDestination.name}?
+                </h2>
 
-              <p className="mt-5 text-lg leading-8 text-[#58687a]">
-                Nella nostra guida trovi l’itinerario di tre giorni, le
-                informazioni sui trasporti, i luoghi da vedere e gli indirizzi
-                che abbiamo raccolto durante il viaggio.
-              </p>
+                <p className="mt-5 text-lg leading-8 text-[#58687a]">
+                  {relatedDestination.text ??
+                    `Nella nostra guida di ${relatedDestination.name} trovi l’itinerario, le informazioni sui trasporti e i luoghi che abbiamo raccolto durante il viaggio.`}
+                </p>
 
-              <button
-                type="button"
-                onClick={handleGuide}
-                className="mt-7 inline-flex items-center gap-2 border-b-2 border-[#c86b4a] pb-2 text-sm font-black uppercase tracking-[0.14em] text-[#123e78] transition hover:text-[#c86b4a]"
-              >
-                Leggi la guida di Bucarest
-                <span aria-hidden="true">→</span>
-              </button>
-            </section>
+                <Link
+                  to={relatedDestinationPath}
+                  className="mt-7 inline-flex items-center gap-2 border-b-2 border-[#c86b4a] pb-2 text-sm font-black uppercase tracking-[0.14em] text-[#123e78] transition hover:text-[#c86b4a]"
+                >
+                  Leggi la guida di {relatedDestination.name}
+                  <span aria-hidden="true">→</span>
+                </Link>
+              </section>
+            )}
 
             <AuthorBox />
           </div>
         </article>
       </main>
 
-      <Footer
-        logoSrc={logoSrc}
-        onHome={handleHome}
-        onArticles={handleArticles}
-        onDestinations={handleDestinations}
-      />
+      <Footer />
     </div>
   );
 }

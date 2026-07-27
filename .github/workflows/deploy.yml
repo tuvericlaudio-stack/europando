@@ -23,12 +23,12 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
-          node-version: 20
+          node-version: 22
           cache: npm
 
       - name: Install dependencies
@@ -36,6 +36,9 @@ jobs:
 
       - name: Verify build tools
         run: npm ls vite @vitejs/plugin-react @tailwindcss/vite
+
+      - name: Lint
+        run: npm run lint
 
       - name: Build
         run: npm run build

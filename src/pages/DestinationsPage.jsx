@@ -1,18 +1,11 @@
+import { Link } from "react-router-dom";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
-export default function DestinationsPage({
-  logoSrc,
-  destinations,
-  navigateTo,
-}) {
+export default function DestinationsPage({ logoSrc, destinations }) {
   return (
     <div className="min-h-screen bg-[#f7f4ee] text-[#14263d]">
-      <Header
-        logoSrc={logoSrc}
-        onHome={() => navigateTo("/")}
-        onDestinations={() => navigateTo("/destinazioni")}
-      />
+      <Header logoSrc={logoSrc} />
 
       <main>
         {/* INTRODUZIONE */}
@@ -60,12 +53,9 @@ export default function DestinationsPage({
                   key={destination.slug}
                   className="group grid overflow-hidden rounded-[2rem] border border-[#ded4c8] bg-white lg:grid-cols-[1.25fr_0.75fr]"
                 >
-                  <button
-                    type="button"
-                    onClick={() =>
-                      navigateTo(`/destinazioni/${destination.slug}`)
-                    }
-                    className="relative min-h-[400px] overflow-hidden text-left md:min-h-[520px]"
+                  <Link
+                    to={`/destinazioni/${destination.slug}`}
+                    className="relative block min-h-[400px] overflow-hidden text-left md:min-h-[520px]"
                     aria-label={`Apri la guida di ${destination.name}`}
                   >
                     <img
@@ -92,7 +82,7 @@ export default function DestinationsPage({
                           </div>
                         ))}
                     </div>
-                  </button>
+                  </Link>
 
                   <div className="flex flex-col justify-center p-7 md:p-10 lg:p-12">
                     <div className="flex items-center justify-between gap-5">
@@ -106,7 +96,9 @@ export default function DestinationsPage({
                     </div>
 
                     <h2 className="mt-5 text-4xl font-black tracking-[-0.05em] text-[#123e78] md:text-5xl">
-                      {destination.name}
+                      <Link to={`/destinazioni/${destination.slug}`}>
+                        {destination.name}
+                      </Link>
                     </h2>
 
                     <p className="mt-6 text-lg leading-8 text-[#5f6875]">
@@ -120,15 +112,12 @@ export default function DestinationsPage({
                     )}
 
                     <div className="mt-9">
-                      <button
-                        type="button"
-                        onClick={() =>
-                          navigateTo(`/destinazioni/${destination.slug}`)
-                        }
-                        className="min-h-12 rounded-full bg-[#123e78] px-7 py-3.5 text-sm font-black uppercase tracking-[0.13em] text-white transition hover:-translate-y-0.5 hover:bg-[#0d315f]"
+                      <Link
+                        to={`/destinazioni/${destination.slug}`}
+                        className="inline-flex min-h-12 items-center rounded-full bg-[#123e78] px-7 py-3.5 text-sm font-black uppercase tracking-[0.13em] text-white transition hover:-translate-y-0.5 hover:bg-[#0d315f]"
                       >
                         Leggi la guida
-                      </button>
+                      </Link>
                     </div>
                   </div>
                 </article>
@@ -165,10 +154,7 @@ export default function DestinationsPage({
           </div>
         </section>
       </main>
-      <Footer
-        onHome={() => navigateTo("/")}
-        onDestinations={() => navigateTo("/destinazioni")}
-      />
+      <Footer />
     </div>
   );
 }

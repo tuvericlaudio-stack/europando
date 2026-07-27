@@ -61,10 +61,23 @@ const getBaseUrl = () => {
   return `${window.location.origin}${getBasePath() === "/" ? "" : getBasePath()}`;
 };
 
+// Il path va reso relativo al base path del sito: con lo slash iniziale
+// `new URL` lo risolverebbe sulla radice del dominio, perdendo `/europando/`.
 const buildAbsoluteUrl = (path = "/") => {
   const baseUrl = getBaseUrl();
-  const cleanPath = path === "/" ? "" : path;
-  return new URL(cleanPath, `${baseUrl.endsWith("/") ? baseUrl : `${baseUrl}/`}`).toString();
+  const cleanPath = path === "/" ? "" : path.replace(/^\/+/, "");
+  return new URL(
+    cleanPath,
+    `${baseUrl.endsWith("/") ? baseUrl : `${baseUrl}/`}`
+  ).toString();
+};
+
+// Le pagine statiche generate in build sono cartelle con index.html, quindi
+// l'indirizzo definitivo ha lo slash finale: la canonical scritta durante la
+// navigazione deve dire la stessa cosa di quella nell'HTML iniziale.
+const buildCanonicalUrl = (path = "/") => {
+  const url = buildAbsoluteUrl(path);
+  return url.endsWith("/") ? url : `${url}/`;
 };
 
 const buildImageUrl = (image) => {
@@ -85,7 +98,7 @@ export default function Seo({
   useEffect(() => {
     document.title = title;
 
-    const canonicalUrl = buildAbsoluteUrl(path);
+    const canonicalUrl = buildCanonicalUrl(path);
     const imageUrl = buildImageUrl(image);
 
     ensureMeta('meta[name="description"]', {
@@ -154,9 +167,6 @@ export default function Seo({
     });
 
     ensureStructuredData(structuredData);
-
-    ensureStructuredData(structuredData);
-
   }, [description, image, path, robots, structuredData, title, type]);
 
   return null;

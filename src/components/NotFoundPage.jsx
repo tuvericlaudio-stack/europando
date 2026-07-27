@@ -1,14 +1,10 @@
+import { Link } from "react-router-dom";
 import Header from "./Header";
 
-export default function NotFoundPage({ logoSrc, navigateTo }) {
+export default function NotFoundPage({ logoSrc }) {
   return (
     <div className="min-h-screen bg-[#f4f7fb] text-[#17202c]">
-      <Header
-        logoSrc={logoSrc}
-        onHome={() => navigateTo("/")}
-        onArticles={() => navigateTo("/articoli")}
-        onDestinations={() => navigateTo("/destinazioni")}
-      />
+      <Header logoSrc={logoSrc} />
 
       <section className="max-w-5xl mx-auto px-6 py-24 text-center">
         <div className="rounded-[2.4rem] border border-[#dbe5ef] bg-white p-10 shadow-[0_18px_45px_rgba(20,40,70,0.07)]">
@@ -22,13 +18,12 @@ export default function NotFoundPage({ logoSrc, navigateTo }) {
             L’URL esiste nel browser ma non corrisponde ancora a una pagina pubblicata del sito.
           </p>
           <div className="mt-8 flex justify-center">
-            <button
-              type="button"
-              onClick={() => navigateTo("/")}
-              className="rounded-[1.4rem] bg-[#123e78] px-6 py-3.5 text-sm font-bold uppercase tracking-[0.14em] text-white shadow-[0_14px_28px_rgba(18,62,120,0.22)]"
+            <Link
+              to="/"
+              className="inline-flex items-center rounded-[1.4rem] bg-[#123e78] px-6 py-3.5 text-sm font-bold uppercase tracking-[0.14em] text-white shadow-[0_14px_28px_rgba(18,62,120,0.22)]"
             >
               Torna alla home
-            </button>
+            </Link>
           </div>
         </div>
       </section>
