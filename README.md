@@ -106,6 +106,12 @@ Gli articoli possono essere scritti in due formati, entrambi gestiti da
 - `src/data/posts.js` — schede più sintetiche, con `sections[].text` oppure
   `daySections`
 
+Per le immagini servite dalla cartella `public` conviene dichiarare le
+dimensioni reali del file (`heroWidth`/`heroHeight` per l'immagine di apertura,
+`imageWidth`/`imageHeight` per quelle delle sezioni): il browser riserva lo
+spazio prima del caricamento e il testo non viene spinto in basso. Senza quei
+campi il componente funziona comunque, ma l'immagine fa saltare il layout.
+
 L'archivio `/articoli` unisce le due sorgenti tramite
 `getPublishedArticleCards`, quindi un contenuto nuovo va aggiunto in un solo
 file dati e compare automaticamente in lista e nella rotta di dettaglio.

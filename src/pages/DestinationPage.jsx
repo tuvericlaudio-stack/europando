@@ -420,15 +420,16 @@ export default function DestinationPage({ logoSrc, destination }) {
                   città.
                 </p>
                 <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-                  {destination.gallery.slice(0, 3).map((image, index) => (
+                  {destination.gallery.map((image, index) => (
                     <figure
-                      key={image}
+                      key={`${image}-${index}`}
                       className="aspect-[3/4] overflow-hidden rounded-[1.8rem] bg-[#e7dfd4]"
                     >
                       <img
                         src={image}
                         alt={`${destination.name}, fotografia ${index + 1}`}
                         loading="lazy"
+                        decoding="async"
                         className="h-full w-full object-cover transition duration-500 hover:scale-[1.02]"
                       />
                     </figure>

@@ -39,6 +39,10 @@ export const articles = [
 
     heroImage: "/bucarest-hero.jpg",
 
+    heroWidth: 1200,
+
+    heroHeight: 1600,
+
     heroAlt: "Palazzo del Parlamento di Bucarest",
 
     intro:
@@ -68,6 +72,10 @@ export const articles = [
             ],
 
             image: "/bucarest-gallery-1.jpg",
+
+            imageWidth: 1200,
+
+            imageHeight: 1600,
 
             imageAlt:
               "Il cortile della chiesa Stavropoleos a Bucarest",
@@ -107,6 +115,10 @@ export const articles = [
             ],
 
             image: "/bucarest-gallery-2.jpg",
+
+            imageWidth: 1200,
+
+            imageHeight: 1600,
 
             imageAlt:
               "Interno della libreria Cărturești Carusel",
@@ -165,6 +177,10 @@ export const articles = [
 
             image: "/bucarest-gallery-3.jpg",
 
+            imageWidth: 1200,
+
+            imageHeight: 1600,
+
             imageAlt:
               "Edificio storico illuminato durante la notte a Bucarest",
 
@@ -185,6 +201,10 @@ export const articles = [
             ],
 
             image: "/bucarest-hero.jpg",
+
+            imageWidth: 1200,
+
+            imageHeight: 1600,
 
             imageAlt:
               "Veduta del Palazzo del Parlamento di Bucarest",
