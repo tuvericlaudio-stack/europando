@@ -61,10 +61,15 @@ const getBaseUrl = () => {
   return `${window.location.origin}${getBasePath() === "/" ? "" : getBasePath()}`;
 };
 
+// Il path va reso relativo al base path del sito: con lo slash iniziale
+// `new URL` lo risolverebbe sulla radice del dominio, perdendo `/europando/`.
 const buildAbsoluteUrl = (path = "/") => {
   const baseUrl = getBaseUrl();
-  const cleanPath = path === "/" ? "" : path;
-  return new URL(cleanPath, `${baseUrl.endsWith("/") ? baseUrl : `${baseUrl}/`}`).toString();
+  const cleanPath = path === "/" ? "" : path.replace(/^\/+/, "");
+  return new URL(
+    cleanPath,
+    `${baseUrl.endsWith("/") ? baseUrl : `${baseUrl}/`}`
+  ).toString();
 };
 
 const buildImageUrl = (image) => {
@@ -154,9 +159,6 @@ export default function Seo({
     });
 
     ensureStructuredData(structuredData);
-
-    ensureStructuredData(structuredData);
-
   }, [description, image, path, robots, structuredData, title, type]);
 
   return null;

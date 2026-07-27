@@ -37,6 +37,9 @@ jobs:
       - name: Verify build tools
         run: npm ls vite @vitejs/plugin-react @tailwindcss/vite
 
+      - name: Lint
+        run: npm run lint
+
       - name: Build
         run: npm run build
 

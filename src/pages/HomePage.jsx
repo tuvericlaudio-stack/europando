@@ -20,7 +20,6 @@ export default function HomePage({
 
   return (
     <>
-      <main className="bg-[#f7f4ee] text-[#14263d]"></main>
       <main className="bg-[#f7f4ee] text-[#14263d]">
         {/* HERO */}
         <section className="relative min-h-[680px] overflow-hidden md:min-h-[760px]">
@@ -322,6 +321,7 @@ export default function HomePage({
       </main>
       <Footer
         onHome={() => navigateTo("/")}
+        onArticles={() => navigateTo("/articoli")}
         onDestinations={() => navigateTo("/destinazioni")}
       />
     </>

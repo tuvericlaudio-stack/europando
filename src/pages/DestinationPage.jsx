@@ -471,6 +471,7 @@ export default function DestinationPage({
       </main>
       <Footer
         onHome={() => navigateTo("/")}
+        onArticles={() => navigateTo("/articoli")}
         onDestinations={() => navigateTo("/destinazioni")}
       />
     </div>

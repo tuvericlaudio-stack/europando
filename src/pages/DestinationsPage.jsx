@@ -11,6 +11,7 @@ export default function DestinationsPage({
       <Header
         logoSrc={logoSrc}
         onHome={() => navigateTo("/")}
+        onArticles={() => navigateTo("/articoli")}
         onDestinations={() => navigateTo("/destinazioni")}
       />
 
@@ -167,6 +168,7 @@ export default function DestinationsPage({
       </main>
       <Footer
         onHome={() => navigateTo("/")}
+        onArticles={() => navigateTo("/articoli")}
         onDestinations={() => navigateTo("/destinazioni")}
       />
     </div>

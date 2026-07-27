@@ -53,6 +53,20 @@ public/         immagini statiche
 Le pagine non pronte devono restare in stato `draft` nei file dati.
 Solo i contenuti `published` entrano nella navigazione pubblica.
 
+## Formati dei contenuti
+
+Gli articoli possono essere scritti in due formati, entrambi gestiti da
+`ArticlePage`:
+
+- `src/data/articles.js` — racconti lunghi, con `days[].sections[].paragraphs`,
+  foto, `tripFacts` e blocco `seo` dedicato
+- `src/data/posts.js` — schede più sintetiche, con `sections[].text` oppure
+  `daySections`
+
+L'archivio `/articoli` unisce le due sorgenti tramite
+`getPublishedArticleCards`, quindi un contenuto nuovo va aggiunto in un solo
+file dati e compare automaticamente in lista e nella rotta di dettaglio.
+
 ## Sistemazione tecnica fatta
 
 - rimosso il template generico di Vite dal branding del progetto
@@ -62,3 +76,8 @@ Solo i contenuti `published` entrano nella navigazione pubblica.
 - sistemato `index.html` con lingua, favicon e meta description corrette
 - reso configurabile il `base path` di Vite tramite variabile ambiente
 - pulita la configurazione ESLint per un progetto JavaScript/JSX puro
+- collegato l'archivio articoli alle due sorgenti dati, così i racconti scritti
+  non restano irraggiungibili
+- corretti URL canonici e immagini social, che perdevano il base path
+- generato `404.html` in build, senza base path scritto a mano
+- aggiunto il lint alla pipeline di deploy

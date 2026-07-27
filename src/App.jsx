@@ -9,14 +9,15 @@ import DestinationPage from "./pages/DestinationPage";
 import ArticlesPage from "./pages/ArticlesPage";
 import DestinationsPage from "./pages/DestinationsPage";
 import { featuredPosts } from "./data/posts";
+import { articles } from "./data/articles";
 import { destinations } from "./data/destinations";
 import { siteConfig } from "./config/site";
-import { asset } from "./utils/assets";
+import { asset, resolveAsset } from "./utils/assets";
 import {
   findPublishedBySlug,
   getFeaturedDestination,
+  getPublishedArticleCards,
   getPublishedDestinations,
-  getPublishedPosts,
 } from "./utils/content";
 
 const buildWebSiteStructuredData = () => ({
@@ -36,12 +37,17 @@ const buildArticlesCollectionStructuredData = () => ({
     "Guide di viaggio, itinerari e articoli pubblicati su Europando per organizzare meglio city break e viaggi più lunghi.",
 });
 
+const getArticleDescription = (post) =>
+  post.seo?.description ?? post.excerpt ?? post.subtitle ?? post.intro;
+
+const getArticleImage = (post) => resolveAsset(post.heroImage ?? post.image ?? "");
+
 const buildArticleStructuredData = (post) => ({
   "@context": "https://schema.org",
   "@type": "Article",
   headline: post.title,
-  description: post.excerpt ?? post.intro,
-  image: post.image,
+  description: getArticleDescription(post),
+  image: getArticleImage(post),
   mainEntityOfPage: `${siteConfig.defaultSiteUrl}articoli/${post.slug}`,
   author: {
     "@type": "Organization",
@@ -94,7 +100,6 @@ function HomeRoute({
   logoSrc,
   featuredDestination,
   publishedDestinations,
-  publishedPosts,
 }) {
   const navigateTo = useSiteNavigation();
   const structuredData = useMemo(() => buildWebSiteStructuredData(), []);
@@ -116,7 +121,6 @@ function HomeRoute({
       />
       <HomePage
         heroSrc={heroSrc}
-        featuredPosts={publishedPosts}
         destinations={publishedDestinations}
         featuredDestination={featuredDestination}
         navigateTo={navigateTo}
@@ -146,7 +150,10 @@ function ArticlesRoute({ logoSrc, publishedPosts }) {
 function ArticleRoute({ logoSrc }) {
   const { slug } = useParams();
   const navigateTo = useSiteNavigation();
-  const post = useMemo(() => findPublishedBySlug(featuredPosts, slug), [slug]);
+  const post = useMemo(
+    () => findPublishedBySlug([...articles, ...featuredPosts], slug),
+    [slug]
+  );
   const structuredData = useMemo(
     () => (post ? buildArticleStructuredData(post) : null),
     [post]
@@ -169,10 +176,10 @@ function ArticleRoute({ logoSrc }) {
   return (
     <>
       <Seo
-        title={`${post.title} | ${siteConfig.name}`}
-        description={post.excerpt ?? post.intro}
+        title={post.seo?.title ?? `${post.title} | ${siteConfig.name}`}
+        description={getArticleDescription(post)}
         path={`/articoli/${post.slug}`}
-        image={post.image}
+        image={getArticleImage(post)}
         type="article"
         structuredData={structuredData}
       />
@@ -265,7 +272,10 @@ export default function App() {
   const logoSrc = asset("logo-europando.png");
   const heroSrc = asset("hero-europando.png");
 
-  const publishedPosts = useMemo(() => getPublishedPosts(featuredPosts), []);
+  const publishedPosts = useMemo(
+    () => getPublishedArticleCards(articles, featuredPosts),
+    []
+  );
   const publishedDestinations = useMemo(
     () => getPublishedDestinations(destinations),
     []
@@ -287,7 +297,6 @@ export default function App() {
               logoSrc={logoSrc}
               featuredDestination={featuredDestination}
               publishedDestinations={publishedDestinations}
-              publishedPosts={publishedPosts}
             />
           }
         />

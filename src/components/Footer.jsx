@@ -1,4 +1,4 @@
-export default function Footer({ onHome, onDestinations }) {
+export default function Footer({ onHome, onArticles, onDestinations }) {
   const currentYear = new Date().getFullYear();
 
   const handleNavigation = (callback) => {
@@ -57,6 +57,14 @@ export default function Footer({ onHome, onDestinations }) {
                   className="min-h-11 text-left font-bold text-white/70 transition hover:text-white"
                 >
                   Destinazioni
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => handleNavigation(onArticles)}
+                  className="min-h-11 text-left font-bold text-white/70 transition hover:text-white"
+                >
+                  Articoli
                 </button>
               </nav>
             </div>

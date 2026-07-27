@@ -3,6 +3,7 @@ import { useState } from "react";
 export default function Header({
   logoSrc,
   onHome,
+  onArticles,
   onDestinations,
 }) {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -62,6 +63,14 @@ export default function Header({
               className="min-h-11 px-1 text-xs font-black uppercase tracking-[0.15em] text-[#5f6875] transition hover:text-[#123e78] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#123e78]"
             >
               Destinazioni
+            </button>
+
+            <button
+              type="button"
+              onClick={() => navigateAndClose(onArticles)}
+              className="min-h-11 px-1 text-xs font-black uppercase tracking-[0.15em] text-[#5f6875] transition hover:text-[#123e78] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#123e78]"
+            >
+              Articoli
             </button>
           </nav>
 
@@ -142,6 +151,18 @@ export default function Header({
               className="flex min-h-14 items-center justify-between border-b border-[#e1d8cc] py-4 text-left text-sm font-black uppercase tracking-[0.14em] text-[#14263d]"
             >
               Destinazioni
+
+              <span aria-hidden="true" className="text-[#c86b4a]">
+                →
+              </span>
+            </button>
+
+            <button
+              type="button"
+              onClick={() => navigateAndClose(onArticles)}
+              className="flex min-h-14 items-center justify-between border-b border-[#e1d8cc] py-4 text-left text-sm font-black uppercase tracking-[0.14em] text-[#14263d]"
+            >
+              Articoli
 
               <span aria-hidden="true" className="text-[#c86b4a]">
                 →
