@@ -27,15 +27,52 @@ npm run check
 npm run preview
 ```
 
-## Configurazione del base path
+## Configurazione di indirizzo e base path
 
-Di default il progetto pubblica su `/europando/`.
+Di default il progetto pubblica su `https://tuvericlaudio-stack.github.io/europando/`,
+cioè su GitHub Pages in una sottocartella. Due variabili d'ambiente spostano il
+sito altrove senza toccare il codice:
 
-Per cambiare base path in build o in deploy:
+| variabile | a cosa serve |
+| --- | --- |
+| `VITE_SITE_BASE_PATH` | la sottocartella da cui il sito è servito |
+| `VITE_SITE_URL` | l'indirizzo pubblico, usato per canonical, og:url, sitemap e dati strutturati |
+
+Su un dominio proprio, servito dalla radice:
 
 ```bash
-VITE_SITE_BASE_PATH=/ npm run build
+VITE_SITE_URL=https://iltuodominio.it VITE_SITE_BASE_PATH=/ npm run build
 ```
+
+L'indirizzo va impostato correttamente: da lì dipendono gli URL canonici, le
+anteprime social e la sitemap. Se resta quello di default, il sito su un altro
+dominio dichiarerebbe a Google di essere una copia di quello su GitHub Pages.
+
+## Pubblicare su un server proprio
+
+`dist/` è composta da soli file statici: non serve Node in esecuzione. Ogni
+pagina pubblicata è una cartella con `index.html`, quindi al server basta
+servire i file e restituire `404.html` quando l'indirizzo non corrisponde a
+nulla. Con nginx:
+
+```nginx
+root /var/www/europando/current;
+index index.html;
+
+location / {
+    try_files $uri $uri/ =404;
+}
+
+error_page 404 /404.html;
+
+location /assets/ {
+    expires 1y;
+    add_header Cache-Control "public, immutable";
+}
+```
+
+Gli asset in `assets/` hanno l'hash nel nome e possono essere messi in cache a
+lungo; l'HTML no, perché cambia a ogni pubblicazione.
 
 ## Struttura del progetto
 
@@ -72,8 +109,9 @@ Da sapere:
   l'indirizzo corrente e si aggancia all'HTML esistente solo se combacia
 - il prerender non usa un browser headless, quindi la build in CI non richiede
   Chromium
-- gli indirizzi non generati (bozze, slug inesistenti) continuano a passare da
-  `404.html` e mostrano la pagina 404 del sito
+- gli indirizzi non generati (bozze, slug inesistenti) ricevono `404.html`, che
+  è la pagina 404 del sito già disegnata: il server risponde 404 mantenendo
+  l'indirizzo richiesto, e la pagina è leggibile anche senza JavaScript
 
 ## Sitemap
 
@@ -135,3 +173,7 @@ file dati e compare automaticamente in lista e nella rotta di dettaglio.
 - aggiunto il prerender delle pagine pubblicate, per anteprime social corrette
   e indirizzi profondi che rispondono senza passare dal redirect
 - generata `sitemap.xml` dalle stesse rotte del prerender
+- resi configurabili indirizzo del sito e base path, per poter cambiare dominio
+  senza modificare il codice
+- sostituito il redirect di `404.html`, specifico di GitHub Pages, con una vera
+  pagina 404 statica che funziona su qualunque server

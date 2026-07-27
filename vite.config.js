@@ -2,6 +2,8 @@ import { defineConfig, loadEnv } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 
+const FALLBACK_SITE_URL = "https://tuvericlaudio-stack.github.io/europando/";
+
 const normalizeBasePath = (value = "/") => {
   if (value === "/") {
     return value;
@@ -13,41 +15,31 @@ const normalizeBasePath = (value = "/") => {
     : `${withLeadingSlash}/`;
 };
 
-// GitHub Pages non conosce le rotte lato client: serve 404.html per ogni URL
-// profondo. La pagina memorizza l'indirizzo richiesto e rimanda alla SPA, che
-// lo ripristina. Il file viene generato in build per non ripetere il base path.
-const spaFallbackPlugin = (base) => ({
-  name: "europando-spa-fallback",
-  apply: "build",
-  generateBundle() {
-    this.emitFile({
-      type: "asset",
-      fileName: "404.html",
-      source: `<!doctype html>
-<html lang="it">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="robots" content="noindex" />
-    <title>Reindirizzamento | Europando</title>
-    <script>
-      sessionStorage.setItem("europando.redirect", window.location.href);
-      window.location.replace("${base}");
-    </script>
-  </head>
-  <body></body>
-</html>
-`,
-    });
-  },
+const normalizeSiteUrl = (value = "") => {
+  const trimmed = value.trim();
+
+  if (!trimmed) {
+    return FALLBACK_SITE_URL;
+  }
+
+  return trimmed.endsWith("/") ? trimmed : `${trimmed}/`;
+};
+
+// index.html contiene i metadati di partenza, quelli che valgono prima che il
+// prerender li sostituisca pagina per pagina: anche lì l'indirizzo del sito non
+// può restare scritto a mano, altrimenti cambiando dominio resterebbe indietro.
+const siteUrlPlugin = (siteUrl) => ({
+  name: "europando-site-url",
+  transformIndexHtml: (html) => html.replaceAll("__SITE_URL__", siteUrl),
 });
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), "");
   const base = normalizeBasePath(env.VITE_SITE_BASE_PATH || "/europando/");
+  const siteUrl = normalizeSiteUrl(env.VITE_SITE_URL);
 
   return {
-    plugins: [react(), tailwindcss(), spaFallbackPlugin(base)],
+    plugins: [react(), tailwindcss(), siteUrlPlugin(siteUrl)],
     base,
   };
 });
