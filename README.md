@@ -107,7 +107,8 @@ file dati e compare automaticamente in lista e nella rotta di dettaglio.
   non restano irraggiungibili
 - corretti URL canonici e immagini social, che perdevano il base path
 - generato `404.html` in build, senza base path scritto a mano
-- aggiunto il lint alla pipeline di deploy
+- aggiunto il lint alla pipeline di deploy e un workflow separato che verifica
+  lint e build sulle pull request, senza pubblicare nulla
 - resa la navigazione fatta di link reali, seguibili dai motori di ricerca
 - aggiunto il prerender delle pagine pubblicate, per anteprime social corrette
   e indirizzi profondi che rispondono senza passare dal redirect
