@@ -11,10 +11,18 @@ Europando è un sito di guide di viaggio costruito con React, Vite e Tailwind CS
 
 ## Avvio locale
 
+Serve Node `^20.19.0 || >=22.12.0`, il requisito dichiarato da Vite. La versione
+consigliata è nel file `.nvmrc`:
+
 ```bash
+nvm use     # legge .nvmrc
 npm install
 npm run dev
 ```
+
+`engine-strict` è attivo in `.npmrc`: con una versione di Node incompatibile
+`npm install` si ferma con un errore esplicito invece di far scoprire il
+problema più tardi, con un errore di Vite difficile da interpretare.
 
 ## Script utili
 
