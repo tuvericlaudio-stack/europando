@@ -63,9 +63,8 @@ async function main() {
   });
 
   try {
-    const { routes, renderRoute, buildSitemap } = await vite.ssrLoadModule(
-      "/src/entry-prerender.jsx"
-    );
+    const { routes, renderRoute, buildSitemap, notFoundPage } =
+      await vite.ssrLoadModule("/src/entry-prerender.jsx");
 
     for (const seo of routes) {
       const { html, head } = renderRoute(seo);
@@ -78,9 +77,27 @@ async function main() {
       console.log(`prerender ${seo.path} → ${outputPath.slice(distDir.length + 1)}`);
     }
 
+    // La pagina 404 non è una rotta pubblica: è il file che il server
+    // restituisce, con stato 404, quando l'indirizzo non corrisponde a nulla.
+    const notFound = renderRoute(notFoundPage.seo);
+
+    await writeFile(
+      join(distDir, notFoundPage.fileName),
+      injectBody(
+        injectHead(template, notFound.head),
+        notFound.html,
+        notFoundPage.seo.path
+      ),
+      "utf8"
+    );
+
+    console.log(`prerender 404 → ${notFoundPage.fileName}`);
+
     await writeFile(join(distDir, "sitemap.xml"), buildSitemap(routes), "utf8");
 
-    console.log(`\n${routes.length} pagine generate, sitemap.xml compresa.`);
+    console.log(
+      `\n${routes.length} pagine generate, più 404.html e sitemap.xml.`
+    );
   } finally {
     await vite.close();
   }

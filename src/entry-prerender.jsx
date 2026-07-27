@@ -4,7 +4,7 @@ import { StaticRouter } from "react-router-dom";
 import App from "./App";
 import { siteConfig } from "./config/site";
 import { getBasePath } from "./utils/router";
-import { getPrerenderRoutes } from "./utils/seo";
+import { buildNotFoundSeo, getPrerenderRoutes } from "./utils/seo";
 
 const escapeHtml = (value = "") =>
   String(value)
@@ -54,22 +54,30 @@ const renderHead = (seo) => {
   const imageUrl = toAbsoluteImageUrl(seo.image);
   const description = seo.description ?? siteConfig.description;
 
+  const robots = seo.robots ?? "index,follow";
+  const indexable = !robots.includes("noindex");
+
   const tags = [
     `<title>${escapeHtml(seo.title)}</title>`,
     `<meta name="description" content="${escapeHtml(description)}" />`,
-    `<meta name="robots" content="${escapeHtml(seo.robots ?? "index,follow")}" />`,
-    `<meta property="og:title" content="${escapeHtml(seo.title)}" />`,
-    `<meta property="og:description" content="${escapeHtml(description)}" />`,
-    `<meta property="og:type" content="${escapeHtml(seo.type ?? "website")}" />`,
-    `<meta property="og:url" content="${escapeHtml(canonical)}" />`,
-    `<meta property="og:site_name" content="${escapeHtml(siteConfig.name)}" />`,
-    `<meta property="og:image" content="${escapeHtml(imageUrl)}" />`,
-    `<meta name="twitter:card" content="summary_large_image" />`,
-    `<meta name="twitter:title" content="${escapeHtml(seo.title)}" />`,
-    `<meta name="twitter:description" content="${escapeHtml(description)}" />`,
-    `<meta name="twitter:image" content="${escapeHtml(imageUrl)}" />`,
-    `<link rel="canonical" href="${escapeHtml(canonical)}" />`,
+    `<meta name="robots" content="${escapeHtml(robots)}" />`,
   ];
+
+  if (indexable) {
+    tags.push(
+      `<meta property="og:title" content="${escapeHtml(seo.title)}" />`,
+      `<meta property="og:description" content="${escapeHtml(description)}" />`,
+      `<meta property="og:type" content="${escapeHtml(seo.type ?? "website")}" />`,
+      `<meta property="og:url" content="${escapeHtml(canonical)}" />`,
+      `<meta property="og:site_name" content="${escapeHtml(siteConfig.name)}" />`,
+      `<meta property="og:image" content="${escapeHtml(imageUrl)}" />`,
+      `<meta name="twitter:card" content="summary_large_image" />`,
+      `<meta name="twitter:title" content="${escapeHtml(seo.title)}" />`,
+      `<meta name="twitter:description" content="${escapeHtml(description)}" />`,
+      `<meta name="twitter:image" content="${escapeHtml(imageUrl)}" />`,
+      `<link rel="canonical" href="${escapeHtml(canonical)}" />`
+    );
+  }
 
   if (seo.structuredData) {
     tags.push(
@@ -83,6 +91,17 @@ const renderHead = (seo) => {
 };
 
 export const routes = getPrerenderRoutes();
+
+// Serve sia a GitHub Pages sia a nginx: entrambi restituiscono questo file, con
+// stato 404, mantenendo l'indirizzo richiesto. Il path non corrisponde a nessuna
+// rotta, quindi il render produce la pagina "non trovata" del sito.
+export const notFoundPage = {
+  fileName: "404.html",
+  seo: buildNotFoundSeo(
+    "/404",
+    "La pagina richiesta non esiste nel sito pubblico di Europando."
+  ),
+};
 
 export function renderRoute(seo) {
   const basePath = getBasePath();
