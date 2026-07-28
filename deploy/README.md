@@ -52,7 +52,7 @@ amministratore al server.
 
 > Questo passaggio serve solo per il deploy da GitHub Actions. Se al server si
 > accede soltanto da console KVM, e quindi non è pratico trasportare la chiave
-> privata, si può saltare: la sezione 9 descrive un metodo che non richiede
+> privata, si può saltare: la sezione 8 descrive un metodo che non richiede
 > nessuna credenziale.
 
 **Sul tuo computer**, non sul server:
@@ -174,7 +174,7 @@ mv -T /var/www/europando/current.tmp /var/www/europando/current
 
 Nessun riavvio di nginx, effetto immediato.
 
-## 9. Metodo alternativo: è il server a pubblicare
+## 8. Metodo alternativo: è il server a pubblicare
 
 Il metodo descritto sopra prevede che GitHub entri nel server per copiarci il
 sito, e per farlo serve una chiave privata dentro i segreti del repository.
@@ -234,7 +234,7 @@ I due metodi si escludono a vicenda: se un domani si passa al deploy da GitHub
 Actions, il timer va disattivato con
 `sudo systemctl disable --now europando-deploy.timer`.
 
-## 8. Dopo il passaggio: la vecchia copia su GitHub Pages
+## 9. Dopo il passaggio: la vecchia copia su GitHub Pages
 
 Finché entrambe le copie sono online, lo stesso contenuto esiste a due
 indirizzi diversi e Google deve indovinare quale sia quello buono.
