@@ -2,6 +2,9 @@
 
 Europando è un sito di guide di viaggio costruito con React, Vite e Tailwind CSS v4.
 
+Chi riprende il progetto senza conoscerlo trova lo stato attuale, le decisioni
+prese e i prossimi passi in [`CONTESTO.md`](CONTESTO.md).
+
 ## Stack
 
 - React 19
