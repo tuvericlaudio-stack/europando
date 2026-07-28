@@ -1,0 +1,12 @@
+[Unit]
+Description=Controlla ogni cinque minuti se Europando ha una versione nuova
+
+[Timer]
+# Primo controllo due minuti dopo l'avvio del server, poi ogni cinque minuti.
+OnBootSec=2min
+OnUnitActiveSec=5min
+# Se il server era spento all'orario previsto, recupera al riavvio.
+Persistent=true
+
+[Install]
+WantedBy=timers.target
