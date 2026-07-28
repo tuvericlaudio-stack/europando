@@ -35,8 +35,9 @@ Da collegato al VPS come utente con privilegi di amministratore.
 sudo apt update
 sudo apt install -y nginx rsync certbot python3-certbot-nginx
 
-# utente dedicato alla pubblicazione: non ha shell di login né privilegi
-sudo adduser --system --group --shell /bin/bash --home /home/deploy deploy
+# utente dedicato alla pubblicazione: entra solo con la chiave, mai con una
+# password, e non ha privilegi di amministratore
+sudo adduser --disabled-password --gecos "" deploy
 
 # cartelle del sito
 sudo mkdir -p /var/www/europando/releases
@@ -55,19 +56,37 @@ amministratore al server.
 ssh-keygen -t ed25519 -f ~/.ssh/europando_deploy -C "deploy europando" -N ""
 ```
 
-Autorizza la parte pubblica sul server:
+Il comando crea due file: `europando_deploy` è la chiave privata e non va mai
+condivisa, `europando_deploy.pub` è quella pubblica, che va autorizzata sul
+server.
+
+L'utente `deploy` non ha ancora modo di collegarsi, quindi la chiave va
+installata passando dall'utente amministratore. Sempre dal proprio computer,
+in un comando solo:
 
 ```bash
-sudo -u deploy mkdir -p /home/deploy/.ssh
-sudo -u deploy tee -a /home/deploy/.ssh/authorized_keys < ~/.ssh/europando_deploy.pub
-sudo -u deploy chmod 700 /home/deploy/.ssh
-sudo -u deploy chmod 600 /home/deploy/.ssh/authorized_keys
+cat ~/.ssh/europando_deploy.pub | ssh root@IP_DEL_SERVER \
+  "mkdir -p /home/deploy/.ssh \
+   && tee -a /home/deploy/.ssh/authorized_keys \
+   && chown -R deploy:deploy /home/deploy/.ssh \
+   && chmod 700 /home/deploy/.ssh \
+   && chmod 600 /home/deploy/.ssh/authorized_keys"
 ```
+
+Se sul server si entra con un utente diverso da `root`, ogni comando remoto va
+preceduto da `sudo`.
 
 Prova che funzioni prima di andare avanti:
 
 ```bash
 ssh -i ~/.ssh/europando_deploy deploy@europando.it "echo collegamento riuscito"
+```
+
+Deve rispondere `collegamento riuscito` senza chiedere password. Se chiede una
+password, la chiave non è stata autorizzata correttamente: l'errore è quasi
+sempre nei permessi della cartella `.ssh` sul server.
+
+```bash
 ```
 
 ## 4. nginx
