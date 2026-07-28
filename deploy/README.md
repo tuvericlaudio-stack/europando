@@ -50,6 +50,11 @@ amministratore al server.
 
 ## 3. Chiave SSH per il deploy
 
+> Questo passaggio serve solo per il deploy da GitHub Actions. Se al server si
+> accede soltanto da console KVM, e quindi non è pratico trasportare la chiave
+> privata, si può saltare: la sezione 9 descrive un metodo che non richiede
+> nessuna credenziale.
+
 **Sul tuo computer**, non sul server:
 
 ```bash
@@ -85,9 +90,6 @@ ssh -i ~/.ssh/europando_deploy deploy@europando.it "echo collegamento riuscito"
 Deve rispondere `collegamento riuscito` senza chiedere password. Se chiede una
 password, la chiave non è stata autorizzata correttamente: l'errore è quasi
 sempre nei permessi della cartella `.ssh` sul server.
-
-```bash
-```
 
 ## 4. nginx
 
@@ -171,6 +173,66 @@ mv -T /var/www/europando/current.tmp /var/www/europando/current
 ```
 
 Nessun riavvio di nginx, effetto immediato.
+
+## 9. Metodo alternativo: è il server a pubblicare
+
+Il metodo descritto sopra prevede che GitHub entri nel server per copiarci il
+sito, e per farlo serve una chiave privata dentro i segreti del repository.
+Quando al server si accede solo da console KVM quella chiave non si riesce a
+trasportare, perché la console non lascia uscire testo.
+
+Il verso si può rovesciare: è il server a controllare se su GitHub c'è una
+versione nuova, e a costruirsi il sito da sé. Il repository è pubblico, quindi
+non serve nessuna credenziale.
+
+Servono `git` e Node sul server:
+
+```bash
+sudo apt install -y git nodejs npm
+node --version    # deve essere 20.19 o superiore
+```
+
+Se la versione di Node è più vecchia, si installa quella corrente dal
+repository NodeSource.
+
+Poi lo script e il timer, scaricati dal repository:
+
+```bash
+sudo curl -o /usr/local/bin/europando-deploy https://raw.githubusercontent.com/tuvericlaudio-stack/europando/main/deploy/europando-deploy.sh
+sudo chmod +x /usr/local/bin/europando-deploy
+sudo curl -o /etc/systemd/system/europando-deploy.service https://raw.githubusercontent.com/tuvericlaudio-stack/europando/main/deploy/systemd/europando-deploy.service
+sudo curl -o /etc/systemd/system/europando-deploy.timer https://raw.githubusercontent.com/tuvericlaudio-stack/europando/main/deploy/systemd/europando-deploy.timer
+sudo systemctl daemon-reload
+sudo systemctl enable --now europando-deploy.timer
+```
+
+Prima pubblicazione manuale:
+
+```bash
+sudo -u deploy /usr/local/bin/europando-deploy
+```
+
+Da lì in poi il timer controlla ogni cinque minuti: se il commit su `main` non
+è cambiato lo script esce in meno di un secondo senza costruire nulla.
+
+Cosa fa, in ordine: aggiorna il codice, costruisce il sito per il dominio,
+**verifica che la home dichiari l'indirizzo giusto** e che `404.html` e
+`sitemap.xml` esistano, copia la nuova versione in `releases/`, sposta il
+symlink `current` in modo atomico e tiene le ultime cinque versioni.
+
+Se la verifica fallisce lo script esce con errore **senza pubblicare**: il sito
+online resta quello precedente.
+
+Per vedere cosa è successo:
+
+```bash
+systemctl status europando-deploy.timer
+journalctl -u europando-deploy.service -n 30
+```
+
+I due metodi si escludono a vicenda: se un domani si passa al deploy da GitHub
+Actions, il timer va disattivato con
+`sudo systemctl disable --now europando-deploy.timer`.
 
 ## 8. Dopo il passaggio: la vecchia copia su GitHub Pages
 
