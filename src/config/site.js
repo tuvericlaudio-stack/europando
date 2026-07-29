@@ -1,6 +1,6 @@
 import { asset } from "../utils/assets";
 
-const FALLBACK_SITE_URL = "https://tuvericlaudio-stack.github.io/europando/";
+const FALLBACK_SITE_URL = "https://europando.it/";
 
 // L'indirizzo pubblico del sito finisce in canonical, og:url, sitemap e dati
 // strutturati: cambiando dominio va cambiato qui e in nessun altro punto.

@@ -4,7 +4,7 @@ Documento di passaggio di consegne. Serve a chi riprende il lavoro senza aver
 seguito quello fatto finora: una nuova chat, un altro collaboratore, o me stesso
 tra qualche mese.
 
-Aggiornato al commit `c72c6c3` (27 luglio 2026).
+Aggiornato al 28 luglio 2026, dopo il passaggio al dominio proprio.
 
 ---
 
@@ -13,8 +13,9 @@ Aggiornato al commit `c72c6c3` (27 luglio 2026).
 Sito di guide di viaggio in italiano, scritto in React con Vite e Tailwind.
 
 - **Repository:** `tuvericlaudio-stack/europando`
-- **Online ora:** https://tuvericlaudio-stack.github.io/europando/ (GitHub Pages)
-- **Dominio registrato, non ancora attivo:** `europando.it`
+- **Online su:** https://europando.it — VPS OVH, Ubuntu 26.04, IP `145.239.74.222`
+- **Non più su GitHub Pages:** il sito è stato spostato, il workflow relativo è
+  stato rimosso
 - **Instagram:** `@_europando_`
 - **Autore:** progetto personale, non un'azienda
 
@@ -41,9 +42,14 @@ In totale: 7 pagine generate, di cui 4 di contenuto reale.
 
 ### Infrastruttura
 
-- deploy automatico su GitHub Pages a ogni push su `main`
+- **pubblicazione:** un timer sul server controlla ogni cinque minuti se su
+  `main` c'è una versione nuova, e in quel caso ricostruisce e pubblica il sito.
+  Nessuna credenziale coinvolta, il repository è pubblico
 - controllo automatico (lint + build) su ogni pull request
-- deploy sul VPS **pronto ma inattivo** (aspetta la configurazione delle variabili)
+- certificato HTTPS con rinnovo automatico
+- **al server si accede solo da console KVM**: niente SSH dal computer
+  dell'utente, quindi niente copia-incolla e niente file trasferibili. Per
+  scrivere file lunghi sul server si usa `curl` dal repository pubblico
 
 ---
 
@@ -82,8 +88,8 @@ Dettagli che contano:
 - ogni pagina porta `data-prerender-path`; `main.jsx` si aggancia all'HTML
   esistente solo se combacia con l'indirizzo, altrimenti ricostruisce da zero
 - niente browser headless: la build in CI resta leggera
-- `404.html` è la pagina 404 vera e propria, non un redirect: funziona identica
-  su GitHub Pages e su nginx
+- `404.html` è la pagina 404 vera e propria, non un redirect: nginx la
+  restituisce con stato 404 mantenendo l'indirizzo richiesto
 - le canonical hanno lo slash finale, perché è l'indirizzo realmente servito da
   una cartella con `index.html`
 
@@ -103,10 +109,13 @@ al punto giusto se l'indirizzo contiene un'ancora tipo `#giorno-2`.
 | `VITE_SITE_URL` | indirizzo pubblico: canonical, og:url, sitemap, dati strutturati |
 | `VITE_SITE_BASE_PATH` | sottocartella da cui il sito è servito |
 
-I default puntano a GitHub Pages. Per il dominio proprio:
+I valori predefiniti sono già quelli del sito online (`https://europando.it/`
+servito dalla radice), quindi una build senza variabili impostate produce il
+sito giusto. Le variabili servono per pubblicare altrove, per esempio in una
+sottocartella:
 
 ```bash
-VITE_SITE_URL=https://europando.it VITE_SITE_BASE_PATH=/ npm run build
+VITE_SITE_URL=https://altro-dominio.it VITE_SITE_BASE_PATH=/sottocartella/ npm run build
 ```
 
 ### Immagini
@@ -121,15 +130,23 @@ esterna non ancora risolta (vedi punto 6).
 
 ---
 
-## 4. Prossimo passo: passaggio al VPS
+## 4. Passaggio al VPS: fatto
 
-**È la priorità concordata.** L'analisi commerciale viene dopo.
+Completato il 28 luglio 2026. Restano note utili in caso di problemi.
 
-### Dati noti
+### Come è configurato il server
 
-- dominio `europando.it`, registrato
-- VPS Ubuntu 26.04
-- non è ancora noto se sul server ci siano già nginx/Apache e altri siti
+- nginx serve `/var/www/europando/current`, un symlink alla versione pubblicata
+- le versioni stanno in `/var/www/europando/releases/`, se ne tengono cinque
+- lo script è `/usr/local/bin/europando-deploy`, eseguito dal timer
+  `europando-deploy.timer` come utente `deploy`
+- il codice sorgente sul server sta in `/home/deploy/src`
+- per pubblicare subito senza aspettare il timer:
+  `sudo -u deploy /usr/local/bin/europando-deploy`
+- per vedere cosa è successo:
+  `journalctl -u europando-deploy.service -n 30`
+- durante il DNS c'erano **due** record A: quello del VPS e la pagina di
+  parcheggio di OVH (`213.186.33.5`). Vanno tenuti solo quelli verso il VPS
 
 ### Cosa è già pronto nel repository
 
@@ -145,22 +162,15 @@ cosa servire. Il virtual host contiene solo HTTP perché il blocco HTTPS lo
 aggiunge certbot: percorsi di certificato inesistenti impedirebbero a nginx di
 avviarsi.
 
-### Cosa manca (tutto lato utente)
+### Il metodo alternativo resta disponibile
 
-1. due record DNS `A` verso l'IP del VPS (`@` e `www`)
-2. sul server: nginx, certbot, utente `deploy`, cartelle, virtual host
-3. certificato con `certbot --nginx`, **poi `certbot renew --dry-run`** (se il
-   rinnovo automatico è rotto il sito diventa inaccessibile dopo tre mesi senza
-   preavviso)
-4. su GitHub: 4 variabili (`SITE_URL`, `DEPLOY_HOST`, `DEPLOY_USER`,
-   `DEPLOY_PATH`) e 2 segreti (`DEPLOY_SSH_KEY`, `DEPLOY_KNOWN_HOSTS`)
-5. primo deploy da *Actions → Deploy Europando sul VPS*
-6. **a passaggio riuscito: disattivare GitHub Pages** e il workflow `deploy.yml`,
-   altrimenti lo stesso contenuto esiste a due indirizzi e Google deve indovinare
-   quale sia quello buono
+`.github/workflows/deploy-vps.yml` pubblica via SSH da GitHub Actions. È pronto
+ma inattivo: il job non parte finché la variabile `DEPLOY_HOST` non esiste.
+Serve una chiave privata nei segreti del repository, impossibile da trasportare
+attraverso la KVM. Il giorno in cui il server sarà raggiungibile via SSH da un
+computer, basta disattivare il timer e configurare variabili e segreti.
 
-Il job di deploy non parte finché `DEPLOY_HOST` non esiste: è voluto, permette al
-workflow di stare su `main` senza far diventare rosso il branch.
+I due metodi si escludono a vicenda.
 
 ---
 
@@ -248,7 +258,8 @@ Motivo in più per non affrettare la pubblicità.
 
 | questione | di chi è | note |
 | --- | --- | --- |
-| Segnalare la sitemap in Google Search Console | utente | `https://<dominio>/sitemap.xml`. Un `robots.txt` non servirebbe: su una sottocartella i crawler non lo leggono |
+| Segnalare la sitemap in Google Search Console | utente | `https://europando.it/sitemap.xml` |
+| Disattivare GitHub Pages in *Settings → Pages* | utente | il workflow è stato rimosso, ma la pubblicazione esistente va spenta perché lo stesso contenuto non resti a due indirizzi |
 | Foto di Palma, Puglia e Oslo su Unsplash | utente + sviluppo | vanno scaricate in `public/`, poi si aggiornano i dati e si dichiarano le dimensioni |
 | Galleria destinazioni | fatto, ma da sapere | il taglio alla terza foto è stato rimosso; oggi nessuna destinazione ne ha più di 3, quindi la resa non cambia |
 | Contenuti sottili (Palma, Puglia) | utente | decisione editoriale, non tecnica |
@@ -261,9 +272,10 @@ Motivo in più per non affrettare la pubblicità.
 Vincoli incontrati lavorando da Claude Code su container remoto. Chi riprende da
 un ambiente diverso potrebbe non averli.
 
-- **`tuvericlaudio-stack.github.io` è bloccato** dalla policy di rete: il sito
-  pubblicato non è verificabile dall'interno. Le verifiche si fanno sulla
-  cartella `dist/` servita in locale
+- **`europando.it` e `tuvericlaudio-stack.github.io` sono bloccati** dalla policy
+  di rete (`host_not_allowed`): il sito pubblicato non è verificabile
+  dall'interno, bisogna chiedere all'utente di guardare. Le verifiche tecniche
+  si fanno sulla cartella `dist/` servita in locale
 - **`images.unsplash.com` è bloccato**: impossibile scaricare le foto per
   ospitarle nel repository
 - **`whois` non disponibile**: la disponibilità di un dominio non è verificabile
