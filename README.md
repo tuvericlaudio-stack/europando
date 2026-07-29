@@ -40,29 +40,31 @@ npm run preview
 
 ## Configurazione di indirizzo e base path
 
-Di default il progetto pubblica su `https://tuvericlaudio-stack.github.io/europando/`,
-cioè su GitHub Pages in una sottocartella. Due variabili d'ambiente spostano il
-sito altrove senza toccare il codice:
+Di default il progetto pubblica su `https://europando.it/`, servito dalla radice
+del dominio. Due variabili d'ambiente spostano il sito altrove senza toccare il
+codice — per esempio per pubblicarlo in una sottocartella:
 
 | variabile | a cosa serve |
 | --- | --- |
 | `VITE_SITE_BASE_PATH` | la sottocartella da cui il sito è servito |
 | `VITE_SITE_URL` | l'indirizzo pubblico, usato per canonical, og:url, sitemap e dati strutturati |
 
-Su un dominio proprio, servito dalla radice:
-
 ```bash
-VITE_SITE_URL=https://iltuodominio.it VITE_SITE_BASE_PATH=/ npm run build
+VITE_SITE_URL=https://altro-dominio.it VITE_SITE_BASE_PATH=/sottocartella/ npm run build
 ```
 
 L'indirizzo va impostato correttamente: da lì dipendono gli URL canonici, le
-anteprime social e la sitemap. Se resta quello di default, il sito su un altro
-dominio dichiarerebbe a Google di essere una copia di quello su GitHub Pages.
+anteprime social e la sitemap. Un sito pubblicato con l'indirizzo sbagliato
+dichiara a Google di essere una copia di un altro.
 
-## Pubblicare su un server proprio
+## Pubblicazione
 
-La procedura completa è in [`deploy/README.md`](deploy/README.md): DNS,
-preparazione del server, certificato HTTPS, variabili su GitHub e primo deploy.
+Il sito è online su **https://europando.it**, ospitato su un VPS.
+
+Il server controlla ogni cinque minuti se su `main` c'è una versione nuova e in
+quel caso si ricostruisce il sito da sé: non serve nessuna credenziale, perché
+il repository è pubblico. La procedura completa, incluso il metodo alternativo
+con GitHub Actions, è in [`deploy/README.md`](deploy/README.md).
 
 `dist/` è composta da soli file statici: non serve Node in esecuzione. Ogni
 pagina pubblicata è una cartella con `index.html`, quindi al server basta
@@ -191,6 +193,8 @@ file dati e compare automaticamente in lista e nella rotta di dettaglio.
 - aggiunto il prerender delle pagine pubblicate, per anteprime social corrette
   e indirizzi profondi che rispondono senza passare dal redirect
 - generata `sitemap.xml` dalle stesse rotte del prerender
+- spostato il sito da GitHub Pages al dominio proprio, con pubblicazione
+  automatica dal server
 - resi configurabili indirizzo del sito e base path, per poter cambiare dominio
   senza modificare il codice
 - sostituito il redirect di `404.html`, specifico di GitHub Pages, con una vera
