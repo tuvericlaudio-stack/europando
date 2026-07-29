@@ -4,7 +4,7 @@ import { asset } from "../utils/assets";
 export const featuredPosts = [
   {
     slug: "due-settimane-palma",
-    status: CONTENT_STATUS.PUBLISHED,
+    status: CONTENT_STATUS.DRAFT,
     title: "Due settimane a Palma",
     category: "Travel Journal",
     excerpt:
@@ -100,7 +100,7 @@ export const featuredPosts = [
   },
   {
     slug: "una-settimana-puglia",
-    status: CONTENT_STATUS.PUBLISHED,
+    status: CONTENT_STATUS.DRAFT,
     title: "Una settimana in Puglia",
     category: "Travel Guide",
     excerpt:
@@ -126,6 +126,126 @@ export const featuredPosts = [
         title: "Che tipo di esperienza costruisce",
         text:
           "Ne esce una settimana ordinata e molto leggibile, in cui il paesaggio, la luce e i centri storici lavorano insieme senza creare confusione.",
+      },
+    ],
+  },
+  {
+    slug: "dove-mangiare-bucarest",
+    status: CONTENT_STATUS.DRAFT,
+    title: "Dove mangiare a Bucarest",
+    category: "Travel Guide",
+    excerpt:
+      "Qui inserirai l'estratto: una selezione di colazioni, street food e ristoranti per orientarsi a Bucarest senza tentativi a vuoto.",
+    meta: "6 min lettura",
+    image: asset("bucarest-hero.jpg"),
+    heroTitle: "Dove mangiare a Bucarest, senza tentativi a vuoto.",
+    intro:
+      "Qui inserirai l'introduzione: a chi è rivolto l'articolo e come si collega alla guida principale su Bucarest.",
+    sections: [
+      {
+        title: "Colazione",
+        text:
+          "Qui inserirai il testo sulla colazione: locali consigliati, zone, cosa aspettarsi. Punto di partenza: la lista già raccolta nella guida di Bucarest (Luca, 5 to go, Ted's Coffee, Café Van Gogh, Coftale, Gram Bistro).",
+      },
+      {
+        title: "Street food",
+        text:
+          "Qui inserirai il testo sullo street food: locali, piatti tipici, prezzi indicativi. Punto di partenza: Luca, Gyros Thessalonikis, In House Pastrami.",
+      },
+      {
+        title: "Ristoranti",
+        text:
+          "Qui inserirai il testo sui ristoranti: quando sceglierli, fascia di prezzo, atmosfera. Punto di partenza: Hanu lui Manuc, Caru cu Bere, Simbio, Beraria H Herastrau.",
+      },
+    ],
+  },
+  {
+    slug: "bucarest-in-2-giorni",
+    status: CONTENT_STATUS.DRAFT,
+    title: "Bucarest in 2 giorni",
+    category: "Travel Guide",
+    excerpt:
+      "Qui inserirai l'estratto: una versione compressa dell'itinerario per chi ha solo un weekend a disposizione.",
+    meta: "6 min lettura",
+    image: asset("bucarest-hero.jpg"),
+    heroTitle: "Bucarest in 2 giorni, il weekend essenziale.",
+    intro:
+      "Qui inserirai l'introduzione: per chi è pensato questo itinerario ridotto e in cosa si differenzia dalla guida completa in 3-4 giorni.",
+    sections: [
+      {
+        title: "Primo giorno",
+        text:
+          "Qui inserirai il testo del primo giorno: cosa tenere dall'itinerario completo, cosa tagliare, priorità.",
+      },
+      {
+        title: "Secondo giorno",
+        text:
+          "Qui inserirai il testo del secondo giorno: chiusura del weekend, ultime tappe, eventuale nota su rientro o partenza.",
+      },
+      {
+        title: "Cosa sacrificare rispetto a una permanenza più lunga",
+        text:
+          "Qui inserirai il testo su cosa manca in 2 giorni rispetto ai 3-4 della guida principale, per chi vuole valutare se allungare il viaggio.",
+      },
+    ],
+  },
+  {
+    slug: "come-arrivare-muoversi-bucarest",
+    status: CONTENT_STATUS.DRAFT,
+    title: "Come arrivare e muoversi a Bucarest",
+    category: "Travel Guide",
+    excerpt:
+      "Qui inserirai l'estratto: aeroporto, mezzi pubblici, taxi e app, per arrivare in centro senza sorprese.",
+    meta: "5 min lettura",
+    image: asset("bucarest-hero.jpg"),
+    heroTitle: "Come arrivare e muoversi a Bucarest.",
+    intro:
+      "Qui inserirai l'introduzione: perché conviene un articolo dedicato ai trasporti oltre alla guida principale.",
+    sections: [
+      {
+        title: "Dall'aeroporto al centro",
+        text:
+          "Qui inserirai il testo su bus 100 Express, treno per Gara de Nord e taxi/Uber/Bolt, riprendendo e ampliando quanto già presente nella guida principale.",
+      },
+      {
+        title: "Muoversi in città",
+        text:
+          "Qui inserirai il testo su metro, mezzi pubblici e app di trasporto, con dettagli pratici su biglietti e zone coperte.",
+      },
+      {
+        title: "Consigli pratici",
+        text:
+          "Qui inserirai eventuali accorgimenti utili: orari, sicurezza, app da scaricare prima di partire.",
+      },
+    ],
+  },
+  {
+    slug: "bucarest-budget-basso",
+    status: CONTENT_STATUS.DRAFT,
+    title: "Bucarest con un budget contenuto",
+    category: "Travel Guide",
+    excerpt:
+      "Qui inserirai l'estratto: come vivere Bucarest spendendo poco, tra alloggio, trasporti e cibo.",
+    meta: "6 min lettura",
+    image: asset("bucarest-hero.jpg"),
+    heroTitle: "Bucarest con un budget contenuto.",
+    intro:
+      "Qui inserirai l'introduzione: perché Bucarest si presta a un viaggio economico e cosa aspettarsi in termini di spesa media.",
+    sections: [
+      {
+        title: "Dove dormire spendendo poco",
+        text:
+          "Qui inserirai il testo su zone e tipologie di alloggio più economiche, collegandoti alle zone già indicate nella guida principale.",
+      },
+      {
+        title: "Mangiare senza spendere troppo",
+        text:
+          "Qui inserirai il testo su colazioni, street food e locali economici, riprendendo la lista della guida principale.",
+      },
+      {
+        title: "Spostamenti e attività a basso costo",
+        text:
+          "Qui inserirai il testo su trasporti pubblici economici e attività gratuite o quasi (parchi, passeggiate, quartieri da vedere a piedi).",
       },
     ],
   },
