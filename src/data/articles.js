@@ -139,11 +139,16 @@ export const articles = [
               "Al tramonto siamo andati al Parcul Cismigiu: un parco piacevole da visitare per il laghetto e i ponti che lo attraversano, perfetto per rallentare dopo una giornata di cammino.",
             ],
 
-            image: "",
+            image: "/bucarest-article-parlamento.jpg",
 
-            imageAlt: "",
+            imageWidth: 1200,
 
-            caption: "",
+            imageHeight: 1600,
+
+            imageAlt: "Il Palazzo del Parlamento di Bucarest in una giornata di sole",
+
+            caption:
+              "Il Palazzo del Parlamento, il più grande edificio governativo al mondo dopo il Pentagono.",
 
             quote:
               "Bastava allontanarsi di poche centinaia di metri da Calea Victoriei per trovare un ritmo completamente diverso.",
@@ -295,6 +300,18 @@ export const articles = [
       {
         src: "/bucarest-article-colazione.jpg",
         alt: "Pancake alla colazione di Coftale Coffee Shop",
+      },
+      {
+        src: "/bucarest-article-victoriei.jpg",
+        alt: "Calea Victoriei pedonale in una giornata di sole",
+      },
+      {
+        src: "/bucarest-article-ateneul.jpg",
+        alt: "L'Ateneul Roman visto dal giardino",
+      },
+      {
+        src: "/bucarest-article-stavropoleos.jpg",
+        alt: "La facciata dipinta della chiesa di Stavropoleos",
       },
     ],
 
