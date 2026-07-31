@@ -37,13 +37,13 @@ export const articles = [
       },
     ],
 
-    heroImage: "/bucarest-hero.jpg",
+    heroImage: "/bucarest-article-intro.jpg",
 
     heroWidth: 1200,
 
     heroHeight: 1600,
 
-    heroAlt: "Palazzo del Parlamento di Bucarest",
+    heroAlt: "Un edificio storico di Bucarest illuminato di notte",
 
     intro:
       "Abbiamo scelto Bucarest per il ponte del 25 aprile, cercando una destinazione europea accessibile e adatta a pochi giorni. Quello che ci ha colpito fin da subito è stata l'aria di festa che si respira nelle strade del centro nei weekend: nella bella stagione, ogni domenica Calea Victoriei si trasforma in una via interamente pedonale, tra attività e artisti di strada. È stato l'inizio di un viaggio in cui abbiamo scelto più volte di andare controcorrente rispetto a quello che fanno tutti.",
@@ -71,16 +71,16 @@ export const articles = [
               "Dopo cena abbiamo fatto una passeggiata nel Centrul Vechi. Nel weekend le strade del centro hanno un'aria di festa continua, con locali affollati e musica che esce dai portoni: è la prima cosa che colpisce di Bucarest, ancora prima dei monumenti.",
             ],
 
-            image: "/bucarest-gallery-1.jpg",
+            image: "/bucarest-article-hanul-2.jpg",
 
             imageWidth: 1200,
 
             imageHeight: 1600,
 
-            imageAlt: "Il centro storico di Bucarest la sera",
+            imageAlt: "Il cortile di Hanul lui Manuc affollato la sera",
 
             caption:
-              "Il Centrul Vechi la sera, tra musica e locali affollati.",
+              "Il cortile di Hanul lui Manuc, tra tavoli pieni e musica dal vivo.",
 
             quote:
               "Non ci aspettavamo che il primo impatto con Bucarest fosse un locale pieno di musica dal vivo e gente che balla.",
@@ -113,7 +113,7 @@ export const articles = [
               "Dalla colazione siamo passati per la famosissima e particolarissima Strada Cu Umbrele, la strada degli ombrelli, prima di arrivare a Cărturești Carusel, la cartolibreria più famosa di Bucarest: vale la visita anche solo per l'interno.",
             ],
 
-            image: "/bucarest-gallery-2.jpg",
+            image: "/bucarest-article-carturesti.jpg",
 
             imageWidth: 1200,
 
@@ -287,7 +287,16 @@ export const articles = [
       },
     ],
 
-    gallery: [],
+    gallery: [
+      {
+        src: "/bucarest-article-hanul-1.jpg",
+        alt: "Un piatto tradizionale rumeno da Hanul lui Manuc",
+      },
+      {
+        src: "/bucarest-article-colazione.jpg",
+        alt: "Pancake alla colazione di Coftale Coffee Shop",
+      },
+    ],
 
     galleryTitle: "Bucarest attraverso le nostre fotografie",
 
