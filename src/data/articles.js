@@ -201,11 +201,16 @@ export const articles = [
               "Pedalando si passa dal memoriale a Michael Jackson fino all'Arco di Trionfo, molto simile a quello parigino, tra scorci che meritano più di una sosta.",
             ],
 
-            image: "",
+            image: "/bucarest-article-arco-trionfo.jpg",
 
-            imageAlt: "",
+            imageWidth: 1200,
 
-            caption: "",
+            imageHeight: 1600,
+
+            imageAlt: "L'Arco di Trionfo di Bucarest in una giornata di sole",
+
+            caption:
+              "L'Arco di Trionfo, molto simile a quello parigino, tappa finale della pedalata lungo il lago.",
 
             quote:
               "Il parco più bello lo abbiamo scoperto in bici, non a piedi.",
@@ -312,6 +317,10 @@ export const articles = [
       {
         src: "/bucarest-article-stavropoleos.jpg",
         alt: "La facciata dipinta della chiesa di Stavropoleos",
+      },
+      {
+        src: "/bucarest-article-memorial-jackson.jpg",
+        alt: "Il memoriale a Michael Jackson nel Parcul Herastrau",
       },
     ],
 
