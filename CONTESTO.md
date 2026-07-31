@@ -4,7 +4,9 @@ Documento di passaggio di consegne. Serve a chi riprende il lavoro senza aver
 seguito quello fatto finora: una nuova chat, un altro collaboratore, o me stesso
 tra qualche mese.
 
-Aggiornato al 28 luglio 2026, dopo il passaggio al dominio proprio.
+Aggiornato al 31 luglio 2026: Palma e Puglia rimessi in bozza, aggiunti
+scaffold per articoli satellite su Bucarest, riscritto "Bucarest ci ha
+sorpresi" con il racconto e le foto reali del viaggio.
 
 ---
 
@@ -33,12 +35,42 @@ Sono pochi, ed è il dato che condiziona ogni ragionamento sulla monetizzazione:
 | contenuto | tipo | stato |
 | --- | --- | --- |
 | Bucarest | guida destinazione | pubblicata, completa |
-| "Bucarest ci ha sorpresi" | racconto lungo, 3 giorni | pubblicato, completo |
-| "Due settimane a Palma" | scheda articolo | pubblicata, **tre paragrafi soltanto** |
-| "Una settimana in Puglia" | scheda articolo | pubblicata, **tre paragrafi soltanto** |
+| "Bucarest ci ha sorpresi" | racconto lungo, 4 giorni | pubblicato, riscritto il 31 luglio 2026 |
 | Oslo, Irlanda e altre 2 destinazioni | — | in bozza (`draft`), non visibili |
 
-In totale: 7 pagine generate, di cui 4 di contenuto reale.
+In totale: 2 pagine di contenuto reale pubblicate (più home, archivio articoli,
+archivio destinazioni e 404).
+
+**Palma e Puglia sono state rimesse in `draft`** (29 luglio 2026): tre
+paragrafi non si posizionano su Google e segnalano un sito sottile. Restano
+in `src/data/posts.js`, pronte per essere completate e ripubblicate.
+
+**Nuovi scaffold in `draft` per articoli satellite su Bucarest**, in linea col
+piano di sezione 5 (una guida forte + articoli satellite invece di nuove
+città superficiali). Struttura pronta con placeholder, da riempire con
+contenuto reale prima di pubblicare:
+
+| slug | argomento |
+| --- | --- |
+| `dove-mangiare-bucarest` | colazione, street food, ristoranti |
+| `bucarest-in-2-giorni` | versione weekend dell'itinerario |
+| `come-arrivare-muoversi-bucarest` | aeroporto, mezzi pubblici, taxi/app |
+| `bucarest-budget-basso` | viaggio economico |
+
+**"Bucarest ci ha sorpresi" riscritto da zero** (31 luglio 2026) con il
+racconto reale di un ponte del 25 aprile, in `src/data/articles.js`: 4 giorni
+(arrivo e cena da Hanul lui Manuc, giornata piena tra Calea Victoriei e il
+rooftop di Closer to the Moon, la domenica in bici a Herastrau con la scelta
+consapevole di saltare le terme, l'ultima mattina). Le foto del vecchio
+articolo (generiche/segnaposto, condivise con la pagina destinazione) sono
+state sostituite con 15 foto reali del viaggio, caricate dall'utente in HEIC,
+convertite in JPEG e ridimensionate a 1200×1600, salvate in `public/` con
+prefisso `bucarest-article-*` per non toccare i file condivisi con
+`destinations.js` e `posts.js` (`bucarest-hero.jpg`,
+`bucarest-gallery-1/2/3.jpg`). Due sezioni (Closer to the Moon, le terme)
+sono rimaste senza immagine: avevano foto segnaposto con didascalie che
+descrivevano un soggetto diverso da quello mostrato, tolte perché fuorvianti.
+L'utente ha detto di non avere altre foto per ora.
 
 ### Infrastruttura
 
@@ -243,10 +275,14 @@ Motivo in più per non affrettare la pubblicità.
 ### Piano consigliato
 
 1. approfondire Bucarest invece di aggiungere città: una guida forte più 4-5
-   articoli satellite battono cinque città trattate superficialmente
+   articoli satellite battono cinque città trattate superficialmente. **Passo
+   avviato (29 luglio 2026)**: 4 scaffold in `draft` pronti in
+   `src/data/posts.js` (vedi sezione 2), da riempire con contenuto reale
 2. completare o rimettere in bozza Palma e Puglia: tre paragrafi non si
-   posizioneranno mai e comunicano a Google che il sito è sottile
-3. spostare il sito sul dominio **prima** di avere traffico da proteggere
+   posizioneranno mai e comunicano a Google che il sito è sottile. **Fatto
+   (29 luglio 2026)**: entrambe rimesse in `draft`
+3. spostare il sito sul dominio **prima** di avere traffico da proteggere —
+   **fatto** (vedi sezione 4)
 4. affiliazioni prima della pubblicità: GetYourGuide sui tour già citati nella
    guida di Bucarest. Nessuna soglia, nessun banner cookie
 5. su Instagram puntare alle collaborazioni, non ai clic verso il sito
@@ -282,6 +318,15 @@ un ambiente diverso potrebbe non averli.
 - **il push richiede che l'accesso in scrittura sia abilitato** nelle impostazioni
   GitHub dell'utente: all'inizio era in sola lettura e il push falliva con 403
 - niente `gh` CLI: si usano gli strumenti MCP di GitHub
+- **foto caricate in chat dall'utente**: quelle allegate con `@percorso` sono file
+  reali in `/root/.claude/uploads/...`, anche se hanno estensione `.HEIC`
+  risultano già JPEG (`file` lo conferma) — nessuna conversione HEIC
+  necessaria. Quelle incollate direttamente nel messaggio (senza `@percorso`)
+  non sono su disco: vanno estratte in base64 dall'ultimo messaggio utente nel
+  file di sessione (`~/.claude/projects/.../*.jsonl`, campo
+  `message.content[].source.data` dove `type` è `image`) e scritte su file con
+  Python prima di poterle processare. In entrambi i casi: `Pillow` non è
+  preinstallato, va fatto `pip install pillow`
 
 ---
 

@@ -11,13 +11,13 @@ export const articles = [
     category: "Travel Journal",
 
     subtitle:
-      "Tre giorni tra edifici monumentali, cortili nascosti e una città capace di cambiare atmosfera continuamente.",
+      "Un ponte del 25 aprile tra strade in festa, rooftop suggestivi e la scelta di vivere la città come i suoi abitanti, non come i turisti.",
 
     author: "Europando",
 
-    date: "Luglio 2026",
+    date: "Aprile 2026",
 
-    readingTime: "7 minuti di lettura",
+    readingTime: "9 minuti di lettura",
 
     tripFacts: [
       {
@@ -28,66 +28,65 @@ export const articles = [
       {
         type: "duration",
         label: "Durata",
-        value: "3 giorni",
+        value: "Ponte del 25 aprile, 2 giorni pieni più arrivo e partenza",
       },
       {
         type: "budget",
         label: "Stile di viaggio",
-        value: "City break low cost",
+        value: "City break autentico e low cost",
       },
     ],
 
-    heroImage: "/bucarest-hero.jpg",
+    heroImage: "/bucarest-article-intro.jpg",
 
     heroWidth: 1200,
 
     heroHeight: 1600,
 
-    heroAlt: "Palazzo del Parlamento di Bucarest",
+    heroAlt: "Un edificio storico di Bucarest illuminato di notte",
 
     intro:
-      "Quando abbiamo scelto Bucarest non cercavamo una città perfetta o da cartolina. Volevamo una destinazione europea accessibile, semplice da raggiungere e adatta a pochi giorni. Quello che abbiamo trovato è stata una città difficile da descrivere con una sola parola, capace di sorprenderci proprio attraverso le sue contraddizioni.",
+      "Abbiamo scelto Bucarest per il ponte del 25 aprile, cercando una destinazione europea accessibile e adatta a pochi giorni. Quello che ci ha colpito fin da subito è stata l'aria di festa che si respira nelle strade del centro nei weekend: nella bella stagione, ogni domenica Calea Victoriei si trasforma in una via interamente pedonale, tra attività e artisti di strada. È stato l'inizio di un viaggio in cui abbiamo scelto più volte di andare controcorrente rispetto a quello che fanno tutti.",
 
     days: [
       {
         number: 1,
 
-        navigationTitle: "Arrivo e prime impressioni",
+        navigationTitle: "Arrivo e prima sera",
 
-        title: "Il nostro primo incontro con Bucarest",
+        title: "L'arrivo e la prima sera a Bucarest",
 
         subtitle:
-          "L’arrivo, il primo giro nel centro e quella sensazione iniziale difficile da interpretare.",
+          "Un arrivo verso sera, una cena tradizionale con musica dal vivo e una prima passeggiata nel Centrul Vechi.",
 
         intro:
-          "Il primo giorno è servito soprattutto a orientarci e a capire il carattere della città. Bucarest non ci ha mostrato subito il suo lato più affascinante: abbiamo dovuto camminare, osservare e lasciarle il tempo di raccontarsi.",
+          "Siamo arrivati verso sera, con il tempo giusto per una cena e una prima passeggiata nel centro. Non un giorno pieno, ma è bastato a darci il tono di quello che ci avrebbe accompagnato per tutto il weekend.",
 
         sections: [
           {
-            title: "Una città che non si mostra subito",
+            title: "Cena da Hanul lui Manuc",
 
             paragraphs: [
-              "Il primo impatto con Bucarest è stato fatto di grandi strade, edifici imponenti e una sensazione iniziale difficile da interpretare. Alcune zone apparivano eleganti, altre più caotiche e segnate dal tempo.",
-              "Abbiamo capito presto che non avremmo dovuto cercare una città uniforme. Il suo fascino si trovava proprio nell’alternanza tra palazzi monumentali, architetture più fragili e piccoli luoghi nascosti dietro strade molto frequentate.",
+              "Per la prima cena abbiamo scelto Hanul lui Manuc, un locale molto tradizionale con musica e balli dal vivo. I prezzi sono nella media, ma l'atmosfera vale da sola la serata: è il modo più diretto per entrare subito nel carattere della città.",
+              "Dopo cena abbiamo fatto una passeggiata nel Centrul Vechi. Nel weekend le strade del centro hanno un'aria di festa continua, con locali affollati e musica che esce dai portoni: è la prima cosa che colpisce di Bucarest, ancora prima dei monumenti.",
             ],
 
-            image: "/bucarest-gallery-1.jpg",
+            image: "/bucarest-article-hanul-2.jpg",
 
             imageWidth: 1200,
 
             imageHeight: 1600,
 
-            imageAlt:
-              "Il cortile della chiesa Stavropoleos a Bucarest",
+            imageAlt: "Il cortile di Hanul lui Manuc affollato la sera",
 
             caption:
-              "Uno degli angoli più silenziosi incontrati durante il primo giorno.",
+              "Il cortile di Hanul lui Manuc, tra tavoli pieni e musica dal vivo.",
 
             quote:
-              "A Bucarest basta attraversare una strada per avere la sensazione di essere entrati in un’altra città.",
+              "Non ci aspettavamo che il primo impatto con Bucarest fosse un locale pieno di musica dal vivo e gente che balla.",
 
             tip:
-              "Il primo giorno non riempite troppo il programma. Dedicate qualche ora a camminare senza un percorso rigido, così da iniziare a comprendere le diverse anime della città.",
+              "Se puoi, organizza il tuo weekend a Bucarest includendo una domenica: da primavera in poi Calea Victoriei diventa interamente pedonale, con artisti di strada lungo tutto il percorso.",
           },
         ],
       },
@@ -95,50 +94,72 @@ export const articles = [
       {
         number: 2,
 
-        navigationTitle: "Il cuore di Bucarest",
+        navigationTitle: "Il cuore della città",
 
-        title: "Tra centro storico e luoghi sorprendenti",
+        title: "Un giorno intero tra librerie, viali e rooftop",
 
         subtitle:
-          "La giornata più intensa, tra architettura, locali, chiese e uno degli interni più fotografati della città.",
+          "Colazione in una caffetteria che non promette nulla e mantiene tutto, Calea Victoriei, il Parlamento e una serata sospesa dentro una bolla con vista.",
 
         intro:
-          "Il secondo giorno è stato quello con il programma più ricco. Dopo il primo orientamento, abbiamo iniziato a riconoscere le zone e a muoverci con maggiore naturalezza.",
+          "Il secondo giorno è stato quello più pieno, dalla colazione fino a tarda sera. Abbiamo attraversato il centro a piedi quasi per intero, e chiuso la giornata in uno dei posti più sorprendenti del viaggio.",
 
         sections: [
           {
-            title: "Il silenzio dietro il centro storico",
+            title: "Colazione da Coftale e Strada Cu Umbrele",
 
             paragraphs: [
-              "Nel centro storico si concentrano locali, ristoranti e una parte importante della vita serale. È una zona vivace e spesso affollata, ma è sufficiente allontanarsi di pochi metri per trovare un’atmosfera completamente diversa.",
-              "Il piccolo cortile di Stavropoleos è stato uno di quei luoghi che non richiedono molto tempo, ma che rimangono impressi. Dopo il rumore delle vie circostanti, entrarvi ci ha dato la sensazione di rallentare improvvisamente.",
+              "Abbiamo fatto colazione da Coftale Coffee Shop: da fuori non sembra niente di che, ma ne vale davvero la pena. È il tipo di posto che non trovi cercando le liste più scontate.",
+              "Dalla colazione siamo passati per la famosissima e particolarissima Strada Cu Umbrele, la strada degli ombrelli, prima di arrivare a Cărturești Carusel, la cartolibreria più famosa di Bucarest: vale la visita anche solo per l'interno.",
             ],
 
-            image: "/bucarest-gallery-2.jpg",
+            image: "/bucarest-article-carturesti.jpg",
 
             imageWidth: 1200,
 
             imageHeight: 1600,
 
-            imageAlt:
-              "Interno della libreria Cărturești Carusel",
+            imageAlt: "Interno della libreria Cărturești Carusel",
 
             caption:
               "Cărturești Carusel, uno degli interni più riconoscibili di Bucarest.",
 
             quote:
-              "I luoghi che ci sono rimasti maggiormente impressi non sono sempre stati quelli più grandi o monumentali.",
+              "Bastava alzare gli occhi sopra la testa per capire perché tutti fotografano questo posto.",
 
             tip:
-              "Per visitare con maggiore tranquillità i luoghi più conosciuti del centro, conviene arrivare nelle prime ore del mattino.",
+              "Vai a Cărturești Carusel nelle prime ore del mattino: è uno dei luoghi più fotografati della città e si affolla rapidamente.",
           },
 
           {
-            title: "La bellezza dei contrasti",
+            title: "Calea Victoriei, l'Ateneo e il Parlamento",
 
             paragraphs: [
-              "Bucarest non presenta una bellezza immediata e ordinata. Accanto a un edificio elegante può comparire un palazzo segnato dal tempo; una strada molto trafficata può condurre a un cortile silenzioso.",
-              "Questa mancanza di uniformità inizialmente disorienta, ma con il passare delle ore diventa la caratteristica più affascinante della città.",
+              "Da lì abbiamo camminato lungo Calea Victoriei, passando dall'Ateneul Roman fino ad arrivare al Palazzo del Parlamento, il più grande edificio governativo al mondo dopo il Pentagono. Tornando indietro ci siamo fermati alla suggestiva chiesa di Stavropoleos, un altro di quei piccoli angoli che si nascondono dietro le strade principali.",
+              "Al tramonto siamo andati al Parcul Cismigiu: un parco piacevole da visitare per il laghetto e i ponti che lo attraversano, perfetto per rallentare dopo una giornata di cammino.",
+            ],
+
+            image: "/bucarest-article-parlamento.jpg",
+
+            imageWidth: 1200,
+
+            imageHeight: 1600,
+
+            imageAlt: "Il Palazzo del Parlamento di Bucarest in una giornata di sole",
+
+            caption:
+              "Il Palazzo del Parlamento, il più grande edificio governativo al mondo dopo il Pentagono.",
+
+            quote:
+              "Bastava allontanarsi di poche centinaia di metri da Calea Victoriei per trovare un ritmo completamente diverso.",
+          },
+
+          {
+            title: "Aperitivo sospeso da Closer to the Moon",
+
+            paragraphs: [
+              "Come after dinner siamo andati a bere un cocktail sul suggestivo rooftop di Closer to the Moon. Per cena tappa veloce da Luca, la famosissima catena di panini e hot dog tipici rumeni, alla modica cifra di qualche euro.",
+              "Cena e drink li abbiamo consumati dentro una delle bolle del rooftop, con una vista mozzafiato sulla cattedrale di Biserica Zlătari. Come dolce abbiamo scelto i papanași, i tipici dolcetti rumeni: una delle esperienze più belle di tutto il viaggio.",
             ],
 
             image: "",
@@ -148,7 +169,7 @@ export const articles = [
             caption: "",
 
             quote:
-              "Non è una città da osservare soltanto: è una città che bisogna imparare a leggere.",
+              "Non ci aspettavamo di finire la serata dentro una bolla trasparente, con la cattedrale illuminata proprio davanti.",
           },
         ],
       },
@@ -156,70 +177,163 @@ export const articles = [
       {
         number: 3,
 
-        navigationTitle: "Le ultime ore",
+        navigationTitle: "Bici, parchi e scelte controcorrente",
+
+        title: "In bici a Herastrau e la Bucarest che non fa notizia",
+
+        subtitle:
+          "Una pedalata lungo il lago, il vero pastrami rumeno e la scelta consapevole di saltare le terme più famose della città.",
+
+        intro:
+          "La domenica, con le famiglie nei parchi e le strade più tranquille, è stata la giornata in cui abbiamo deciso più chiaramente cosa volevamo dal viaggio: vivere la città, non spuntare una lista.",
+
+        sections: [
+          {
+            title: "In bici lungo il lago di Herastrau",
+
+            paragraphs: [
+              "Abbiamo fatto un giro in bici lungo il lago del Parcul Herastrau, con il noleggio consigliato da iVelo: le postazioni si trovano in tutto il parco e si sbloccano facilmente con la loro app dedicata.",
+              "Pedalando si passa dal memoriale a Michael Jackson fino all'Arco di Trionfo, molto simile a quello parigino, tra scorci che meritano più di una sosta.",
+            ],
+
+            image: "/bucarest-article-arco-trionfo.jpg",
+
+            imageWidth: 1200,
+
+            imageHeight: 1600,
+
+            imageAlt: "L'Arco di Trionfo di Bucarest in una giornata di sole",
+
+            caption:
+              "L'Arco di Trionfo, molto simile a quello parigino, tappa finale della pedalata lungo il lago.",
+
+            quote:
+              "Il parco più bello lo abbiamo scoperto in bici, non a piedi.",
+
+            tip:
+              "Scarica l'app di iVelo prima di arrivare al parco: velocizza molto lo sblocco delle biciclette nelle postazioni.",
+          },
+
+          {
+            title: "Pranzo da In House Pastrami e un pomeriggio tra i quartieri",
+
+            paragraphs: [
+              "Per pranzo tappa da In House Pastrami: il vero pastrami nasce proprio in Romania, anche se poi ha avuto una storia travagliata prima di diventare famoso altrove.",
+              "Il pomeriggio lo abbiamo passato girando i dintorni del centro, osservando la classica domenica delle famiglie nei tanti parchi della città, con un caffè freddo nel suggestivo bar Mayfair 39.",
+            ],
+
+            image: "/bucarest-article-pastrami.jpg",
+
+            imageWidth: 1200,
+
+            imageHeight: 1600,
+
+            imageAlt: "Un sandwich di pastrami da In House Pastrami",
+
+            caption: "Il pastrami di In House Pastrami, la versione originale rumena del piatto.",
+
+            quote:
+              "La domenica pomeriggio a Bucarest si vive nei parchi, tra famiglie e passeggini, non nei musei.",
+          },
+
+          {
+            title: "Perché abbiamo saltato le terme",
+
+            paragraphs: [
+              "Abbiamo deciso volutamente di omettere le famosissime terme. Perché? Perché spesso si pensa che la cosa che fanno tutti sia quella da provare assolutamente, e si finisce nella banalità, a condividere l'attività con altri italiani in vacanza.",
+              "Noi di Europando vogliamo vivere il posto con la sua autenticità: ogni tanto qualcosa di scontato ci sta, ma non sarà mai il filo conduttore dei nostri viaggi. Amiamo vivere con i cittadini, parlare con loro, ascoltare le loro storie e imparare dalla storia del paese che visitiamo.",
+              "Ogni spostamento lo abbiamo fatto con Uber: economico e veloce. I mezzi pubblici, nella nostra esperienza, sono risultati poco efficienti.",
+            ],
+
+            image: "",
+
+            imageAlt: "",
+
+            caption: "",
+
+            quote:
+              "Fare la cosa che fanno tutti non è mai stato il nostro obiettivo: preferiamo vivere il posto, non solo visitarlo.",
+          },
+        ],
+      },
+
+      {
+        number: 4,
+
+        navigationTitle: "L'ultima mattina",
 
         title: "Il saluto alla città",
 
         subtitle:
-          "Le ultime visite, le passeggiate serali e le impressioni che abbiamo portato a casa.",
+          "Un'ultima colazione, un pranzo al sacco e le strade del centro come ultimo ricordo.",
 
         intro:
-          "L’ultimo giorno aveva inevitabilmente un ritmo diverso. Il tempo a disposizione era poco, ma ormai Bucarest ci sembrava più familiare rispetto al nostro arrivo.",
+          "L'ultima mattina aveva inevitabilmente un ritmo diverso, sospeso tra l'ultima colazione e l'attesa del pullman per l'aeroporto.",
 
         sections: [
           {
-            title: "La città dopo il tramonto",
+            title: "Ultima colazione e partenza",
 
             paragraphs: [
-              "La sera Bucarest cambia ancora. Gli edifici illuminati acquistano eleganza, le strade del centro diventano più animate e alcuni luoghi che durante il giorno possono sembrare ordinari assumono un carattere completamente diverso.",
-              "È passeggiando dopo il tramonto che abbiamo iniziato a percepirla non soltanto come una destinazione da visitare, ma come una città realmente vissuta.",
+              "Prima di prendere l'aereo abbiamo voluto assolutamente provare la colazione di Gram Bistro. Per il pranzo abbiamo optato per un pranzo al sacco da Luca, in attesa del pullman per l'aeroporto.",
+              "Se dovessimo raccontare una sola cosa di questo viaggio a un amico, racconteremmo che le strade del centro di Bucarest sono un luogo in cui capita di fermarsi a cantare con sconosciuti: un momento bellissimo che non conosce limiti né barriere linguistiche.",
             ],
 
-            image: "/bucarest-gallery-3.jpg",
+            image: "/bucarest-article-colazione-finale.jpg",
 
             imageWidth: 1200,
 
             imageHeight: 1600,
 
-            imageAlt:
-              "Edificio storico illuminato durante la notte a Bucarest",
+            imageAlt: "L'ultima colazione da Gram Bistro prima della partenza",
 
-            caption:
-              "Le luci serali trasformano l’architettura della città.",
+            caption: "L'ultima colazione da Gram Bistro, prima del pullman per l'aeroporto.",
 
             quote:
-              "Bucarest non finisce quando chiudono i monumenti: è proprio allora che mostra un altro volto.",
-          },
-
-          {
-            title: "Quello che ci è rimasto del viaggio",
-
-            paragraphs: [
-              "Bucarest non è perfetta e probabilmente non cerca nemmeno di esserlo. Non possiede sempre l’ordine di altre capitali europee e non offre in ogni strada la fotografia ideale.",
-              "Eppure è proprio questo a renderla autentica. Ci sono rimasti il cortile silenzioso di una chiesa, la luce bianca di una libreria, la presenza imponente del Parlamento e le passeggiate serali tra edifici illuminati.",
-              "La consiglieremmo a chi cerca una capitale diversa, ancora capace di sorprendere e sufficientemente accessibile da trasformarsi in un viaggio possibile anche per pochi giorni.",
-            ],
-
-            image: "/bucarest-hero.jpg",
-
-            imageWidth: 1200,
-
-            imageHeight: 1600,
-
-            imageAlt:
-              "Veduta del Palazzo del Parlamento di Bucarest",
-
-            caption:
-              "Il Palazzo del Parlamento, simbolo monumentale della città.",
-
-            quote:
-              "Non ci ha conquistati attraverso una singola attrazione, ma attraverso l’insieme delle sue contraddizioni.",
+              "Non ci ha conquistati una singola attrazione, ma la sensazione di essere finiti a cantare per strada con degli sconosciuti.",
           },
         ],
       },
     ],
 
-    gallery: [],
+    gallery: [
+      {
+        src: "/bucarest-article-hanul-1.jpg",
+        alt: "Un piatto tradizionale rumeno da Hanul lui Manuc",
+      },
+      {
+        src: "/bucarest-article-colazione.jpg",
+        alt: "Pancake alla colazione di Coftale Coffee Shop",
+      },
+      {
+        src: "/bucarest-article-victoriei.jpg",
+        alt: "Calea Victoriei pedonale in una giornata di sole",
+      },
+      {
+        src: "/bucarest-article-ateneul.jpg",
+        alt: "L'Ateneul Roman visto dal giardino",
+      },
+      {
+        src: "/bucarest-article-stavropoleos.jpg",
+        alt: "La facciata dipinta della chiesa di Stavropoleos",
+      },
+      {
+        src: "/bucarest-article-memorial-jackson.jpg",
+        alt: "Il memoriale a Michael Jackson nel Parcul Herastrau",
+      },
+      {
+        src: "/bucarest-article-strada-ombrele.jpg",
+        alt: "Gli ombrelli colorati di Strada Cu Umbrele",
+      },
+      {
+        src: "/bucarest-article-bici-herastrau.jpg",
+        alt: "Bici a noleggio sul lago del Parcul Herastrau",
+      },
+      {
+        src: "/bucarest-article-pedalo-tramonto.jpg",
+        alt: "Pedalò al tramonto su un laghetto di Bucarest",
+      },
+    ],
 
     galleryTitle: "Bucarest attraverso le nostre fotografie",
 
@@ -227,13 +341,13 @@ export const articles = [
       slug: "bucarest",
       name: "Bucarest",
       text:
-        "Nella nostra guida trovi l’itinerario di tre giorni, le informazioni sui trasporti, i luoghi da vedere e gli indirizzi che abbiamo raccolto durante il viaggio.",
+        "Nella nostra guida trovi l'itinerario di più giorni, le informazioni sui trasporti, i luoghi da vedere e gli indirizzi che abbiamo raccolto durante il viaggio.",
     },
 
     seo: {
       title: "Bucarest ci ha sorpresi | Europando",
       description:
-        "Il nostro diario di tre giorni a Bucarest, tra centro storico, luoghi nascosti e impressioni personali.",
+        "Il nostro diario di un ponte del 25 aprile a Bucarest, tra Calea Victoriei, un rooftop sospeso e la scelta di vivere la città come i suoi abitanti.",
     },
   },
 ];
