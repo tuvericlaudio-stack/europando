@@ -227,11 +227,15 @@ export const articles = [
               "Il pomeriggio lo abbiamo passato girando i dintorni del centro, osservando la classica domenica delle famiglie nei tanti parchi della città, con un caffè freddo nel suggestivo bar Mayfair 39.",
             ],
 
-            image: "",
+            image: "/bucarest-article-pastrami.jpg",
 
-            imageAlt: "",
+            imageWidth: 1200,
 
-            caption: "",
+            imageHeight: 1600,
+
+            imageAlt: "Un sandwich di pastrami da In House Pastrami",
+
+            caption: "Il pastrami di In House Pastrami, la versione originale rumena del piatto.",
 
             quote:
               "La domenica pomeriggio a Bucarest si vive nei parchi, tra famiglie e passeggini, non nei musei.",
@@ -284,11 +288,15 @@ export const articles = [
               "Se dovessimo raccontare una sola cosa di questo viaggio a un amico, racconteremmo che le strade del centro di Bucarest sono un luogo in cui capita di fermarsi a cantare con sconosciuti: un momento bellissimo che non conosce limiti né barriere linguistiche.",
             ],
 
-            image: "",
+            image: "/bucarest-article-colazione-finale.jpg",
 
-            imageAlt: "",
+            imageWidth: 1200,
 
-            caption: "",
+            imageHeight: 1600,
+
+            imageAlt: "L'ultima colazione da Gram Bistro prima della partenza",
+
+            caption: "L'ultima colazione da Gram Bistro, prima del pullman per l'aeroporto.",
 
             quote:
               "Non ci ha conquistati una singola attrazione, ma la sensazione di essere finiti a cantare per strada con degli sconosciuti.",
@@ -321,6 +329,18 @@ export const articles = [
       {
         src: "/bucarest-article-memorial-jackson.jpg",
         alt: "Il memoriale a Michael Jackson nel Parcul Herastrau",
+      },
+      {
+        src: "/bucarest-article-strada-ombrele.jpg",
+        alt: "Gli ombrelli colorati di Strada Cu Umbrele",
+      },
+      {
+        src: "/bucarest-article-bici-herastrau.jpg",
+        alt: "Bici a noleggio sul lago del Parcul Herastrau",
+      },
+      {
+        src: "/bucarest-article-pedalo-tramonto.jpg",
+        alt: "Pedalò al tramonto su un laghetto di Bucarest",
       },
     ],
 
