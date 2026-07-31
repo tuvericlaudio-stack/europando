@@ -162,16 +162,11 @@ export const articles = [
               "Cena e drink li abbiamo consumati dentro una delle bolle del rooftop, con una vista mozzafiato sulla cattedrale di Biserica Zlătari. Come dolce abbiamo scelto i papanași, i tipici dolcetti rumeni: una delle esperienze più belle di tutto il viaggio.",
             ],
 
-            image: "/bucarest-gallery-3.jpg",
+            image: "",
 
-            imageWidth: 1200,
+            imageAlt: "",
 
-            imageHeight: 1600,
-
-            imageAlt: "Vista notturna da un rooftop di Bucarest",
-
-            caption:
-              "La vista dalle bolle di Closer to the Moon, sulla cattedrale di Biserica Zlătari.",
+            caption: "",
 
             quote:
               "Non ci aspettavamo di finire la serata dentro una bolla trasparente, con la cattedrale illuminata proprio davanti.",
@@ -250,15 +245,11 @@ export const articles = [
               "Ogni spostamento lo abbiamo fatto con Uber: economico e veloce. I mezzi pubblici, nella nostra esperienza, sono risultati poco efficienti.",
             ],
 
-            image: "/bucarest-hero.jpg",
+            image: "",
 
-            imageWidth: 1200,
+            imageAlt: "",
 
-            imageHeight: 1600,
-
-            imageAlt: "Un parco di Bucarest la domenica pomeriggio",
-
-            caption: "La domenica nei parchi di Bucarest, tra residenti e famiglie.",
+            caption: "",
 
             quote:
               "Fare la cosa che fanno tutti non è mai stato il nostro obiettivo: preferiamo vivere il posto, non solo visitarlo.",
