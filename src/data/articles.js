@@ -39,9 +39,7 @@ export const articles = [
 
     heroImage: "/bucarest-article-intro.jpg",
 
-    heroWidth: 1200,
-
-    heroHeight: 1600,
+    heroAspect: "3/4",
 
     heroAlt: "Un edificio storico di Bucarest illuminato di notte",
 

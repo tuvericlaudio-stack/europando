@@ -634,14 +634,21 @@ export default function ArticlePage({ article, post, logoSrc }) {
 
           {content.heroImage && (
             <figure className="mx-auto max-w-7xl px-5 md:px-8">
-              <div className="overflow-hidden rounded-[1.8rem] bg-[#e4dcd1] shadow-[0_24px_70px_rgba(37,55,74,0.12)]">
+              <div
+                className={`overflow-hidden rounded-[1.8rem] bg-[#e4dcd1] shadow-[0_24px_70px_rgba(37,55,74,0.12)] ${
+                  content.heroAspect ? "mx-auto w-full sm:max-w-[560px]" : ""
+                }`}
+              >
                 <img
                   src={resolveAsset(content.heroImage)}
                   alt={content.heroAlt}
-                  width={content.heroWidth}
-                  height={content.heroHeight}
                   fetchPriority="high"
-                  className="max-h-[760px] min-h-[360px] w-full object-cover"
+                  style={content.heroAspect ? { aspectRatio: content.heroAspect } : undefined}
+                  className={
+                    content.heroAspect
+                      ? "w-full object-cover"
+                      : "max-h-[760px] min-h-[360px] w-full object-cover"
+                  }
                 />
               </div>
             </figure>
