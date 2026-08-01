@@ -298,8 +298,10 @@ function PhotoGroup({ images }) {
     <div className={`my-8 grid gap-3 sm:gap-4 ${gridClass}`}>
       {images.map((image, index) => {
         // La maggior parte delle foto è verticale (3/4), ma qualcuna è
-        // orizzontale: l'aspect ratio segue la foto reale, mai un taglio forzato.
-        const isLandscape = image.aspect === "4/3";
+        // orizzontale: l'aspect ratio segue quello reale della foto (campo
+        // `aspect`, es. "1200/669"), mai un taglio forzato per adattarla.
+        const aspectRatio = image.aspect || "3/4";
+        const isLandscape = Number(aspectRatio.split("/")[0]) > Number(aspectRatio.split("/")[1]);
 
         const widthClass = isSingle
           ? isLandscape
@@ -317,9 +319,8 @@ function PhotoGroup({ images }) {
               alt={image.alt || ""}
               loading="lazy"
               decoding="async"
-              className={`w-full object-cover transition duration-700 hover:scale-[1.03] ${
-                isLandscape ? "aspect-[4/3]" : "aspect-[3/4]"
-              }`}
+              style={{ aspectRatio }}
+              className="w-full object-cover transition duration-700 hover:scale-[1.03]"
             />
 
             {image.caption && (
