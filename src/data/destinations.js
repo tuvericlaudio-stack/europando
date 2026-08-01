@@ -48,15 +48,15 @@ export const destinations = [
     slug: "bucarest",
     status: CONTENT_STATUS.PUBLISHED,
     name: "Bucarest",
-    seoTitle: "Bucarest in 3 giorni: itinerario semplice e consigli pratici",
+    seoTitle: "Itinerario Bucarest: 3-4 giorni, cosa vedere e consigli pratici",
     seoDescription:
-      "Guida a Bucarest con itinerario di 3-4 giorni, zone dove dormire, come muoversi dall’aeroporto e consigli pratici per organizzare bene il viaggio.",
+      "Itinerario di Bucarest in 3-4 giorni: tappe giorno per giorno, zone dove dormire, come muoversi dall’aeroporto e consigli pratici per organizzare il viaggio.",
     text: "Una città di contrasti, grandi viali, centro storico e tappe da distribuire bene senza correre.",
     tag: "Urban Mix",
     image: asset("bucarest-hero.jpg"),
-    heroTitle: "Bucarest, una guida semplice da leggere.",
+    heroTitle: "L'itinerario di Bucarest, in una guida semplice da seguire.",
     intro:
-      "Una guida pratica per organizzare Bucarest in modo semplice, con tappe chiare e consigli utili per il viaggio.",
+      "Un itinerario pratico per organizzare Bucarest in 3-4 giorni, con tappe chiare giorno per giorno e consigli utili per il viaggio.",
     stats: [
       { label: "Giorni ideali", value: "3-4" },
       { label: "Zona migliore", value: "Centro" },
