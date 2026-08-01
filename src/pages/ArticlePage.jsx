@@ -277,34 +277,81 @@ function RouteDivider() {
   );
 }
 
-// width e height dichiarati fanno riservare al browser lo spazio esatto prima
-// che l'immagine arrivi: senza, il testo veniva spinto in basso al caricamento.
-function BlogImage({ src, alt, caption, width, height }) {
-  if (!src) {
+// Un gruppo di una o più foto legate allo stesso punto del testo. Con più di
+// un'immagine diventano una piccola griglia affiancata invece di blocchi
+// enormi impilati. L'aspect ratio fisso riserva lo spazio prima del
+// caricamento, senza bisogno di width/height sull'tag <img>.
+function PhotoGroup({ images }) {
+  if (!images?.length) {
     return null;
   }
 
-  return (
-    <figure className="my-11 md:-mx-16 md:my-14">
-      <div className="overflow-hidden rounded-[1.5rem] bg-[#e5ddd2] shadow-[0_16px_45px_rgba(39,54,71,0.09)]">
-        <img
-          src={resolveAsset(src)}
-          alt={alt}
-          width={width}
-          height={height}
-          loading="lazy"
-          decoding="async"
-          className="max-h-[760px] w-full object-cover transition duration-700 hover:scale-[1.015]"
-        />
-      </div>
+  const isSingle = images.length === 1;
 
-      {caption && (
-        <figcaption className="mt-4 px-1 text-sm leading-6 text-[#738092]">
-          {caption}
-        </figcaption>
-      )}
-    </figure>
+  const gridClass = isSingle
+    ? "grid-cols-1"
+    : images.length === 2
+      ? "grid-cols-2"
+      : "grid-cols-2 sm:grid-cols-4";
+
+  return (
+    <div className={`my-8 grid gap-3 sm:gap-4 ${gridClass}`}>
+      {images.map((image, index) => (
+        <figure
+          key={`${image.src}-${index}`}
+          className="overflow-hidden rounded-[1.2rem] bg-[#e5ddd2] shadow-[0_10px_30px_rgba(39,54,71,0.08)]"
+        >
+          <img
+            src={resolveAsset(image.src)}
+            alt={image.alt || ""}
+            loading="lazy"
+            decoding="async"
+            className={`w-full object-cover transition duration-700 hover:scale-[1.03] ${
+              isSingle ? "aspect-[16/10]" : "aspect-[3/4]"
+            }`}
+          />
+
+          {image.caption && (
+            <figcaption className="px-3 py-2 text-xs leading-5 text-[#738092]">
+              {image.caption}
+            </figcaption>
+          )}
+        </figure>
+      ))}
+    </div>
   );
+}
+
+// Le foto di una sezione possono legarsi a un paragrafo preciso
+// (`afterParagraph`, indice 0-based) invece di comparire tutte insieme in
+// fondo. Quelle senza indice, o il vecchio campo singolo `image`, restano di
+// default in coda alla sezione.
+function groupSectionImages(section) {
+  const groups = new Map();
+
+  (section.images ?? []).forEach((image) => {
+    const key = Number.isInteger(image.afterParagraph)
+      ? image.afterParagraph
+      : -1;
+
+    if (!groups.has(key)) {
+      groups.set(key, []);
+    }
+
+    groups.get(key).push(image);
+  });
+
+  if (!section.images?.length && section.image) {
+    groups.set(-1, [
+      {
+        src: section.image,
+        alt: section.imageAlt || section.title,
+        caption: section.caption,
+      },
+    ]);
+  }
+
+  return groups;
 }
 
 function PersonalNote({ children }) {
@@ -371,6 +418,8 @@ function TravelTip({ children }) {
 }
 
 function ArticleSection({ section }) {
+  const imageGroups = groupSectionImages(section);
+
   return (
     <section>
       {section.title && (
@@ -382,18 +431,16 @@ function ArticleSection({ section }) {
       {section.paragraphs?.length > 0 && (
         <div className="mt-7 space-y-7 text-[1.08rem] leading-8 text-[#48596c] sm:text-lg sm:leading-9">
           {section.paragraphs.map((paragraph, index) => (
-            <p key={index}>{paragraph}</p>
+            <div key={index}>
+              <p>{paragraph}</p>
+
+              <PhotoGroup images={imageGroups.get(index)} />
+            </div>
           ))}
         </div>
       )}
 
-      <BlogImage
-        src={section.image}
-        alt={section.imageAlt || section.title}
-        caption={section.caption}
-        width={section.imageWidth}
-        height={section.imageHeight}
-      />
+      <PhotoGroup images={imageGroups.get(-1)} />
 
       <PersonalNote>{section.quote}</PersonalNote>
 

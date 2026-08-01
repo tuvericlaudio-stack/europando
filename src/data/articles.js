@@ -71,16 +71,20 @@ export const articles = [
               "Dopo cena abbiamo fatto una passeggiata nel Centrul Vechi. Nel weekend le strade del centro hanno un'aria di festa continua, con locali affollati e musica che esce dai portoni: è la prima cosa che colpisce di Bucarest, ancora prima dei monumenti.",
             ],
 
-            image: "/bucarest-article-hanul-2.jpg",
-
-            imageWidth: 1200,
-
-            imageHeight: 1600,
-
-            imageAlt: "Il cortile di Hanul lui Manuc affollato la sera",
-
-            caption:
-              "Il cortile di Hanul lui Manuc, tra tavoli pieni e musica dal vivo.",
+            images: [
+              {
+                src: "/bucarest-article-hanul-1.jpg",
+                alt: "Un piatto tradizionale rumeno da Hanul lui Manuc",
+                caption: "Il piatto tradizionale della nostra prima cena a Bucarest.",
+                afterParagraph: 0,
+              },
+              {
+                src: "/bucarest-article-hanul-2.jpg",
+                alt: "Il cortile di Hanul lui Manuc affollato la sera",
+                caption: "Il cortile di Hanul lui Manuc, tra tavoli pieni e musica dal vivo.",
+                afterParagraph: 1,
+              },
+            ],
 
             quote:
               "Non ci aspettavamo che il primo impatto con Bucarest fosse un locale pieno di musica dal vivo e gente che balla.",
@@ -113,16 +117,26 @@ export const articles = [
               "Dalla colazione siamo passati per la famosissima e particolarissima Strada Cu Umbrele, la strada degli ombrelli, prima di arrivare a Cărturești Carusel, la cartolibreria più famosa di Bucarest: vale la visita anche solo per l'interno.",
             ],
 
-            image: "/bucarest-article-carturesti.jpg",
-
-            imageWidth: 1200,
-
-            imageHeight: 1600,
-
-            imageAlt: "Interno della libreria Cărturești Carusel",
-
-            caption:
-              "Cărturești Carusel, uno degli interni più riconoscibili di Bucarest.",
+            images: [
+              {
+                src: "/bucarest-article-colazione.jpg",
+                alt: "Pancake alla colazione di Coftale Coffee Shop",
+                caption: "La colazione da Coftale Coffee Shop.",
+                afterParagraph: 0,
+              },
+              {
+                src: "/bucarest-article-strada-ombrele.jpg",
+                alt: "Gli ombrelli colorati di Strada Cu Umbrele",
+                caption: "Strada Cu Umbrele.",
+                afterParagraph: 1,
+              },
+              {
+                src: "/bucarest-article-carturesti.jpg",
+                alt: "Interno della libreria Cărturești Carusel",
+                caption: "Cărturești Carusel, uno degli interni più riconoscibili di Bucarest.",
+                afterParagraph: 1,
+              },
+            ],
 
             quote:
               "Bastava alzare gli occhi sopra la testa per capire perché tutti fotografano questo posto.",
@@ -139,16 +153,38 @@ export const articles = [
               "Al tramonto siamo andati al Parcul Cismigiu: un parco piacevole da visitare per il laghetto e i ponti che lo attraversano, perfetto per rallentare dopo una giornata di cammino.",
             ],
 
-            image: "/bucarest-article-parlamento.jpg",
-
-            imageWidth: 1200,
-
-            imageHeight: 1600,
-
-            imageAlt: "Il Palazzo del Parlamento di Bucarest in una giornata di sole",
-
-            caption:
-              "Il Palazzo del Parlamento, il più grande edificio governativo al mondo dopo il Pentagono.",
+            images: [
+              {
+                src: "/bucarest-article-victoriei.jpg",
+                alt: "Calea Victoriei pedonale in una giornata di sole",
+                caption: "Calea Victoriei.",
+                afterParagraph: 0,
+              },
+              {
+                src: "/bucarest-article-ateneul.jpg",
+                alt: "L'Ateneul Roman visto dal giardino",
+                caption: "L'Ateneul Roman.",
+                afterParagraph: 0,
+              },
+              {
+                src: "/bucarest-article-parlamento.jpg",
+                alt: "Il Palazzo del Parlamento di Bucarest in una giornata di sole",
+                caption: "Il Palazzo del Parlamento.",
+                afterParagraph: 0,
+              },
+              {
+                src: "/bucarest-article-stavropoleos.jpg",
+                alt: "La facciata dipinta della chiesa di Stavropoleos",
+                caption: "La chiesa di Stavropoleos.",
+                afterParagraph: 0,
+              },
+              {
+                src: "/bucarest-article-pedalo-tramonto.jpg",
+                alt: "Pedalò al tramonto sul laghetto del Parcul Cismigiu",
+                caption: "Il laghetto del Parcul Cismigiu al tramonto.",
+                afterParagraph: 1,
+              },
+            ],
 
             quote:
               "Bastava allontanarsi di poche centinaia di metri da Calea Victoriei per trovare un ritmo completamente diverso.",
@@ -196,16 +232,26 @@ export const articles = [
               "Pedalando si passa dal memoriale a Michael Jackson fino all'Arco di Trionfo, molto simile a quello parigino, tra scorci che meritano più di una sosta.",
             ],
 
-            image: "/bucarest-article-arco-trionfo.jpg",
-
-            imageWidth: 1200,
-
-            imageHeight: 1600,
-
-            imageAlt: "L'Arco di Trionfo di Bucarest in una giornata di sole",
-
-            caption:
-              "L'Arco di Trionfo, molto simile a quello parigino, tappa finale della pedalata lungo il lago.",
+            images: [
+              {
+                src: "/bucarest-article-bici-herastrau.jpg",
+                alt: "Bici a noleggio sul lago del Parcul Herastrau",
+                caption: "Il noleggio bici di iVelo sul lago di Herastrau.",
+                afterParagraph: 0,
+              },
+              {
+                src: "/bucarest-article-memorial-jackson.jpg",
+                alt: "Il memoriale a Michael Jackson nel Parcul Herastrau",
+                caption: "Il memoriale a Michael Jackson.",
+                afterParagraph: 1,
+              },
+              {
+                src: "/bucarest-article-arco-trionfo.jpg",
+                alt: "L'Arco di Trionfo di Bucarest in una giornata di sole",
+                caption: "L'Arco di Trionfo, molto simile a quello parigino.",
+                afterParagraph: 1,
+              },
+            ],
 
             quote:
               "Il parco più bello lo abbiamo scoperto in bici, non a piedi.",
@@ -222,15 +268,14 @@ export const articles = [
               "Il pomeriggio lo abbiamo passato girando i dintorni del centro, osservando la classica domenica delle famiglie nei tanti parchi della città, con un caffè freddo nel suggestivo bar Mayfair 39.",
             ],
 
-            image: "/bucarest-article-pastrami.jpg",
-
-            imageWidth: 1200,
-
-            imageHeight: 1600,
-
-            imageAlt: "Un sandwich di pastrami da In House Pastrami",
-
-            caption: "Il pastrami di In House Pastrami, la versione originale rumena del piatto.",
+            images: [
+              {
+                src: "/bucarest-article-pastrami.jpg",
+                alt: "Un sandwich di pastrami da In House Pastrami",
+                caption: "Il pastrami di In House Pastrami, la versione originale rumena del piatto.",
+                afterParagraph: 0,
+              },
+            ],
 
             quote:
               "La domenica pomeriggio a Bucarest si vive nei parchi, tra famiglie e passeggini, non nei musei.",
@@ -242,7 +287,7 @@ export const articles = [
             paragraphs: [
               "Abbiamo deciso volutamente di omettere le famosissime terme. Perché? Perché spesso si pensa che la cosa che fanno tutti sia quella da provare assolutamente, e si finisce nella banalità, a condividere l'attività con altri italiani in vacanza.",
               "Noi di Europando vogliamo vivere il posto con la sua autenticità: ogni tanto qualcosa di scontato ci sta, ma non sarà mai il filo conduttore dei nostri viaggi. Amiamo vivere con i cittadini, parlare con loro, ascoltare le loro storie e imparare dalla storia del paese che visitiamo.",
-              "Ogni spostamento lo abbiamo fatto con Uber: economico e veloce. I mezzi pubblici, nella nostra esperienza, sono risultati poco efficienti.",
+              "Ogni spostamento lo abbiamo fatto con Bolt: economico e veloce. I mezzi pubblici, nella nostra esperienza, sono risultati poco efficienti.",
             ],
 
             image: "",
@@ -279,15 +324,14 @@ export const articles = [
               "Se dovessimo raccontare una sola cosa di questo viaggio a un amico, racconteremmo che le strade del centro di Bucarest sono un luogo in cui capita di fermarsi a cantare con sconosciuti: un momento bellissimo che non conosce limiti né barriere linguistiche.",
             ],
 
-            image: "/bucarest-article-colazione-finale.jpg",
-
-            imageWidth: 1200,
-
-            imageHeight: 1600,
-
-            imageAlt: "L'ultima colazione da Gram Bistro prima della partenza",
-
-            caption: "L'ultima colazione da Gram Bistro, prima del pullman per l'aeroporto.",
+            images: [
+              {
+                src: "/bucarest-article-colazione-finale.jpg",
+                alt: "L'ultima colazione da Gram Bistro prima della partenza",
+                caption: "L'ultima colazione da Gram Bistro, prima del pullman per l'aeroporto.",
+                afterParagraph: 0,
+              },
+            ],
 
             quote:
               "Non ci ha conquistati una singola attrazione, ma la sensazione di essere finiti a cantare per strada con degli sconosciuti.",
@@ -296,44 +340,7 @@ export const articles = [
       },
     ],
 
-    gallery: [
-      {
-        src: "/bucarest-article-hanul-1.jpg",
-        alt: "Un piatto tradizionale rumeno da Hanul lui Manuc",
-      },
-      {
-        src: "/bucarest-article-colazione.jpg",
-        alt: "Pancake alla colazione di Coftale Coffee Shop",
-      },
-      {
-        src: "/bucarest-article-victoriei.jpg",
-        alt: "Calea Victoriei pedonale in una giornata di sole",
-      },
-      {
-        src: "/bucarest-article-ateneul.jpg",
-        alt: "L'Ateneul Roman visto dal giardino",
-      },
-      {
-        src: "/bucarest-article-stavropoleos.jpg",
-        alt: "La facciata dipinta della chiesa di Stavropoleos",
-      },
-      {
-        src: "/bucarest-article-memorial-jackson.jpg",
-        alt: "Il memoriale a Michael Jackson nel Parcul Herastrau",
-      },
-      {
-        src: "/bucarest-article-strada-ombrele.jpg",
-        alt: "Gli ombrelli colorati di Strada Cu Umbrele",
-      },
-      {
-        src: "/bucarest-article-bici-herastrau.jpg",
-        alt: "Bici a noleggio sul lago del Parcul Herastrau",
-      },
-      {
-        src: "/bucarest-article-pedalo-tramonto.jpg",
-        alt: "Pedalò al tramonto su un laghetto di Bucarest",
-      },
-    ],
+    gallery: [],
 
     galleryTitle: "Bucarest attraverso le nostre fotografie",
 
