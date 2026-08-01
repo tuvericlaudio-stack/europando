@@ -296,28 +296,40 @@ function PhotoGroup({ images }) {
 
   return (
     <div className={`my-8 grid gap-3 sm:gap-4 ${gridClass}`}>
-      {images.map((image, index) => (
-        <figure
-          key={`${image.src}-${index}`}
-          className={`overflow-hidden rounded-[1.2rem] bg-[#e5ddd2] shadow-[0_10px_30px_rgba(39,54,71,0.08)] ${
-            isSingle ? "mx-auto w-full sm:max-w-[420px]" : ""
-          }`}
-        >
-          <img
-            src={resolveAsset(image.src)}
-            alt={image.alt || ""}
-            loading="lazy"
-            decoding="async"
-            className="aspect-[3/4] w-full object-cover transition duration-700 hover:scale-[1.03]"
-          />
+      {images.map((image, index) => {
+        // La maggior parte delle foto è verticale (3/4), ma qualcuna è
+        // orizzontale: l'aspect ratio segue la foto reale, mai un taglio forzato.
+        const isLandscape = image.aspect === "4/3";
 
-          {image.caption && (
-            <figcaption className="px-3 py-2 text-xs leading-5 text-[#738092]">
-              {image.caption}
-            </figcaption>
-          )}
-        </figure>
-      ))}
+        const widthClass = isSingle
+          ? isLandscape
+            ? "mx-auto w-full sm:max-w-[620px]"
+            : "mx-auto w-full sm:max-w-[420px]"
+          : "";
+
+        return (
+          <figure
+            key={`${image.src}-${index}`}
+            className={`overflow-hidden rounded-[1.2rem] bg-[#e5ddd2] shadow-[0_10px_30px_rgba(39,54,71,0.08)] ${widthClass}`}
+          >
+            <img
+              src={resolveAsset(image.src)}
+              alt={image.alt || ""}
+              loading="lazy"
+              decoding="async"
+              className={`w-full object-cover transition duration-700 hover:scale-[1.03] ${
+                isLandscape ? "aspect-[4/3]" : "aspect-[3/4]"
+              }`}
+            />
+
+            {image.caption && (
+              <figcaption className="px-3 py-2 text-xs leading-5 text-[#738092]">
+                {image.caption}
+              </figcaption>
+            )}
+          </figure>
+        );
+      })}
     </div>
   );
 }

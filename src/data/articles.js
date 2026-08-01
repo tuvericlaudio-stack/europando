@@ -329,6 +329,7 @@ export const articles = [
                 src: "/bucarest-article-colazione-finale.jpg",
                 alt: "L'ultima colazione da Gram Bistro prima della partenza",
                 caption: "L'ultima colazione da Gram Bistro, prima del pullman per l'aeroporto.",
+                aspect: "4/3",
                 afterParagraph: 0,
               },
             ],
