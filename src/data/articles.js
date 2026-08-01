@@ -192,8 +192,8 @@ export const articles = [
             title: "Aperitivo sospeso da Closer to the Moon",
 
             paragraphs: [
-              "Come after dinner siamo andati a bere un cocktail sul suggestivo rooftop di Closer to the Moon. Per cena tappa veloce da Luca, la famosissima catena di panini e hot dog tipici rumeni, alla modica cifra di qualche euro.",
-              "Cena e drink li abbiamo consumati dentro una delle bolle del rooftop, con una vista mozzafiato sulla cattedrale di Biserica Zlătari. Come dolce abbiamo scelto i papanași, i tipici dolcetti rumeni: una delle esperienze più belle di tutto il viaggio.",
+              "Per cena tappa veloce da Luca, la famosissima catena di panini e hot dog tipici rumeni, alla modica cifra di qualche euro. Come after dinner siamo andati a bere un cocktail sul suggestivo rooftop di Closer to the Moon, nel quale però potete cenare direttamente anche se lo sconsigliamo.",
+              "Il drink l'abbiamo consumato dentro una delle bolle del rooftop, con una vista mozzafiato sulla cattedrale di Biserica Zlătari. Insieme al cocktail abbiamo preso un dolce: i papanași, i tipici dolcetti rumeni, una delle esperienze più belle di tutto il viaggio.",
             ],
 
             image: "",
