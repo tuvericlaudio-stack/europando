@@ -299,16 +299,16 @@ function PhotoGroup({ images }) {
       {images.map((image, index) => (
         <figure
           key={`${image.src}-${index}`}
-          className="overflow-hidden rounded-[1.2rem] bg-[#e5ddd2] shadow-[0_10px_30px_rgba(39,54,71,0.08)]"
+          className={`overflow-hidden rounded-[1.2rem] bg-[#e5ddd2] shadow-[0_10px_30px_rgba(39,54,71,0.08)] ${
+            isSingle ? "mx-auto w-full sm:max-w-[420px]" : ""
+          }`}
         >
           <img
             src={resolveAsset(image.src)}
             alt={image.alt || ""}
             loading="lazy"
             decoding="async"
-            className={`w-full object-cover transition duration-700 hover:scale-[1.03] ${
-              isSingle ? "aspect-[16/10]" : "aspect-[3/4]"
-            }`}
+            className="aspect-[3/4] w-full object-cover transition duration-700 hover:scale-[1.03]"
           />
 
           {image.caption && (
