@@ -1,12 +1,18 @@
 # Contesto del progetto Europando
 
 Documento di passaggio di consegne. Serve a chi riprende il lavoro senza aver
-seguito quello fatto finora: una nuova chat, un altro collaboratore, o me stesso
-tra qualche mese.
+seguito quello fatto finora: una nuova chat, un altro collaboratore, un altro
+strumento (a settembre 2026 il progetto è passato da Claude Code a ChatGPT
+Codex — vedi `AGENTS.md` per il punto d'ingresso rapido), o me stesso tra
+qualche mese.
 
-Aggiornato al 31 luglio 2026: Palma e Puglia rimessi in bozza, aggiunti
-scaffold per articoli satellite su Bucarest, riscritto "Bucarest ci ha
-sorpresi" con il racconto e le foto reali del viaggio.
+Aggiornato al 14 settembre 2026. Dall'ultimo aggiornamento (31 luglio) sono
+state unite altre 11 pull request (#6–#16): rifinitura fotografica e
+testuale dell'articolo su Bucarest, un errore fattuale corretto (Uber → Bolt,
+l'app di ride-sharing realmente diffusa in Romania), `robots.txt` aggiunto, e
+ottimizzazione SEO della guida di Bucarest per la ricerca "itinerario
+bucarest". Dettagli in sezione 10. Questo documento stesso era rimasto
+indietro fino ad oggi: vedi la regola aggiunta in sezione 9.
 
 ---
 
@@ -35,15 +41,22 @@ Sono pochi, ed è il dato che condiziona ogni ragionamento sulla monetizzazione:
 | contenuto | tipo | stato |
 | --- | --- | --- |
 | Bucarest | guida destinazione | pubblicata, completa |
-| "Bucarest ci ha sorpresi" | racconto lungo, 4 giorni | pubblicato, riscritto il 31 luglio 2026 |
-| Oslo, Irlanda e altre 2 destinazioni | — | in bozza (`draft`), non visibili |
+| "Bucarest ci ha sorpresi" | racconto lungo, 4 giorni | pubblicato, riscritto il 31 luglio, rifinito fino al 1° agosto |
 
-In totale: 2 pagine di contenuto reale pubblicate (più home, archivio articoli,
-archivio destinazioni e 404).
+In totale ancora **2** pagine di contenuto reale pubblicate (più home,
+archivio articoli, archivio destinazioni e 404) — verificato il 14 settembre
+sui dati sorgente, `npm run build` genera 5 pagine + 404 + sitemap. In `draft`,
+non visibili sul sito:
 
-**Palma e Puglia sono state rimesse in `draft`** (29 luglio 2026): tre
-paragrafi non si posizionano su Google e segnalano un sito sottile. Restano
-in `src/data/posts.js`, pronte per essere completate e ripubblicate.
+| file | contenuti in draft |
+| --- | --- |
+| `src/data/destinations.js` | `oslo`, `stoccolma`, `valencia` |
+| `src/data/posts.js` | `due-settimane-palma`, `una-settimana-irlanda`, `una-settimana-puglia`, più i 4 scaffold satellite sotto |
+
+Nessuno di questi è cambiato di stato dal 29 luglio: restano da completare.
+Il motivo per cui Palma e Puglia sono in `draft` (e non ancora pubblicati come
+prima): tre paragrafi non si posizionano su Google e segnalano un sito
+sottile.
 
 **Nuovi scaffold in `draft` per articoli satellite su Bucarest**, in linea col
 piano di sezione 5 (una guida forte + articoli satellite invece di nuove
@@ -71,6 +84,24 @@ prefisso `bucarest-article-*` per non toccare i file condivisi con
 sono rimaste senza immagine: avevano foto segnaposto con didascalie che
 descrivevano un soggetto diverso da quello mostrato, tolte perché fuorvianti.
 L'utente ha detto di non avere altre foto per ora.
+
+**Rifinitura successiva** (PR #10–#16, 31 luglio – 1° agosto), sullo stesso
+articolo:
+
+- corretto un errore fattuale: "Uber" → "Bolt", l'app di ride-sharing
+  realmente diffusa in Romania (PR #10, insieme a foto rese più leggere)
+- tolti i tagli indesiderati su più foto verticali, inclusa l'hero della
+  cattedrale in apertura (PR #11, #14)
+- la foto dell'ultima colazione ruotata e poi sostituita con una nuova già
+  dritta (PR #12, #13)
+- riscritto il testo della sezione "Closer to the Moon" (PR #15)
+- **SEO mirata sulla ricerca "itinerario bucarest"** (PR #16): title,
+  H1 (`heroTitle`), meta description e paragrafo introduttivo della **pagina
+  destinazione** Bucarest riscritti perché la parola "itinerario" apra il
+  titolo invece di comparire a metà. Aggiunto anche `public/robots.txt`
+  (mancava), con riferimento alla sitemap — utile ora che il sito è servito
+  dalla radice del dominio, cosa che non valeva quando stava su GitHub Pages
+  in sottocartella
 
 ### Infrastruttura
 
@@ -124,6 +155,8 @@ Dettagli che contano:
   restituisce con stato 404 mantenendo l'indirizzo richiesto
 - le canonical hanno lo slash finale, perché è l'indirizzo realmente servito da
   una cartella con `index.html`
+- `public/robots.txt` (statico, non generato) punta alla sitemap: aggiunto in
+  PR #16, mancava da prima
 
 ### Navigazione con link veri
 
@@ -294,12 +327,14 @@ Motivo in più per non affrettare la pubblicità.
 
 | questione | di chi è | note |
 | --- | --- | --- |
-| Segnalare la sitemap in Google Search Console | utente | `https://europando.it/sitemap.xml` |
-| Disattivare GitHub Pages in *Settings → Pages* | utente | il workflow è stato rimosso, ma la pubblicazione esistente va spenta perché lo stesso contenuto non resti a due indirizzi |
-| Foto di Palma, Puglia e Oslo su Unsplash | utente + sviluppo | vanno scaricate in `public/`, poi si aggiornano i dati e si dichiarano le dimensioni |
+| Segnalare la sitemap in Google Search Console | **fatto** | confermato dall'utente e ribadito nel corpo della PR #16 |
+| Disattivare GitHub Pages in *Settings → Pages* | probabilmente fatto, da riconfermare | il workflow che pubblicava lì è rimosso dal 29 luglio (PR #8) e non è più tornato; l'interruttore in *Settings → Pages* è un'impostazione visiva della dashboard GitHub, non verificabile con gli strumenti disponibili qui — nessuna sessione l'ha ancora confermato guardando lo schermo |
+| Il sito non è ancora ben posizionato per "itinerario bucarest" | in corso, monitorare | la SEO on-page è stata ottimizzata (PR #16); il resto è tempo e autorità del dominio (sito online da poche settimane) più profondità di contenuto — vedi sezione 5. Controllare in Search Console il rapporto *Rendimento*, filtrato su "bucarest", per le prime impressioni |
+| Foto di Palma, Puglia e Oslo su Unsplash | utente + sviluppo | vanno scaricate in `public/`, poi si aggiornano i dati e si dichiarano le dimensioni. Non risolto: quei tre contenuti sono ancora `draft`, quindi il problema non è urgente finché restano tali |
 | Galleria destinazioni | fatto, ma da sapere | il taglio alla terza foto è stato rimosso; oggi nessuna destinazione ne ha più di 3, quindi la resa non cambia |
-| Contenuti sottili (Palma, Puglia) | utente | decisione editoriale, non tecnica |
-| Action di GitHub Pages su Node 20 | nessuno | `configure-pages`, `deploy-pages`, `upload-artifact` sono già all'ultima versione: l'avviso si risolverà a monte |
+| Contenuti sottili (Palma, Puglia) | utente | decisione editoriale, non tecnica. Ancora in `draft` |
+| I 4 scaffold satellite su Bucarest | utente | struttura pronta con placeholder in `src/data/posts.js` (vedi sezione 2), da riempire con contenuto reale. Nessun progresso dal 29 luglio |
+| Action di GitHub Pages su Node 20 | non applicabile | il workflow che le usava è stato rimosso: la voce era già chiusa il 29 luglio, lasciata qui per errore |
 
 ---
 
@@ -362,8 +397,11 @@ dominio alternativo, per accorgersi degli indirizzi scritti a mano.
 
 ## 9. Convenzioni
 
-- **Branch di lavoro:** `claude/analisi-proposte-modifiche-guylh2`. Dopo ogni
-  merge va ricreato da `origin/main`, non si impilano commit su storia già unita
+- **Branch di lavoro:** ogni pull request nasce da `origin/main` aggiornato e
+  non si impila su storia già unita. Le PR #1–#16 sono nate tutte da branch
+  con prefisso `claude/...`, una convenzione di nome specifica di Claude
+  Code: uno strumento diverso userà la propria — la regola che conta è
+  "un branch per modifica, ricreato da `main` dopo ogni merge", non il prefisso
 - **Lingua:** italiano ovunque — codice, commenti, commit, pull request
 - **Commit e PR:** spiegano *perché*, non solo *cosa*. Se una modifica non cambia
   nulla di visibile, va detto esplicitamente
@@ -371,12 +409,19 @@ dominio alternativo, per accorgersi degli indirizzi scritti a mano.
   miglioramento non è misurabile, non lo si vende come tale
 - **Pull request:** si aprono solo se richieste
 - Node richiesto: `^20.19.0 || >=22.12.0` (`.nvmrc` indica la 22)
+- **Tenere `CONTESTO.md` aggiornato dopo un lavoro che cambia lo stato del
+  progetto in modo rilevante.** Non è successo tra il 31 luglio e il 14
+  settembre: sono state unite 11 pull request (#6–#16) senza che il documento
+  ne desse conto, e chi lo leggeva si fidava di uno stato vecchio di sei
+  settimane. Non serve aggiornarlo a ogni commit — un refuso corretto non
+  merita una riga qui — ma un contenuto pubblicato, una scelta architetturale,
+  un passaggio d'infrastruttura sì
 
 ---
 
 ## 10. Storia delle modifiche
 
-Cinque pull request, tutte unite.
+Sedici pull request, tutte unite.
 
 | PR | contenuto |
 | --- | --- |
@@ -385,6 +430,17 @@ Cinque pull request, tutte unite.
 | #3 | indirizzo del sito configurabile; `404.html` diventa una pagina vera invece di un redirect specifico di GitHub Pages |
 | #4 | deploy sul VPS: workflow, virtual host nginx, procedura |
 | #5 | versione di Node dichiarata in `package.json`, `.nvmrc` e `.npmrc` |
+| #6 | aggiunto questo documento di contesto |
+| #7 | metodo di pubblicazione dal server senza credenziali (vedi sezione 4) |
+| #8 | tolto il workflow GitHub Pages, valori predefiniti spostati sul dominio proprio |
+| #9 | Palma/Puglia rimessi in `draft`, scaffold per 4 articoli satellite su Bucarest, riscrittura completa di "Bucarest ci ha sorpresi" con foto reali (vedi sezione 2) |
+| #10 | foto più leggere nell'articolo Bucarest, corretto "Uber" → "Bolt" |
+| #11 | tolti i tagli indesiderati sulle foto verticali singole |
+| #12 | ruotata la foto dell'ultima colazione |
+| #13 | foto dell'ultima colazione sostituita con una nuova già dritta |
+| #14 | tolto il taglio sulla foto hero (cattedrale) in apertura articolo |
+| #15 | riscritto il testo della sezione "Closer to the Moon" |
+| #16 | SEO della pagina Bucarest per la ricerca "itinerario bucarest"; aggiunto `robots.txt` |
 
-Prima di questi interventi il sito aveva un articolo completo irraggiungibile e
-due guide che mostravano solo il titolo.
+Prima di questi interventi (prima della PR #1) il sito aveva un articolo
+completo irraggiungibile e due guide che mostravano solo il titolo.
