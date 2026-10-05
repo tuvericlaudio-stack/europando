@@ -7,11 +7,11 @@ export default function ArticlesPage({ logoSrc, posts }) {
     <div className="min-h-screen bg-[#f4f7fb] text-[#17202c]">
       <Header logoSrc={logoSrc} />
 
-      <section className="max-w-7xl mx-auto px-6 pt-14 pb-12 md:pt-18 md:pb-14">
-        <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#7a8798]">
+      <section className="mx-auto max-w-7xl px-5 pb-12 pt-14 md:px-8 md:pb-14 md:pt-18">
+        <p className="text-[11px] font-black uppercase tracking-[0.18em] text-[#0b67d8]">
           Articoli
         </p>
-        <h1 className="mt-4 text-4xl md:text-6xl font-black tracking-[-0.05em] text-[#123e78]">
+        <h1 className="mt-4 text-4xl md:text-6xl font-black tracking-[-0.05em] text-[#0d2c59]">
           Guide da leggere con calma.
         </h1>
         <p className="mt-6 max-w-3xl text-lg leading-8 text-[#5f6875]">
@@ -20,7 +20,7 @@ export default function ArticlesPage({ logoSrc, posts }) {
         </p>
       </section>
 
-      <section className="max-w-7xl mx-auto px-6 pb-24">
+      <section className="mx-auto max-w-7xl px-5 pb-24 md:px-8">
         <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
           {posts.map((post, index) => (
             <article
@@ -46,7 +46,7 @@ export default function ArticlesPage({ logoSrc, posts }) {
                   {post.meta}
                 </div>
 
-                <h2 className="mt-3 text-2xl font-black tracking-[-0.02em] leading-tight transition group-hover:text-[#0d62ad]">
+                <h2 className="mt-3 text-2xl font-black tracking-[-0.02em] leading-tight transition group-hover:text-[#0b67d8]">
                   <Link to={`/articoli/${post.slug}`}>{post.title}</Link>
                 </h2>
 
@@ -56,7 +56,7 @@ export default function ArticlesPage({ logoSrc, posts }) {
 
                 <Link
                   to={`/articoli/${post.slug}`}
-                  className="mt-6 inline-flex items-center gap-2 text-sm font-bold uppercase tracking-[0.12em] text-[#123e78]"
+                  className="mt-6 inline-flex items-center gap-2 text-sm font-black text-[#0b67d8]"
                 >
                   Apri articolo <span aria-hidden="true">→</span>
                 </Link>
