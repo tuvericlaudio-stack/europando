@@ -1,19 +1,33 @@
 import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
 
+const valuePoints = [
+  {
+    eyebrow: "Itinerari reali",
+    title: "Giorno per giorno",
+    text: "Percorsi costruiti a partire da viaggi realmente fatti, con un ordine facile da seguire.",
+  },
+  {
+    eyebrow: "Costi e scelte",
+    title: "Informazioni concrete",
+    text: "Trasporti, zone dove dormire, cibo e alternative per capire prima cosa conviene davvero.",
+  },
+  {
+    eyebrow: "Esperienza diretta",
+    title: "Non solo liste",
+    text: "Raccontiamo cosa ci è piaciuto, cosa salteremmo e quali esperienze ci hanno sorpreso.",
+  },
+];
+
 export default function HomePage({
   heroSrc,
   destinations,
   featuredDestination,
+  posts = [],
 }) {
   const primaryDestination =
     featuredDestination ?? destinations[0] ?? null;
-
-  const otherDestinations = primaryDestination
-    ? destinations.filter(
-      (destination) => destination.slug !== primaryDestination.slug
-    )
-    : destinations;
+  const featuredPost = posts[0] ?? null;
 
   const destinationPath = primaryDestination
     ? `/destinazioni/${primaryDestination.slug}`
@@ -22,8 +36,7 @@ export default function HomePage({
   return (
     <>
       <main className="bg-[#f7f4ee] text-[#14263d]">
-        {/* HERO */}
-        <section className="relative min-h-[680px] overflow-hidden md:min-h-[760px]">
+        <section className="relative min-h-[700px] overflow-hidden md:min-h-[790px]">
           <img
             src={heroSrc}
             alt="Viaggio in Europa con Europando"
@@ -31,28 +44,22 @@ export default function HomePage({
             className="absolute inset-0 h-full w-full object-cover"
           />
 
-          <div className="absolute inset-0 bg-gradient-to-r from-[#071729]/95 via-[#102a46]/72 to-[#102a46]/20" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#061321]/80 via-transparent to-[#061321]/30" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#061321]/95 via-[#102a46]/74 to-[#102a46]/28" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#061321]/88 via-transparent to-[#061321]/28" />
 
-          <div className="relative mx-auto flex min-h-[680px] max-w-7xl flex-col justify-end px-5 pb-16 pt-16 md:min-h-[760px] md:px-8 md:pb-24">
+          <div className="relative mx-auto flex min-h-[700px] max-w-7xl flex-col justify-end px-5 pb-16 pt-16 md:min-h-[790px] md:px-8 md:pb-24">
             <div className="max-w-4xl">
               <p className="text-xs font-black uppercase tracking-[0.3em] text-[#efc4a4]">
-                Travel journal
+                Viaggi veri · costi reali · consigli pratici
               </p>
 
-              <h1 className="mt-5 max-w-4xl text-6xl font-black leading-[0.92] tracking-[-0.065em] text-white sm:text-7xl md:text-[6.8rem]">
-                Europando
+              <h1 className="mt-5 max-w-4xl text-5xl font-black leading-[0.96] tracking-[-0.055em] text-white sm:text-6xl md:text-[5.9rem]">
+                Viaggiare in Europa senza spendere una fortuna.
               </h1>
 
-              <p className="mt-7 max-w-2xl text-xl font-semibold leading-8 text-white md:text-2xl md:leading-9">
-                Viaggiare in Europa,
-                <br />
-                una tappa alla volta.
-              </p>
-
-              <p className="mt-5 max-w-2xl text-base leading-7 text-white/78 md:text-lg md:leading-8">
-                Guide di viaggio scritte in modo semplice, con itinerari chiari
-                e consigli pratici da consultare senza confusione.
+              <p className="mt-7 max-w-2xl text-lg font-semibold leading-8 text-white md:text-2xl md:leading-9">
+                Itinerari provati, esperienze personali e informazioni concrete
+                per organizzare il tuo prossimo viaggio con meno dubbi.
               </p>
 
               <div className="mt-9 flex flex-wrap items-center gap-4">
@@ -66,97 +73,87 @@ export default function HomePage({
                 </Link>
 
                 <a
-                  href="#guida-in-evidenza"
+                  href="#come-ti-aiutiamo"
                   className="inline-flex min-h-12 items-center rounded-full border border-white/35 bg-white/10 px-7 py-3.5 text-sm font-black uppercase tracking-[0.13em] text-white backdrop-blur-md transition hover:bg-white hover:text-[#123e78]"
                 >
-                  Esplora il sito
+                  Come funziona Europando
                 </a>
+              </div>
+
+              <div className="mt-10 grid max-w-3xl gap-3 sm:grid-cols-3">
+                <div className="rounded-2xl border border-white/15 bg-[#071729]/40 px-5 py-4 backdrop-blur-md">
+                  <p className="text-xs font-black uppercase tracking-[0.17em] text-[#efc4a4]">01</p>
+                  <p className="mt-2 font-black text-white">Itinerari testati</p>
+                </div>
+                <div className="rounded-2xl border border-white/15 bg-[#071729]/40 px-5 py-4 backdrop-blur-md">
+                  <p className="text-xs font-black uppercase tracking-[0.17em] text-[#efc4a4]">02</p>
+                  <p className="mt-2 font-black text-white">Costi e trasporti</p>
+                </div>
+                <div className="rounded-2xl border border-white/15 bg-[#071729]/40 px-5 py-4 backdrop-blur-md">
+                  <p className="text-xs font-black uppercase tracking-[0.17em] text-[#efc4a4]">03</p>
+                  <p className="mt-2 font-black text-white">Esperienze vere</p>
+                </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* INTRODUZIONE */}
-        <section className="mx-auto max-w-7xl px-5 py-16 md:px-8 md:py-24">
-          <div className="grid gap-10 border-b border-[#dcd2c5] pb-16 md:grid-cols-[1fr_1.25fr] md:gap-16 md:pb-24">
+        <section
+          id="come-ti-aiutiamo"
+          className="mx-auto max-w-7xl scroll-mt-24 px-5 py-16 md:px-8 md:py-24"
+        >
+          <div className="grid gap-10 md:grid-cols-[0.9fr_1.4fr] md:gap-16">
             <div>
               <p className="text-xs font-black uppercase tracking-[0.22em] text-[#c86b4a]">
                 Il progetto
               </p>
-
               <h2 className="mt-4 text-4xl font-black leading-tight tracking-[-0.05em] text-[#123e78] md:text-5xl">
-                Guide pensate per essere davvero utilizzate.
+                Meno contenuti generici. Più informazioni che useresti davvero.
               </h2>
             </div>
 
-            <div className="md:pt-8">
-              <p className="text-lg leading-8 text-[#5f6875]">
-                Europando raccoglie itinerari, luoghi e informazioni pratiche
-                per aiutarti a organizzare un viaggio senza perdere tempo tra
-                decine di pagine diverse.
+            <div>
+              <p className="max-w-2xl text-lg leading-8 text-[#5f6875]">
+                Europando nasce dai nostri viaggi. Non vogliamo limitarci a
+                elencare attrazioni: raccogliamo itinerari, spostamenti,
+                indirizzi, impressioni e scelte che possono aiutarti a
+                organizzare meglio il tuo viaggio.
               </p>
 
-              <div className="mt-10 grid gap-7 sm:grid-cols-3">
-                <div className="border-t border-[#d8ccbd] pt-5">
-                  <span className="text-sm font-black text-[#c86b4a]">
-                    01
-                  </span>
-
-                  <h3 className="mt-3 font-black text-[#14263d]">
-                    Itinerari chiari
-                  </h3>
-
-                  <p className="mt-2 text-sm leading-6 text-[#6c7887]">
-                    Giornate organizzate con un ordine facile da seguire.
-                  </p>
-                </div>
-
-                <div className="border-t border-[#d8ccbd] pt-5">
-                  <span className="text-sm font-black text-[#c86b4a]">
-                    02
-                  </span>
-
-                  <h3 className="mt-3 font-black text-[#14263d]">
-                    Consigli pratici
-                  </h3>
-
-                  <p className="mt-2 text-sm leading-6 text-[#6c7887]">
-                    Trasporti, quartieri, prezzi e informazioni utili.
-                  </p>
-                </div>
-
-                <div className="border-t border-[#d8ccbd] pt-5">
-                  <span className="text-sm font-black text-[#c86b4a]">
-                    03
-                  </span>
-
-                  <h3 className="mt-3 font-black text-[#14263d]">
-                    Lettura semplice
-                  </h3>
-
-                  <p className="mt-2 text-sm leading-6 text-[#6c7887]">
-                    Contenuti ordinati e facili da consultare anche in viaggio.
-                  </p>
-                </div>
+              <div className="mt-10 grid gap-5 md:grid-cols-3">
+                {valuePoints.map((item) => (
+                  <article
+                    key={item.title}
+                    className="rounded-[1.5rem] border border-[#ddd2c4] bg-white p-6"
+                  >
+                    <p className="text-[11px] font-black uppercase tracking-[0.18em] text-[#c86b4a]">
+                      {item.eyebrow}
+                    </p>
+                    <h3 className="mt-3 text-xl font-black tracking-[-0.03em] text-[#123e78]">
+                      {item.title}
+                    </h3>
+                    <p className="mt-3 text-sm leading-6 text-[#6c7887]">
+                      {item.text}
+                    </p>
+                  </article>
+                ))}
               </div>
             </div>
           </div>
         </section>
 
-        {/* DESTINAZIONE IN EVIDENZA */}
         {primaryDestination && (
           <section
             id="guida-in-evidenza"
-            className="scroll-mt-20 mx-auto max-w-7xl px-5 pb-20 md:px-8 md:pb-28"
+            className="mx-auto max-w-7xl px-5 pb-20 md:px-8 md:pb-28"
           >
             <div className="mb-9 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
               <div>
                 <p className="text-xs font-black uppercase tracking-[0.22em] text-[#c86b4a]">
                   Guida in evidenza
                 </p>
-
                 <h2 className="mt-4 text-4xl font-black tracking-[-0.05em] text-[#123e78] md:text-5xl">
-                  La destinazione da cui iniziare
+                  Parti da un itinerario già pronto.
                 </h2>
               </div>
 
@@ -168,28 +165,24 @@ export default function HomePage({
               </Link>
             </div>
 
-            <article className="group grid overflow-hidden rounded-[2rem] border border-[#dfd4c7] bg-white lg:grid-cols-[1.3fr_1fr]">
-              <div className="relative min-h-[380px] overflow-hidden md:min-h-[520px]">
+            <article className="group grid overflow-hidden rounded-[2rem] border border-[#dfd4c7] bg-white lg:grid-cols-[1.25fr_1fr]">
+              <div className="relative min-h-[390px] overflow-hidden md:min-h-[540px]">
                 <img
                   src={primaryDestination.image}
                   alt={`Veduta di ${primaryDestination.name}`}
                   loading="lazy"
                   className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-[1.025]"
                 />
-
-                <div className="absolute inset-0 bg-gradient-to-t from-[#071729]/65 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#071729]/72 via-transparent to-transparent" />
 
                 <div className="absolute bottom-6 left-6 right-6 flex flex-wrap gap-2">
                   {Array.isArray(primaryDestination.stats) &&
                     primaryDestination.stats.map((stat) => (
                       <div
                         key={stat.label}
-                        className="rounded-full border border-white/25 bg-[#071729]/55 px-4 py-2 text-sm text-white backdrop-blur-md"
+                        className="rounded-full border border-white/25 bg-[#071729]/58 px-4 py-2 text-sm text-white backdrop-blur-md"
                       >
-                        <span className="text-white/65">
-                          {stat.label}:{" "}
-                        </span>
-
+                        <span className="text-white/65">{stat.label}: </span>
                         <span className="font-black">{stat.value}</span>
                       </div>
                     ))}
@@ -200,25 +193,38 @@ export default function HomePage({
                 <p className="text-xs font-black uppercase tracking-[0.22em] text-[#c86b4a]">
                   {primaryDestination.tag}
                 </p>
-
                 <h3 className="mt-4 text-4xl font-black tracking-[-0.05em] text-[#123e78] md:text-5xl">
                   {primaryDestination.name}
                 </h3>
-
                 <p className="mt-6 text-lg leading-8 text-[#5f6875]">
                   {primaryDestination.intro ?? primaryDestination.text}
                 </p>
 
-                <p className="mt-5 leading-7 text-[#738091]">
-                  {primaryDestination.text}
-                </p>
+                <div className="mt-7 grid gap-3 sm:grid-cols-2">
+                  <div className="rounded-xl bg-[#f5f1eb] px-4 py-3">
+                    <p className="text-xs font-black uppercase tracking-[0.13em] text-[#c86b4a]">
+                      Dentro la guida
+                    </p>
+                    <p className="mt-1 text-sm font-bold text-[#14263d]">
+                      Itinerario giorno per giorno
+                    </p>
+                  </div>
+                  <div className="rounded-xl bg-[#f5f1eb] px-4 py-3">
+                    <p className="text-xs font-black uppercase tracking-[0.13em] text-[#c86b4a]">
+                      Informazioni utili
+                    </p>
+                    <p className="mt-1 text-sm font-bold text-[#14263d]">
+                      Trasporti, zone e cibo
+                    </p>
+                  </div>
+                </div>
 
                 <div className="mt-9">
                   <Link
                     to={`/destinazioni/${primaryDestination.slug}`}
                     className="inline-flex min-h-12 items-center rounded-full bg-[#123e78] px-7 py-3.5 text-sm font-black uppercase tracking-[0.13em] text-white transition hover:-translate-y-0.5 hover:bg-[#0d315f]"
                   >
-                    Leggi la guida
+                    Leggi la guida completa
                   </Link>
                 </div>
               </div>
@@ -226,59 +232,79 @@ export default function HomePage({
           </section>
         )}
 
-        {/* ALTRE DESTINAZIONI */}
-        {otherDestinations.length > 0 && (
-          <section className="mx-auto max-w-7xl px-5 pb-20 md:px-8 md:pb-28">
-            <div>
-              <p className="text-xs font-black uppercase tracking-[0.22em] text-[#c86b4a]">
-                Altre guide
-              </p>
+        {featuredPost && (
+          <section className="bg-[#102a46]">
+            <div className="mx-auto grid max-w-7xl gap-10 px-5 py-16 md:px-8 md:py-24 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
+              <div>
+                <p className="text-xs font-black uppercase tracking-[0.22em] text-[#efc4a4]">
+                  Esperienza personale
+                </p>
+                <h2 className="mt-4 text-4xl font-black tracking-[-0.05em] text-white md:text-5xl">
+                  Il viaggio raccontato senza filtri.
+                </h2>
+                <p className="mt-6 text-lg leading-8 text-white/70">
+                  Oltre alle guide pratiche pubblichiamo racconti di viaggio:
+                  cosa abbiamo fatto davvero, cosa ci ha sorpreso e quali scelte
+                  rifaremmo.
+                </p>
+              </div>
 
-              <h2 className="mt-4 text-4xl font-black tracking-[-0.05em] text-[#123e78] md:text-5xl">
-                Continua a esplorare
-              </h2>
-            </div>
-
-            <div className="mt-10 grid gap-6 md:grid-cols-2">
-              {otherDestinations.map((destination) => (
-                <Link
-                  key={destination.slug}
-                  to={`/destinazioni/${destination.slug}`}
-                  className="group relative block min-h-[420px] overflow-hidden rounded-[1.8rem] text-left"
-                >
-                  <img
-                    src={destination.image}
-                    alt={`Veduta di ${destination.name}`}
-                    loading="lazy"
-                    className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-[1.035]"
-                  />
-
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#071729]/90 via-[#071729]/20 to-transparent" />
-
-                  <div className="absolute inset-x-0 bottom-0 p-7">
-                    <p className="text-xs font-black uppercase tracking-[0.2em] text-[#efc4a4]">
-                      {destination.tag}
-                    </p>
-
-                    <h3 className="mt-3 text-4xl font-black tracking-[-0.045em] text-white">
-                      {destination.name}
-                    </h3>
-
-                    <p className="mt-3 max-w-lg leading-7 text-white/75">
-                      {destination.intro ?? destination.text}
-                    </p>
-
-                    <p className="mt-6 text-sm font-black uppercase tracking-[0.13em] text-white">
-                      Scopri la guida →
-                    </p>
-                  </div>
-                </Link>
-              ))}
+              <Link
+                to={`/articoli/${featuredPost.slug}`}
+                className="group rounded-[2rem] border border-white/12 bg-white/8 p-7 transition hover:bg-white/12 md:p-9"
+              >
+                <p className="text-xs font-black uppercase tracking-[0.18em] text-[#efc4a4]">
+                  {featuredPost.category}
+                </p>
+                <h3 className="mt-3 text-3xl font-black tracking-[-0.04em] text-white md:text-4xl">
+                  {featuredPost.title}
+                </h3>
+                <p className="mt-4 max-w-2xl leading-7 text-white/72">
+                  {featuredPost.excerpt}
+                </p>
+                <p className="mt-7 text-sm font-black uppercase tracking-[0.13em] text-white">
+                  Leggi il racconto →
+                </p>
+              </Link>
             </div>
           </section>
         )}
 
-        {/* INSTAGRAM */}
+        <section className="mx-auto max-w-7xl px-5 py-16 md:px-8 md:py-24">
+          <div className="rounded-[2rem] border border-[#dfd4c7] bg-white p-7 md:p-12">
+            <div className="grid gap-10 lg:grid-cols-[1fr_0.9fr] lg:items-end">
+              <div>
+                <p className="text-xs font-black uppercase tracking-[0.22em] text-[#c86b4a]">
+                  Il prossimo passo
+                </p>
+                <h2 className="mt-4 max-w-3xl text-4xl font-black tracking-[-0.05em] text-[#123e78] md:text-5xl">
+                  Una destinazione alla volta, con contenuti sempre più completi.
+                </h2>
+                <p className="mt-6 max-w-2xl text-lg leading-8 text-[#5f6875]">
+                  Stiamo trasformando ogni viaggio in più contenuti utili:
+                  itinerari, trasporti, costi, indirizzi e racconti personali.
+                  Le nuove guide saranno pubblicate solo quando saranno pronte.
+                </p>
+              </div>
+
+              <div className="flex flex-wrap gap-3 lg:justify-end">
+                <Link
+                  to="/articoli"
+                  className="inline-flex min-h-12 items-center rounded-full bg-[#123e78] px-7 py-3.5 text-sm font-black uppercase tracking-[0.13em] text-white transition hover:-translate-y-0.5 hover:bg-[#0d315f]"
+                >
+                  Leggi gli articoli
+                </Link>
+                <Link
+                  to="/destinazioni"
+                  className="inline-flex min-h-12 items-center rounded-full border border-[#cfc3b5] px-7 py-3.5 text-sm font-black uppercase tracking-[0.13em] text-[#123e78] transition hover:border-[#123e78]"
+                >
+                  Esplora le guide
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section className="mx-auto max-w-7xl px-5 pb-20 md:px-8 md:pb-28">
           <div className="relative overflow-hidden rounded-[2rem] bg-[#123e78] px-7 py-12 text-white md:px-12 md:py-16">
             <div className="absolute -right-24 -top-24 h-64 w-64 rounded-full border border-white/10" />
@@ -286,16 +312,14 @@ export default function HomePage({
 
             <div className="relative max-w-3xl">
               <p className="text-xs font-black uppercase tracking-[0.22em] text-[#efc4a4]">
-                Instagram
+                Seguici
               </p>
-
               <h2 className="mt-4 text-4xl font-black tracking-[-0.05em] md:text-5xl">
-                Europando arriverà presto anche lì.
+                Il viaggio continua anche su Instagram.
               </h2>
-
               <p className="mt-6 max-w-2xl text-lg leading-8 text-white/75">
-                Presto troverai fotografie, tappe di viaggio, aggiornamenti e
-                nuovi contenuti legati alle destinazioni pubblicate sul sito.
+                Fotografie, tappe, piccoli consigli e aggiornamenti sulle nuove
+                destinazioni pubblicate su Europando.
               </p>
 
               <a
