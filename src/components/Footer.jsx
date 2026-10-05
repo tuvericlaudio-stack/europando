@@ -15,13 +15,13 @@ export default function Footer() {
         <div className="grid gap-12 border-b border-white/10 pb-12 md:grid-cols-[1.35fr_1fr] md:gap-20">
           {/* IDENTITÀ */}
           <div>
-            <p className="text-xs font-black uppercase tracking-[0.24em] text-[#efc4a4]">
-              Travel journal
+            <p className="text-xs font-black uppercase tracking-[0.24em] text-[#9cc8ff]">
+              Viaggi veri, costi veri
             </p>
 
             <Link
               to="/"
-              className="mt-4 inline-block text-left text-4xl font-black tracking-[-0.055em] text-white transition hover:text-[#efc4a4] md:text-5xl"
+              className="mt-4 inline-block text-left text-4xl font-black tracking-[-0.055em] text-white transition hover:text-[#9cc8ff] md:text-5xl"
               aria-label="Vai alla homepage di Europando"
             >
               Europando
@@ -36,7 +36,7 @@ export default function Footer() {
           {/* NAVIGAZIONE */}
           <div className="grid gap-10 sm:grid-cols-2">
             <div>
-              <p className="text-xs font-black uppercase tracking-[0.2em] text-[#efc4a4]">
+              <p className="text-xs font-black uppercase tracking-[0.2em] text-[#9cc8ff]">
                 Esplora
               </p>
 
@@ -57,7 +57,7 @@ export default function Footer() {
             </div>
 
             <div>
-              <p className="text-xs font-black uppercase tracking-[0.2em] text-[#efc4a4]">
+              <p className="text-xs font-black uppercase tracking-[0.2em] text-[#9cc8ff]">
                 Seguici
               </p>
 
@@ -79,7 +79,7 @@ export default function Footer() {
         <div className="flex flex-col gap-3 pt-7 text-sm text-white/45 sm:flex-row sm:items-center sm:justify-between">
           <p>© {currentYear} Europando</p>
 
-          <p>Viaggiare in Europa, una tappa alla volta.</p>
+          <p>Viaggi veri. Costi veri. Consigli pratici.</p>
         </div>
       </div>
     </footer>
