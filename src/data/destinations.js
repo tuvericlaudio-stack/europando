@@ -48,13 +48,14 @@ export const destinations = [
     slug: "bucarest",
     status: CONTENT_STATUS.PUBLISHED,
     name: "Bucarest",
+    country: "Romania",
     seoTitle: "Itinerario Bucarest: 3-4 giorni, cosa vedere e consigli pratici",
     seoDescription:
       "Itinerario di Bucarest in 3-4 giorni: tappe giorno per giorno, zone dove dormire, come muoversi dall’aeroporto e consigli pratici per organizzare il viaggio.",
     text: "Una città di contrasti, grandi viali, centro storico e tappe da distribuire bene senza correre.",
     tag: "Urban Mix",
     image: asset("bucarest-hero.jpg"),
-    heroTitle: "L'itinerario di Bucarest, in una guida semplice da seguire.",
+    heroTitle: "Bucarest in 3-4 giorni: itinerario completo",
     intro:
       "Un itinerario pratico per organizzare Bucarest in 3-4 giorni, con tappe chiare giorno per giorno e consigli utili per il viaggio.",
     stats: [
@@ -65,6 +66,7 @@ export const destinations = [
     itineraryDays: [
       {
         label: "Giorno 1 — Arrivo e primo orientamento",
+        image: asset("bucarest-article-hanul-2.jpg"),
         places: [
           "Centrul Vechi",
           "Stavropoleos",
@@ -73,6 +75,7 @@ export const destinations = [
       },
       {
         label: "Giorno 2 — Parte più rappresentativa",
+        image: asset("bucarest-article-parlamento.jpg"),
         places: [
           "Carturesti Carusel",
           "Piata Revolutiei",
@@ -84,6 +87,7 @@ export const destinations = [
       },
       {
         label: "Giorno 3 — Zona più aperta e rilassata",
+        image: asset("bucarest-article-arco-trionfo.jpg"),
         places: [
           "Parco Herastrau",
           "Arco di Trionfo",
@@ -94,6 +98,7 @@ export const destinations = [
       },
       {
         label: "Giorno 4 — Ultime ore utili e partenza",
+        image: asset("bucarest-article-colazione-finale.jpg"),
         places: [
           "Colazione in zona",
           "Ultimo giro leggero",
