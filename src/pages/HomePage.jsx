@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+// La home viene pubblicata anche nelle anteprime automatiche delle PR.
 import Footer from "../components/Footer";
 
 const valuePoints = [
