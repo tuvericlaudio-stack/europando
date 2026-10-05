@@ -82,7 +82,6 @@ export const destinations = [
           "Ateneul Roman",
           "Calea Victoriei",
           "Parlamento",
-          "Rientro verso il centro",
         ],
       },
       {
