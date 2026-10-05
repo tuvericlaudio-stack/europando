@@ -4,20 +4,20 @@ import Footer from "../components/Footer";
 
 export default function DestinationsPage({ logoSrc, destinations }) {
   return (
-    <div className="min-h-screen bg-[#f7f4ee] text-[#14263d]">
+    <div className="min-h-screen bg-[#f4f8fc] text-[#14263d]">
       <Header logoSrc={logoSrc} />
 
       <main>
         {/* INTRODUZIONE */}
-        <section className="border-b border-[#ded4c8]">
+        <section className="border-b border-[#dce6f1]">
           <div className="mx-auto max-w-7xl px-5 py-16 md:px-8 md:py-24">
             <div className="grid gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
               <div>
-                <p className="text-xs font-black uppercase tracking-[0.24em] text-[#c86b4a]">
+                <p className="text-xs font-black uppercase tracking-[0.24em] text-[#0b67d8]">
                   Guide di viaggio
                 </p>
 
-                <h1 className="mt-5 max-w-4xl text-5xl font-black leading-[0.98] tracking-[-0.06em] text-[#123e78] sm:text-6xl md:text-7xl">
+                <h1 className="mt-5 max-w-4xl text-5xl font-black leading-[0.98] tracking-[-0.06em] text-[#0d2c59] sm:text-6xl md:text-7xl">
                   Destinazioni da vivere con calma.
                 </h1>
               </div>
@@ -28,12 +28,12 @@ export default function DestinationsPage({ logoSrc, destinations }) {
                   trasformare il viaggio in una corsa.
                 </p>
 
-                <div className="mt-8 flex items-center gap-4 border-t border-[#d6cbbd] pt-6">
-                  <span className="text-4xl font-black tracking-[-0.05em] text-[#123e78]">
+                <div className="mt-8 flex items-center gap-4 border-t border-[#dce6f1] pt-6">
+                  <span className="text-4xl font-black tracking-[-0.05em] text-[#0d2c59]">
                     {String(destinations.length).padStart(2, "0")}
                   </span>
 
-                  <span className="max-w-[170px] text-xs font-black uppercase leading-5 tracking-[0.15em] text-[#7b7166]">
+                  <span className="max-w-[170px] text-xs font-black uppercase leading-5 tracking-[0.15em] text-[#718096]">
                     {destinations.length === 1
                       ? "Guida disponibile"
                       : "Guide disponibili"}
@@ -51,7 +51,7 @@ export default function DestinationsPage({ logoSrc, destinations }) {
               {destinations.map((destination, index) => (
                 <article
                   key={destination.slug}
-                  className="group grid overflow-hidden rounded-[2rem] border border-[#ded4c8] bg-white lg:grid-cols-[1.25fr_0.75fr]"
+                  className="group grid overflow-hidden rounded-[2rem] border border-[#dce6f1] bg-white lg:grid-cols-[1.25fr_0.75fr]"
                 >
                   <Link
                     to={`/destinazioni/${destination.slug}`}
@@ -86,16 +86,16 @@ export default function DestinationsPage({ logoSrc, destinations }) {
 
                   <div className="flex flex-col justify-center p-7 md:p-10 lg:p-12">
                     <div className="flex items-center justify-between gap-5">
-                      <p className="text-xs font-black uppercase tracking-[0.22em] text-[#c86b4a]">
+                      <p className="text-xs font-black uppercase tracking-[0.22em] text-[#0b67d8]">
                         {destination.tag}
                       </p>
 
-                      <span className="text-sm font-black text-[#b1a697]">
+                      <span className="text-sm font-black text-[#8ba0b8]">
                         {String(index + 1).padStart(2, "0")}
                       </span>
                     </div>
 
-                    <h2 className="mt-5 text-4xl font-black tracking-[-0.05em] text-[#123e78] md:text-5xl">
+                    <h2 className="mt-5 text-4xl font-black tracking-[-0.05em] text-[#0d2c59] md:text-5xl">
                       <Link to={`/destinazioni/${destination.slug}`}>
                         {destination.name}
                       </Link>
@@ -114,7 +114,7 @@ export default function DestinationsPage({ logoSrc, destinations }) {
                     <div className="mt-9">
                       <Link
                         to={`/destinazioni/${destination.slug}`}
-                        className="inline-flex min-h-12 items-center rounded-full bg-[#123e78] px-7 py-3.5 text-sm font-black uppercase tracking-[0.13em] text-white transition hover:-translate-y-0.5 hover:bg-[#0d315f]"
+                        className="inline-flex min-h-12 items-center rounded-full bg-[#0d2c59] px-7 py-3.5 text-sm font-black uppercase tracking-[0.13em] text-white transition hover:-translate-y-0.5 hover:bg-[#0857b7]"
                       >
                         Leggi la guida
                       </Link>
@@ -124,12 +124,12 @@ export default function DestinationsPage({ logoSrc, destinations }) {
               ))}
             </div>
           ) : (
-            <div className="rounded-[2rem] border border-[#ded4c8] bg-white p-10 text-center md:p-16">
-              <p className="text-xs font-black uppercase tracking-[0.22em] text-[#c86b4a]">
+            <div className="rounded-[2rem] border border-[#dce6f1] bg-white p-10 text-center md:p-16">
+              <p className="text-xs font-black uppercase tracking-[0.22em] text-[#0b67d8]">
                 Guide in preparazione
               </p>
 
-              <h2 className="mt-4 text-3xl font-black tracking-[-0.04em] text-[#123e78]">
+              <h2 className="mt-4 text-3xl font-black tracking-[-0.04em] text-[#0d2c59]">
                 Le prime destinazioni arriveranno presto.
               </h2>
             </div>
@@ -138,8 +138,8 @@ export default function DestinationsPage({ logoSrc, destinations }) {
 
         {/* METODO */}
         <section className="mx-auto max-w-7xl px-5 pb-20 md:px-8 md:pb-28">
-          <div className="rounded-[2rem] bg-[#123e78] px-7 py-12 text-white md:px-12 md:py-16">
-            <p className="text-xs font-black uppercase tracking-[0.22em] text-[#efc4a4]">
+          <div className="rounded-[2rem] bg-[#0d2c59] px-7 py-12 text-white md:px-12 md:py-16">
+            <p className="text-xs font-black uppercase tracking-[0.22em] text-[#9cc8ff]">
               Il metodo Europando
             </p>
 
