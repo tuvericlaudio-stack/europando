@@ -4,7 +4,11 @@ Documento di passaggio di consegne. Serve a chi riprende il lavoro senza aver
 seguito quello fatto finora: una nuova chat, un altro collaboratore, o me stesso
 tra qualche mese.
 
-Aggiornato al 1 agosto 2026: continua il lavoro sull'articolo di Bucarest
+Aggiornato al 5 ottobre 2026: nuova identità grafica uniforme, home con ricerca funzionante e pagina Bucarest ridisegnata.
+
+In ottobre 2026 il sito è stato evoluto verso uno stile più editoriale e intuitivo: home con hero, ricerca sui contenuti pubblicati, sezioni per destinazioni e articoli, nuova pagina destinazione Bucarest e palette blu coerente su archivi, articoli, footer e 404. Le preview delle PR vengono pubblicate su GitHub Pages con `noindex,nofollow`, mentre la produzione resta sul VPS.
+
+Storico precedente: continua il lavoro sull'articolo di Bucarest
 (layout immagini in linea col testo, niente più tagli), SEO mirata su
 "itinerario Bucarest", primi contenuti social per Instagram.
 
