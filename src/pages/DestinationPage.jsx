@@ -284,7 +284,7 @@ export default function DestinationPage({ logoSrc, destination }) {
               <BulletList items={destination.practicalInfo.gettingAround} />
               <div className="mt-5 rounded-xl bg-[#f5f8fc] p-4">
                 <p className="text-xs font-black uppercase tracking-[0.12em] text-[#0b67d8]">
-                  Dall'aeroporto
+                  Dall&apos;aeroporto
                 </p>
                 <div className="mt-3"><BulletList items={destination.practicalInfo.airportToCenter} /></div>
               </div>
@@ -412,7 +412,7 @@ export default function DestinationPage({ logoSrc, destination }) {
                   Esperienza personale
                 </p>
                 <h2 className="mt-3 text-3xl font-black tracking-[-0.04em]">
-                  Vuoi vedere com'è andata davvero?
+                  Vuoi vedere com&apos;è andata davvero?
                 </h2>
                 <p className="mt-4 max-w-2xl leading-7 text-white/75">
                   Nel nostro racconto trovi il viaggio reale a Bucarest, le scelte fatte sul posto e le esperienze che ci hanno sorpreso di più.
