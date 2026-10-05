@@ -54,6 +54,7 @@ function HomeRoute({
   logoSrc,
   featuredDestination,
   publishedDestinations,
+  publishedPosts,
 }) {
   const seo = useMemo(() => buildHomeSeo(heroSrc), [heroSrc]);
 
@@ -65,6 +66,7 @@ function HomeRoute({
         heroSrc={heroSrc}
         destinations={publishedDestinations}
         featuredDestination={featuredDestination}
+        posts={publishedPosts}
       />
     </>
   );
@@ -205,6 +207,7 @@ export default function App() {
               logoSrc={logoSrc}
               featuredDestination={featuredDestination}
               publishedDestinations={publishedDestinations}
+              publishedPosts={publishedPosts}
             />
           }
         />
