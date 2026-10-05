@@ -96,7 +96,7 @@ function ReadingProgress() {
   return (
     <div className="pointer-events-none fixed inset-x-0 top-0 z-[100] h-[3px] bg-transparent">
       <div
-        className="h-full bg-[#c86b4a] transition-[width] duration-150"
+        className="h-full bg-[#0b67d8] transition-[width] duration-150"
         style={{ width: `${progress}%` }}
       />
     </div>
@@ -219,13 +219,13 @@ function TripFacts({ facts }) {
 
   return (
     <section className="mx-auto mt-7 max-w-5xl px-5 md:px-8">
-      <div className="grid border-y border-[#d8cec2] sm:grid-cols-3">
+      <div className="grid border-y border-[#dce6f1] sm:grid-cols-3">
         {facts.map((fact, index) => (
           <div
             key={`${fact.label}-${index}`}
-            className="flex items-center gap-4 border-b border-[#d8cec2] px-2 py-5 last:border-b-0 sm:border-b-0 sm:border-r sm:px-6 sm:last:border-r-0"
+            className="flex items-center gap-4 border-b border-[#dce6f1] px-2 py-5 last:border-b-0 sm:border-b-0 sm:border-r sm:px-6 sm:last:border-r-0"
           >
-            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#efe5db] text-[#c86b4a]">
+            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#eaf3ff] text-[#0b67d8]">
               <TripFactIcon type={fact.type} />
             </span>
 
@@ -234,7 +234,7 @@ function TripFacts({ facts }) {
                 {fact.label}
               </p>
 
-              <p className="mt-1 font-bold text-[#123e78]">
+              <p className="mt-1 font-bold text-[#0d2c59]">
                 {fact.value}
               </p>
             </div>
@@ -251,9 +251,9 @@ function RouteDivider() {
       className="my-14 flex items-center gap-4 md:my-20"
       aria-hidden="true"
     >
-      <span className="h-px flex-1 bg-[#d8cec2]" />
+      <span className="h-px flex-1 bg-[#dce6f1]" />
 
-      <span className="flex h-9 w-9 items-center justify-center rounded-full border border-[#d8cec2] bg-[#f7f4ee] text-[#c86b4a]">
+      <span className="flex h-9 w-9 items-center justify-center rounded-full border border-[#dce6f1] bg-[#f4f8fc] text-[#0b67d8]">
         <svg
           viewBox="0 0 24 24"
           className="h-4 w-4"
@@ -267,12 +267,12 @@ function RouteDivider() {
       </span>
 
       <span className="flex gap-2">
-        <span className="h-1.5 w-1.5 rounded-full bg-[#c86b4a]/40" />
-        <span className="h-1.5 w-1.5 rounded-full bg-[#c86b4a]/70" />
-        <span className="h-1.5 w-1.5 rounded-full bg-[#c86b4a]" />
+        <span className="h-1.5 w-1.5 rounded-full bg-[#0b67d8]/40" />
+        <span className="h-1.5 w-1.5 rounded-full bg-[#0b67d8]/70" />
+        <span className="h-1.5 w-1.5 rounded-full bg-[#0b67d8]" />
       </span>
 
-      <span className="h-px flex-1 bg-[#d8cec2]" />
+      <span className="h-px flex-1 bg-[#dce6f1]" />
     </div>
   );
 }
@@ -312,7 +312,7 @@ function PhotoGroup({ images }) {
         return (
           <figure
             key={`${image.src}-${index}`}
-            className={`overflow-hidden rounded-[1.2rem] bg-[#e5ddd2] shadow-[0_10px_30px_rgba(39,54,71,0.08)] ${widthClass}`}
+            className={`overflow-hidden rounded-[1.2rem] bg-[#e7eef6] shadow-[0_10px_30px_rgba(39,54,71,0.08)] ${widthClass}`}
           >
             <img
               src={resolveAsset(image.src)}
@@ -373,20 +373,20 @@ function PersonalNote({ children }) {
   }
 
   return (
-    <aside className="relative my-11 overflow-hidden border-l-4 border-[#c86b4a] bg-[#efe8df] px-6 py-7 sm:px-8">
+    <aside className="relative my-11 overflow-hidden border-l-4 border-[#0b67d8] bg-[#eef5fc] px-6 py-7 sm:px-8">
       <span
         aria-hidden="true"
-        className="absolute -right-2 -top-8 text-[8rem] font-black leading-none text-[#c86b4a]/10"
+        className="absolute -right-2 -top-8 text-[8rem] font-black leading-none text-[#0b67d8]/10"
       >
         “
       </span>
 
       <div className="relative">
-        <p className="text-xs font-black uppercase tracking-[0.18em] text-[#c86b4a]">
+        <p className="text-xs font-black uppercase tracking-[0.18em] text-[#0b67d8]">
           La nostra impressione
         </p>
 
-        <p className="mt-4 text-xl font-bold leading-8 text-[#123e78]">
+        <p className="mt-4 text-xl font-bold leading-8 text-[#0d2c59]">
           {children}
         </p>
       </div>
@@ -402,7 +402,7 @@ function TravelTip({ children }) {
   return (
     <aside className="my-11 rounded-[1.4rem] border border-[#d7e0e9] bg-white px-6 py-7 shadow-[0_14px_38px_rgba(39,54,71,0.06)] sm:px-8">
       <div className="flex gap-4">
-        <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#123e78] text-white">
+        <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#0d2c59] text-white">
           <svg
             viewBox="0 0 24 24"
             aria-hidden="true"
@@ -417,7 +417,7 @@ function TravelTip({ children }) {
         </span>
 
         <div>
-          <p className="text-xs font-black uppercase tracking-[0.18em] text-[#c86b4a]">
+          <p className="text-xs font-black uppercase tracking-[0.18em] text-[#0b67d8]">
             Consiglio Europando
           </p>
 
@@ -436,7 +436,7 @@ function ArticleSection({ section }) {
   return (
     <section>
       {section.title && (
-        <h2 className="text-3xl font-black leading-tight tracking-[-0.035em] text-[#123e78] sm:text-4xl">
+        <h2 className="text-3xl font-black leading-tight tracking-[-0.035em] text-[#0d2c59] sm:text-4xl">
           {section.title}
         </h2>
       )}
@@ -472,7 +472,7 @@ function DayNavigation({ days }) {
       className="mx-auto mt-8 max-w-5xl px-5 md:px-8"
       aria-label="Navigazione tra i giorni del viaggio"
     >
-      <div className="rounded-[1.4rem] border border-[#d8cec2] bg-[#efe8df] p-3 shadow-[0_12px_35px_rgba(39,54,71,0.05)]">
+      <div className="rounded-[1.4rem] border border-[#dce6f1] bg-[#eef5fc] p-3 shadow-[0_12px_35px_rgba(39,54,71,0.05)]">
         <div className="grid gap-2 sm:grid-cols-3">
           {days.map((day) => (
             <a
@@ -480,16 +480,16 @@ function DayNavigation({ days }) {
               href={`#giorno-${day.number}`}
               className="group flex items-center gap-4 rounded-[1rem] px-4 py-4 text-left transition hover:bg-white"
             >
-              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#123e78] text-sm font-black text-white transition group-hover:bg-[#c86b4a]">
+              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#0d2c59] text-sm font-black text-white transition group-hover:bg-[#0b67d8]">
                 {String(day.number).padStart(2, "0")}
               </span>
 
               <span>
-                <span className="block text-[0.65rem] font-black uppercase tracking-[0.17em] text-[#c86b4a]">
+                <span className="block text-[0.65rem] font-black uppercase tracking-[0.17em] text-[#0b67d8]">
                   Giorno {day.number}
                 </span>
 
-                <span className="mt-1 block text-sm font-bold leading-5 text-[#123e78]">
+                <span className="mt-1 block text-sm font-bold leading-5 text-[#0d2c59]">
                   {day.navigationTitle || day.title}
                 </span>
               </span>
@@ -507,7 +507,7 @@ function DayBlock({ day }) {
       id={`giorno-${day.number}`}
       className="scroll-mt-28"
     >
-      <header className="relative mb-12 overflow-hidden rounded-[1.6rem] bg-[#123e78] px-6 py-9 text-white sm:px-9 sm:py-11">
+      <header className="relative mb-12 overflow-hidden rounded-[1.6rem] bg-[#0d2c59] px-6 py-9 text-white sm:px-9 sm:py-11">
         <span
           aria-hidden="true"
           className="absolute -right-2 -top-12 text-[10rem] font-black leading-none text-white/[0.06]"
@@ -516,7 +516,7 @@ function DayBlock({ day }) {
         </span>
 
         <div className="relative">
-          <p className="text-xs font-black uppercase tracking-[0.2em] text-[#f2ae92]">
+          <p className="text-xs font-black uppercase tracking-[0.2em] text-[#9cc8ff]">
             Giorno {String(day.number).padStart(2, "0")}
           </p>
 
@@ -533,7 +533,7 @@ function DayBlock({ day }) {
       </header>
 
       {day.intro && (
-        <p className="mb-12 text-xl font-semibold leading-9 text-[#263f5b]">
+        <p className="mb-12 text-xl font-semibold leading-9 text-[#203a5d]">
           {day.intro}
         </p>
       )}
@@ -551,14 +551,14 @@ function DayBlock({ day }) {
 
 function AuthorBox() {
   return (
-    <section className="mt-20 border-y border-[#d9cfc3] py-10">
+    <section className="mt-20 border-y border-[#dce6f1] py-10">
       <div className="flex flex-col gap-6 sm:flex-row sm:items-center">
-        <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-[#123e78] text-xl font-black text-white">
+        <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-[#0d2c59] text-xl font-black text-white">
           E
         </div>
 
         <div>
-          <p className="text-xs font-black uppercase tracking-[0.18em] text-[#c86b4a]">
+          <p className="text-xs font-black uppercase tracking-[0.18em] text-[#0b67d8]">
             Scritto da Europando
           </p>
 
@@ -600,7 +600,7 @@ export default function ArticlePage({ article, post, logoSrc }) {
   );
 
   return (
-    <div className="min-h-screen bg-[#f7f4ee]">
+    <div className="min-h-screen bg-[#f4f8fc]">
       <ReadingProgress />
 
       <Header logoSrc={logoSrc} />
@@ -610,12 +610,12 @@ export default function ArticlePage({ article, post, logoSrc }) {
           <header className="mx-auto max-w-5xl px-5 pb-10 pt-12 text-center md:px-8 md:pb-14 md:pt-20">
             <Link
               to="/articoli"
-              className="text-xs font-black uppercase tracking-[0.2em] text-[#c86b4a] transition hover:text-[#123e78]"
+              className="text-xs font-black uppercase tracking-[0.2em] text-[#0b67d8] transition hover:text-[#0d2c59]"
             >
               Racconti di viaggio
             </Link>
 
-            <h1 className="mx-auto mt-6 max-w-4xl text-4xl font-black leading-[1.02] tracking-[-0.05em] text-[#123e78] sm:text-5xl md:text-7xl">
+            <h1 className="mx-auto mt-6 max-w-4xl text-4xl font-black leading-[1.02] tracking-[-0.05em] text-[#0d2c59] sm:text-5xl md:text-7xl">
               {content.title}
             </h1>
 
@@ -635,7 +635,7 @@ export default function ArticlePage({ article, post, logoSrc }) {
           {content.heroImage && (
             <figure className="mx-auto max-w-7xl px-5 md:px-8">
               <div
-                className={`overflow-hidden rounded-[1.8rem] bg-[#e4dcd1] shadow-[0_24px_70px_rgba(37,55,74,0.12)] ${
+                className={`overflow-hidden rounded-[1.8rem] bg-[#e7eef6] shadow-[0_24px_70px_rgba(37,55,74,0.12)] ${
                   content.heroAspect ? "mx-auto w-full sm:max-w-[560px]" : ""
                 }`}
               >
@@ -660,7 +660,7 @@ export default function ArticlePage({ article, post, logoSrc }) {
 
           <div className="mx-auto max-w-[760px] px-5 py-14 md:px-8 md:py-20">
             {content.intro && (
-              <p className="text-xl font-semibold leading-9 tracking-[-0.015em] text-[#263f5b] sm:text-2xl sm:leading-10">
+              <p className="text-xl font-semibold leading-9 tracking-[-0.015em] text-[#203a5d] sm:text-2xl sm:leading-10">
                 {content.intro}
               </p>
             )}
@@ -687,11 +687,11 @@ export default function ArticlePage({ article, post, logoSrc }) {
 
             {additionalGallery.length > 0 && (
               <section className="mt-20">
-                <p className="text-xs font-black uppercase tracking-[0.18em] text-[#c86b4a]">
+                <p className="text-xs font-black uppercase tracking-[0.18em] text-[#0b67d8]">
                   Altri momenti del viaggio
                 </p>
 
-                <h2 className="mt-4 text-3xl font-black tracking-[-0.035em] text-[#123e78]">
+                <h2 className="mt-4 text-3xl font-black tracking-[-0.035em] text-[#0d2c59]">
                   {content.galleryTitle ?? "Le nostre fotografie del viaggio"}
                 </h2>
 
@@ -699,7 +699,7 @@ export default function ArticlePage({ article, post, logoSrc }) {
                   {additionalGallery.map((image, index) => (
                     <figure
                       key={`${image.src}-${index}`}
-                      className="overflow-hidden rounded-[1.4rem] bg-[#e4dcd1]"
+                      className="overflow-hidden rounded-[1.4rem] bg-[#e7eef6]"
                     >
                       <img
                         src={resolveAsset(image.src)}
@@ -717,12 +717,12 @@ export default function ArticlePage({ article, post, logoSrc }) {
             )}
 
             {relatedDestination && (
-              <section className="mt-20 border-y border-[#d9cfc3] py-12">
-                <p className="text-xs font-black uppercase tracking-[0.18em] text-[#c86b4a]">
+              <section className="mt-20 border-y border-[#dce6f1] py-12">
+                <p className="text-xs font-black uppercase tracking-[0.18em] text-[#0b67d8]">
                   Organizza il viaggio
                 </p>
 
-                <h2 className="mt-4 text-3xl font-black leading-tight tracking-[-0.035em] text-[#123e78] sm:text-4xl">
+                <h2 className="mt-4 text-3xl font-black leading-tight tracking-[-0.035em] text-[#0d2c59] sm:text-4xl">
                   Stai pensando di visitare {relatedDestination.name}?
                 </h2>
 
@@ -733,7 +733,7 @@ export default function ArticlePage({ article, post, logoSrc }) {
 
                 <Link
                   to={relatedDestinationPath}
-                  className="mt-7 inline-flex items-center gap-2 border-b-2 border-[#c86b4a] pb-2 text-sm font-black uppercase tracking-[0.14em] text-[#123e78] transition hover:text-[#c86b4a]"
+                  className="mt-7 inline-flex items-center gap-2 border-b-2 border-[#0b67d8] pb-2 text-sm font-black uppercase tracking-[0.14em] text-[#0d2c59] transition hover:text-[#0b67d8]"
                 >
                   Leggi la guida di {relatedDestination.name}
                   <span aria-hidden="true">→</span>
