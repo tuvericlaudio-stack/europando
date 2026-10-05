@@ -1,0 +1,140 @@
+name: Anteprima PR
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, closed]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: europando-pr-previews
+  cancel-in-progress: false
+
+jobs:
+  deploy-preview:
+    if: github.event.action != 'closed'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout della PR
+        uses: actions/checkout@v4
+
+      - name: Configura Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Installa dipendenze
+        run: npm ci
+
+      - name: Verifica e costruisce l'anteprima
+        env:
+          VITE_SITE_URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/pr-${{ github.event.pull_request.number }}/
+          VITE_SITE_BASE_PATH: /${{ github.event.repository.name }}/pr-${{ github.event.pull_request.number }}/
+        run: npm run check
+
+      - name: Impedisce l'indicizzazione delle anteprime
+        run: |
+          find dist -name '*.html' -type f -print0 | while IFS= read -r -d '' file; do
+            sed -i 's#</head>#<meta name="robots" content="noindex,nofollow" />\n</head>#' "$file"
+          done
+
+      - name: Checkout del sito anteprime
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          path: preview-pages
+
+      - name: Pubblica la cartella della PR
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          rm -rf "preview-pages/pr-${PR_NUMBER}"
+          mkdir -p "preview-pages/pr-${PR_NUMBER}"
+          cp -a dist/. "preview-pages/pr-${PR_NUMBER}/"
+
+          cd preview-pages
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "pr-${PR_NUMBER}"
+
+          if git diff --cached --quiet; then
+            echo "Anteprima già aggiornata."
+          else
+            git commit -m "Preview PR #${PR_NUMBER}"
+            git push origin gh-pages
+          fi
+
+      - name: Aggiunge il link alla pull request
+        uses: actions/github-script@v7
+        env:
+          PREVIEW_URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/pr-${{ github.event.pull_request.number }}/
+        with:
+          script: |
+            const marker = '<!-- europando-pr-preview -->';
+            const body = `${marker}
+            ### Anteprima Europando
+
+            🔎 [Apri l'anteprima di questa PR](${process.env.PREVIEW_URL})
+
+            L'anteprima viene aggiornata automaticamente a ogni modifica della PR e non viene indicizzata dai motori di ricerca.`;
+
+            const { owner, repo } = context.repo;
+            const issue_number = context.issue.number;
+            const comments = await github.paginate(github.rest.issues.listComments, {
+              owner,
+              repo,
+              issue_number,
+              per_page: 100,
+            });
+
+            const existing = comments.find((comment) =>
+              comment.body?.includes(marker)
+            );
+
+            if (existing) {
+              await github.rest.issues.updateComment({
+                owner,
+                repo,
+                comment_id: existing.id,
+                body,
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner,
+                repo,
+                issue_number,
+                body,
+              });
+            }
+
+  remove-preview:
+    if: github.event.action == 'closed'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout del sito anteprime
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          path: preview-pages
+
+      - name: Rimuove l'anteprima chiusa
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          cd preview-pages
+          rm -rf "pr-${PR_NUMBER}"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+
+          if git diff --cached --quiet; then
+            echo "Nessuna anteprima da rimuovere."
+          else
+            git commit -m "Remove preview PR #${PR_NUMBER}"
+            git push origin gh-pages
+          fi
