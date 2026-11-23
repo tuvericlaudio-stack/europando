@@ -161,7 +161,7 @@ export async function stagePublication(client, draft, slug) {
 
   const prepared = await preparePublication(draft, slug, previous);
   const { article, revision, imageFiles } = prepared;
-  if (previous?.editorialRevision === revision) return { slug, revision, phase: "deploy" };
+  if (previous?.editorialRevision === revision) return { slug, revision, date: article.date, phase: "deploy" };
 
   const branch = `redazione/${slug}-${revision.slice(0, 20)}`;
   let ref = await client(`${repository}/git/ref/heads/${branch}`, { missing: true });
@@ -194,7 +194,7 @@ export async function stagePublication(client, draft, slug) {
     head: branch
   } });
   if (pull.head.sha !== head) throw new Error("La versione sull’anteprima GitHub è cambiata. Controllala prima di pubblicare.");
-  return { number: pull.number, head, slug, revision, phase: "checking" };
+  return { number: pull.number, head, slug, revision, date: article.date, phase: "checking" };
 }
 
 async function publicationStatus(client, record) {
