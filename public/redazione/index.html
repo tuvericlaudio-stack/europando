@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data: blob:; frame-src 'self'; connect-src 'self' https://api.github.com; base-uri 'none'; form-action 'none'">
+<title>Redazione EUROPANDO</title>
+<link rel="stylesheet" href="studio.css">
+<script type="module" src="studio.js"></script>
+</head>
+<body>
+<header class="top"><div class="brand"><span class="mark" aria-hidden="true">E</span><div>EUROPANDO<span>Redazione</span></div></div><div id="save-status" role="status">Apertura redazione…</div></header>
+<div class="workspace">
+<aside class="sidebar" aria-label="Articoli">
+  <div class="side-title"><h2>Articoli</h2><button id="new" class="square" aria-label="Nuovo articolo" title="Nuovo articolo">+</button></div>
+  <div id="projects"></div>
+  <div class="side-tools"><button id="import-backup" class="quiet">Importa copia di lavoro</button><input id="backup-input" type="file" accept=".json,application/json" hidden></div>
+</aside>
+<main>
+<section class="hero"><div class="hero-copy"><div id="hero-meta" class="tag"></div><h1 id="heading"></h1><p>Raccogli i materiali, scrivi la bozza e controlla come si legge.</p></div><button id="download-top">Scarica copia di lavoro</button></section>
+<nav class="tabs" aria-label="Fasi dell’articolo"><button data-tab="materials" aria-controls="materials">Materiali</button><button data-tab="draft" aria-controls="draft">Bozza</button><button data-tab="preview" aria-controls="preview">Anteprima ed esportazione</button></nav>
+<div id="notice" role="status" hidden></div>
+<section class="panel" id="materials">
+  <div class="section-head"><div><h2>Materiali di partenza</h2><p>Incolla note, testi, costi o link e indica da dove vengono. Restano negli appunti finché decidi cosa usare.</p></div><div class="actions material-actions"><button id="import-text">Importa TXT o Markdown</button><button id="add-source" class="primary">Aggiungi materiale</button><input id="text-input" type="file" accept=".txt,.md,.markdown,text/plain,text/markdown" multiple hidden></div></div>
+  <div id="sources" class="stack"></div>
+  <div class="section-head photo-head"><div><h2>Foto</h2><p>Aggiungi una copertina e le foto che vuoi mostrare nell’articolo.</p></div><button id="add-photos">Carica foto</button><input id="photos-input" type="file" accept="image/*,.heic,.heif" multiple hidden></div>
+  <div id="photos" class="photo-grid"></div>
+</section>
+<section class="panel" id="draft" hidden>
+  <div class="section-head"><div><h2>Bozza dell’articolo</h2><p>Scrivi o incolla il tuo testo. Aggiungi una sezione per ogni giornata o argomento.</p></div></div>
+  <div class="fields">
+    <label>Titolo<input data-field="title" autocomplete="off"></label>
+    <label>Destinazione<input data-field="destination" autocomplete="off"></label>
+    <label class="full">Introduzione<textarea data-field="intro" rows="4"></textarea></label>
+  </div>
+  <div id="sections" class="stack sections"></div>
+  <div class="actions"><button id="add-section">Aggiungi sezione</button></div>
+  <details class="ai"><summary>Elabora i materiali con ChatGPT</summary><p>Copia la richiesta con i tuoi appunti e incollala in ChatGPT. Poi incolla qui la risposta JSON per caricare i testi proposti nella bozza. Tieni solo le informazioni che vuoi condividere nella richiesta.</p>
+    <div class="actions"><button id="copy-prompt">Copia richiesta</button></div>
+    <label>Risposta di ChatGPT<textarea id="ai-input" rows="5" placeholder="Incolla qui il JSON"></textarea></label>
+    <button id="apply-ai">Importa testi nella bozza</button>
+  </details>
+</section>
+<section class="panel" id="preview" hidden>
+  <div class="section-head"><div><h2>Anteprima sul sito</h2><p>Controlla testo, copertina e galleria nel layout di Europando.</p></div></div>
+  <div class="actions preview-controls" role="group" aria-label="Visualizzazione dell’anteprima">
+    <button id="preview-desktop" type="button" aria-pressed="true">Computer</button>
+    <button id="preview-phone" type="button" aria-pressed="false">Telefono</button>
+    <button id="preview-edit" type="button">Torna alla bozza</button>
+  </div>
+  <p id="preview-status" class="muted" role="status" hidden></p>
+  <div class="preview-viewport">
+    <iframe id="article-preview" title="Anteprima dell’articolo su Europando" sandbox="allow-scripts allow-same-origin" referrerpolicy="no-referrer" hidden></iframe>
+  </div>
+  <section class="export" aria-labelledby="publish-heading">
+  <h2 id="publish-heading">Pubblica su europando.it</h2>
+  <p id="publish-origin" hidden>La pubblicazione è disponibile dalla redazione su europando.it.</p>
+  <div id="publish-controls" hidden>
+    <p>La consegna rende visibili su GitHub il testo finale e le foto selezionate. Gli appunti rimangono su questo browser. Puoi mettere online l’articolo dopo il controllo della build.</p>
+    <details class="ai">
+      <summary>Collegamento a GitHub</summary>
+      <p>Usa un <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener noreferrer">token GitHub a permessi granulari</a> per il solo repository <strong>europando</strong>. Imposta <strong>Contents</strong> e <strong>Pull requests</strong> su lettura e scrittura e <strong>Actions</strong> su sola lettura. Il token resta in memoria finché la pagina è aperta.</p>
+      <form id="connect-form">
+        <label>Token GitHub<input id="github-token" type="password" autocomplete="off" required></label>
+        <div class="actions"><button id="connect" type="submit">Collega GitHub</button><button id="disconnect" type="button" hidden>Scollega</button></div>
+      </form>
+    </details>
+    <label class="slug-label">Indirizzo dell’articolo<input id="publish-slug" maxlength="80" aria-describedby="publish-url" autocomplete="off"></label>
+    <p id="publish-url" class="muted"></p>
+    <p id="publish-status" role="status" class="muted"></p>
+    <div class="actions"><button id="send-for-check" class="primary">Invia al controllo</button><button id="recheck" hidden>Controlla lo stato</button><button id="publish-live" class="primary" hidden>Metti online</button><a id="publication-link" hidden target="_blank" rel="noopener noreferrer">Apri l’articolo</a><a id="review-link" hidden target="_blank" rel="noopener noreferrer">Apri il controllo su GitHub</a></div>
+  </div>
+</section>
+<div class="export"><h2>Esporta l’articolo</h2><p>Il Markdown contiene il testo. La copia di lavoro include anche materiali e foto e puoi riaprirla in questa redazione. Puoi usare questi file per portare la bozza su un altro browser.</p><div class="actions"><button id="download-md" class="primary">Scarica Markdown</button><button id="copy-md">Copia testo</button><button id="download-full">Scarica copia di lavoro</button></div></div>
+</section>
+</main>
+</div>
+<dialog id="new-dialog"><form id="new-form"><h2>Nuovo articolo</h2><label>Titolo<input id="new-title" required maxlength="180" autocomplete="off"></label><label>Destinazione<input id="new-destination" autocomplete="off"></label><div class="actions"><button id="cancel-new" type="button">Annulla</button><button class="primary" type="submit">Crea bozza</button></div></form></dialog>
+</body>
+</html>

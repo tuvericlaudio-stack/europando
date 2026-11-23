@@ -125,6 +125,14 @@ export const buildNotFoundSeo = (path, description) => ({
 // Elenco delle pagine da generare in build: solo contenuti pubblicati, così una
 // bozza non finisce online nemmeno come file statico.
 export const getPrerenderRoutes = () => {
+  const articleSlugs = new Set();
+  for (const article of [...articles, ...featuredPosts]) {
+    if (articleSlugs.has(article.slug)) {
+      throw new Error(`Indirizzo articolo duplicato: ${article.slug}`);
+    }
+    articleSlugs.add(article.slug);
+  }
+
   const publishedDestinations = getPublishedDestinations(destinations);
   const publishedPosts = getPublishedArticleCards(articles, featuredPosts);
   const publishedArticleSources = [...articles, ...featuredPosts].filter(

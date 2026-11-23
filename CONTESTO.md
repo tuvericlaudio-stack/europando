@@ -286,6 +286,39 @@ I due metodi si escludono a vicenda.
 
 ---
 
+### Redazione web degli articoli
+
+La redazione si apre da `https://europando.it/redazione/`. Le bozze e gli
+appunti risiedono nel browser. Per trasferire un articolo dall’editor locale
+(scheda di Siviglia inclusa), scaricare la copia di lavoro JSON e importarla
+dalla redazione del sito.
+
+**Anteprima sul sito** usa la stessa pagina React degli articoli pubblicati e
+gli stessi dati preparati per la pubblicazione. Le viste Computer e Telefono
+usano larghezze diverse della pagina. Testi e foto della bozza passano
+dall’editor al riquadro di anteprima nello stesso browser.
+
+Il collegamento usa un token GitHub a permessi granulari per il solo repository
+`europando`. Impostare `Contents` e `Pull requests` su lettura e scrittura e
+`Actions` su sola lettura. Il token rimane in memoria nella scheda e viene
+inviato soltanto all’API di GitHub. Le anteprime su altri domini offrono
+l’editor senza i comandi di pubblicazione.
+
+- **Invia al controllo** crea un commit con testo e foto destinati al pubblico
+  e apre una pull request sul repository pubblico. Gli appunti e le fonti
+  private non fanno parte del commit.
+- **Controlla lo stato** legge l’esito di `checks.yml` per la revisione inviata.
+- **Metti online** unisce quella revisione dopo i controlli. Il timer di deploy
+  esistente pubblica la build valida da `main`.
+- Dopo il merge, **Controlla lo stato** verifica che la pagina pubblica
+  contenga la revisione attesa e mostra il link.
+
+Gli articoli della redazione sono in `src/data/redazione/<slug>.json`, nel
+formato già gestito da `ArticlePage`. Titoli uguali possono usare indirizzi
+diversi. Una collisione di indirizzi ferma la build. Le foto pubblicate
+vengono salvate in `public/redazione-foto/`. Le immagini hanno un nome legato
+al contenuto per evitare che una sostituzione mostri una foto vecchia in cache.
+
 ## 5. Dopo: analisi commerciale
 
 Ricerca già svolta, da non rifare. Fonti consultate a luglio 2026.

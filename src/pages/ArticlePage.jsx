@@ -606,7 +606,7 @@ export default function ArticlePage({ article, post, logoSrc }) {
       <Header logoSrc={logoSrc} />
 
       <main>
-        <article>
+        <article data-editorial-revision={content.editorialRevision}>
           <header className="mx-auto max-w-5xl px-5 pb-10 pt-12 text-center md:px-8 md:pb-14 md:pt-20">
             <Link
               to="/articoli"
