@@ -1,6 +1,12 @@
 import { CONTENT_STATUS } from "../utils/content";
 
+const files = import.meta.glob("./redazione/*.json", { eager: true, import: "default" });
+const editorialArticles = Object.values(files).sort((first, second) =>
+  second.date.localeCompare(first.date)
+);
+
 export const articles = [
+  ...editorialArticles,
   {
     slug: "bucarest-ci-ha-sorpresi",
 
